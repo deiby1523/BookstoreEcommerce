@@ -12,9 +12,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Llama al seeder de categorías
-        $this->call(CategorySeeder::class);
-        $this->call(SubcategorySeeder::class);
+
+
+
+
+
+        /* fixme: bug seeder category and subcategory
+        // The categories and categories created by migration
+        // have bugs, the reason has not yet been found, for
+        // now only the category and subcategory migrations
+        // will no longer be called.
+        */
+
+//        $this->call(CategorySeeder::class);
+//        $this->call(SubcategorySeeder::class);
+
+
+
+
+
+
 
         // Llama al seeder de productos
         //$this->call(ProductSeeder::class);

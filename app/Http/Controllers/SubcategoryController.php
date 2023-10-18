@@ -22,7 +22,7 @@ class SubcategoryController extends Controller
     public function save(Request $request) {
         $request->validate([
             'subcategory_name' => 'required',
-            'category_id' => 'min:3|integer|required'
+            'category_id' => 'integer|required'
         ]);
 
         Subcategory::create([
@@ -53,7 +53,7 @@ class SubcategoryController extends Controller
     public function update(Request $request,$id) {
         $request->validate([
             'subcategory_name' => 'required',
-            'category_id' => 'min:3|integer|required'
+            'category_id' => 'integer|required'
 
         ]);
 
