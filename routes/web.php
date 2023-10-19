@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubcategoryController;
@@ -63,6 +64,16 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/subcategory/update/{category}',[SubcategoryController::class,'update'])->name('subcategory.update');
     Route::get('/subcategory/show/{category}',[SubcategoryController::class,'show'])->name('subcategory.show');
     Route::delete('/subcategory/delete/{category}',[SubcategoryController::class,'delete'])->name('subcategory.delete'); // It is obligatory to call destroy
+
+    // Authors
+    Route::get('/author',[AuthorController::class,'index'])->name('author.index');
+//    Route::get('/author/create',[AuthorController::class,'create'])->name('author.create');
+//    Route::post('/author/save',[AuthorController::class,'save'])->name('author.save');// It is obligatory to call store
+//    Route::get('/author/edit/{author}',[AuthorController::class,'edit'])->name('author.edit');
+//    Route::put('/author/update/{author}',[AuthorController::class,'update'])->name('author.update');
+//    Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
+//    Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete'); // It is obligatory to call destroy
+
 });
 
 
