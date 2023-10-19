@@ -13,23 +13,23 @@ class AuthorController extends Controller
         return view('author.index',compact('authors'));
     }
 
-//    public function create() {
-//        return view('author.create');
-//    }
-//
-//    public function save($request) {
-//        $request->validate([
-//            'auhtor_name' => 'min:3|required'
-//        ]);
-//
-//        Author::create([
-//            'author_name' => $request->author_name,
-//            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
-//            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-//        ]);
-//
-//        return redirect()->route('author.index')->with('succes','Autor creado exitosamente.');
-//    }
+    public function create() {
+        return view('author.create');
+    }
+
+    public function save(Request $request) {
+        $request->validate([
+            'author_name' => 'required'
+        ]);
+
+        Author::create([
+            'author_name' => $request->author_name,
+            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+        ]);
+
+        return redirect()->route('author.index')->with('succes','Autor creado exitosamente.');
+    }
 //
 //    public function show($id) {
 //

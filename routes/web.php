@@ -50,29 +50,29 @@ Route::middleware('UserAdmin')->group(function () {
     // Categories
     Route::get('/category',[CategoryController::class,'index'])->name('category.index');
     Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
-    Route::post('/category/save',[CategoryController::class,'save'])->name('category.save');// It is obligatory to call store
+    Route::post('/category/save',[CategoryController::class,'save'])->name('category.save');
     Route::get('/category/edit/{category}',[CategoryController::class,'edit'])->name('category.edit');
     Route::put('/category/update/{category}',[CategoryController::class,'update'])->name('category.update');
     Route::get('/category/show/{category}',[CategoryController::class,'show'])->name('category.show');
-    Route::delete('/category/delete/{category}',[CategoryController::class,'delete'])->name('category.delete'); // It is obligatory to call destroy
+    Route::delete('/category/delete/{category}',[CategoryController::class,'delete'])->name('category.delete');
 
     // Subcategories
     Route::get('/subcategory',[SubcategoryController::class,'index'])->name('subcategory.index');
     Route::get('/subcategory/create',[SubcategoryController::class,'create'])->name('subcategory.create');
-    Route::post('/subcategory/save',[SubcategoryController::class,'save'])->name('subcategory.save');// It is obligatory to call store
+    Route::post('/subcategory/save',[SubcategoryController::class,'save'])->name('subcategory.save');
     Route::get('/subcategory/edit/{category}',[SubcategoryController::class,'edit'])->name('subcategory.edit');
     Route::put('/subcategory/update/{category}',[SubcategoryController::class,'update'])->name('subcategory.update');
     Route::get('/subcategory/show/{category}',[SubcategoryController::class,'show'])->name('subcategory.show');
-    Route::delete('/subcategory/delete/{category}',[SubcategoryController::class,'delete'])->name('subcategory.delete'); // It is obligatory to call destroy
+    Route::delete('/subcategory/delete/{category}',[SubcategoryController::class,'delete'])->name('subcategory.delete');
 
     // Authors
     Route::get('/author',[AuthorController::class,'index'])->name('author.index');
-//    Route::get('/author/create',[AuthorController::class,'create'])->name('author.create');
-//    Route::post('/author/save',[AuthorController::class,'save'])->name('author.save');// It is obligatory to call store
-//    Route::get('/author/edit/{author}',[AuthorController::class,'edit'])->name('author.edit');
-//    Route::put('/author/update/{author}',[AuthorController::class,'update'])->name('author.update');
-//    Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
-//    Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete'); // It is obligatory to call destroy
+    Route::get('/author/create',[AuthorController::class,'create'])->name('author.create');
+    Route::post('/author/save',[AuthorController::class,'save'])->name('author.save');
+    Route::get('/author/edit/{author}',[AuthorController::class,'edit'])->name('author.edit');
+    Route::put('/author/update/{author}',[AuthorController::class,'update'])->name('author.update');
+    Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
+    Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete'); // It is obligatory to call destroy
 
 });
 
