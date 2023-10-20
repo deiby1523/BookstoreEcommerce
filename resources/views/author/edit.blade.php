@@ -35,50 +35,44 @@
                 < volver
             </a>
 
-            <h2 class="title">Ver Categoria</h2>
+            <h2 class="title">Editar Categoria</h2>
 
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
+                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('category.update',$category->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="card-body pb-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-group input-group-static mb-4">
+                                        <label>Nombre</label>
+                                        <input value="{{$category->category_name}}" name="category_name" id="category_name" class="form-control" placeholder="ej. Literatura" aria-label="Full Name" type="text">
+                                    </div>
+                                </div>
 
-
-                    <div class="card-body pb-2">
-                        <div class="col-lg-12">
-                            <h2>{{$category->category_name}}</h2>
-                            <div class="display-4 text-md">Creada el {{$category->created_at}} y ultima vez actualizada el {{$category->updated_at}}</div>
-                            <p>{{$category->category_description}}</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                @if(count($category->subcategories) > 0)
-                                    <br>
-                                    <h4> Subcategorias </h4>
-                                    <ul class="list-group">
-                                        @foreach($category->subcategories as $subcategory)
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                {{$subcategory->subcategory_name}}
-                                                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Esta subcategoria tiene 0 libros" class="badge bg-gradient-warning">0</span>
-                                            </li>
-
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <p class="display-4" style="font-size: x-large"> No existen
-                                        subcategorias para esta
-                                        categoria.</p>
-                                @endif
                             </div>
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12 text-start">
-                                <a href="{{route('category.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
-                                </a>
+                            <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
+                                <label for="category_description">Descripcion</label>
+                                <textarea name="category_description" class="form-control" id="category_description" rows="6"
+                                          placeholder="Una descripcion breve de la categoria">
+                                    {{$category->category_description}}
+                                </textarea>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6 text-start">
+                                    <a href="{{route('category.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
+                                    </a>
+                                </div>
 
+                                <div class="col-md-6 text-end">
+                                    <button type="submit" class="btn bg-gradient-warning mt-3 mb-0">Guardar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

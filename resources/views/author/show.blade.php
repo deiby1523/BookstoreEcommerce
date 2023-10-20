@@ -31,11 +31,11 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="container">
         <div class="section text-left my-4">
-            <a href="{{ route('category.index') }}" class="text-warning text-sm icon-move-left">
+            <a href="{{ route('author.index') }}" class="text-warning text-sm icon-move-left">
                 < volver
             </a>
 
-            <h2 class="title">Ver Categoria</h2>
+            <h2 class="title">Ver Autor</h2>
 
             <div class="card">
 
@@ -44,36 +44,35 @@
 
                     <div class="card-body pb-2">
                         <div class="col-lg-12">
-                            <h2>{{$category->category_name}}</h2>
-                            <div class="display-4 text-md">Creada el {{$category->created_at}} y ultima vez actualizada el {{$category->updated_at}}</div>
-                            <p>{{$category->category_description}}</p>
+                            <h2>{{$author->author_name}}</h2>
+                            <div class="display-4 text-md">Creado el {{$author->created_at}} y ultima vez actualizado el {{$author->updated_at}}</div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                @if(count($category->subcategories) > 0)
-                                    <br>
-                                    <h4> Subcategorias </h4>
-                                    <ul class="list-group">
-                                        @foreach($category->subcategories as $subcategory)
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                {{$subcategory->subcategory_name}}
-                                                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Esta subcategoria tiene 0 libros" class="badge bg-gradient-warning">0</span>
-                                            </li>
+{{--                        <div class="row">--}}
+{{--                            <div class="col-lg-12">--}}
+{{--                                @if(count($author->subcategories) > 0)--}}
+{{--                                    <br>--}}
+{{--                                    <h4> Subcategorias </h4>--}}
+{{--                                    <ul class="list-group">--}}
+{{--                                        @foreach($author->subcategories as $subcategory)--}}
+{{--                                            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
+{{--                                                {{$subcategory->subcategory_name}}--}}
+{{--                                                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Esta subcategoria tiene 0 libros" class="badge bg-gradient-wwarning">0</span>--}}
+{{--                                            </li>--}}
 
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <p class="display-4" style="font-size: x-large"> No existen
-                                        subcategorias para esta
-                                        categoria.</p>
-                                @endif
-                            </div>
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                @else--}}
+{{--                                    <p class="display-4" style="font-size: x-large"> No existen--}}
+{{--                                        subcategorias para esta--}}
+{{--                                        categoria.</p>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
 
-                        </div>
+{{--                        </div>--}}
                         <br>
                         <div class="row">
                             <div class="col-md-12 text-start">
-                                <a href="{{route('category.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
+                                <a href="{{route('author.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
                                 </a>
                             </div>
 

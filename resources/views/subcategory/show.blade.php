@@ -47,6 +47,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h2 style="width: fit-content"> {{$category->category_name}} > <span style="font-weight: 300;">{{$subcategory->subcategory_name}} </span></h2>
+                                        <div class="display-4 text-md">Creada el {{$subcategory->created_at}} y ultima vez actualizada el {{$subcategory->updated_at}}</div>
                                     </div>
 
                                 </div>
@@ -72,7 +73,7 @@
     </div>
 
 </div>
-</div>
+
 <div class="container">
     <div class="row">
 

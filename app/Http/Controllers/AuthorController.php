@@ -28,15 +28,17 @@ class AuthorController extends Controller
             'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
         ]);
 
-        return redirect()->route('author.index')->with('succes','Autor creado exitosamente.');
+        return redirect()->route('author.index')->with('success','Autor creado exitosamente.');
     }
-//
-//    public function show($id) {
-//
-//        $author = Author::findOrFail($id);
-//
-//        return view('author.show',compact($author));
-//    }
+
+
+    public function show($id) {
+
+        $author = Author::findOrFail($id);
+
+        return view('author.show',compact('author'));
+    }
+
 //
 //    public function edit($id) {
 //
