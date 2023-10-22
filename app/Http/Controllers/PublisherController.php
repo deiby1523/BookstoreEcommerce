@@ -31,4 +31,12 @@ class PublisherController extends Controller
         return redirect()->route('publisher.index')->with('success','Editorial creada exitosamente');
     }
 
+    public function show($id) {
+        $publisher = Publisher::findOrFail($id);
+
+        return view('publisher.show',compact('publisher'));
+    }
+
+
+
 }
