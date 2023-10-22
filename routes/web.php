@@ -83,6 +83,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/publisher/update/{publisher}',[PublisherController::class,'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}',[PublisherController::class,'show'])->name('publisher.show');
 
+
 });
 
 

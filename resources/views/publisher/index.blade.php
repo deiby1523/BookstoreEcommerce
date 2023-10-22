@@ -181,7 +181,7 @@
                                             Visualizar
                                         </a>
 
-                                        <a href="{{route('publisher.edit',$publisher->id)}}"
+                                        <a href="{{route('publisher.edit')}}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit user">
                                             Editar
