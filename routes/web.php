@@ -79,6 +79,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/publisher',[PublisherController::class,'index'])->name('publisher.index');
     Route::get('/publisher/create',[PublisherController::class,'create'])->name('publisher.create');
     Route::post('/publisher/save',[PublisherController::class,'save'])->name('publisher.save');
+    Route::get('/publisher/edit/{publisher}',[PublisherController::class,'edit'])->name('publisher.edit');
+    Route::put('/publisher/update/{publisher}',[PublisherController::class,'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}',[PublisherController::class,'show'])->name('publisher.show');
 
 });

@@ -37,6 +37,27 @@ class PublisherController extends Controller
         return view('publisher.show',compact('publisher'));
     }
 
+    public function edit($id) {
+        $publisher = Publisher::findOrFail($id);
+
+        return view('publisher.edit',compact('publisher'));
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'publisher_name' => 'required'
+        ]);
+
+        $publisher = Publisher::findOrFail($id);
+
+        $publisher->update([
+            'publisher_name' => $request->publisher_name,
+            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+        ]);
+
+        return redirect()->route('publisher.index')->with('success','Editorial actualizada correctamente');
+    }
+
 
 
 }
