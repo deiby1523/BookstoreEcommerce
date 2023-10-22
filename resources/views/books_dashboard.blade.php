@@ -75,12 +75,15 @@
                 </a>
             </div>
             <div class="col my-2">
-                <div class="card move-on-hover">
-                    <div class="card-body text-center">
-                        <h1 class="text-gradient text-warning"><span id="status1" countto="21">0</span></h1>
-                        <h6 class="mb-0 font-weight-bolder">Editoriales</h6>
+                <a href="{{ route('publisher.index') }}">
+                    <div class="card move-on-hover">
+                        <div class="card-body text-center">
+                            <h1 class="text-gradient text-warning"><span id="status1"
+                                                                         countto="21">{{count($publishers)}}</span></h1>
+                            <h6 class="mb-0 font-weight-bolder">Editoriales</h6>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
         </div>

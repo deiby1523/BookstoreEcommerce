@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleLoginController;
@@ -74,6 +75,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
     Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete'); // It is obligatory to call destroy
 
+    // Publishers
+    Route::get('/publisher',[PublisherController::class,'index'])->name('publisher.index');
 });
 
 

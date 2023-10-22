@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Publisher;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class BookDashboardController extends Controller
         $categories = Category::all();
         $subcategories = Subcategory::all();
         $authors = Author::all();
-        return view('books_dashboard', compact('categories','subcategories','authors'));
+        $publishers = Publisher::all();
+        return view('books_dashboard', compact('categories','subcategories','authors','publishers'));
     }
 }
