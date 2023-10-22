@@ -35,7 +35,7 @@
                 < volver
             </a>
 
-            <h2 class="title">Editar Autor</h2>
+            <h2 class="title">Editar Editorial</h2>
 
             <div class="card">
 

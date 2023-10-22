@@ -82,6 +82,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/publisher/edit/{publisher}',[PublisherController::class,'edit'])->name('publisher.edit');
     Route::put('/publisher/update/{publisher}',[PublisherController::class,'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}',[PublisherController::class,'show'])->name('publisher.show');
+    Route::delete('/publisher/delete/{publisher}',[PublisherController::class,'delete'])->name('publisher.delete'); // It is obligatory to call destroy
 
 
 });

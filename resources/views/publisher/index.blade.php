@@ -181,7 +181,7 @@
                                             Visualizar
                                         </a>
 
-                                        <a href="{{route('publisher.edit')}}"
+                                        <a href="{{route('publisher.edit',$publisher->id)}}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit user">
                                             Editar
@@ -216,7 +216,7 @@
                                                             data-bs-dismiss="modal">Cancelar
                                                     </button>
                                                     <form method="POST"
-                                                          action="">
+                                                          action="{{route('publisher.delete',$publisher->id)}}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn bg-gradient-danger mb-0">

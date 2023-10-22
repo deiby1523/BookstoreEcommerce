@@ -58,6 +58,13 @@ class PublisherController extends Controller
         return redirect()->route('publisher.index')->with('success','Editorial actualizada correctamente');
     }
 
+    public function delete($id) {
+        $publisher = Publisher::findOrFail($id);
+        $publisher->delete();
+
+        return redirect()->route('publisher.index')->with('success','Editorial eliminada exitosamente.');
+    }
+
 
 
 }
