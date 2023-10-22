@@ -61,13 +61,13 @@ class AuthorController extends Controller
 
         return redirect()->route('author.index')->with('success','Autor actualizado correctamente');
     }
-//
-//    public function delete($id) {
-//        $author = Author::findOrFail($id);
-//        $author->delete();
-//
-//        return redirect()->route('author.index')->with('success',"Autor eliminado correctamente");
-//    }
+
+    public function delete($id) {
+        $author = Author::findOrFail($id);
+        $author->delete();
+
+        return redirect()->route('author.index')->with('success',"Autor eliminado correctamente");
+    }
 
 
 }
