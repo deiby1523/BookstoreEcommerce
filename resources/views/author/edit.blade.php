@@ -31,16 +31,16 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="container">
         <div class="section text-left my-4">
-            <a href="{{ route('category.index') }}" class="text-warning text-sm icon-move-left">
+            <a href="{{ route('author.index') }}" class="text-warning text-sm icon-move-left">
                 < volver
             </a>
 
-            <h2 class="title">Editar Categoria</h2>
+            <h2 class="title">Editar Autor</h2>
 
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
-                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('category.update',$category->id) }}">
+                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('author.update',$author->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="card-body pb-2">
@@ -48,21 +48,14 @@
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
-                                        <input value="{{$category->category_name}}" name="category_name" id="category_name" class="form-control" placeholder="ej. Literatura" aria-label="Full Name" type="text">
+                                        <input value="{{$author->author_name}}" name="author_name" id="author_name" class="form-control" placeholder="ej. Gabriel Garcia Marquez" aria-label="Full Name" type="text">
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
-                                <label for="category_description">Descripcion</label>
-                                <textarea name="category_description" class="form-control" id="category_description" rows="6"
-                                          placeholder="Una descripcion breve de la categoria">
-                                    {{$category->category_description}}
-                                </textarea>
-                            </div>
                             <div class="row">
                                 <div class="col-md-6 text-start">
-                                    <a href="{{route('category.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
+                                    <a href="{{route('author.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
                                     </a>
                                 </div>
 

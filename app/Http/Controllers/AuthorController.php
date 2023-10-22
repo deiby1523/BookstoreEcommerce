@@ -19,7 +19,7 @@ class AuthorController extends Controller
 
     public function save(Request $request) {
         $request->validate([
-            'author_name' => 'required'
+            'author_name' => 'min:3|required'
         ]);
 
         Author::create([
@@ -39,28 +39,28 @@ class AuthorController extends Controller
         return view('author.show',compact('author'));
     }
 
-//
-//    public function edit($id) {
-//
-//        $author = Author::findOrFail($id);
-//
-//        return view('author.edit',compact('author'));
-//    }
-//
-//    public function update(Request $request,$id) {
-//        $request->validate([
-//            'auhtor_name' => 'min:3|required'
-//        ]);
-//
-//        $author = Author::findOrFail($id);
-//
-//        $author->update([
-//            'author_name' => $request->author_name,
-//            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-//        ]);
-//
-//        return redirect()->route('author.index')->with('success','Autor actualizado correctamente');
-//    }
+
+    public function edit($id) {
+
+        $author = Author::findOrFail($id);
+
+        return view('author.edit',compact('author'));
+    }
+
+    public function update(Request $request,$id) {
+        $request->validate([
+            'author_name' => 'min:3|required'
+        ]);
+
+        $author = Author::findOrFail($id);
+
+        $author->update([
+            'author_name' => $request->author_name,
+            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+        ]);
+
+        return redirect()->route('author.index')->with('success','Autor actualizado correctamente');
+    }
 //
 //    public function delete($id) {
 //        $author = Author::findOrFail($id);
