@@ -77,6 +77,9 @@ Route::middleware('UserAdmin')->group(function () {
 
     // Publishers
     Route::get('/publisher',[PublisherController::class,'index'])->name('publisher.index');
+    Route::get('/publisher/create',[PublisherController::class,'create'])->name('publisher.create');
+    Route::post('/publisher/save',[PublisherController::class,'save'])->name('publisher.save');
+
 });
 
 

@@ -31,25 +31,25 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="container">
         <div class="section text-left my-4">
-            <a href="{{ route('author.index') }}" class="text-warning text-sm icon-move-left">
+            <a href="{{ route('publisher.index') }}" class="text-warning text-sm icon-move-left">
                 < volver
             </a>
 
-            <h2 class="title">Crear Autor</h2>
+            <h2 class="title">Crear Editorial</h2>
 
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
                     <form role="form" id="contact-form" method="POST" autocomplete="off"
-                          action="{{ route('author.save') }}">
+                          action="{{ route('publisher.save') }}">
                         @csrf
                         <div class="card-body pb-2">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
-                                        <input name="author_name" id="author_name" class="form-control"
-                                               placeholder="ej. Gabriel García Márquez" aria-label="Full Name"
+                                        <input name="publisher_name" id="publisher_name" class="form-control"
+                                               placeholder="ej. Alfaomega" aria-label="Full Name"
                                                type="text">
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 text-start">
-                                    <a href="{{route('author.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
+                                    <a href="{{route('publisher.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
                                        style="max-width: 233px; width: -webkit-fill-available;">Cancelar
                                     </a>
                                 </div>

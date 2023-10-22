@@ -131,7 +131,7 @@
 
                     <h2 class="title">Editoriales</h2>
                 </div>
-                <div class="col" style="text-align: end"><a href="#"
+                <div class="col" style="text-align: end"><a href="{{route('publisher.create')}}"
                                                             class="btn btn-sm btn-warning">Crear Editorial</a></div>
             </div>
             @php $npublishers = count($publishers); @endphp
