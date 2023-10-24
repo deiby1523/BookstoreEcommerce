@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('book_name')->nullable(false);
+            $table->string('book_description');
             // TODO: continue with the book CRUD implementation
             $table->timestamps();
         });
