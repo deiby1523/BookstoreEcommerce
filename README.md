@@ -89,7 +89,7 @@ Welcome to the Ecommerce Book Store project, a web-based application for buying 
 ## Usage
 
 - Visit the website, sign up, and start exploring or selling books.
-- Use the admin panel at `http://localhost:8000/admin` for book management.
+- Use the admin panel at `http://localhost:8000/dashboard_book` for book management.
 
 ## Technologies
 
