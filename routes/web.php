@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
@@ -83,6 +84,10 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/publisher/update/{publisher}',[PublisherController::class,'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}',[PublisherController::class,'show'])->name('publisher.show');
     Route::delete('/publisher/delete/{publisher}',[PublisherController::class,'delete'])->name('publisher.delete'); // It is obligatory to call destroy
+
+    // Books
+    Route::get('/book',[BookController::class,'index'])->name('book.index');
+    Route::get('/book/create',[BookController::class,'create'])->name('book.create');
 
 
 });

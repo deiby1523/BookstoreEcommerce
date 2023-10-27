@@ -131,7 +131,7 @@
 
                     <h2 class="title">Libros</h2>
                 </div>
-                <div class="col" style="text-align: end"><a href="{{--{{route('category.create')}}--}}"
+                <div class="col" style="text-align: end"><a href="{{route('book.create')}}"
                                                             class="btn btn-sm btn-warning">Crear Libro</a></div>
             </div>
             @php $nbooks = count($books); @endphp
@@ -159,12 +159,6 @@
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Subcategoria
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Creado
-                                </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Actualizado
-                                </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
@@ -182,19 +176,13 @@
                                         <p class=" mb-0">{{ $book->book_title }}</p>
                                     </td>
                                     <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $book->author }}</p>
+                                        <p class=" mb-0">{{ $book->author_name }}</p>
                                     </td>
                                     <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $book->publisher }}</p>
+                                        <p class=" mb-0">{{ $book->publisher_name }}</p>
                                     </td>
-                                    <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $book->category }} > {{$book->subcategory}}</p>
-                                    </td>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $book->created_at }}</p>
-                                    </td>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $book->updated_at }}</p>
+                                   <td class="align-middle text-center  ">
+                                        <p class=" mb-0">{{$book->category_name}} > {{$book->subcategory_name}}</p>
                                     </td>
                                     <td class="align-middle" style="text-align: center;">
 
@@ -433,6 +421,8 @@
 </div>
 </div>
 </footer>
+
+
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>

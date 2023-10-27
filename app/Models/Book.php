@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
@@ -17,21 +18,28 @@ class Book extends Model
 
     public function author()
     {
-        return $this->hasOne(Author::class);
+        return $this->belongsTo(Author::class);
     }
 
-    public function pusblisher()
+    public function publisher()
     {
-        return $this->hasOne(Publisher::class);
+        return $this->belongsTo(Publisher::class);
     }
 
     public function category()
     {
-        return $this->hasOneThrough(Category::class, Subcategory::class);
+        return $this->hasManyThrough(
+            Category::class,
+            Subcategory::class,
+            'category_id', // Foreign key on the subcategory table
+            'id', // Foreign key on the country table...
+            'id', // Local key on the category table...
+            'category_id' // Local key on the product table...
+        );
     }
 
     public function subcategory()
     {
-        return $this->hasOne(Subcategory::class);
+        return $this->belongsTo(Subcategory::class);
     }
 }
