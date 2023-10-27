@@ -89,12 +89,14 @@
         </div>
         <div class="row">
             <div class="col my-2">
-                <div class="card move-on-hover">
-                    <div class="card-body text-center">
-                        <h1 class="text-gradient text-warning"><span id="status1" countto="21">0</span></h1>
-                        <h6 class="mb-0 font-weight-bolder">Libros</h6>
+                <a href="{{ route('book.index') }}">
+                    <div class="card move-on-hover">
+                        <div class="card-body text-center">
+                            <h1 class="text-gradient text-warning"><span id="status1" countto="21">0</span></h1>
+                            <h6 class="mb-0 font-weight-bolder">Libros</h6>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
         </div>
