@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="es">
 
-
 <head>
     <title>Ecommerce</title>
     <!-- Required meta tags -->
@@ -24,12 +23,36 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-<style>
+<style type="text/css">
     .listbox {
         margin-top: 10px !important;
     }
+
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+
+    input[type=date]::-webkit-inner-spin-button,
+    input[type=date]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=date] {
+        -moz-appearance: textfield;
+    }
+
+
+
 </style>
-<script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
@@ -51,11 +74,25 @@
                         @csrf
                         <div class="card-body pb-2">
                             <div class="row">
+
                                 <div class="input-group input-group-static mb-4 mt-4">
+
+
+                                    <label>Codigo ISBN</label>
+                                    <input name="book_isbn" id="book_isbn" class="form-control" aria-label="Full Name"
+                                           type="number" autofocus>
+                                    <span class="input-group-text" style="right: 18px"> <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                            fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
+                                            <path
+                                                d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
+                                        </svg></span>
+                                </div>
+
+                                <div class="input-group input-group-static mb-4">
                                     <label>Categoria</label>
-                                    <select name="category_id" id="category_id" class="form-control"
-                                            name="choices-button" id="choices-button" placeholder="Categoria">
-                                        <option selected disabled hidden value="">Selecciona una categoria</option>
+                                    <select name="category_id" id="category_id" class="form-control">
+                                        <option selected disabled hidden value=""></option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->category_name}}</option>
                                         @endforeach
@@ -64,27 +101,29 @@
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Subcategoria</label>
-                                    <select name="subcategory_id" id="subcategory_id" class="form-control"
-                                            name="choices-button" id="choices-button" placeholder="Subcategoria">
+                                    <select name="subcategory_id" id="subcategory_id" class="form-control">
 
                                     </select>
 
                                 </div>
-                            </div>
+                                <div class="input-group input-group-static mb-4">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="input-group input-group-static mb-4">
-
-                                        <label>Nombre</label>
-                                        <input name="subcategory_name" id="subcategory_name" class="form-control"
-                                               placeholder="ej. Cuentos, Novelas, etc." aria-label="Full Name"
-                                               type="text">
-                                    </div>
+                                    <label>Nombre</label>
+                                    <input name="subcategory_name" id="subcategory_name" class="form-control"
+                                           placeholder="ej. Cuentos, Novelas, etc." aria-label="Full Name"
+                                           type="text">
                                 </div>
+                                <div class="input-group input-group-static mb-4">
+                                    <label>Autor</label>
+                                    <select name="author_id" id="author_id" placeholder="Autor" class="form-control">
+                                        <option selected disabled hidden value=""></option>
+                                        @foreach($authors as $author)
+                                            <option value="{{$author->id}}">{{$author->author_name}}</option>
+                                        @endforeach
+                                    </select>
 
+                                </div>
                             </div>
-
 
                             <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
                                 <label>Descripcion</label>
@@ -114,7 +153,10 @@
 
 </div>
 </div>
+
+
 <script>
+
     document.addEventListener("DOMContentLoaded", function () {
         var categorySelect = document.getElementById("category_id");
         var subcategorySelect = document.getElementById("subcategory_id");
@@ -123,10 +165,12 @@
         var subcategoryOptions = {
             @foreach($categories as $category)
                 {{$category->id}}: [
-                @foreach($category->subcategories as $subcategory)
-                    {id: "{{$subcategory->id}}", name: "{{$subcategory->subcategory_name}}"},
-                    @endforeach
-                ],
+                    @foreach($category->subcategories as $subcategory)
+                {
+                    id: "{{$subcategory->id}}", name: "{{$subcategory->subcategory_name}}"
+                },
+                @endforeach
+            ],
 
             @endforeach
 
@@ -134,7 +178,7 @@
         // Agrega más opciones de subcategoría con IDs según tus necesidades
 
 
-    // Función para actualizar las opciones de subcategoría
+        // Función para actualizar las opciones de subcategoría
         function updateSubcategories() {
             var selectedCategory = categorySelect.value;
             subcategorySelect.innerHTML = ""; // Limpiar las opciones existentes
@@ -149,16 +193,16 @@
             }
         }
 
-
         // Llamar a la función al cargar la página para cargar las opciones iniciales
-    updateSubcategories();
+        updateSubcategories();
 
-    // Agregar un evento de cambio al primer select (categoría)
+        // Agregar un evento de cambio al primer select (categoría)
         categorySelect.addEventListener("change", updateSubcategories);
 
-    })
-    ;
+    });
+
 </script>
+
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
