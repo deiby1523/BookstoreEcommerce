@@ -5,68 +5,71 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $authors = Author::all();
-        return view('author.index',compact('authors'));
+        return view('author.index', compact('authors'));
     }
 
-    public function create() {
+    public function save(Request $request)
+    {
+        $request->validate(['author_name' => 'min:3|required']);
+
+        Author::create(['author_name' => $request->author_name, 'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')]);
+
+        return redirect()->route('author.index')->with('success', 'Autor creado exitosamente.');
+    }
+
+    public function create()
+    {
         return view('author.create');
     }
 
-    public function save(Request $request) {
-        $request->validate([
-            'author_name' => 'min:3|required'
-        ]);
-
-        Author::create([
-            'author_name' => $request->author_name,
-            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-        ]);
-
-        return redirect()->route('author.index')->with('success','Autor creado exitosamente.');
-    }
-
-
-    public function show($id) {
+    public function show($id)
+    {
 
         $author = Author::findOrFail($id);
 
-        return view('author.show',compact('author'));
+        return view('author.show', compact('author'));
     }
 
 
-    public function edit($id) {
+    public function edit($id)
+    {
 
         $author = Author::findOrFail($id);
 
-        return view('author.edit',compact('author'));
+        return view('author.edit', compact('author'));
     }
 
-    public function update(Request $request,$id) {
-        $request->validate([
-            'author_name' => 'min:3|required'
-        ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate(['author_name' => 'min:3|required']);
 
         $author = Author::findOrFail($id);
 
-        $author->update([
-            'author_name' => $request->author_name,
-            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-        ]);
+        $author->update(['author_name' => $request->author_name, 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')]);
 
-        return redirect()->route('author.index')->with('success','Autor actualizado correctamente');
+        return redirect()->route('author.index')->with('success', 'Autor actualizado correctamente');
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $author = Author::findOrFail($id);
         $author->delete();
 
-        return redirect()->route('author.index')->with('success',"Autor eliminado correctamente");
+        return redirect()->route('author.index')->with('success', "Autor eliminado correctamente");
+    }
+
+    public function searchSelect(Request $request)
+    {
+        $sql = "SELECT authors.id, authors.author_name FROM authors WHERE author_name LIKE '%$request->search%' LIMIT 5";
+        $authors = DB::select($sql);
+        return response()->json($authors,200);
     }
 
 

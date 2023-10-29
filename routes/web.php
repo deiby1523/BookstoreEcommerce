@@ -75,6 +75,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/author/update/{author}',[AuthorController::class,'update'])->name('author.update');
     Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
     Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete'); // It is obligatory to call destroy
+    Route::POST('author/search',[AuthorController::class,'searchSelect'])->name('author.searchSelect');
 
     // Publishers
     Route::get('/publisher',[PublisherController::class,'index'])->name('publisher.index');
