@@ -74,8 +74,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/author/edit/{author}',[AuthorController::class,'edit'])->name('author.edit');
     Route::put('/author/update/{author}',[AuthorController::class,'update'])->name('author.update');
     Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
-    Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete'); // It is obligatory to call destroy
-    Route::POST('author/search',[AuthorController::class,'searchSelect'])->name('author.searchSelect');
+    Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete');
+    Route::POST('/author/search',[AuthorController::class,'searchSelect'])->name('author.searchSelect');
 
     // Publishers
     Route::get('/publisher',[PublisherController::class,'index'])->name('publisher.index');
@@ -84,14 +84,19 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/publisher/edit/{publisher}',[PublisherController::class,'edit'])->name('publisher.edit');
     Route::put('/publisher/update/{publisher}',[PublisherController::class,'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}',[PublisherController::class,'show'])->name('publisher.show');
-    Route::delete('/publisher/delete/{publisher}',[PublisherController::class,'delete'])->name('publisher.delete'); // It is obligatory to call destroy
+    Route::delete('/publisher/delete/{publisher}',[PublisherController::class,'delete'])->name('publisher.delete');
+    Route::POST('/publisher/search',[PublisherController::class,'searchSelect'])->name('publisher.searchSelect');
+
 
     // Books
     Route::get('/book',[BookController::class,'index'])->name('book.index');
     Route::get('/book/create',[BookController::class,'create'])->name('book.create');
+    Route::post('/book/save',[BookController::class,'save'])->name('book.save');
+
 
 
 });
+
 
 
 require __DIR__.'/auth.php';

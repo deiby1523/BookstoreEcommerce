@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Publisher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PublisherController extends Controller
 {
@@ -63,6 +64,13 @@ class PublisherController extends Controller
         $publisher->delete();
 
         return redirect()->route('publisher.index')->with('success','Editorial eliminada exitosamente.');
+    }
+
+    public function searchSelect(Request $request)
+    {
+        $sql = "SELECT publishers.id, publishers.publisher_name FROM publishers WHERE publisher_name LIKE '%$request->search%' LIMIT 5";
+        $publishers = DB::select($sql);
+        return response()->json($publishers,200);
     }
 
 
