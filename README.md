@@ -84,7 +84,7 @@ Welcome to the Ecommerce Book Store project, a web-based application for buying 
    ```
 
 9. **Access the application**:
-   - Open your browser and navigate to `http://localhost:8000`.
+   - Open your browser and navigate to `http://localhost:8000`
 
 ## Usage
 
