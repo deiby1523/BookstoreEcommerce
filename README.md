@@ -19,7 +19,7 @@ Welcome to the Ecommerce Book Store project, a web-based application for buying 
 
 2. **Browse and Search Books**:
    - Browse a wide selection of books.
-   - Use the search functionality to find specific titles, authors, or genres.
+   - Use the search functionality to find specific titles, authors, or categories.
 
 3. **Shopping Cart**:
    - Add books to your cart.
