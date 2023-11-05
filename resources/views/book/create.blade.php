@@ -91,7 +91,7 @@
 
                                     <label>Codigo ISBN</label>
                                     <input name="book_isbn" id="book_isbn" class="form-control" aria-label="Full Name"
-                                           type="number" autofocus>
+                                           type="text" autofocus>
                                     <span class="input-group-text" style="right: 18px"> <svg
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
@@ -120,7 +120,7 @@
                                 <div class="input-group input-group-static mb-4">
 
                                     <label>Nombre</label>
-                                    <input name="book_title" id="book_title" class="form-control datepicker" aria-label="Full Name" type="text">
+                                    <input name="book_title" id="book_title" class="form-control" aria-label="Full Name" type="text">
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Autor</label>
@@ -177,6 +177,11 @@
                                         </div>
                                     </ul>
 
+                                </div>
+                                <div class="input-group input-group-static mb-4">
+
+                                    <label>Numero de páginas</label>
+                                    <input name="book_number_pages" id="book_number_pages" class="form-control" aria-label="Full Name" type="number">
                                 </div>
 
                                 <div class="input-group input-group-static mb-4">

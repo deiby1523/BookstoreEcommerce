@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("book_isbn")->nullable(false);
+            $table->string('book_isbn',20)->unique()->nullable(false);
             $table->string('book_title')->nullable(false);
             $table->unsignedBigInteger('author_id')->nullable(false);
             $table->unsignedBigInteger('publisher_id')->nullable(false);
             $table->unsignedBigInteger('subcategory_id')->nullable(false);
+            $table->integer('book_number_pages')->nullable(false);
             $table->date('book_publication_date')->nullable(true);
-            $table->string('book_description')->nullable(true);
+            $table->text('book_description')->nullable(true);
             $table->timestamps();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('no action');
             $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('no action');

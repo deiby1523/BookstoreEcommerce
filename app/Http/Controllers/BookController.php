@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
+    // in admin dashbhoard
     public function index()
     {
 //        $books = Book::all();
 
-        $sql = 'SELECT
+    $sql = 'SELECT
     books.id,
     books.book_isbn,
     books.book_title,
@@ -43,13 +44,14 @@ class BookController extends Controller
 
     public function save(Request $request) {
         $request->validate([
-            'book_isbn' => 'required|min:8|integer',
+            'book_isbn' => 'required|min:8',
             'category_id' => 'required|min:1|integer',
             'subcategory_id' => 'required|min:1|integer',
             'book_title' => 'required',
             'author_id'=> 'required|min:1|integer',
             'publisher_id'=> 'required|min:1|integer',
-            'book_publication_date' => 'required|date'
+            'book_publication_date' => 'required|date',
+            'book_number_pages' => 'required'
         ]);
 
         Book::create([
@@ -58,6 +60,7 @@ class BookController extends Controller
             'subcategory_id' => $request->subcategory_id,
             'author_id' => $request->author_id,
             'publisher_id' => $request->publisher_id,
+            'book_number_pages' => $request->book_number_pages,
             'book_publication_date' => $request->book_publication_date,
             'book_description' => $request->book_description,
             'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),

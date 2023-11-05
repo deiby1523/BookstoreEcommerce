@@ -13,6 +13,7 @@ class Book extends Model
         'author_id',
         'publisher_id',
         'subcategory_id',
+        'book_number_pages',
         'book_publication_date',
         'book_description'];
 

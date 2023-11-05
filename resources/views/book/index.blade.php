@@ -142,9 +142,6 @@
                             <thead>
                             <tr>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Codigo
-                                </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     ISBN
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
@@ -166,9 +163,6 @@
                             @foreach($books as $book)
 
                                 <tr>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $book->id }}</p>
-                                    </td>
                                     <td class="align-middle text-center  ">
                                         <p class=" mb-0">{{ $book->book_isbn }}</p>
                                     </td>
