@@ -14,9 +14,6 @@ class DatabaseSeeder extends Seeder
     {
 
 
-
-
-
         /* fixme: bug seeder category and subcategory
         // The categories and categories created by migration
         // have bugs, the reason has not yet been found, for
@@ -24,12 +21,11 @@ class DatabaseSeeder extends Seeder
         // will no longer be called.
         */
 
-//        $this->call(CategorySeeder::class);
-//        $this->call(SubcategorySeeder::class);
-
-
-
-
+        $this->call(CategorySeeder::class);
+        $this->call(SubcategorySeeder::class);
+        $this->call(AuthorSeeder::class);
+        $this->call(PublisherSeeder::class);
+        $this->call(BookSeeder::class);
 
 
 
