@@ -148,9 +148,6 @@
                                     Titulo
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Autor
-                                </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Editorial
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
@@ -160,17 +157,25 @@
                             </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    function convertToISBN($number) {
+    $isbn = 'ISBN ' . substr($number, 0, 3) . '-' . substr($number, 3, 1) . '-' . substr($number, 4, 4) . '-' . substr($number, 8, 4) . '-' . substr($number, 12, 1);
+    return $isbn;
+}
+                                @endphp
                             @foreach($books as $book)
+                                @php
+// Ejemplo de uso
+$number = $book->book_isbn; // Tu número de 13 dígitos
+$isbn = convertToISBN($number);
 
+                                @endphp
                                 <tr>
                                     <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $book->book_isbn }}</p>
+                                        <p class=" mb-0">{{ $isbn }}</p>
                                     </td>
                                     <td>
                                         <p class=" mb-0">{{ $book->book_title }}</p>
-                                    </td>
-                                    <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $book->author_name }}</p>
                                     </td>
                                     <td class="align-middle text-center  ">
                                         <p class=" mb-0">{{ $book->publisher_name }}</p>

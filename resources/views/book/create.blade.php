@@ -64,6 +64,12 @@
     .show {
         display: block;
     }
+
+    input::file-selector-button {
+    padding: 7px 7px 7px 7px !important;
+    background-color: lightgray !important;
+    border-radius: 10px; !important
+}
 </style>
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
@@ -195,6 +201,35 @@
                                 <textarea name="book_description" class="form-control"
                                           id="book_description" rows="6"
                                           placeholder="resumen o descripcion del libro"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="card mt-4">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card-body">
+                                                <h4 class="font-weight-normal mt-3">Card title</h4>
+                                                <p class="card-text mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis non dolore est fuga nobis ipsum illum eligendi nemo iure repellat, soluta, optio minus ut reiciendis voluptates enim impedit veritatis officiis.</p>
+                                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                <img class="border-radius-lg w-100" src="https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Image placeholder">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Card image -->
+                                    
+                                    <!-- Card body -->
+                                    
+                                 </div>
+                            </div>
+
+                            <div class="input-group input-group-static mb-4 mt-4">
+
+                                <label>Imagen</label>
+                                <input style="margin-top: 10px; border-radius:10px !important" name="book_title" id="book_title" class="form-control" aria-label="Full Name" type="file">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 text-start">
