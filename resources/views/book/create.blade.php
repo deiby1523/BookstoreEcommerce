@@ -66,10 +66,11 @@
     }
 
     input::file-selector-button {
-    padding: 7px 7px 7px 7px !important;
-    background-color: lightgray !important;
-    border-radius: 10px; !important
-}
+        padding: 7px 7px 7px 7px !important;
+        background-color: lightgray !important;
+        border-radius: 10px;
+    !important
+    }
 </style>
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
@@ -86,8 +87,9 @@
 
             <div class="card">
 
-                <div class="card d-flex justify-content-center p-4 shadow-lg">
-                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{route('book.save') }}">
+                <div class="card d-flex justify-content-center p-4 shadow-lg" >
+                    <form role="form" id="contact-form" method="POST" autocomplete="off"
+                          action="{{route('book.save') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body pb-2">
                             <div class="row">
@@ -126,7 +128,8 @@
                                 <div class="input-group input-group-static mb-4">
 
                                     <label>Nombre</label>
-                                    <input name="book_title" id="book_title" class="form-control" aria-label="Full Name" type="text">
+                                    <input name="book_title" id="book_title" class="form-control" aria-label="Full Name"
+                                           type="text">
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Autor</label>
@@ -187,12 +190,14 @@
                                 <div class="input-group input-group-static mb-4">
 
                                     <label>Numero de páginas</label>
-                                    <input name="book_number_pages" id="book_number_pages" class="form-control" aria-label="Full Name" type="number">
+                                    <input name="book_number_pages" id="book_number_pages" class="form-control"
+                                           aria-label="Full Name" type="number">
                                 </div>
 
                                 <div class="input-group input-group-static mb-4">
                                     <label>Fecha de publicacion</label>
-                                    <input name="book_publication_date" id="book_publication_date" class="form-control" aria-label="Full Name" type="date">
+                                    <input name="book_publication_date" id="book_publication_date" class="form-control"
+                                           aria-label="Full Name" type="date">
                                 </div>
                             </div>
 
@@ -202,35 +207,67 @@
                                           id="book_description" rows="6"
                                           placeholder="resumen o descripcion del libro"></textarea>
                             </div>
+
                             <div class="row">
-                                <div class="card mt-4">
+                                <div class="card mt-5"
+                                     style="box-shadow: 0px 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
                                     <div class="row">
-                                        <div class="col">
+                                        <!-- Card body -->
+                                        <div class="col" style="min-width: 250px">
                                             <div class="card-body">
-                                                <h4 class="font-weight-normal mt-3">Card title</h4>
-                                                <p class="card-text mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis non dolore est fuga nobis ipsum illum eligendi nemo iure repellat, soluta, optio minus ut reiciendis voluptates enim impedit veritatis officiis.</p>
-                                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                <h4 class="font-weight-normal mt-3">Imagen</h4>
+                                                <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de que la imagen cumpla con una
+                                                    relación de aspecto de 5:7 para garantizar una visualización óptima.
+                                                </p>
+                                                <div class="row mt-5">
+                                                    <div class="col-md-4">
+
+                                                <a id="falseinput" class="btn btn-outline-secondary">Subir Imagen</a>
+                                                    </div>
+                                                    <div class="col" style="align-self: center;">
+
+                                                <p id="selected_filename">No file selected</p>
+                                                    </div>
                                             </div>
+                                                </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                <img class="border-radius-lg w-100" src="https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Image placeholder">
+                                        <!-- Card image -->
+                                        <div class="col mb-4 text-center" style="min-width: 50%">
+                                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2" style="background: none;">
+                                                <img id="book_img" class="border-radius-lg w-50"
+                                                     src="">
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Card image -->
-                                    
-                                    <!-- Card body -->
-                                    
-                                 </div>
+                                </div>
                             </div>
 
                             <div class="input-group input-group-static mb-4 mt-4">
-
-                                <label>Imagen</label>
-                                <input style="margin-top: 10px; border-radius:10px !important" name="book_title" id="book_title" class="form-control" aria-label="Full Name" type="file">
+                                <input id="fileinput" name="book_image" type="file" accept=".jpg,.jpeg,.png" style="display:none;">
                             </div>
+
+
+
+                            <script>
+                                $(document).ready( function() {
+                                    $('#falseinput').click(function(){
+                                        $("#fileinput").click();
+                                    });
+                                });
+                                $('#fileinput').change(function() {
+                                    $('#selected_filename').text($('#fileinput')[0].files[0].name);
+                                    let reader = new FileReader();
+                                    reader.onload = (e) => {
+                                        $('#book_img').attr('src',e.target.result);
+                                    }
+                                    reader.readAsDataURL(this.files[0]);
+                                });
+                            </script>
+
+
+
+
+
                             <div class="row">
                                 <div class="col-sm-6 text-start">
                                     <a href="{{route('book.index')}}" class="btn bg-gradient-danger mt-3 mb-0"

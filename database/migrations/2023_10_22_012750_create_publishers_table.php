@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
-            $table->string('publisher_name')->nullable(false);
+            $table->string('publisher_name')->nullable(false)->unique();
             $table->timestamps();
         });
     }

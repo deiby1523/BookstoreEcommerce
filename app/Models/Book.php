@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Book extends Model
 {
@@ -15,7 +16,8 @@ class Book extends Model
         'subcategory_id',
         'book_number_pages',
         'book_publication_date',
-        'book_description'];
+        'book_description',
+        'book_image_url'];
 
     public function author()
     {
@@ -42,5 +44,21 @@ class Book extends Model
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Escuchamos el evento "deleting" del modelo Book
+        static::deleting(function ($book) {
+
+            // Delete the image associated with the book
+            $imagePath = public_path($book->book_image_url);
+
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+        });
     }
 }

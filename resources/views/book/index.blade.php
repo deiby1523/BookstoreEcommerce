@@ -226,7 +226,7 @@ $isbn = convertToISBN($number);
                                                             data-bs-dismiss="modal">Cancelar
                                                     </button>
                                                     <form method="POST"
-                                                          action="{{--{{ route('category.delete',$book->id) }}--}}">
+                                                          action="{{ route('book.delete',$book->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn bg-gradient-danger mb-0">
