@@ -227,7 +227,7 @@
                                                 <div class="row mt-5">
                                                     <div class="col-md-4">
 
-                                                        <a id="falseinput" class="btn btn-outline-secondary">Subir
+                                                        <a id="falseinput" class="btn btn-outline-warning">Subir
                                                             Imagen</a>
                                                     </div>
                                                     <div class="col" style="align-self: center;">
