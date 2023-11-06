@@ -189,23 +189,23 @@
         }
 
 // Call function on page load to load initial options
-        updateSubcategories();
+// updateSubcategories();
 
 // Add a change event to the first select (category)
         categorySelect.addEventListener("change", updateSubcategories);
 
     });
 
-    $(document).ready(function () {
-        $('#falseinput').click(function () {
+    $(document).ready( function() {
+        $('#falseinput').click(function(){
             $("#fileinput").click();
         });
     });
-    $('#fileinput').change(function () {
+    $('#fileinput').change(function() {
         $('#selected_filename').text($('#fileinput')[0].files[0].name);
         let reader = new FileReader();
         reader.onload = (e) => {
-            $('#book_img').attr('src', e.target.result);
+            $('#book_img').attr('src',e.target.result);
         }
         reader.readAsDataURL(this.files[0]);
     });

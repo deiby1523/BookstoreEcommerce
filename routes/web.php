@@ -92,6 +92,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/book',[BookController::class,'index'])->name('book.index');
     Route::get('/book/create',[BookController::class,'create'])->name('book.create');
     Route::post('/book/save',[BookController::class,'save'])->name('book.save');
+    Route::get('/book/edit/{book}',[BookController::class,'edit'])->name('book.edit');
+    Route::put('/book/update/{book}',[BookController::class,'update'])->name('book.update');
     Route::delete('/book/delete/{book}',[BookController::class,'delete'])->name('book.delete');
 
 

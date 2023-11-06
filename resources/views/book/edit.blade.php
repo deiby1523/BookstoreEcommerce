@@ -83,14 +83,15 @@
                 < volver
             </a>
 
-            <h2 class="title">Crear Libro</h2>
+            <h2 class="title">Editar Libro</h2>
 
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
                     <form role="form" id="contact-form" method="POST" autocomplete="off"
-                          action="{{route('book.save') }}" enctype="multipart/form-data">
+                          action="{{route('book.update',$book->id) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="card-body pb-2">
                             <div class="row">
 
@@ -99,7 +100,7 @@
 
                                     <label>Codigo ISBN</label>
                                     <input name="book_isbn" id="book_isbn" class="form-control" aria-label="Full Name"
-                                           type="text" autofocus>
+                                           type="text" value="{{$book->book_isbn}}">
                                     <span class="input-group-text" style="right: 18px"> <svg
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
@@ -111,7 +112,7 @@
                                 <div class="input-group input-group-static mb-4">
                                     <label>Categoria</label>
                                     <select name="category_id" id="category_id" class="form-control">
-                                        <option selected disabled hidden value=""></option>
+                                        <option selected value="{{$category->id}}">{{$category->category_name}}</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->category_name}}</option>
                                         @endforeach
@@ -121,7 +122,8 @@
                                 <div class="input-group input-group-static mb-4">
                                     <label>Subcategoria</label>
                                     <select name="subcategory_id" id="subcategory_id" class="form-control">
-
+                                        <option selected
+                                                value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
                                     </select>
 
                                 </div>
@@ -129,13 +131,14 @@
 
                                     <label>Nombre</label>
                                     <input name="book_title" id="book_title" class="form-control" aria-label="Full Name"
-                                           type="text">
+                                           type="text" value="{{$book->book_title}}">
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Autor</label>
-                                    <input value="" readonly="readonly" name="author_name" id="author_name"
+                                    <input value="{{$author->author_name}}" readonly="readonly" name="author_name"
+                                           id="author_name"
                                            placeholder="Seleccione un autor" class="form-control"/>
-                                    <input name="author_id" id="author_id" value="" hidden>
+                                    <input name="author_id" id="author_id" value="{{$author->id}}" hidden>
 
                                     <ul name="selectAuthor" id="selectAuthor"
                                         style="width:-webkit-fill-available; position: absolute"
@@ -161,9 +164,10 @@
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Editorial</label>
-                                    <input value="" readonly="readonly" name="publisher_name" id="publisher_name"
+                                    <input value="{{$publisher->publisher_name}}" readonly="readonly"
+                                           name="publisher_name" id="publisher_name"
                                            placeholder="Seleccione una editorial" class="form-control"/>
-                                    <input name="publisher_id" id="publisher_id" value="" hidden>
+                                    <input name="publisher_id" id="publisher_id" value="{{$publisher->id}}" hidden>
 
                                     <ul name="selectPublisher" id="selectPublisher"
                                         style="width:-webkit-fill-available; position: absolute"
@@ -191,13 +195,13 @@
 
                                     <label>Numero de páginas</label>
                                     <input name="book_number_pages" id="book_number_pages" class="form-control"
-                                           aria-label="Full Name" type="number">
+                                           aria-label="Full Name" type="number" value="{{$book->book_number_pages}}">
                                 </div>
 
                                 <div class="input-group input-group-static mb-4">
                                     <label>Fecha de publicacion</label>
                                     <input name="book_publication_date" id="book_publication_date" class="form-control"
-                                           aria-label="Full Name" type="date">
+                                           aria-label="Full Name" type="date" value="{{$book->book_publication_date}}">
                                 </div>
                             </div>
 
@@ -205,7 +209,7 @@
                                 <label>Resumen</label>
                                 <textarea name="book_description" class="form-control"
                                           id="book_description" rows="6"
-                                          placeholder="resumen o descripcion del libro"></textarea>
+                                          placeholder="resumen o descripcion del libro">{{$book->book_description}}</textarea>
                             </div>
 
                             <div class="row">
@@ -233,12 +237,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!-- Card image -->
                                         <div class="col mb-4 text-center" style="min-width: 50%">
                                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
                                                  style="background: none;">
                                                 <img id="book_img" class="border-radius-lg w-50"
-                                                     src="">
+                                                     src="{{asset($book->book_image_url)}}">
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +265,7 @@
 
                                 <div class="col-sm-6 text-end">
                                     <button type="submit" class="btn bg-gradient-warning mt-3 mb-0"
-                                            style="max-width: 233px;width: -webkit-fill-available;">Crear
+                                            style="max-width: 233px;width: -webkit-fill-available;">Guardar
                                     </button>
                                 </div>
                             </div>
@@ -275,7 +280,7 @@
 </div>
 
 
-@include('book.scripts.create')
+@include('book.scripts.edit')
 
 <script src="{{asset('js/plugins/flatpickr.min.js')}}"></script>
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>

@@ -192,7 +192,7 @@ $isbn = convertToISBN($number);
                                             Visualizar
                                         </a>
 
-                                        <a href="{{--{{ route('category.edit', $book->id) }}--}}"
+                                        <a href="{{ route('book.edit', $book->id) }}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit user">
                                             Editar
