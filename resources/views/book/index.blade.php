@@ -418,8 +418,6 @@ $isbn = convertToISBN($number);
 {{--          </div>--}}
 {{--        </div>--}}
 </div>
-</div>
-</footer>
 
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
