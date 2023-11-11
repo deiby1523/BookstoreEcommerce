@@ -195,7 +195,7 @@
                                 </div>
 
                                 <div class="input-group input-group-static mb-4">
-                                    <label>Fecha de publicacion</label>
+                                    <label>Fecha de publicación</label>
                                     <input name="book_publication_date" id="book_publication_date" class="form-control"
                                            aria-label="Full Name" type="date">
                                 </div>
