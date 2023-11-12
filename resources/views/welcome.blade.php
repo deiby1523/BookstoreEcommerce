@@ -23,9 +23,9 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-
-<div class="page-header min-vh-80" style="background-color: #2b2b2b">
-    {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
+// TODO: Fix Header and desing
+<div class="page-header min-vh-80" style="background-color: #ffffff">
+    {{-- <span class="mask bg-gradient-dark opacity-6"></span> --}}
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
@@ -37,13 +37,46 @@
         </div>
     </div>
 </div>
-{{--  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">--}}
-{{--    <div class="container">--}}
-{{--      <div class="section text-center">--}}
-{{--        <h2 class="title">Your main section here</h2>--}}
-{{--      </div>--}}
-{{--    </div>--}}
-{{--  </div>--}}
+
+
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n10" style="padding: 0">
+
+    
+    <div class="row mt-n10" >
+        <div class="col-md-11 mx-auto">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" style="border-radius: 10px !important">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-2-min.jpg" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-3-min.jpg" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    <div class="container">
+      <div class="section text-center">
+        <h2 class="title">Your main section here</h2>
+      </div>
+    </div>
+</div>
+  
 {{--  <footer class="footer pt-5 mt-5">--}}
 {{--    <div class="container">--}}
 {{--      <div class=" row">--}}
@@ -191,7 +224,7 @@
 {{--              </script> Material Kit by <a href="#" target="_blank">Creative Tim</a>.--}}
 {{--            </p>--}}
 {{--          </div>--}}
-{{--        </div>--}}
+       {{-- </div> --}}
 </div>
 </div>
 </footer>
