@@ -23,6 +23,37 @@
     .bg-gradient-dark {
         background-image: linear-gradient(270deg, #42424a70 0%, #191919 100%);
     }
+
+    .book-horizontal-slider {
+        display:grid;
+        grid-template-rows: repeat(auto-fill,minmax(10rem,1fr));
+        grid-auto-flow: column;
+        overflow-x: auto;
+        grid-gap:2rem;
+        grid-auto-columns: minmax(24rem,1fr);
+        width: -webkit-fill-available;
+    }
+
+    .book-horizontal-slider::-webkit-scrollbar {
+        height: 8px;    /* Tamaño del scroll en horizontal */
+    }
+
+    .book-horizontal-slider::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+    }
+
+    /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+    .book-horizontal-slider::-webkit-scrollbar-thumb:hover {
+        background: #b3b3b3;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Cambiamos el fondo cuando esté en active */
+    .book-horizontal-slider::-webkit-scrollbar-thumb:active {
+        background-color: #999999;
+    }
+
 </style>
 
 <body>
@@ -242,127 +273,84 @@
     <section class="py-5">
         <div class="container-fluid">
             <div class="row">
-                <h1 class="mb-2 text-center">Libros Populares</h1>
-                <p class="mb-2 text-center">consulte la selección de esta semana de categorías populares que pueden
-                    llamarle la atención </p>
-                <div class="row mt-7">
-                    <div class="col-6 col-lg-3">
-                        <div class="card mb-5 mb-lg-0">
-                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <h1 class="mb-2 text-center">Ultimas Novedades</h1>
+                <p class="mb-2 text-center">Libros nuevos y actualizados, recientemente añadidos</p>
+            </div>
+            <div id="latestBooks" class="book-horizontal-slider px-4">
+                <div class="row flex-nowrap" style=" max-width: 320px; position: relative;">
+                    @forelse($latestBooks as $book)
+
+                        <div class="card mb-5 mt-5 mx-3"
+                             style="box-shadow: 0px 17px 20px 7px rgb(0 0 0 / 18%), -3px -3px 4px -1px rgba(0, 0, 0, 0.06);">
+                            <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
                                 <a class="d-block blur-shadow-image">
-                                    <img src="../assets/img/examples/card-product1.jpg" alt="img-blur-shadow"
+                                    <img src="{{asset($book->book_image_url)}}" alt="img-blur-shadow"
                                          class="img-fluid border-radius-lg" loading="lazy">
                                 </a>
                                 <div class="colored-shadow"
                                      style="background-image: url(&quot;../assets/img/examples/card-product1.jpg&quot;);"></div>
                             </div>
-                            <div class="card-body text-center">
-                                <p class="mb-0 text-primary text-uppercase font-weight-normal text-sm">Trending</p>
+                            <div class="card-body">
+                                <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
                                 <h5 class="font-weight-bold mt-3">
-                                    <a href="javascript:;">Dolce &amp; Gabbana</a>
+                                    <a class="link-dark" href="javascript:">{{$book->book_title}}</a>
                                 </h5>
-                                <p class="mb-0">
-                                    Dolce &amp; Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red
-                                    textured-leather.
+                                <p class="mb-0 text-left">
+                                    {{$book->author_name}}
                                 </p>
                             </div>
-                            <div class="card-footer d-flex pt-0">
-                                <p class="font-weight-normal my-auto">$1,549</p>
-                                <i class="material-icons position-relative ms-auto text-primary text-lg me-1 my-auto"
-                                   data-bs-toggle="tooltip" data-bs-placement="top"
-                                   data-bs-original-title="Saved to Wishlist">favorite</i>
+                            <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                <div class="row w-100">
+                                    <div class="col">
+                                        <p class="font-weight-normal my-auto">$1,549</p>
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                        <i class="material-icons position-relative ms-0 text-warning text-md ml-5 me-1 my-auto"
+                                           data-bs-toggle="tooltip" data-bs-placement="top"
+                                           data-bs-original-title="Saved to Wishlist">star</i><i
+                                            class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="Saved to Wishlist">star</i><i
+                                            class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="Saved to Wishlist">star</i><i
+                                            class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="Saved to Wishlist">star</i><i
+                                            class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-original-title="Saved to Wishlist">star</i>
+
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <div class="card mb-5 mb-lg-0">
-                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <a class="d-block blur-shadow-image">
-                                    <img src="../assets/img/examples/card-product3.jpg" alt="img-blur-shadow"
-                                         class="img-fluid border-radius-lg" loading="lazy">
-                                </a>
-                                <div class="colored-shadow"
-                                     style="background-image: url(&quot;../assets/img/examples/card-product3.jpg&quot;);"></div>
-                            </div>
-                            <div class="card-body text-center">
-                                <p class="mb-0 text-dark text-uppercase font-weight-normal text-sm">Popular</p>
-                                <h5 class="font-weight-bold mt-3">
-                                    <a href="javascript:;">Balmain</a>
-                                </h5>
-                                <p class="mb-0">
-                                    Balmain's mid-rise skinny jeans are cut with stretch to ensure they retain skin fit
-                                    but move comfortably.
-                                </p>
-                            </div>
-                            <div class="card-footer d-flex pt-0">
-                                <p class="font-weight-normal my-auto">$459</p>
-                                <i class="material-icons position-relative ms-auto text-dark text-lg me-1 my-auto"
-                                   data-bs-toggle="tooltip" data-bs-placement="top"
-                                   data-bs-original-title="Save to Wishlist">favorite</i>
+
+
+
+                    @empty
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en este
+                                    momento.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <a class="d-block blur-shadow-image">
-                                    <img src="../assets/img/examples/card-product4.jpg" alt="img-blur-shadow"
-                                         class="img-fluid border-radius-lg" loading="lazy">
-                                </a>
-                                <div class="colored-shadow"
-                                     style="background-image: url(&quot;../assets/img/examples/card-product4.jpg&quot;);"></div>
-                            </div>
-                            <div class="card-body text-center">
-                                <p class="mb-0 text-dark text-uppercase font-weight-normal text-sm">Popular</p>
-                                <h5 class="font-weight-bold mt-3">
-                                    <a href="javascript:;">Balenciaga</a>
-                                </h5>
-                                <p class="mb-0">
-                                    Balenciaga's black textured-leather wallet is finished with the label's iconic
-                                    'Giant' studs.
-                                </p>
-                            </div>
-                            <div class="card-footer d-flex pt-0">
-                                <p class="font-weight-normal my-auto">$890</p>
-                                <i class="material-icons position-relative ms-auto text-primary text-lg me-1 my-auto"
-                                   data-bs-toggle="tooltip" data-bs-placement="top"
-                                   data-bs-original-title="Saved to Wishlist">favorite</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <a class="d-block blur-shadow-image">
-                                    <img src="../assets/img/examples/card-product2.jpg" alt="img-blur-shadow"
-                                         class="img-fluid border-radius-lg" loading="lazy">
-                                </a>
-                                <div class="colored-shadow"
-                                     style="background-image: url(&quot;../assets/img/examples/card-product2.jpg&quot;);"></div>
-                            </div>
-                            <div class="card-body text-center">
-                                <p class="mb-0 text-primary text-uppercase font-weight-normal text-sm">Trending</p>
-                                <h5 class="font-weight-bold mt-3">
-                                    <a href="javascript:;">Burberry</a>
-                                </h5>
-                                <p class="mb-0">
-                                    Burberry's black textured-cottom bomber is finished with the label's iconic
-                                    'Weareable' jacket.
-                                </p>
-                            </div>
-                            <div class="card-footer d-flex pt-0">
-                                <p class="font-weight-normal my-auto">$890</p>
-                                <i class="material-icons position-relative ms-auto text-dark text-lg me-1 my-auto"
-                                   data-bs-toggle="tooltip" data-bs-placement="top"
-                                   data-bs-original-title="Save to Wishlist">favorite</i>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row mt-4"
+                     style="width: 100%;  padding-right: 0;  margin-left: -1%;  margin-right: 0px; justify-content: center">
+
+
                 </div>
 
-                <div class="col-md-5 col-6 mx-lg-0 mx-auto px-lg-0 px-md-0 my-auto">
-                    <img class="max-width-400 border-radius-lg shadow-lg" src="{{asset('img/bg10.jpg')}}">
-                </div>
             </div>
         </div>
     </section>
@@ -519,6 +507,23 @@
 </div>
 </div>
 </footer>
+
+<script>
+    const container = document.getElementById("latestBooks");
+    // where "container" is the id of the container
+    container.addEventListener("wheel", function (e) {
+        if (e.deltaY > 0) {
+            container.scrollLeft += 100;
+            e.preventDefault();
+// prevenDefault() will help avoid worrisome
+// inclusion of vertical scroll
+        }
+        else {
+            container.scrollLeft -= 100;
+            e.preventDefault();
+        }
+    });
+</script>
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>

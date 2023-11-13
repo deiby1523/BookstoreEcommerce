@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\GoogleLoginController;
-use App\Http\Controllers\ShoppingCartController;
-use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -23,10 +24,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
+Route::get('/', [HomeController::class, 'show'])->name('home');
 
 
 Route::middleware('auth')->group(function () {
@@ -47,60 +45,57 @@ Route::delete('/cart/remove/{cartId}', [ShoppingCartController::class, 'removeFr
 
 Route::middleware('UserAdmin')->group(function () {
     // Dashboards
-    Route::get('/dashboard/books',[BookDashboardController::class, 'index'])->name('dashboard.books');
+    Route::get('/dashboard/books', [BookDashboardController::class, 'index'])->name('dashboard.books');
 
     // Categories
-    Route::get('/category',[CategoryController::class,'index'])->name('category.index');
-    Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
-    Route::post('/category/save',[CategoryController::class,'save'])->name('category.save');
-    Route::get('/category/edit/{category}',[CategoryController::class,'edit'])->name('category.edit');
-    Route::put('/category/update/{category}',[CategoryController::class,'update'])->name('category.update');
-    Route::get('/category/show/{category}',[CategoryController::class,'show'])->name('category.show');
-    Route::delete('/category/delete/{category}',[CategoryController::class,'delete'])->name('category.delete');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category/save', [CategoryController::class, 'save'])->name('category.save');
+    Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/category/show/{category}', [CategoryController::class, 'show'])->name('category.show');
+    Route::delete('/category/delete/{category}', [CategoryController::class, 'delete'])->name('category.delete');
 
     // Subcategories
-    Route::get('/subcategory',[SubcategoryController::class,'index'])->name('subcategory.index');
-    Route::get('/subcategory/create',[SubcategoryController::class,'create'])->name('subcategory.create');
-    Route::post('/subcategory/save',[SubcategoryController::class,'save'])->name('subcategory.save');
-    Route::get('/subcategory/edit/{category}',[SubcategoryController::class,'edit'])->name('subcategory.edit');
-    Route::put('/subcategory/update/{category}',[SubcategoryController::class,'update'])->name('subcategory.update');
-    Route::get('/subcategory/show/{category}',[SubcategoryController::class,'show'])->name('subcategory.show');
-    Route::delete('/subcategory/delete/{category}',[SubcategoryController::class,'delete'])->name('subcategory.delete');
+    Route::get('/subcategory', [SubcategoryController::class, 'index'])->name('subcategory.index');
+    Route::get('/subcategory/create', [SubcategoryController::class, 'create'])->name('subcategory.create');
+    Route::post('/subcategory/save', [SubcategoryController::class, 'save'])->name('subcategory.save');
+    Route::get('/subcategory/edit/{category}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
+    Route::put('/subcategory/update/{category}', [SubcategoryController::class, 'update'])->name('subcategory.update');
+    Route::get('/subcategory/show/{category}', [SubcategoryController::class, 'show'])->name('subcategory.show');
+    Route::delete('/subcategory/delete/{category}', [SubcategoryController::class, 'delete'])->name('subcategory.delete');
 
     // Authors
-    Route::get('/author',[AuthorController::class,'index'])->name('author.index');
-    Route::get('/author/create',[AuthorController::class,'create'])->name('author.create');
-    Route::post('/author/save',[AuthorController::class,'save'])->name('author.save');
-    Route::get('/author/edit/{author}',[AuthorController::class,'edit'])->name('author.edit');
-    Route::put('/author/update/{author}',[AuthorController::class,'update'])->name('author.update');
-    Route::get('/author/show/{author}',[AuthorController::class,'show'])->name('author.show');
-    Route::delete('/author/delete/{author}',[AuthorController::class,'delete'])->name('author.delete');
-    Route::POST('/author/search',[AuthorController::class,'searchSelect'])->name('author.searchSelect');
+    Route::get('/author', [AuthorController::class, 'index'])->name('author.index');
+    Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+    Route::post('/author/save', [AuthorController::class, 'save'])->name('author.save');
+    Route::get('/author/edit/{author}', [AuthorController::class, 'edit'])->name('author.edit');
+    Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
+    Route::get('/author/show/{author}', [AuthorController::class, 'show'])->name('author.show');
+    Route::delete('/author/delete/{author}', [AuthorController::class, 'delete'])->name('author.delete');
+    Route::POST('/author/search', [AuthorController::class, 'searchSelect'])->name('author.searchSelect');
 
     // Publishers
-    Route::get('/publisher',[PublisherController::class,'index'])->name('publisher.index');
-    Route::get('/publisher/create',[PublisherController::class,'create'])->name('publisher.create');
-    Route::post('/publisher/save',[PublisherController::class,'save'])->name('publisher.save');
-    Route::get('/publisher/edit/{publisher}',[PublisherController::class,'edit'])->name('publisher.edit');
-    Route::put('/publisher/update/{publisher}',[PublisherController::class,'update'])->name('publisher.update');
-    Route::get('/publisher/show/{publisher}',[PublisherController::class,'show'])->name('publisher.show');
-    Route::delete('/publisher/delete/{publisher}',[PublisherController::class,'delete'])->name('publisher.delete');
-    Route::POST('/publisher/search',[PublisherController::class,'searchSelect'])->name('publisher.searchSelect');
+    Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
+    Route::get('/publisher/create', [PublisherController::class, 'create'])->name('publisher.create');
+    Route::post('/publisher/save', [PublisherController::class, 'save'])->name('publisher.save');
+    Route::get('/publisher/edit/{publisher}', [PublisherController::class, 'edit'])->name('publisher.edit');
+    Route::put('/publisher/update/{publisher}', [PublisherController::class, 'update'])->name('publisher.update');
+    Route::get('/publisher/show/{publisher}', [PublisherController::class, 'show'])->name('publisher.show');
+    Route::delete('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
+    Route::POST('/publisher/search', [PublisherController::class, 'searchSelect'])->name('publisher.searchSelect');
 
 
     // Books
-    Route::get('/book',[BookController::class,'index'])->name('book.index');
-    Route::get('/book/create',[BookController::class,'create'])->name('book.create');
-    Route::post('/book/save',[BookController::class,'save'])->name('book.save');
-    Route::get('/book/edit/{book}',[BookController::class,'edit'])->name('book.edit');
-    Route::put('/book/update/{book}',[BookController::class,'update'])->name('book.update');
-    Route::delete('/book/delete/{book}',[BookController::class,'delete'])->name('book.delete');
-
-
+    Route::get('/book', [BookController::class, 'index'])->name('book.index');
+    Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/book/save', [BookController::class, 'save'])->name('book.save');
+    Route::get('/book/edit/{book}', [BookController::class, 'edit'])->name('book.edit');
+    Route::put('/book/update/{book}', [BookController::class, 'update'])->name('book.update');
+    Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
 
 
 });
 
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

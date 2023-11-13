@@ -150,9 +150,6 @@
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Editorial
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Subcategoria
-                                </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
@@ -177,11 +174,8 @@ $isbn = convertToISBN($number);
                                     <td>
                                         <p class=" mb-0">{{ $book->book_title }}</p>
                                     </td>
-                                    <td class="align-middle text-center  ">
+                                    <td class="align-middle ">
                                         <p class=" mb-0">{{ $book->publisher_name }}</p>
-                                    </td>
-                                   <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{$book->category_name}} > {{$book->subcategory_name}}</p>
                                     </td>
                                     <td class="align-middle" style="text-align: center;">
 
