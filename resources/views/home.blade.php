@@ -185,7 +185,7 @@
                 <div class="col-sm-4 col-5 mb-sm-0 mb-3">
                     <a href="#">
                         <div
-                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category1.jpg')}})"
+                            style="background-image: url({{asset('img/category1.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
                             <div class="container py-7 text-center">
                                 <div class="row align-middle">
@@ -200,12 +200,12 @@
                 <div class="col-sm-3 col-7 mb-sm-0 mb-3">
                     <a href="#">
                         <div
-                            style="filter: drop-shadow(2px 4px 6px black);background-image: url({{asset('img/category2.jpg')}})"
+                            style="background-image: url({{asset('img/category2.jpg')}})"
                             class="w-100 h-100 border-radius-lg bg-cover move-on-hover">
-                            <div class="container py-7 text-center">
+                            <div class="container py-8 text-center">
                                 <div class="row align-middle">
 
-                                    <h3 class="text-white fadeIn2 fadeInBottom">Niños y jóvenes</h3>
+                                    <h3 style="vertical-align: middle" class="text-white fadeIn2 fadeInBottom">Niños y jóvenes</h3>
 
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                 <div class="col-sm-5 mb-sm-0 mb-3">
                     <a href="#">
                         <div
-                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category3.jpg')}})"
+                            style="background-image: url({{asset('img/category3.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
                             <div class="container py-7 text-center">
                                 <div class="row align-middle">
@@ -230,9 +230,9 @@
                 <div class="col-sm-3 col-7 mb-sm-0 mb-3">
                     <a href="#">
                         <div
-                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category4.jpg')}})"
+                            style="background-image: url({{asset('img/category4.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                            <div class="container py-7 px-4 text-center">
+                            <div class="container py-8 px-4 text-center">
                                 <div class="row align-middle">
                                     <h3 class="text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
                                 </div>
@@ -243,7 +243,7 @@
                 <div class="col-sm-5 col-5 mb-sm-0 mb-3">
                     <a href="#">
                         <div
-                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category5.jpg')}})"
+                            style="background-image: url({{asset('img/category5.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
                             <div class="container py-8 px-4 text-center">
                                 <div class="row align-middle">
@@ -256,7 +256,7 @@
                 <div class="col-sm-4 mb-sm-0 mb-3">
                     <a href="#">
                         <div
-                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category6.jpg')}})"
+                            style="background-image: url({{asset('img/category6.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
                             <div class="container py-8 px-4 text-center">
                                 <div class="row align-middle">
@@ -274,14 +274,14 @@
         <div class="container-fluid">
             <div class="row">
                 <h1 class="mb-2 text-center">Ultimas Novedades</h1>
-                <p class="mb-2 text-center">Libros nuevos y actualizados, recientemente añadidos</p>
+                <p class="mb-0 text-center">Libros nuevos y actualizados, recientemente añadidos</p>
             </div>
             <div id="latestBooks" class="book-horizontal-slider px-4">
-                <div class="row flex-nowrap" style=" max-width: 320px; position: relative;">
+                <div class="row flex-nowrap" style=" max-width: 280px; position: relative;">
                     @forelse($latestBooks as $book)
 
-                        <div class="card mb-5 mt-5 mx-3"
-                             style="box-shadow: 0px 17px 20px 7px rgb(0 0 0 / 18%), -3px -3px 4px -1px rgba(0, 0, 0, 0.06);">
+                        <div class="card mb-5 mt-2 mx-3 shadow-lg"
+                             style="">
                             <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
                                 <a class="d-block blur-shadow-image">
                                     <img src="{{asset($book->book_image_url)}}" alt="img-blur-shadow"
