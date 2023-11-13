@@ -10,7 +10,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href={{asset('icons/icons.css')}}>
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
@@ -18,65 +19,355 @@
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
 </head>
 
+<style>
+    .bg-gradient-dark {
+        background-image: linear-gradient(270deg, #42424a70 0%, #191919 100%);
+    }
+</style>
+
 <body>
 <!-- Navbar Transparent -->
-@include('layouts.navigation')
+@include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
 
-// TODO: Fix Header and desing
-<div class="page-header min-vh-80" style="background-color: #ffffff">
-    {{-- <span class="mask bg-gradient-dark opacity-6"></span> --}}
-    <div class="container">
+
+{{--Carousel--}}
+<div class="row mt-7 w-100 justify-content-center" style="margin-right: 0; margin-left: 0">
+    <div class="col-lg-12" style=" max-width: 1600px;">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner mb-4">
+                <div class="carousel-item active">
+                    <div class="page-header min-vh-50 m-3 border-radius-xl"
+                         style="background-image: url('{{asset('img/bg12.jpg')}}')">
+                        <span class="mask bg-gradient-dark"></span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 my-auto">
+                                    <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Tu próximo capítulo comienza
+                                        aquí.</h4>
+                                    <h1 class="text-white fadeIn2 fadeInBottom"> Encuentra tu libro perfecto!</h1>
+                                    <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Un abanico de géneros te
+                                        espera: Literatura, fantasía, historia, comedia, espiritualidad, ciencia y
+                                        mas... .</p>
+                                    <a style="z-index: 4" class="btn btn-outline-white" href="#">Ver Libros</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="page-header min-vh-50 m-3 border-radius-xl"
+                         style="background-image: url('{{asset('img/bg12.jpg')}}')">
+                        <span class="mask bg-gradient-dark"></span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 my-auto">
+                                    <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Tu próximo capítulo comienza
+                                        aquí.</h4>
+                                    <h1 class="text-white fadeIn2 fadeInBottom"> Encuentra tu libro perfecto!</h1>
+                                    <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Un abanico de géneros te
+                                        espera: Literatura, fantasía, historia, comedia, espiritualidad, ciencia y
+                                        mas... .</p>
+                                    <a style="z-index: 4" class="btn btn-outline-white" href="#">Ver Libros</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="min-vh-75 position-absolute w-100 top-0">
+                <a class="carousel-control-prev" href="#mainCarousel" role="button" data-bs-slide="prev"
+                   style="width: 0">
+                    <span class="visually-hidden carousel-control-prev-icon position-absolute bottom-50"
+                          aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#mainCarousel" role="button" data-bs-slide="next">
+                    <span class="visually-hidden carousel-control-next-icon position-absolute bottom-50"
+                          aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{--End carousel--}}
+
+{{--<div class="page-header min-vh-80" style="background-color: #ffffff">--}}
+{{--    --}}{{--     <span class="mask bg-gradient-dark opacity-6"></span>--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+
+{{--            <div class="col-md-8 mx-auto">--}}
+{{--                <div class="text-center">--}}
+{{--                    <h1 class="text-white"></h1>--}}
+{{--                    <h3 class="text-white"></h3>--}}
+{{--                </div>--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
+{{--</div>--}}
+
+{{--Main Body--}}
+<div class="card card-body shadow-xl mx-3 mx-md-4" style="padding: 0; margin-top: -1rem">
+
+    <div class="container mb-4">
+        <hr class="horizontal dark my-5">
         <div class="row">
-            <div class="col-md-8 mx-auto">
-                <div class="text-center">
-                    <h1 class="text-white"></h1>
-                    <h3 class="text-white"></h3>
+            <div class="col-lg-2 mb-4 col-md-4 col-6 ms-auto">
+                <img class="w-100 opacity-4" src="{{asset('img/partner1.png')}}" alt="Logo">
+            </div>
+            <div class="col-lg-2 mb-4 col-md-4 col-6">
+                <img class="w-100 opacity-4" src="{{asset('img/partner2.png')}}" alt="Logo">
+            </div>
+            <div class="col-lg-2 mb-4 col-md-4 col-6">
+                <img class="w-100 opacity-4" src="{{asset('img/partner3.png')}}" alt="Logo">
+            </div>
+            <div class="col-lg-2 mb-4 col-md-4 col-6">
+                <img class="w-100 opacity-4" src="{{asset('img/partner4.png')}}" alt="Logo">
+            </div>
+            <div class="col-lg-2 mb-4 col-md-4 col-6 me-md-auto mx-md-0 mx-auto">
+                <img class="w-100 opacity-4" src="{{asset('img/partner5.png')}}" alt="Logo">
+            </div>
+        </div>
+
+    </div>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 mx-auto text-center mb-5">
+                    <span class="badge badge-primary mb-2">Esta semana</span>
+                    <h2>Categorías Populares</h2>
+                    <p>
+                        Selección de las categorías mas populares de este mes, que pueden
+                        llamarle la atención.
+                    </p>
+                </div>
+            </div>
+            <div class="row min-vh-25">
+                <div class="col-sm-4 col-5 mb-sm-0 mb-3">
+                    <a href="#">
+                        <div
+                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category1.jpg')}})"
+                            class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                            <div class="container py-7 text-center">
+                                <div class="row align-middle">
+
+                                    <h3 class="text-white fadeIn2 fadeInBottom">Autoayuda y Bienestar</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3 col-7 mb-sm-0 mb-3">
+                    <a href="#">
+                        <div
+                            style="filter: drop-shadow(2px 4px 6px black);background-image: url({{asset('img/category2.jpg')}})"
+                            class="w-100 h-100 border-radius-lg bg-cover move-on-hover">
+                            <div class="container py-7 text-center">
+                                <div class="row align-middle">
+
+                                    <h3 class="text-white fadeIn2 fadeInBottom">Niños y jóvenes</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-5 mb-sm-0 mb-3">
+                    <a href="#">
+                        <div
+                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category3.jpg')}})"
+                            class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                            <div class="container py-7 text-center">
+                                <div class="row align-middle">
+                                    <h3 class="text-white fadeIn2 fadeInBottom">Ficción</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row min-vh-25 mt-4">
+                <div class="col-sm-3 col-7 mb-sm-0 mb-3">
+                    <a href="#">
+                        <div
+                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category4.jpg')}})"
+                            class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                            <div class="container py-7 px-4 text-center">
+                                <div class="row align-middle">
+                                    <h3 class="text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-5 col-5 mb-sm-0 mb-3">
+                    <a href="#">
+                        <div
+                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category5.jpg')}})"
+                            class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                            <div class="container py-8 px-4 text-center">
+                                <div class="row align-middle">
+                                    <h3 class="text-white fadeIn2 fadeInBottom">Espiritualidad</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4 mb-sm-0 mb-3">
+                    <a href="#">
+                        <div
+                            style="filter: drop-shadow(2px 4px 6px black); background-image: url({{asset('img/category6.jpg')}})"
+                            class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                            <div class="container py-8 px-4 text-center">
+                                <div class="row align-middle">
+                                    <h3 class="text-white fadeIn2 fadeInBottom">Ver mas categorías</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
+    <section class="py-5">
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="mb-2 text-center">Libros Populares</h1>
+                <p class="mb-2 text-center">consulte la selección de esta semana de categorías populares que pueden
+                    llamarle la atención </p>
+                <div class="row mt-7">
+                    <div class="col-6 col-lg-3">
+                        <div class="card mb-5 mb-lg-0">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="../assets/img/examples/card-product1.jpg" alt="img-blur-shadow"
+                                         class="img-fluid border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow"
+                                     style="background-image: url(&quot;../assets/img/examples/card-product1.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body text-center">
+                                <p class="mb-0 text-primary text-uppercase font-weight-normal text-sm">Trending</p>
+                                <h5 class="font-weight-bold mt-3">
+                                    <a href="javascript:;">Dolce &amp; Gabbana</a>
+                                </h5>
+                                <p class="mb-0">
+                                    Dolce &amp; Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red
+                                    textured-leather.
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex pt-0">
+                                <p class="font-weight-normal my-auto">$1,549</p>
+                                <i class="material-icons position-relative ms-auto text-primary text-lg me-1 my-auto"
+                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                   data-bs-original-title="Saved to Wishlist">favorite</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="card mb-5 mb-lg-0">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="../assets/img/examples/card-product3.jpg" alt="img-blur-shadow"
+                                         class="img-fluid border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow"
+                                     style="background-image: url(&quot;../assets/img/examples/card-product3.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body text-center">
+                                <p class="mb-0 text-dark text-uppercase font-weight-normal text-sm">Popular</p>
+                                <h5 class="font-weight-bold mt-3">
+                                    <a href="javascript:;">Balmain</a>
+                                </h5>
+                                <p class="mb-0">
+                                    Balmain's mid-rise skinny jeans are cut with stretch to ensure they retain skin fit
+                                    but move comfortably.
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex pt-0">
+                                <p class="font-weight-normal my-auto">$459</p>
+                                <i class="material-icons position-relative ms-auto text-dark text-lg me-1 my-auto"
+                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                   data-bs-original-title="Save to Wishlist">favorite</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="card">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="../assets/img/examples/card-product4.jpg" alt="img-blur-shadow"
+                                         class="img-fluid border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow"
+                                     style="background-image: url(&quot;../assets/img/examples/card-product4.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body text-center">
+                                <p class="mb-0 text-dark text-uppercase font-weight-normal text-sm">Popular</p>
+                                <h5 class="font-weight-bold mt-3">
+                                    <a href="javascript:;">Balenciaga</a>
+                                </h5>
+                                <p class="mb-0">
+                                    Balenciaga's black textured-leather wallet is finished with the label's iconic
+                                    'Giant' studs.
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex pt-0">
+                                <p class="font-weight-normal my-auto">$890</p>
+                                <i class="material-icons position-relative ms-auto text-primary text-lg me-1 my-auto"
+                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                   data-bs-original-title="Saved to Wishlist">favorite</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="card">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="../assets/img/examples/card-product2.jpg" alt="img-blur-shadow"
+                                         class="img-fluid border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow"
+                                     style="background-image: url(&quot;../assets/img/examples/card-product2.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body text-center">
+                                <p class="mb-0 text-primary text-uppercase font-weight-normal text-sm">Trending</p>
+                                <h5 class="font-weight-bold mt-3">
+                                    <a href="javascript:;">Burberry</a>
+                                </h5>
+                                <p class="mb-0">
+                                    Burberry's black textured-cottom bomber is finished with the label's iconic
+                                    'Weareable' jacket.
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex pt-0">
+                                <p class="font-weight-normal my-auto">$890</p>
+                                <i class="material-icons position-relative ms-auto text-dark text-lg me-1 my-auto"
+                                   data-bs-toggle="tooltip" data-bs-placement="top"
+                                   data-bs-original-title="Save to Wishlist">favorite</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n10" style="padding: 0">
-
-    
-    <div class="row mt-n10" >
-        <div class="col-md-11 mx-auto">
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" style="border-radius: 10px !important">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-1-min.jpg" alt="First slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-2-min.jpg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-3-min.jpg" alt="Third slide">
-              </div>
+                <div class="col-md-5 col-6 mx-lg-0 mx-auto px-lg-0 px-md-0 my-auto">
+                    <img class="max-width-400 border-radius-lg shadow-lg" src="{{asset('img/bg10.jpg')}}">
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </a>
-          </div>
         </div>
-      </div>
-    <div class="container">
-      <div class="section text-center">
-        <h2 class="title">Your main section here</h2>
-      </div>
-    </div>
+    </section>
 </div>
-  
+
 {{--  <footer class="footer pt-5 mt-5">--}}
 {{--    <div class="container">--}}
 {{--      <div class=" row">--}}
@@ -224,7 +515,7 @@
 {{--              </script> Material Kit by <a href="#" target="_blank">Creative Tim</a>.--}}
 {{--            </p>--}}
 {{--          </div>--}}
-       {{-- </div> --}}
+{{-- </div> --}}
 </div>
 </div>
 </footer>
