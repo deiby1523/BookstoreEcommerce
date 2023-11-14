@@ -63,65 +63,32 @@
 
 
 {{--Carousel--}}
-<div class="row mt-7 w-100 justify-content-center" style="margin-right: 0; margin-left: 0">
-    <div class="col-lg-12" style=" max-width: 1600px;">
-        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner mb-4">
-                <div class="carousel-item active">
-                    <div class="page-header min-vh-50 m-3 border-radius-xl"
-                         style="background-image: url('{{asset('img/bg12.jpg')}}')">
-                        <span class="mask bg-gradient-dark"></span>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 my-auto">
-                                    <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Tu próximo capítulo comienza
-                                        aquí.</h4>
-                                    <h1 class="text-white fadeIn2 fadeInBottom"> Encuentra tu libro perfecto!</h1>
-                                    <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Un abanico de géneros te
-                                        espera: Literatura, fantasía, historia, comedia, espiritualidad, ciencia y
-                                        mas... .</p>
-                                    <a style="z-index: 4" class="btn btn-outline-white" href="#">Ver Libros</a>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
+<div class="row" style="margin-top: 5rem">
+    <div class="col-lg-12 mx-auto">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{asset('img/bg3.jpg')}}" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <div class="page-header min-vh-50 m-3 border-radius-xl"
-                         style="background-image: url('{{asset('img/bg12.jpg')}}')">
-                        <span class="mask bg-gradient-dark"></span>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 my-auto">
-                                    <h4 class="text-white mb-0 fadeIn1 fadeInBottom">Tu próximo capítulo comienza
-                                        aquí.</h4>
-                                    <h1 class="text-white fadeIn2 fadeInBottom"> Encuentra tu libro perfecto!</h1>
-                                    <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">Un abanico de géneros te
-                                        espera: Literatura, fantasía, historia, comedia, espiritualidad, ciencia y
-                                        mas... .</p>
-                                    <a style="z-index: 4" class="btn btn-outline-white" href="#">Ver Libros</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    <img class="d-block w-100" src="{{asset('img/bg14.jpg')}}" alt="Second slide">
                 </div>
-
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-3-min.jpg" alt="Third slide">
+                </div>
             </div>
-            <div class="min-vh-75 position-absolute w-100 top-0">
-                <a class="carousel-control-prev" href="#mainCarousel" role="button" data-bs-slide="prev"
-                   style="width: 0">
-                    <span class="visually-hidden carousel-control-prev-icon position-absolute bottom-50"
-                          aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#mainCarousel" role="button" data-bs-slide="next">
-                    <span class="visually-hidden carousel-control-next-icon position-absolute bottom-50"
-                          aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
-            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
         </div>
     </div>
 </div>
@@ -145,7 +112,28 @@
 {{--</div>--}}
 
 {{--Main Body--}}
-<div class="card card-body shadow-xl mx-3 mx-md-4" style="padding: 0; margin-top: -1rem">
+<div class="card card-body shadow-xl mx-3 mx-md-4" style="padding: 0; margin-top: 2rem">
+
+    <section class="py-5">
+        <div class="container-fluid">
+            <div class="row flex" style="justify-content: center">
+                <div style="margin-right: 20px" class="col-md-5 d-flex justify-content-center flex-column ml-auto text-lg-start">
+                    <h2 class="mb-4">Somos más que una librería</h2>
+                    <p class="mb-2">somos un espacio acogedor donde las historias cobran vida y la pasión por la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más exigentes. Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la calidad, la diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue: </p>
+                    <ul class="m-lg-2 m-auto">
+                        <li class="mb-2">Cuidada selección: <p>Cada libro en nuestras estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo mejor para nuestros lectores.</p></li>
+                        <li class="mb-2">Asesoramiento personalizado: <p>¿Necesitas ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la lectura está aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
+                    </ul>
+                    <p>Únete a nosotros y déjate llevar por la experiencia única que ofrecemos. En nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado para los verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la lectura!"</p>
+                    <h3 class="mt-4">Articulos religiosos</h3>
+                    <p>No solo ofrecemos libros, tambien disponemos de una amplia gama de productos para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas imágenes religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las creencias. </p>
+                </div>
+                <div class="col-md-3 col-5 my-auto">
+                    <img class="min-w-fit border-radius-lg shadow-lg ml-0 w-100" src="{{asset('img/bg13.jpg')}}">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="container mb-4">
         <hr class="horizontal dark my-5">
@@ -304,7 +292,7 @@
                                     <div class="col">
                                         <p class="font-weight-normal my-auto">$1,549</p>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6" style="min-width: 55%;">
 
                                         <i class="material-icons position-relative ms-0 text-warning text-md ml-5 me-1 my-auto"
                                            data-bs-toggle="tooltip" data-bs-placement="top"
