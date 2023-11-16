@@ -25,17 +25,17 @@
     }
 
     .book-horizontal-slider {
-        display:grid;
-        grid-template-rows: repeat(auto-fill,minmax(10rem,1fr));
+        display: grid;
+        grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr));
         grid-auto-flow: column;
         overflow-x: auto;
-        grid-gap:2rem;
-        grid-auto-columns: minmax(24rem,1fr);
+        grid-gap: 2rem;
+        grid-auto-columns: minmax(24rem, 1fr);
         width: -webkit-fill-available;
     }
 
     .book-horizontal-slider::-webkit-scrollbar {
-        height: 8px;    /* Tamaño del scroll en horizontal */
+        height: 8px; /* Tamaño del scroll en horizontal */
     }
 
     .book-horizontal-slider::-webkit-scrollbar-thumb {
@@ -54,13 +54,19 @@
         background-color: #999999;
     }
 
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .
+
 </style>
 
 <body>
 <!-- Navbar Transparent -->
 @include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
-
 
 {{--Carousel--}}
 
@@ -73,15 +79,13 @@
                 <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{asset('img/bg3.jpg')}}" alt="First slide">
+                <div class="carousel-item active" style="text-align: -webkit-center;">
+                    <img class="desktopBanner w-95 border-radius-2xl" src="{{asset('img/picture2.jpg')}}"
+                         alt="First slide">
+                    <img class="phoneBanner w-95 border-radius-2xl" src="{{asset('img/picture1.jpg')}}"
+                         alt="First slide">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="{{asset('img/bg14.jpg')}}" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/products/product-3-min.jpg" alt="Third slide">
-                </div>
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -112,24 +116,51 @@
 {{--</div>--}}
 
 {{--Main Body--}}
-<div class="card card-body shadow-xl mx-3 mx-md-4" style="padding: 0; margin-top: 2rem">
+<div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
 
     <section class="py-5">
         <div class="container-fluid">
             <div class="row flex" style="justify-content: center">
-                <div style="margin-right: 20px" class="col-md-5 d-flex justify-content-center flex-column ml-auto text-lg-start">
-                    <h2 class="mb-4">Somos más que una librería</h2>
-                    <p class="mb-2">somos un espacio acogedor donde las historias cobran vida y la pasión por la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más exigentes. Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la calidad, la diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue: </p>
-                    <ul class="m-lg-2 m-auto">
-                        <li class="mb-2">Cuidada selección: <p>Cada libro en nuestras estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo mejor para nuestros lectores.</p></li>
-                        <li class="mb-2">Asesoramiento personalizado: <p>¿Necesitas ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la lectura está aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
+                <div style="margin-right: 20px"
+                     class="col-md-5 d-flex justify-content-center flex-column ml-auto text-lg-start">
+                    <h1 class="mb-4">Somos más que una librería</h1>
+                    <p class="mb-2 text-2xl">somos un espacio acogedor donde las historias cobran vida y la pasión por
+                        la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás
+                        tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más exigentes.
+                        Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la calidad, la
+                        diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue:<br></p>
+                    <ul class="m-lg-2 m-auto text-2xl">
+                        <li class="mb-2 text-2xl">Cuidada selección: <p style="font-size: 20px">Cada libro en nuestras
+                                estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo mejor
+                                para nuestros lectores.</p></li>
+                        <li class="mb-2 text-2xl">Asesoramiento personalizado: <p style="font-size: 20px">¿Necesitas
+                                ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la lectura está
+                                aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
                     </ul>
-                    <p>Únete a nosotros y déjate llevar por la experiencia única que ofrecemos. En nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado para los verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la lectura!"</p>
-                    <h3 class="mt-4">Articulos religiosos</h3>
-                    <p>No solo ofrecemos libros, tambien disponemos de una amplia gama de productos para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas imágenes religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las creencias. </p>
+                    <div class="col-lg-12 mt-4 mb-4" style="align-self: center;">
+                        <img class="phoneBanner min-w-fit border-radius-lg shadow-lg ml-0 w-100"
+                             src="{{asset('img/bg13.jpg')}}">
+                    </div>
+                    <p class="text-2xl">Únete a nosotros y déjate llevar por la experiencia única que ofrecemos. En
+                        nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado para los
+                        verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
+                        lectura!"</p>,<br>
                 </div>
                 <div class="col-md-3 col-5 my-auto">
-                    <img class="min-w-fit border-radius-lg shadow-lg ml-0 w-100" src="{{asset('img/bg13.jpg')}}">
+                    <img style="margin-left: 4rem" class="desktopBanner min-w-fit border-radius-lg shadow-lg w-100"
+                         src="{{asset('img/bg13.jpg')}}">
+                </div>
+            </div>
+            <div class="row flex" style="justify-content: center">
+                <div class="col-8">
+                    <h1 class="mt-4 ">Articulos religiosos</h1>
+                    <div class="col-lg-12 mx-auto my-5">
+                        <img class="min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
+                             src="{{asset('img/picture4.jpg')}}">
+                    </div>
+                    <p class="text-2xl">No solo ofrecemos libros, tambien disponemos de una amplia gama de productos
+                        para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas imágenes
+                        religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las creencias. </p>
                 </div>
             </div>
         </div>
@@ -157,99 +188,180 @@
 
     </div>
 
-    <section class="py-5">
+    <section class="pb-6">
         <div class="container">
+            <div class="row justify-content-center mt-7 mb-7">
+                <div class="col-lg-6">
+                    <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
+                    <p class="text-2xl text-center">Selección de las categorías mas populares de este mes, que pueden
+                        llamarle la atención.</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-4 mb-4">
+
+                    <a href="javascript:;">
+                        <div class="card card-background h-100">
+                                <div class="full-background"
+                                     style="background-image: url({{asset('img/category1.jpg')}})" loading="lazy"></div>
+
+                                <div class="card-body pt-12">
+                                    <h4 class="text-white">Autoayuda y Bienestar</h4>
+                                    <p class="text-white">Encuentra inspiración y herramientas prácticas para una vida
+                                        equilibrada y satisfactoria</p>
+                                </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+                <div class="col-lg-4 mb-4">
+
+                    <a href="javascript:;">
+                        <div class="card card-background">
+                            <div class="full-background" style="background-image: url('{{asset('img/category2.jpg')}}')"
+                                 loading="lazy"></div>
+                            <div class="card-body pt-12">
+                                <h4 class="text-white">Niños y jóvenes</h4>
+                                <p class="text-white">Explora emocionantes aventuras, historias educativas y libros
+                                    creativos que estimulan la imaginación y fomentan el amor por la lectura en los más
+                                    jóvenes.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col-lg-4 mb-4">
+
+                    <a href="javascript:;">
+                        <div class="card card-background">
+                            <div class="full-background" style="background-image: url('{{asset('img/category3.jpg')}}')"
+                                 loading="lazy"></div>
+                            <div class="card-body pt-12">
+                                <h4 class="text-white">Ficción</h4>
+                                <p class="text-white">Sumérgete en mundos imaginarios y emocionantes narrativas.
+                                    Descubre historias cautivadoras, personajes inolvidables y tramas que te
+                                    transportarán a lugares inexplorados.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col-lg-4 mb-4">
+
+                    <a href="javascript:;">
+                        <div class="card card-background">
+                            <div class="full-background" style="background-image: url('{{asset('img/category4.jpg')}}')"
+                                 loading="lazy"></div>
+                            <div class="card-body pt-12">
+                                <h4 class="text-white">Negocios y Economia</h4>
+                                <p class="text-white">Accede a conocimientos clave para el éxito empresarial. Descubre
+                                    estrategias empresariales, consejos de liderazgo y análisis financiero en libros que
+                                    te guiarán hacia el crecimiento profesional y el logro de tus metas económicas.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col-lg-4 mb-4">
+
+                    <a href="javascript:;">
+                        <div class="card card-background">
+                            <div class="full-background" style="background-image: url('{{asset('img/category5.jpg')}}')"
+                                 loading="lazy"></div>
+                            <div class="card-body pt-12">
+                                <h4 class="text-white">Espiritualidad</h4>
+                                <p class="text-white">Explora la búsqueda interior y encuentra paz. Descubre libros que
+                                    te guiarán en la espiritualidad, ofreciendo sabiduría, reflexiones y prácticas para
+                                    nutrir tu alma y encontrar armonía en la vida cotidiana.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container w-100">
             <div class="row">
                 <div class="col-8 mx-auto text-center mb-5">
-                    <span class="badge badge-primary mb-2">Esta semana</span>
-                    <h2>Categorías Populares</h2>
-                    <p>
+                    <span class="badge badge-primary mb-2">Esta mes</span>
+                    <h1>Categorías Populares</h1>
+                    <p class="text-2xl">
                         Selección de las categorías mas populares de este mes, que pueden
                         llamarle la atención.
                     </p>
                 </div>
             </div>
             <div class="row min-vh-25">
-                <div class="col-sm-4 col-5 mb-sm-0 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="#">
                         <div
-                            style="background-image: url({{asset('img/category1.jpg')}})"
+                            style="text-align: center; background-image: url({{asset('img/category1.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                            <div class="container py-7 text-center">
-                                <div class="row align-middle">
-
-                                    <h3 class="text-white fadeIn2 fadeInBottom">Autoayuda y Bienestar</h3>
-
-                                </div>
+                            <div class="h-100 w-100 d-flex">
+                                <h3 class="m-auto text-white fadeIn2 fadeInBottom">Autoayuda y Bienestar</h3>
                             </div>
+
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-3 col-7 mb-sm-0 mb-3">
+                <div class="col-md-3 mb-3">
                     <a href="#">
                         <div
                             style="background-image: url({{asset('img/category2.jpg')}})"
                             class="w-100 h-100 border-radius-lg bg-cover move-on-hover">
-                            <div class="container py-8 text-center">
-                                <div class="row align-middle">
-
-                                    <h3 style="vertical-align: middle" class="text-white fadeIn2 fadeInBottom">Niños y jóvenes</h3>
-
-                                </div>
+                            <div class="h-100 w-100 d-flex">
+                                <h3 class="m-auto text-white fadeIn2 fadeInBottom">Niños y Jóvenes</h3>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-5 mb-sm-0 mb-3">
+                <div class="col-md-5 mb-3">
                     <a href="#">
                         <div
                             style="background-image: url({{asset('img/category3.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                            <div class="container py-7 text-center">
-                                <div class="row align-middle">
-                                    <h3 class="text-white fadeIn2 fadeInBottom">Ficción</h3>
-                                </div>
+                            <div class="h-100 w-100 d-flex">
+                                <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ficción</h3>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="row min-vh-25 mt-4">
-                <div class="col-sm-3 col-7 mb-sm-0 mb-3">
+            <div class="row min-vh-25 mt-1">
+                <div class="col-md-3 mb-3">
                     <a href="#">
                         <div
                             style="background-image: url({{asset('img/category4.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                            <div class="container py-8 px-4 text-center">
-                                <div class="row align-middle">
-                                    <h3 class="text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
-                                </div>
+                            <div class="h-100 w-100 d-flex">
+                                <h3 class="m-auto text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-5 col-5 mb-sm-0 mb-3">
+                <div class="col-md-5 mb-3">
                     <a href="#">
                         <div
                             style="background-image: url({{asset('img/category5.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                            <div class="container py-8 px-4 text-center">
-                                <div class="row align-middle">
-                                    <h3 class="text-white fadeIn2 fadeInBottom">Espiritualidad</h3>
-                                </div>
+                            <div class="h-100 w-100 d-flex">
+                                <h3 class="m-auto text-white fadeIn2 fadeInBottom">Espiritualidad</h3>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-4 mb-sm-0 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="#">
                         <div
                             style="background-image: url({{asset('img/category6.jpg')}})"
                             class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                            <div class="container py-8 px-4 text-center">
-                                <div class="row align-middle">
-                                    <h3 class="text-white fadeIn2 fadeInBottom">Ver mas categorías</h3>
-                                </div>
+                            <div class="h-100 w-100 d-flex">
+                                <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ver todas las categorias</h3>
                             </div>
                         </div>
                     </a>
@@ -316,8 +428,6 @@
 
                             </div>
                         </div>
-
-
 
                     @empty
                         <br>
@@ -497,20 +607,23 @@
 </footer>
 
 <script>
-    const container = document.getElementById("latestBooks");
-    // where "container" is the id of the container
-    container.addEventListener("wheel", function (e) {
-        if (e.deltaY > 0) {
-            container.scrollLeft += 100;
-            e.preventDefault();
-// prevenDefault() will help avoid worrisome
-// inclusion of vertical scroll
+    if (screen.width < 900) {
+        // Small screen
+
+        // Ocultar objetos con la clase desktopBanner en pantallas pequeñas
+        var desktopBanners = document.querySelectorAll('.desktopBanner');
+        for (var i = 0; i < desktopBanners.length; i++) {
+            desktopBanners[i].classList.add('d-none');
         }
-        else {
-            container.scrollLeft -= 100;
-            e.preventDefault();
+    } else {
+        // Big screen
+
+        // Ocultar objetos con la clase phoneBanner en pantallas grandes
+        var phoneBanners = document.querySelectorAll('.phoneBanner');
+        for (var j = 0; j < phoneBanners.length; j++) {
+            phoneBanners[j].classList.add('d-none');
         }
-    });
+    }
 </script>
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
