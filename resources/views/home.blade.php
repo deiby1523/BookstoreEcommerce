@@ -151,12 +151,14 @@
                          src="{{asset('img/bg13.jpg')}}">
                 </div>
             </div>
-            <div class="row flex" style="justify-content: center">
-                <div class="col-8">
+            <div class="row flex mx-0" style="justify-content: center">
+                <div class="col-12" style="max-width: 1333px;">
                     <h1 class="mt-4 ">Articulos religiosos</h1>
                     <div class="col-lg-12 mx-auto my-5">
-                        <img class="min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
+                        <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
                              src="{{asset('img/picture4.jpg')}}">
+                        <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
+                             src="{{asset('img/picture5.jpg')}}">
                     </div>
                     <p class="text-2xl">No solo ofrecemos libros, tambien disponemos de una amplia gama de productos
                         para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas imágenes
