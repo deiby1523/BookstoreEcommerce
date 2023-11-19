@@ -59,18 +59,60 @@
         overflow-x: hidden;
     }
 
+    div.load{
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+div.loading {
+  overflow: hidden;
+  opacity: 0;
+}
+
+
+    
+
+.spinner {
+  position: fixed;
+  top: 46%;
+  left: 42%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: transparent;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
     .
 
 </style>
 
 <body>
 <!-- Navbar Transparent -->
-@include('layouts.navigation_txt_dark')
+
 <!-- End Navbar -->
+<div id="spin" class='spinner'></div>
+<div id='load' class="loading">
+@include('layouts.navigation_txt_dark')
+
 
 {{--Carousel--}}
 
-<div class="row" style="margin-top: 5rem">
+<div class="row" style="margin-top: 7rem">
     <div class="col-lg-12 mx-auto">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
@@ -80,9 +122,9 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active" style="text-align: -webkit-center;">
-                    <img class="desktopBanner w-95 border-radius-2xl" src="{{asset('img/picture2.jpg')}}"
+                    <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/picture2.jpg')}}"
                          alt="First slide">
-                    <img class="phoneBanner w-95 border-radius-2xl" src="{{asset('img/picture1.jpg')}}"
+                    <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/picture1.jpg')}}"
                          alt="First slide">
                 </div>
 
@@ -124,16 +166,16 @@
                 <div style="margin-right: 20px"
                      class="col-md-5 d-flex justify-content-center flex-column ml-auto text-lg-start">
                     <h1 class="mb-4">Somos más que una librería</h1>
-                    <p class="mb-2 text-2xl">somos un espacio acogedor donde las historias cobran vida y la pasión por
+                    <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran vida y la pasión por
                         la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás
                         tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más exigentes.
                         Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la calidad, la
                         diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue:<br></p>
-                    <ul class="m-lg-2 m-auto text-2xl">
-                        <li class="mb-2 text-2xl">Cuidada selección: <p style="font-size: 20px">Cada libro en nuestras
+                    <ul class="m-lg-2 m-auto" style="font-size: 20px">
+                        <li class="mb-2" style="font-size: 20px">Cuidada selección: <p style="font-size: 17px">Cada libro en nuestras
                                 estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo mejor
                                 para nuestros lectores.</p></li>
-                        <li class="mb-2 text-2xl">Asesoramiento personalizado: <p style="font-size: 20px">¿Necesitas
+                        <li class="mb-2" style="font-size: 20px">Asesoramiento personalizado: <p style="font-size: 17px">¿Necesitas
                                 ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la lectura está
                                 aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
                     </ul>
@@ -141,10 +183,10 @@
                         <img class="phoneBanner min-w-fit border-radius-lg shadow-lg ml-0 w-100"
                              src="{{asset('img/bg13.jpg')}}">
                     </div>
-                    <p class="text-2xl">Únete a nosotros y déjate llevar por la experiencia única que ofrecemos. En
+                    <p style="font-size: 20px">Únete a nosotros y déjate llevar por la experiencia única que ofrecemos. En
                         nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado para los
                         verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
-                        lectura!"</p>,<br>
+                        lectura!"</p><br>
                 </div>
                 <div class="col-md-3 col-5 my-auto">
                     <img style="margin-left: 4rem" class="desktopBanner min-w-fit border-radius-lg shadow-lg w-100"
@@ -153,14 +195,14 @@
             </div>
             <div class="row flex mx-0" style="justify-content: center">
                 <div class="col-12" style="max-width: 1333px;">
-                    <h1 class="mt-4 ">Articulos religiosos</h1>
+                    <h1 class="mt-4">Articulos religiosos</h1>
                     <div class="col-lg-12 mx-auto my-5">
                         <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
                              src="{{asset('img/picture4.jpg')}}">
                         <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
                              src="{{asset('img/picture5.jpg')}}">
                     </div>
-                    <p class="text-2xl">No solo ofrecemos libros, tambien disponemos de una amplia gama de productos
+                    <p style="font-size: 20px">No solo ofrecemos libros, tambien disponemos de una amplia gama de productos
                         para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas imágenes
                         religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las creencias. </p>
                 </div>
@@ -195,7 +237,7 @@
             <div class="row justify-content-center mt-7 mb-7">
                 <div class="col-lg-6">
                     <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
-                    <p class="text-2xl text-center">Selección de las categorías mas populares de este mes, que pueden
+                    <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de este mes, que pueden
                         llamarle la atención.</p>
                 </div>
             </div>
@@ -289,10 +331,10 @@
     <section class="py-5">
         <div class="container w-100">
             <div class="row">
-                <div class="col-8 mx-auto text-center mb-5">
+                <div class="col-lg-6 mx-auto text-center mb-5">
                     <span class="badge badge-primary mb-2">Esta mes</span>
                     <h1>Categorías Populares</h1>
-                    <p class="text-2xl">
+                    <p style="font-size: 20px">
                         Selección de las categorías mas populares de este mes, que pueden
                         llamarle la atención.
                     </p>
@@ -376,17 +418,17 @@
         <div class="container-fluid">
             <div class="row">
                 <h1 class="mb-2 text-center">Ultimas Novedades</h1>
-                <p class="mb-0 text-center">Libros nuevos y actualizados, recientemente añadidos</p>
+                <p class="mb-0 text-center" style="font-size: 20px">Libros recientemente añadidos</p>
             </div>
-            <div id="latestBooks" class="book-horizontal-slider px-4">
-                <div class="row flex-nowrap" style=" max-width: 280px; position: relative;">
+            <div id="latestBooks" class="book-horizontal-slider">
+                <div class="row flex-nowrap" style=" max-width: 210px; position: relative;">
                     @forelse($latestBooks as $book)
 
                         <div class="card mb-5 mt-2 mx-3 shadow-lg"
                              style="">
                             <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
                                 <a class="d-block blur-shadow-image">
-                                    <img src="{{asset($book->book_image_url)}}" alt="img-blur-shadow"
+                                    <img loading='eager' src="{{asset($book->book_image_url)}}" alt="img-blur-shadow"
                                          class="img-fluid border-radius-lg" loading="lazy">
                                 </a>
                                 <div class="colored-shadow"
@@ -607,8 +649,20 @@
 </div>
 </div>
 </footer>
-
+</div>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+
+        setTimeout(function() {
+            const load = document.getElementById("load");
+            const spin = document.getElementById("spin");
+            spin.classList.add("loading");
+            load.classList.remove("loading");
+            load.classList.add("load");
+        }, 3800);
+});
+
     if (screen.width < 900) {
         // Small screen
 

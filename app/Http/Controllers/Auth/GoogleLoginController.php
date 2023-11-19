@@ -44,7 +44,7 @@ class GoogleLoginController extends Controller
         }
 
 
-        return redirect()->route('welcome'); // Redirige al dashboard o a la ruta que prefieras
+        return redirect()->route('home'); // Redirige al dashboard o a la ruta que prefieras
     }
 
 }
