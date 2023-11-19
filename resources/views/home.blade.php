@@ -4,7 +4,7 @@
 
 <head>
     <title>Ecommerce</title>
-    <!-- Required meta tags --->
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
