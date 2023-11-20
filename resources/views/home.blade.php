@@ -19,6 +19,7 @@
     <!-- Material Kit CSS -->
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
+
 </head>
 
 <body class="loading">
@@ -37,11 +38,14 @@
 
         <div class="row" style="margin-top: 7rem">
             <div class="col-lg-12 mx-auto">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                        <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>
+                        <li data-target="#carouselExample" data-bs-slide-to="1" class="active d"></li>
+                        <li data-target="#carouselExample" data-bs-slide-to="2" class="active d"></li>
+                        <li data-target="#carouselExample" data-bs-slide-to="3" class="active d"></li>
+                        <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>
+                        <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="text-align: -webkit-center;">
@@ -50,15 +54,47 @@
                             <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/picture1.jpg')}}"
                                  alt="First slide">
                         </div>
+                        <div class="carousel-item" style="text-align: -webkit-center;">
+                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg.jpg')}}"
+                                 alt="Second slide">
+                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm.jpg')}}"
+                                 alt="Second slide">
+                        </div>
+                        <div class="carousel-item" style="text-align: -webkit-center;">
+                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg2.jpg')}}"
+                                 alt="Third slide">
+                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm2.jpg')}}"
+                                 alt="Third slide">
+                        </div>
+                        <div class="carousel-item" style="text-align: -webkit-center;">
+                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg3.jpg')}}"
+                                 alt="fourth slide">
+                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm3.jpg')}}"
+                                 alt="fourth slide">
+                        </div>
+                        <div class="carousel-item" style="text-align: -webkit-center;">
+                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg5.jpg')}}"
+                                 alt="five slide">
+                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm5.jpg')}}"
+                                 alt="five slide">
+                        </div>
+                        <div class="carousel-item" style="text-align: -webkit-center;">
+                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg10.jpg')}}"
+                                 alt="six slide">
+                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm10.jpg')}}"
+                                 alt="six slide">
+                        </div>
 
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                    <a class="carousel-control-prev" href="#carouselExample" role="button"
                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only hidden">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                    <a class="carousel-control-next" href="#carouselExample" role="button"
                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only hidden">Next</span>
                     </a>
                 </div>
             </div>
@@ -615,13 +651,14 @@
         {{--</div>--}}
     </div>
 
-<script src="{{asset('js/home.js')}}" type="text/javascript"></script>
-{{--<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>--}} <!-- WARNING: For some reason this causes errors in popper.min.js -->
-<script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
+{{-- WARNING: //////////////////////////////////////////////// Be careful when changing the order of the following scripts //////////////////////////////////////////////// --}}
+
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
-{{-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc --}}
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>  {{--Important--}}
+<script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('js/home.js')}}" type="text/javascript"></script>
+
 </body>
 
 </html>
