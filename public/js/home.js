@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.classList.remove("loading");
         html.classList.remove("loading");
         load.classList.add("load");
-    }, 3000);
+    }, 2000);
 });
 
 if (screen.width < 900) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -25,6 +26,7 @@ class HomeController extends Controller
     ORDER BY books.id DESC
     LIMIT 5';
         $latestBooks = DB::select($sql);
-        return view('home', compact('latestBooks'));
+        $categories = Category::all();
+        return view('home', compact('latestBooks','categories'));
     }
 }
