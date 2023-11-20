@@ -68,7 +68,7 @@
                                                     <p>No hay subcategorías para {{$subcategories[$i+$j]}}</p>
                                                 @endforelse
                                             @endfor
-                                            @if($i != (($numCategories/2)-1))
+                                            @if($i != ((count($categories)/2)-1))
                                                 <hr class="vertical dark" style="width: 3px; margin-right: 10px">
                                             @endif
                                         </div>
