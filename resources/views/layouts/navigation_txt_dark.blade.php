@@ -13,20 +13,18 @@
     }
 
 </style>
-
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 my-3 navbar-dark">
     <div class="container" style="max-width: 90%">
         <a class="navbar-brand text-dark text-8xl" style="margin-right: 0;" href="#">
             |----------LOGO----------|
         </a>
-        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-                aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon mt-2">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </span>
+
+        <button class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </span>
         </button>
         <div class="collapse bg-white navbar-collapse w-100 pt-3 pb-2 py-lg-0 ps-lg-5" id="navigation"
              style="border-radius: 10px; padding-left: 10px !important;">
@@ -39,8 +37,7 @@
                 </li>
 
                 <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                       id="dropdownBooks" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a id="dropdownBooks" role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
                         Libros
                         <img src="{{asset('img/down-arrow-dark.svg')}}" alt="down-arrow"
                              class="arrow ms-auto ms-md-2">
@@ -78,7 +75,7 @@
                         </div>
                         <div class="d-lg-none">
                             @forelse($categories as $category)
-                                <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0">
+                                <div style="color: #344767" class="dropdown-header font-weight-bolder d-flex align-items-center px-0">
                                     {{$category->category_name}}
                                 </div>
                                 @forelse($category->subcategories as $subcategory)
@@ -183,3 +180,37 @@
         </div>
     </div>
 </nav>
+
+{{--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
+
+{{--<!-- jQuery (opcional pero necesario para algunas funciones de Bootstrap) -->--}}
+{{--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>--}}
+{{--<!-- Script para abrir y cerrar el menú -->--}}
+{{--<script>--}}
+{{--    $(document).ready(function () {--}}
+{{--        // Selector del botón de la hamburguesa--}}
+{{--        var $navbarToggler = $('.navbar-toggler');--}}
+
+{{--        // Selector del menú desplegable--}}
+{{--        var $navigation = $('#navigation');--}}
+
+{{--        // Manejador de eventos para el clic en el botón de la hamburguesa--}}
+{{--        $navbarToggler.on('click', function () {--}}
+{{--            // Alternar la clase 'show' en el menú desplegable--}}
+{{--            if ($navigation.classList.contains("show")) {--}}
+{{--                $navigation.classList.remove("show");--}}
+{{--            } else {--}}
+{{--            $navigation.classList.add("show");--}}
+{{--            }--}}
+{{--        });--}}
+
+{{--        // Manejador de eventos para cerrar el menú cuando se hace clic fuera de él--}}
+{{--        $(document).on('click', function (event) {--}}
+{{--            if (!$navbarToggler.is(event.target) && !$navigation.is(event.target) && $navigation.has(event.target).length === 0) {--}}
+{{--                // Si se hace clic fuera del botón de la hamburguesa y el menú, cierra el menú--}}
+{{--                $navigation.removeClass('show');--}}
+{{--            }--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
+

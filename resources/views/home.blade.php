@@ -616,9 +616,10 @@
     </div>
 
 <script src="{{asset('js/home.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
+{{--<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>--}} <!-- WARNING: For some reason this causes errors in popper.min.js -->
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
-<!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
+<script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
+{{-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc --}}
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
