@@ -4,6 +4,15 @@
        .dropdown-xl {
            width: 75rem;
            z-index: auto;
+           left: -400% !important;
+       }
+    }
+
+    @media (min-width: 1300px) {
+       .dropdown-xl {
+           width: 75rem;
+           z-index: auto;
+           left: -300% !important;
        }
     }
 
