@@ -125,7 +125,7 @@
                 <div class="container-fluid">
                     <div class="row flex" style="justify-content: center">
                         <div style="margin-right: 20px"
-                             class="col-md-5 d-flex justify-content-center flex-column ml-auto text-lg-start">
+                             class="col-lg-6 d-flex justify-content-center flex-column ml-auto text-lg-start">
                             <h1 class="mb-4">Somos más que una librería</h1>
                             <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran
                                 vida y la pasión por
@@ -162,7 +162,7 @@
                                 verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
                                 lectura!"</p><br>
                         </div>
-                        <div class="col-md-3 col-5 my-auto">
+                        <div class="col-lg-6 my-auto">
                             <img style="margin-left: 4rem"
                                  class="desktopBanner min-w-fit border-radius-lg shadow-lg w-100"
                                  src="{{asset('img/bg13.jpg')}}" alt="">
