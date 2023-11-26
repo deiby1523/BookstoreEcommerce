@@ -126,7 +126,7 @@
                             class="dropdown-menu ms-n3 dropdown-menu-animation dropdown p-3 border-radius-lg mt-0 mt-lg-3"
                             aria-labelledby="dropdownMenuPages">
                             <div class="d-none d-lg-block">
-                                @if(Auth::user()->name == "Deiby Prada")
+                                @if(Auth::user()->role->role_name == 'admin')
                                     <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
                                         Administrar
                                     </h6>
@@ -139,18 +139,18 @@
 
                                 @endif
 
-                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
+                                <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-1">
                                     Cuenta
                                 </h6>
                                 <a href="#" class="dropdown-item border-radius-md">
                                     <span>Editar perfil</span>
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}">
+                                    @method('POST')
                                     @csrf
-                                    <a href="{{ route('logout') }}" class="dropdown-item border-radius-md"
-                                       onclick="preventDefault(); this.closest('form').submit();">
+                                    <button type="submit" class="dropdown-item border-radius-md">
                                         <span>Cerrar sesion</span>
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                             <div class="d-lg-none">
@@ -176,13 +176,13 @@
                     </li>
                 @else
                     <li class="nav-item mx-2">
-                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center">
-                            Sign up
+                        <a href="{{route('register')}}" class="nav-link ps-2 d-flex cursor-pointer align-items-center">
+                            Registrarse
                         </a>
                     </li>
                     <li class="nav-item ms-lg-auto my-auto ms-3 ms-lg-0 mt-2" style="margin-top: 2px !important">
                         <a class="btn btn-sm  bg-gradient-warning mb-0 me-1 mt-2 mt-md-0"
-                           href={{route('login')}}>Login</a>
+                           href={{route('login')}}>Iniciar Sesión</a>
                     </li>
                 @endif
             </ul>

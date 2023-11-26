@@ -31,6 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'role_id'
     ];
 
     /**
@@ -42,6 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role() {
+        return $this->hasOne(Role::class,'id');
+    }
 
     public function ShoppingCart()
     {

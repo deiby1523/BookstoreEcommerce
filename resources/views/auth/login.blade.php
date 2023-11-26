@@ -1,6 +1,6 @@
-<html>
+<html lang="es">
 <head>
-    <title>Hello, world!</title>
+    <title>Iniciar Sesion</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -17,37 +17,28 @@
 </head>
 
 <body>
-<!-- Navbar Transparent -->
-<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3">
     <div class="container">
-        <a class="navbar-brand  text-white " href="{{ route('home') }}" rel="tooltip"
+        <a class="navbar-brand  text-dark " href="{{ route('home') }}" rel="tooltip"
            title="Designed and Coded by Deiby P." data-placement="bottom">
             Ecommerce Example
         </a>
-        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-                aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon mt-2">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </span>
-        </button>
 
     </div>
 </nav>
 <!-- End Navbar -->
 
-<div class="page-header align-items-start min-vh-100 mb-2" style="background-color: #2b2b2b;" loading="lazy">
+<div class="page-header align-items-start min-vh-100 mb-2" style="background-color: #ffffff;" loading="lazy">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
     <br><br>
     <div class="container my-auto mx-auto">
         <div class="row">
             <div class="col-lg-4 col-md-8 col-12 mx-auto">
-                <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div class="card z-index-0 fadeIn3 fadeInBottom shadow-xl">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-warning shadow-warning border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Iniciar sesión</h4>
                             <br><br>
                         </div>
                     </div>
@@ -56,14 +47,14 @@
                             @csrf
                             <div class="input-group input-group-outline my-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control bg-outline-secondary">
+                                <input name="email" type="email" class="form-control">
                             </div>
                             <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" class="form-control">
+                                <label class="form-label">Contraseña</label>
+                                <input name="password" type="password" class="form-control">
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn bg-gradient-warning w-100 my-1">Iniciar Sesion</button>
+                                <button type="submit" class="btn bg-gradient-warning w-100 my-1">Iniciar Sesion</button>
                             </div>
                             <div class="text-center">
                                 <a href="{{ route('login.google') }}" class="btn bg-outline-warning w-100 my-1">Continuar
@@ -87,7 +78,7 @@
                                 </a>
                             </div>
                             <p class="mt-4 text-sm text-center">
-                                No tienes una cuenta? <a href="#" class="text-warning">Crea una</a>
+                                ¿No tienes una cuenta? <a href="{{route('register')}}" class="text-warning">Crea una</a>
                             </p>
                         </form>
                     </div>
