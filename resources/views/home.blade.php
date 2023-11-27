@@ -28,636 +28,759 @@
 
     <div id="spin" class='spinner'></div>
 </div>
-    <div id='load' class="loading">
-        <!-- Navbar -->
-        @include('layouts.navigation_txt_dark')
-        <!-- End Navbar -->
+<div id='load' class="loading">
+    <!-- Navbar -->
+    @include('layouts.navigation_txt_dark')
+    <!-- End Navbar -->
 
 
-        {{--Carousel--}}
+    {{--Carousel--}}
 
-        <div class="row" style="margin-top: 7rem">
-            <div class="col-lg-12 mx-auto">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>
-                        <li data-target="#carouselExample" data-bs-slide-to="1" class="active d"></li>
-                        <li data-target="#carouselExample" data-bs-slide-to="2" class="active d"></li>
-                        <li data-target="#carouselExample" data-bs-slide-to="3" class="active d"></li>
-                        <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>
-                        <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" style="text-align: -webkit-center;">
-                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/picture2.jpg')}}"
-                                 alt="First slide">
-                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/picture1.jpg')}}"
-                                 alt="First slide">
-                        </div>
-                        <div class="carousel-item" style="text-align: -webkit-center;">
-                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg.jpg')}}"
-                                 alt="Second slide">
-                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm.jpg')}}"
-                                 alt="Second slide">
-                        </div>
-                        <div class="carousel-item" style="text-align: -webkit-center;">
-                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg2.jpg')}}"
-                                 alt="Third slide">
-                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm2.jpg')}}"
-                                 alt="Third slide">
-                        </div>
-                        <div class="carousel-item" style="text-align: -webkit-center;">
-                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg3.jpg')}}"
-                                 alt="fourth slide">
-                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm3.jpg')}}"
-                                 alt="fourth slide">
-                        </div>
-                        <div class="carousel-item" style="text-align: -webkit-center;">
-                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg5.jpg')}}"
-                                 alt="five slide">
-                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm5.jpg')}}"
-                                 alt="five slide">
-                        </div>
-                        <div class="carousel-item" style="text-align: -webkit-center;">
-                            <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg10.jpg')}}"
-                                 alt="six slide">
-                            <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm10.jpg')}}"
-                                 alt="six slide">
-                        </div>
-
+    <div class="row" style="margin-top: 7rem">
+        <div class="col-lg-12 mx-auto">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>
+                    <li data-target="#carouselExample" data-bs-slide-to="1" class="active d"></li>
+                    <li data-target="#carouselExample" data-bs-slide-to="2" class="active d"></li>
+                    <li data-target="#carouselExample" data-bs-slide-to="3" class="active d"></li>
+                    <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>
+                    <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/picture2.jpg')}}"
+                             alt="First slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/picture1.jpg')}}"
+                             alt="First slide">
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExample" role="button"
-                       data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only hidden">Previous</span>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg.jpg')}}"
+                             alt="Second slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm.jpg')}}"
+                             alt="Second slide">
+                    </div>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg2.jpg')}}"
+                             alt="Third slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm2.jpg')}}"
+                             alt="Third slide">
+                    </div>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg3.jpg')}}"
+                             alt="fourth slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm3.jpg')}}"
+                             alt="fourth slide">
+                    </div>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg5.jpg')}}"
+                             alt="five slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm5.jpg')}}"
+                             alt="five slide">
+                    </div>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg10.jpg')}}"
+                             alt="six slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm10.jpg')}}"
+                             alt="six slide">
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExample" role="button"
+                   data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExample" role="button"
+                   data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only hidden">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {{--End carousel--}}
+
+    {{--<div class="page-header min-vh-80" style="background-color: #ffffff">--}}
+    {{--    --}}{{--     <span class="mask bg-gradient-dark opacity-6"></span>--}}
+    {{--    <div class="container">--}}
+    {{--        <div class="row">--}}
+
+    {{--            <div class="col-md-8 mx-auto">--}}
+    {{--                <div class="text-center">--}}
+    {{--                    <h1 class="text-white"></h1>--}}
+    {{--                    <h3 class="text-white"></h3>--}}
+    {{--                </div>--}}
+
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+
+    {{--</div>--}}
+
+    {{--Main Body--}}
+    <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
+
+        <section class="py-7 position-relative">
+            <div class="row justify-content-center mt-7 mb-7">
+                <div class="col-lg-6">
+                    <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
+                    <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de
+                        este
+                        mes, que pueden
+                        llamarle la atención.</p>
+                </div>
+            </div>
+            <div id="carousel-testimonials" class="carousel slide carousel-team">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-5 ms-lg-auto">
+                                    <div class="p-3">
+                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1609365635346-524d0024684f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80" alt="First slide" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 me-lg-auto position-relative">
+                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">First Step</h6>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Give your best</h1>
+                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
+                                        Give your best to create something unique with high impact.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-5 ms-lg-auto">
+                                    <div class="p-3">
+                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1602781975725-cab34bd38d94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80" alt="Second slide" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 me-lg-auto position-relative">
+                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">Second Step</h6>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Plan your work</h1>
+                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
+                                        As we live, our hearts turn colder. Cause pain is what we go through.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-5 ms-lg-auto">
+                                    <div class="p-3">
+                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=974&amp;q=80" alt="Third slide" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 me-lg-auto position-relative">
+                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">Third Step</h6>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Follow your dreams</h1>
+                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
+                                        The time is now for it to be okay to be great. People in this world shun people.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-5 ms-lg-auto">
+                                    <div class="p-3">
+                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1579523616974-c2b09289c27e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=966&amp;q=80" alt="Fourth slide" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 me-lg-auto position-relative">
+                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">Fourth Step</h6>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Never give up</h1>
+                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
+                                        Everyone’s born confident, and everything’s taken away from you.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="position-relative mt-n6">
+                    <a class="carousel-control-prev text-dark position-absolute bottom-0 end-0 ms-auto" href="#carousel-testimonials" role="button" data-bs-slide="prev">
+                        <i class="fas fa-2x fa-chevron-left position-absolute start-0 ms-3 mt-7 mt-md-0 ms-n5 ms-md-0" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExample" role="button"
-                       data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only hidden">Next</span>
+                    <a class="carousel-control-next text-dark position-absolute bottom-0 end-0 ms-auto ms-4" href="#carousel-testimonials" role="button" data-bs-slide="next">
+                        <i class="fas fa-2x fa-chevron-right mt-7 mt-md-0" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
             </div>
-        </div>
-        {{--End carousel--}}
+            <div class="row mt-10">
+                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                    <a href="javascript:;" class="text-lg text-gradient text-success h3 ps-3 active" data-bs-target="#carousel-testimonials" data-bs-slide-to="0">
+                        <span>01</span>
+                        <span class="ms-2">Give your best</span>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                    <a href="javascript:;" class="text-lg text-gradient text-success h3" data-bs-target="#carousel-testimonials" data-bs-slide-to="1">
+                        <span>02</span>
+                        <span class="ms-2">Plan your work</span>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                    <a href="javascript:;" class="text-lg text-gradient text-success h3" data-bs-target="#carousel-testimonials" data-bs-slide-to="2">
+                        <span>03</span>
+                        <span class="ms-2"> Follow your dreams </span>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                    <a href="javascript:;" class="text-lg text-gradient text-success h3" data-bs-target="#carousel-testimonials" data-bs-slide-to="3">
+                        <span>04</span>
+                        <span class="ms-2"> Never give up </span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        {{--<div class="page-header min-vh-80" style="background-color: #ffffff">--}}
-        {{--    --}}{{--     <span class="mask bg-gradient-dark opacity-6"></span>--}}
-        {{--    <div class="container">--}}
-        {{--        <div class="row">--}}
-
-        {{--            <div class="col-md-8 mx-auto">--}}
-        {{--                <div class="text-center">--}}
-        {{--                    <h1 class="text-white"></h1>--}}
-        {{--                    <h3 class="text-white"></h3>--}}
-        {{--                </div>--}}
-
-        {{--            </div>--}}
-        {{--        </div>--}}
-        {{--    </div>--}}
-
-        {{--</div>--}}
-
-        {{--Main Body--}}
-        <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
-
-            <section class="py-5">
-                <div class="container-fluid">
-                    <div class="row flex" style="justify-content: center">
-                        <div style="margin-right: 20px"
-                             class="col-lg-6 d-flex justify-content-center flex-column ml-auto text-lg-start">
-                            <h1 class="mb-4">Somos más que una librería</h1>
-                            <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran
-                                vida y la pasión por
-                                la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento,
-                                encontrarás
-                                tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
-                                exigentes.
-                                Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la
-                                calidad, la
-                                diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue:<br></p>
-                            <ul class="m-lg-2 m-auto" style="font-size: 20px">
-                                <li class="mb-2" style="font-size: 20px">Cuidada selección: <p style="font-size: 17px">
-                                        Cada
-                                        libro en nuestras
-                                        estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo
-                                        mejor
-                                        para nuestros lectores.</p></li>
-                                <li class="mb-2" style="font-size: 20px">Asesoramiento personalizado: <p
-                                        style="font-size: 17px">¿Necesitas
-                                        ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la
-                                        lectura
-                                        está
-                                        aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
-                            </ul>
-                            <div class="col-lg-12 mt-4 mb-4" style="align-self: center;">
-                                <img class="phoneBanner min-w-fit border-radius-lg shadow-lg ml-0 w-100"
-                                     src="{{asset('img/bg13.jpg')}}" alt="">
-                            </div>
-                            <p style="font-size: 20px">Únete a nosotros y déjate llevar por la experiencia única que
-                                ofrecemos. En
-                                nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado
-                                para
-                                los
-                                verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
-                                lectura!"</p><br>
-                        </div>
-                        <div class="col-lg-6 my-auto">
-                            <img style="margin-left: 4rem"
-                                 class="desktopBanner min-w-fit border-radius-lg shadow-lg w-100"
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row flex" style="justify-content: center">
+                    <div style="margin-right: 20px"
+                         class="col-lg-6 d-flex justify-content-center flex-column ml-auto text-lg-start">
+                        <h1 class="mb-4">Somos más que una librería</h1>
+                        <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran
+                            vida y la pasión por
+                            la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento,
+                            encontrarás
+                            tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
+                            exigentes.
+                            Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la
+                            calidad, la
+                            diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue:<br></p>
+                        <ul class="m-lg-2 m-auto" style="font-size: 20px">
+                            <li class="mb-2" style="font-size: 20px">Cuidada selección: <p style="font-size: 17px">
+                                    Cada
+                                    libro en nuestras
+                                    estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo
+                                    mejor
+                                    para nuestros lectores.</p></li>
+                            <li class="mb-2" style="font-size: 20px">Asesoramiento personalizado: <p
+                                    style="font-size: 17px">¿Necesitas
+                                    ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la
+                                    lectura
+                                    está
+                                    aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
+                        </ul>
+                        <div class="col-lg-12 mt-4 mb-4" style="align-self: center;">
+                            <img class="phoneBanner min-w-fit border-radius-lg shadow-lg ml-0 w-100"
                                  src="{{asset('img/bg13.jpg')}}" alt="">
                         </div>
+                        <p style="font-size: 20px">Únete a nosotros y déjate llevar por la experiencia única que
+                            ofrecemos. En
+                            nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado
+                            para
+                            los
+                            verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
+                            lectura!"</p><br>
                     </div>
-                    <div class="row flex mx-0" style="justify-content: center">
-                        <div class="col-12" style="max-width: 1333px;">
-                            <h1 class="mt-4 ">Artículos religiosos</h1>
-                            <div class="col-lg-12 mx-auto my-5">
-                                <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
-                                     src="{{asset('img/picture4.jpg')}}" alt="">
-                                <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
-                                     src="{{asset('img/picture5.jpg')}}" alt="">
-                            </div>
-                            <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia gama
-                                de
-                                productos
-                                para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
-                                imágenes
-                                religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
-                                creencias. </p>
+                    <div class="col-lg-6 my-auto">
+                        <img style="margin-left: 4rem"
+                             class="desktopBanner min-w-fit border-radius-lg shadow-lg w-100"
+                             src="{{asset('img/bg13.jpg')}}" alt="">
+                    </div>
+                </div>
+                <div class="row flex mx-0" style="justify-content: center">
+                    <div class="col-12" style="max-width: 1333px;">
+                        <h1 class="mt-4 ">Artículos religiosos</h1>
+                        <div class="col-lg-12 mx-auto my-5">
+                            <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
+                                 src="{{asset('img/picture4.jpg')}}" alt="">
+                            <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
+                                 src="{{asset('img/picture5.jpg')}}" alt="">
                         </div>
+                        <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia gama
+                            de
+                            productos
+                            para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
+                            imágenes
+                            religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
+                            creencias. </p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <div class="container mb-4">
-                <hr class="horizontal dark my-5">
-                <div class="row">
-                    <div class="col-lg-2 mb-4 col-md-4 col-6 ms-auto">
-                        <img class="w-100 opacity-4" src="{{asset('img/partner1.png')}}" alt="Logo">
-                    </div>
-                    <div class="col-lg-2 mb-4 col-md-4 col-6">
-                        <img class="w-100 opacity-4" src="{{asset('img/partner2.png')}}" alt="Logo">
-                    </div>
-                    <div class="col-lg-2 mb-4 col-md-4 col-6">
-                        <img class="w-100 opacity-4" src="{{asset('img/partner3.png')}}" alt="Logo">
-                    </div>
-                    <div class="col-lg-2 mb-4 col-md-4 col-6">
-                        <img class="w-100 opacity-4" src="{{asset('img/partner4.png')}}" alt="Logo">
-                    </div>
-                    <div class="col-lg-2 mb-4 col-md-4 col-6 me-md-auto mx-md-0 mx-auto">
-                        <img class="w-100 opacity-4" src="{{asset('img/partner5.png')}}" alt="Logo">
-                    </div>
+        <div class="container mb-4">
+            <hr class="horizontal dark my-5">
+            <div class="row">
+                <div class="col-lg-2 mb-4 col-md-4 col-6 ms-auto">
+                    <img class="w-100 opacity-4" src="{{asset('img/partner1.png')}}" alt="Logo">
                 </div>
-
+                <div class="col-lg-2 mb-4 col-md-4 col-6">
+                    <img class="w-100 opacity-4" src="{{asset('img/partner2.png')}}" alt="Logo">
+                </div>
+                <div class="col-lg-2 mb-4 col-md-4 col-6">
+                    <img class="w-100 opacity-4" src="{{asset('img/partner3.png')}}" alt="Logo">
+                </div>
+                <div class="col-lg-2 mb-4 col-md-4 col-6">
+                    <img class="w-100 opacity-4" src="{{asset('img/partner4.png')}}" alt="Logo">
+                </div>
+                <div class="col-lg-2 mb-4 col-md-4 col-6 me-md-auto mx-md-0 mx-auto">
+                    <img class="w-100 opacity-4" src="{{asset('img/partner5.png')}}" alt="Logo">
+                </div>
             </div>
 
-            <section class="pb-6">
-                <div class="container">
-                    <div class="row justify-content-center mt-7 mb-7">
-                        <div class="col-lg-6">
-                            <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
-                            <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de
-                                este
-                                mes, que pueden
-                                llamarle la atención.</p>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-lg-4 mb-4">
-
-                            <a href="javascript:">
-                                <div class="card card-background h-100">
-                                    <div class="full-background"
-                                         style="background-image: url({{asset('img/category1.jpg')}})"
-                                         loading="lazy"></div>
-
-                                    <div class="card-body pt-12">
-                                        <h4 class="text-white">Autoayuda y Bienestar</h4>
-                                        <p class="text-white">Encuentra inspiración y herramientas prácticas para una
-                                            vida
-                                            equilibrada y satisfactoria</p>
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-                        </div>
-                        <div class="col-lg-4 mb-4">
-
-                            <a href="javascript:;">
-                                <div class="card card-background">
-                                    <div class="full-background"
-                                         style="background-image: url('{{asset('img/category2.jpg')}}')"
-                                         loading="lazy"></div>
-                                    <div class="card-body pt-12">
-                                        <h4 class="text-white">Niños y jóvenes</h4>
-                                        <p class="text-white">Explora emocionantes aventuras, historias educativas y
-                                            libros
-                                            creativos que estimulan la imaginación y fomentan el amor por la lectura en
-                                            los
-                                            más
-                                            jóvenes.</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="col-lg-4 mb-4">
-
-                            <a href="javascript:;">
-                                <div class="card card-background">
-                                    <div class="full-background"
-                                         style="background-image: url('{{asset('img/category3.jpg')}}')"
-                                         loading="lazy"></div>
-                                    <div class="card-body pt-12">
-                                        <h4 class="text-white">Ficción</h4>
-                                        <p class="text-white">Sumérgete en mundos imaginarios y emocionantes narrativas.
-                                            Descubre historias cautivadoras, personajes inolvidables y tramas que te
-                                            transportarán a lugares inexplorados.</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="col-lg-4 mb-4">
-
-                            <a href="javascript:;">
-                                <div class="card card-background">
-                                    <div class="full-background"
-                                         style="background-image: url('{{asset('img/category4.jpg')}}')"
-                                         loading="lazy"></div>
-                                    <div class="card-body pt-12">
-                                        <h4 class="text-white">Negocios y Economía</h4>
-                                        <p class="text-white">Accede a conocimientos clave para el éxito empresarial.
-                                            Descubre
-                                            estrategias empresariales, consejos de liderazgo y análisis financiero en
-                                            libros
-                                            que
-                                            te guiarán hacia el crecimiento profesional y el logro de tus metas
-                                            económicas.</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="col-lg-4 mb-4">
-
-                            <a href="javascript:;">
-                                <div class="card card-background">
-                                    <div class="full-background"
-                                         style="background-image: url('{{asset('img/category5.jpg')}}')"
-                                         loading="lazy"></div>
-                                    <div class="card-body pt-12">
-                                        <h4 class="text-white">Espiritualidad</h4>
-                                        <p class="text-white">Explora la búsqueda interior y encuentra paz. Descubre
-                                            libros
-                                            que
-                                            te guiarán en la espiritualidad, ofreciendo sabiduría, reflexiones y
-                                            prácticas
-                                            para
-                                            nutrir tu alma y encontrar armonía en la vida cotidiana.</p>
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="py-5">
-                <div class="container w-100">
-                    <div class="row">
-                        <div class="col-lg-6 mx-auto text-center mb-5">
-                            <span class="badge badge-primary mb-2">Esta mes</span>
-                            <h1>Categorías Populares</h1>
-                            <p style="font-size: 20px">
-                                Selección de las categorías mas populares de este mes, que pueden
-                                llamarle la atención.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row min-vh-25">
-                        <div class="col-md-4 mb-3">
-                            <a href="#">
-                                <div
-                                    style="text-align: center; background-image: url({{asset('img/category1.jpg')}})"
-                                    class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                    <div class="h-100 w-100 d-flex">
-                                        <h3 class="m-auto text-white fadeIn2 fadeInBottom">Autoayuda y Bienestar</h3>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <a href="#">
-                                <div
-                                    style="background-image: url({{asset('img/category2.jpg')}})"
-                                    class="w-100 h-100 border-radius-lg bg-cover move-on-hover">
-                                    <div class="h-100 w-100 d-flex">
-                                        <h3 class="m-auto text-white fadeIn2 fadeInBottom">Niños y Jóvenes</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-5 mb-3">
-                            <a href="#">
-                                <div
-                                    style="background-image: url({{asset('img/category3.jpg')}})"
-                                    class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                    <div class="h-100 w-100 d-flex">
-                                        <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ficción</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row min-vh-25 mt-1">
-                        <div class="col-md-3 mb-3">
-                            <a href="#">
-                                <div
-                                    style="background-image: url({{asset('img/category4.jpg')}})"
-                                    class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                    <div class="h-100 w-100 d-flex">
-                                        <h3 class="m-auto text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-5 mb-3">
-                            <a href="#">
-                                <div
-                                    style="background-image: url({{asset('img/category5.jpg')}})"
-                                    class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                    <div class="h-100 w-100 d-flex">
-                                        <h3 class="m-auto text-white fadeIn2 fadeInBottom">Espiritualidad</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <a href="#">
-                                <div
-                                    style="background-image: url({{asset('img/category6.jpg')}})"
-                                    class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                    <div class="h-100 w-100 d-flex">
-                                        <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ver todas las categorías</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="py-5">
-                <div class="container-fluid">
-                    <div class="row">
-                        <h1 class="mb-2 text-center">Ultimas Novedades</h1>
-                        <p class="mb-0 text-center" style="font-size: 20px">Libros recientemente añadidos</p>
-                    </div>
-                    <div id="latestBooks" class="book-horizontal-slider">
-                        <div class="row flex-nowrap" style=" max-width: 210px; position: relative;">
-                            @forelse($latestBooks as $book)
-
-                                <div class="card mb-5 mt-2 mx-3 shadow-lg"
-                                     style="">
-                                    <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                        <a class="d-block blur-shadow-image">
-                                            <img loading='eager' src="{{asset($book->book_image_url)}}"
-                                                 alt="img-blur-shadow"
-                                                 class="img-fluid border-radius-lg">
-                                        </a>
-                                        <div class="colored-shadow"
-                                             style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
-                                        <h5 class="font-weight-bold mt-3">
-                                            <a class="link-dark" href="javascript:">{{$book->book_title}}</a>
-                                        </h5>
-                                        <p class="mb-0 text-left">
-                                            {{$book->author_name}}
-                                        </p>
-                                    </div>
-                                    <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                        <div class="row w-100">
-                                            <div class="col">
-                                                <p class="font-weight-normal my-auto">$1,549</p>
-                                            </div>
-                                            <div class="col-lg-6" style="min-width: 55%;">
-
-                                                <i class="material-icons position-relative ms-0 text-warning text-md ml-5 me-1 my-auto"
-                                                   data-bs-toggle="tooltip" data-bs-placement="top"
-                                                   data-bs-original-title="Saved to Wishlist">star</i><i
-                                                    class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Saved to Wishlist">star</i><i
-                                                    class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Saved to Wishlist">star</i><i
-                                                    class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Saved to Wishlist">star</i><i
-                                                    class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-original-title="Saved to Wishlist">star</i>
-
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            @empty
-                                <br>
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
-                                            este
-                                            momento.</p>
-                                    </div>
-                                </div>
-                            @endforelse
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="row mt-4"
-                             style="width: 100%;  padding-right: 0;  margin-left: -1%;  margin-right: 0px; justify-content: center">
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </section>
         </div>
 
+        <section class="pb-6">
+            <div class="container">
+                <div class="row justify-content-center mt-7 mb-7">
+                    <div class="col-lg-6">
+                        <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
+                        <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de
+                            este
+                            mes, que pueden
+                            llamarle la atención.</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-4 mb-4">
+
+                        <a href="javascript:">
+                            <div class="card card-background h-100">
+                                <div class="full-background"
+                                     style="background-image: url({{asset('img/category1.jpg')}})"
+                                     loading="lazy"></div>
+
+                                <div class="card-body pt-12">
+                                    <h4 class="text-white">Autoayuda y Bienestar</h4>
+                                    <p class="text-white">Encuentra inspiración y herramientas prácticas para una
+                                        vida
+                                        equilibrada y satisfactoria</p>
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+                    <div class="col-lg-4 mb-4">
+
+                        <a href="javascript:;">
+                            <div class="card card-background">
+                                <div class="full-background"
+                                     style="background-image: url('{{asset('img/category2.jpg')}}')"
+                                     loading="lazy"></div>
+                                <div class="card-body pt-12">
+                                    <h4 class="text-white">Niños y jóvenes</h4>
+                                    <p class="text-white">Explora emocionantes aventuras, historias educativas y
+                                        libros
+                                        creativos que estimulan la imaginación y fomentan el amor por la lectura en
+                                        los
+                                        más
+                                        jóvenes.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-lg-4 mb-4">
+
+                        <a href="javascript:;">
+                            <div class="card card-background">
+                                <div class="full-background"
+                                     style="background-image: url('{{asset('img/category3.jpg')}}')"
+                                     loading="lazy"></div>
+                                <div class="card-body pt-12">
+                                    <h4 class="text-white">Ficción</h4>
+                                    <p class="text-white">Sumérgete en mundos imaginarios y emocionantes narrativas.
+                                        Descubre historias cautivadoras, personajes inolvidables y tramas que te
+                                        transportarán a lugares inexplorados.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-lg-4 mb-4">
+
+                        <a href="javascript:;">
+                            <div class="card card-background">
+                                <div class="full-background"
+                                     style="background-image: url('{{asset('img/category4.jpg')}}')"
+                                     loading="lazy"></div>
+                                <div class="card-body pt-12">
+                                    <h4 class="text-white">Negocios y Economía</h4>
+                                    <p class="text-white">Accede a conocimientos clave para el éxito empresarial.
+                                        Descubre
+                                        estrategias empresariales, consejos de liderazgo y análisis financiero en
+                                        libros
+                                        que
+                                        te guiarán hacia el crecimiento profesional y el logro de tus metas
+                                        económicas.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-lg-4 mb-4">
+
+                        <a href="javascript:;">
+                            <div class="card card-background">
+                                <div class="full-background"
+                                     style="background-image: url('{{asset('img/category5.jpg')}}')"
+                                     loading="lazy"></div>
+                                <div class="card-body pt-12">
+                                    <h4 class="text-white">Espiritualidad</h4>
+                                    <p class="text-white">Explora la búsqueda interior y encuentra paz. Descubre
+                                        libros
+                                        que
+                                        te guiarán en la espiritualidad, ofreciendo sabiduría, reflexiones y
+                                        prácticas
+                                        para
+                                        nutrir tu alma y encontrar armonía en la vida cotidiana.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container w-100">
+                <div class="row">
+                    <div class="col-lg-6 mx-auto text-center mb-5">
+                        <span class="badge badge-primary mb-2">Esta mes</span>
+                        <h1>Categorías Populares</h1>
+                        <p style="font-size: 20px">
+                            Selección de las categorías mas populares de este mes, que pueden
+                            llamarle la atención.
+                        </p>
+                    </div>
+                </div>
+                <div class="row min-vh-25">
+                    <div class="col-md-4 mb-3">
+                        <a href="#">
+                            <div
+                                style="text-align: center; background-image: url({{asset('img/category1.jpg')}})"
+                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                                <div class="h-100 w-100 d-flex">
+                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Autoayuda y Bienestar</h3>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="#">
+                            <div
+                                style="background-image: url({{asset('img/category2.jpg')}})"
+                                class="w-100 h-100 border-radius-lg bg-cover move-on-hover">
+                                <div class="h-100 w-100 d-flex">
+                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Niños y Jóvenes</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <a href="#">
+                            <div
+                                style="background-image: url({{asset('img/category3.jpg')}})"
+                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                                <div class="h-100 w-100 d-flex">
+                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ficción</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row min-vh-25 mt-1">
+                    <div class="col-md-3 mb-3">
+                        <a href="#">
+                            <div
+                                style="background-image: url({{asset('img/category4.jpg')}})"
+                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                                <div class="h-100 w-100 d-flex">
+                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <a href="#">
+                            <div
+                                style="background-image: url({{asset('img/category5.jpg')}})"
+                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                                <div class="h-100 w-100 d-flex">
+                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Espiritualidad</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="#">
+                            <div
+                                style="background-image: url({{asset('img/category6.jpg')}})"
+                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
+                                <div class="h-100 w-100 d-flex">
+                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ver todas las categorías</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <h1 class="mb-2 text-center">Ultimas Novedades</h1>
+                    <p class="mb-0 text-center" style="font-size: 20px">Libros recientemente añadidos</p>
+                </div>
+                <div id="latestBooks" class="book-horizontal-slider">
+                    <div class="row flex-nowrap" style=" max-width: 210px; position: relative;">
+                        @forelse($latestBooks as $book)
+
+                            <div class="card mb-5 mt-2 mx-3 shadow-lg"
+                                 style="">
+                                <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
+                                    <a class="d-block blur-shadow-image">
+                                        <img loading='eager' src="{{asset($book->book_image_url)}}"
+                                             alt="img-blur-shadow"
+                                             class="img-fluid border-radius-lg">
+                                    </a>
+                                    <div class="colored-shadow"
+                                         style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
+                                    <h5 class="font-weight-bold mt-3">
+                                        <a class="link-dark" href="javascript:">{{$book->book_title}}</a>
+                                    </h5>
+                                    <p class="mb-0 text-left">
+                                        {{$book->author_name}}
+                                    </p>
+                                </div>
+                                <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                    <div class="row w-100">
+                                        <div class="col">
+                                            <p class="font-weight-normal my-auto">$1,549</p>
+                                        </div>
+                                        <div class="col-lg-6" style="min-width: 55%;">
+
+                                            <i class="material-icons position-relative ms-0 text-warning text-md ml-5 me-1 my-auto"
+                                               data-bs-toggle="tooltip" data-bs-placement="top"
+                                               data-bs-original-title="Saved to Wishlist">star</i><i
+                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Saved to Wishlist">star</i><i
+                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Saved to Wishlist">star</i><i
+                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Saved to Wishlist">star</i><i
+                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-original-title="Saved to Wishlist">star</i>
 
 
-        {{--  <footer class="footer pt-5 mt-5">--}}
-        {{--    <div class="container">--}}
-        {{--      <div class=" row">--}}
-        {{--        <div class="col-md-3 mb-4 ms-auto">--}}
-        {{--          <div>--}}
-        {{--            <a href="#">--}}
-        {{--              <img class="mb-3 footer-logo" src={{asset('img/logo-ct-dark.png')}} alt="main_logo">--}}
-        {{--            </a>--}}
-        {{--            <h6 class="font-weight-bolder mb-4">Material Kit 2</h6>--}}
-        {{--          </div>--}}
-        {{--          <div>--}}
-        {{--            <ul class="d-flex flex-row ms-n3 nav">--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
-        {{--                  <i class="fab fa-facebook text-lg opacity-8"></i>--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
-        {{--                  <i class="fab fa-twitter text-lg opacity-8"></i>--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
-        {{--                  <i class="fab fa-dribbble text-lg opacity-8"></i>--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
-        {{--                  <i class="fab fa-github text-lg opacity-8"></i>--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
-        {{--                  <i class="fab fa-youtube text-lg opacity-8"></i>--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--            </ul>--}}
-        {{--          </div>--}}
-        {{--        </div>--}}
-        {{--        <div class="col-md-2 col-sm-6 col-6 mb-4">--}}
-        {{--          <div>--}}
-        {{--            <h6 class="text-sm">Company</h6>--}}
-        {{--            <ul class="flex-column ms-n3 nav">--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  About Us--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Freebies--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Premium Tools--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Blog--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--            </ul>--}}
-        {{--          </div>--}}
-        {{--        </div>--}}
-        {{--        <div class="col-md-2 col-sm-6 col-6 mb-4">--}}
-        {{--          <div>--}}
-        {{--            <h6 class="text-sm">Resources</h6>--}}
-        {{--            <ul class="flex-column ms-n3 nav">--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Illustrations--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Bits & Snippets--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Affiliate Program--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--            </ul>--}}
-        {{--          </div>--}}
-        {{--        </div>--}}
-        {{--        <div class="col-md-2 col-sm-6 col-6 mb-4">--}}
-        {{--          <div>--}}
-        {{--            <h6 class="text-sm">Help & Support</h6>--}}
-        {{--            <ul class="flex-column ms-n3 nav">--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Contact Us--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Knowledge Center--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Custom Development--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Sponsorships--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--            </ul>--}}
-        {{--          </div>--}}
-        {{--        </div>--}}
-        {{--        <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">--}}
-        {{--          <div>--}}
-        {{--            <h6 class="text-sm">Legal</h6>--}}
-        {{--            <ul class="flex-column ms-n3 nav">--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Terms & Conditions--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Privacy Policy--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--              <li class="nav-item">--}}
-        {{--                <a class="nav-link" href="#" target="_blank">--}}
-        {{--                  Licenses (EULA)--}}
-        {{--                </a>--}}
-        {{--              </li>--}}
-        {{--            </ul>--}}
-        {{--          </div>--}}
-        {{--        </div>--}}
-        {{--        <div class="col-12">--}}
-        {{--          <div class="text-center">--}}
-        {{--            <p class="text-dark my-4 text-sm font-weight-normal">--}}
-        {{--              All rights reserved. Copyright ©--}}
-        {{--              <script>--}}
-        {{--                document.write(new Date().getFullYear())--}}
-        {{--              </script> Material Kit by <a href="#" target="_blank">Creative Tim</a>.--}}
-        {{--            </p>--}}
-        {{--          </div>--}}
-        {{-- </div> --}}
-        {{--</div>--}}
-        {{--</footer>--}}
-        {{--</div>--}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        @empty
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                        este
+                                        momento.</p>
+                                </div>
+                            </div>
+                        @endforelse
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row mt-4"
+                         style="width: 100%;  padding-right: 0;  margin-left: -1%;  margin-right: 0px; justify-content: center">
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
     </div>
+
+
+    {{--  <footer class="footer pt-5 mt-5">--}}
+    {{--    <div class="container">--}}
+    {{--      <div class=" row">--}}
+    {{--        <div class="col-md-3 mb-4 ms-auto">--}}
+    {{--          <div>--}}
+    {{--            <a href="#">--}}
+    {{--              <img class="mb-3 footer-logo" src={{asset('img/logo-ct-dark.png')}} alt="main_logo">--}}
+    {{--            </a>--}}
+    {{--            <h6 class="font-weight-bolder mb-4">Material Kit 2</h6>--}}
+    {{--          </div>--}}
+    {{--          <div>--}}
+    {{--            <ul class="d-flex flex-row ms-n3 nav">--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
+    {{--                  <i class="fab fa-facebook text-lg opacity-8"></i>--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
+    {{--                  <i class="fab fa-twitter text-lg opacity-8"></i>--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
+    {{--                  <i class="fab fa-dribbble text-lg opacity-8"></i>--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
+    {{--                  <i class="fab fa-github text-lg opacity-8"></i>--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link pe-1" href="#" target="_blank">--}}
+    {{--                  <i class="fab fa-youtube text-lg opacity-8"></i>--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-md-2 col-sm-6 col-6 mb-4">--}}
+    {{--          <div>--}}
+    {{--            <h6 class="text-sm">Company</h6>--}}
+    {{--            <ul class="flex-column ms-n3 nav">--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  About Us--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Freebies--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Premium Tools--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Blog--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-md-2 col-sm-6 col-6 mb-4">--}}
+    {{--          <div>--}}
+    {{--            <h6 class="text-sm">Resources</h6>--}}
+    {{--            <ul class="flex-column ms-n3 nav">--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Illustrations--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Bits & Snippets--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Affiliate Program--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-md-2 col-sm-6 col-6 mb-4">--}}
+    {{--          <div>--}}
+    {{--            <h6 class="text-sm">Help & Support</h6>--}}
+    {{--            <ul class="flex-column ms-n3 nav">--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Contact Us--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Knowledge Center--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Custom Development--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Sponsorships--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">--}}
+    {{--          <div>--}}
+    {{--            <h6 class="text-sm">Legal</h6>--}}
+    {{--            <ul class="flex-column ms-n3 nav">--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Terms & Conditions--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Privacy Policy--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--              <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#" target="_blank">--}}
+    {{--                  Licenses (EULA)--}}
+    {{--                </a>--}}
+    {{--              </li>--}}
+    {{--            </ul>--}}
+    {{--          </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-12">--}}
+    {{--          <div class="text-center">--}}
+    {{--            <p class="text-dark my-4 text-sm font-weight-normal">--}}
+    {{--              All rights reserved. Copyright ©--}}
+    {{--              <script>--}}
+    {{--                document.write(new Date().getFullYear())--}}
+    {{--              </script> Material Kit by <a href="#" target="_blank">Creative Tim</a>.--}}
+    {{--            </p>--}}
+    {{--          </div>--}}
+    {{-- </div> --}}
+    {{--</div>--}}
+    {{--</footer>--}}
+    {{--</div>--}}
+</div>
 
 {{-- WARNING: //////////////////////////////////////////////// Be careful when changing the order of the following scripts //////////////////////////////////////////////// --}}
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>  {{--Important--}}
+<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script> {{--Important--}}
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('js/home.js')}}" type="text/javascript"></script>
 

@@ -57,22 +57,26 @@
                         <div class="row d-none d-lg-block">
                             <div class="col-12 px-4 py-2">
                                 <div class="row">
-                                    @for($i = 0; $i < count($categories)/2; $i++)
+                                    @for($i = 0; $i < round(count($categories)/2); $i++)
                                         <div class="col-3 position-relative">
 
                                             @for($j = $i; $j < ($i+2); $j++)
-
+                                                @if(($i+$j) < count($categories))
                                                 <div
                                                     class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                                                    {{$categories[$i+$j]->category_name}}
+
+                                                        {{$categories[$i+$j]->category_name}}
+
+
                                                 </div>
                                                 @forelse($categories[$i+$j]->subcategories as $subcategory)
                                                     <a href="#" class="dropdown-item border-radius-md">
                                                         <span>{{$subcategory->subcategory_name}}</span>
                                                     </a>
                                                 @empty
-                                                    <p>No hay subcategorías para {{$subcategories[$i+$j]}}</p>
+                                                    <p>No hay subcategorías para {{$categories[$i+$j]->category_name}}</p>
                                                 @endforelse
+                                                @endif
                                             @endfor
                                             @if($i != ((count($categories)/2)-1))
                                                 <hr class="vertical dark" style="width: 3px; margin-right: 10px">

@@ -30,7 +30,7 @@
 
 <!-- End Navbar -->
 
-<div class="page-header align-items-start min-vh-100 mb-2" style="background-color: #FFFF;" loading="lazy">
+<div class="page-header align-items-start min-vh-100 mb-2" style="background-color: #f9f9f9;" loading="lazy">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
     <br><br>
     <div class="container my-auto mx-auto">

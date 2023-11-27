@@ -29,7 +29,7 @@
 </nav>
 <!-- End Navbar -->
 
-<div class="page-header align-items-start min-vh-100 mb-2" style="background-color: #ffffff;" loading="lazy">
+<div class="page-header align-items-start min-vh-100 mb-2" style="background-color: #f9f9f9;" loading="lazy">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
     <br><br>
     <div class="container my-auto mx-auto">
@@ -90,14 +90,14 @@
         <div class="container">
             <div class="row align-items-center justify-content-lg-between">
                 <div class="col-12 col-md-6 my-auto">
-                    <div class="copyright text-center text-sm text-white text-lg-start">
+                    <div class="copyright text-center text-sm text-dark text-lg-start">
                         ©
                         <script>
                             document.write(new Date().getFullYear())
                         </script>
                         ,
                         Elaborado por
-                        <a href="https://www.creative-tim.com" class="font-weight-bold text-white" target="_blank">Deiby
+                        <a href="https://www.creative-tim.com" class="font-weight-bold text-dark" target="_blank">Deiby
                             P.</a>
 
                     </div>
@@ -105,18 +105,18 @@
                 <div class="col-12 col-md-6">
                     <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                         <li class="nav-item">
-                            <a href="https://www.creative-tim.com" class="nav-link text-white" target="_blank"></a>
+                            <a href="https://www.creative-tim.com" class="nav-link text-dark" target="_blank"></a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.creative-tim.com/presentation" class="nav-link text-white"
+                            <a href="https://www.creative-tim.com/presentation" class="nav-link text-dark"
                                target="_blank">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.creative-tim.com/blog" class="nav-link text-white"
+                            <a href="https://www.creative-tim.com/blog" class="nav-link text-dark"
                                target="_blank">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-white"
+                            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-dark"
                                target="_blank">Contact</a>
                         </li>
                     </ul>
