@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -21,7 +23,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $categories = Category::all();
+        return view('category.create',compact('categories'));
     }
 
     /**
@@ -31,16 +34,31 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required',
+            'category_image' => 'required | image'
             // Agrega más validaciones según sea necesario
         ]);
 
-        Category::create([
-            'category_name' => $request->category_name,
-            'category_description' => $request->category_description,
-            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-            // Completa con otros campos de la categoría
-        ]);
+
+        // script para subir la imagen
+        if($request->hasFile("category_image")) {
+
+            $image = $request->file("category_image");
+            $imageName = Str::slug($request->category_name) . "." . $image->guessExtension();
+            $route = public_path("img/categories/");
+
+            //$image->move($route, $imageName);
+            copy($image->getRealPath(),$route.$imageName);
+
+            Category::create([
+                'category_name' => $request->category_name,
+                'category_description' => $request->category_description,
+                'category_image_url' => 'img/categories/' . $imageName,
+                'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+            ]);
+        } else {
+            return redirect()->route('category.index')->with('danger', 'Error al subir la imagen');
+        }
 
         return redirect()->route('category.index')->with('success', 'Categoría creada exitosamente.');
     }
@@ -51,7 +69,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        return view('category.show', compact('category'));
+        $categories = Category::all();
+        return view('category.show', compact('category','categories'));
     }
 
     /**
@@ -74,12 +93,33 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::findOrFail($id);
-        $category->update([
-            'category_name' => $request->category_name,
-            'category_description' => $request->category_description,
-            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-            // Completa con otros campos de la categoría
-        ]);
+
+        if($request->hasFile("category_image")) {
+            if(Storage::exists(public_path($category->category_image_url))) {
+                Storage::delete(public_path($category->categoory_image_url));
+            }
+
+            $image = $request->file("category_image");
+            $imageName = Str::slug($request->category_name) . "." . $image->guessExtension();
+            $route = public_path("img/categories/");
+
+            //$image->move($route, $imageName);
+            copy($image->getRealPath(),$route.$imageName);
+
+            $category->update([
+                'category_name' => $request->category_name,
+                'category_description' => $request->category_description,
+                'category_image_url' => 'img/categories/' . $imageName,
+                'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+            ]);
+
+        } else {
+            $category->update([
+                'category_name' => $request->category_name,
+                'category_description' => $request->category_description,
+                'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+            ]);
+        }
 
         return redirect()->route('category.index')->with('success', 'Categoria actualizada exitosamente.');
     }

@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Ecommerce</title>
+    <title>Administrar Libros</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
@@ -21,11 +21,11 @@
 
 <body>
 <!-- Navbar Transparent -->
-@include('layouts.navigation')
+@include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
 
 
-<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
+<div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">

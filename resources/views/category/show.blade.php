@@ -21,11 +21,11 @@
 
 <body>
 <!-- Navbar Transparent -->
-@include('layouts.navigation')
+@include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
 
 
-<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
+<div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
@@ -41,13 +41,20 @@
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
 
-
+                    <div class="col-lg-12 text-center" style="min-width: 50%">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                             style="background: none;">
+                            <img id="category_img" class="border-radius-lg w-50"
+                                 src="{{asset($category->category_image_url)}}">
+                        </div>
+                    </div>
                     <div class="card-body pb-2">
                         <div class="col-lg-12">
                             <h2>{{$category->category_name}}</h2>
                             <div class="display-4 text-md">Creada el {{$category->created_at}} y ultima vez actualizada el {{$category->updated_at}}</div>
                             <p>{{$category->category_description}}</p>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12">
                                 @if(count($category->subcategories) > 0)
@@ -69,8 +76,10 @@
                                 @endif
                             </div>
 
+
                         </div>
                         <br>
+
                         <div class="row">
                             <div class="col-md-12 text-start">
                                 <a href="{{route('category.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
@@ -78,7 +87,9 @@
                             </div>
 
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

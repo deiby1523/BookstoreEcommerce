@@ -25,7 +25,7 @@
 <!-- End Navbar -->
 
 
-<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
+<div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
@@ -40,7 +40,7 @@
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
-                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('category.update',$category->id) }}">
+                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('category.update',$category->id) }} ">
                         @csrf
                         @method('PUT')
                         <div class="card-body pb-2">
@@ -57,6 +57,47 @@
                                 <label>Descripcion</label>
                                 <textarea name="category_description" class="form-control" id="category_description" rows="6"
                                           placeholder="Una descripcion breve de la categoria">{{$category->category_description}}</textarea>
+                            </div>
+                            <div class="row">
+                                <div class="card mt-5"
+                                     style="box-shadow: 0px 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
+                                    <div class="row">
+                                        <!-- Card body -->
+                                        <div class="col" style="min-width: 250px">
+                                            <div class="card-body">
+                                                <h4 class="font-weight-normal mt-3">Imagen</h4>
+                                                <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
+                                                    que la imagen cumpla con una
+                                                    relación de aspecto de 5:6 para garantizar una visualización óptima.
+                                                </p>
+                                                <div class="row mt-5">
+                                                    <div class="col-md-4">
+
+                                                        <a id="falseinput" class="btn btn-outline-warning">Subir
+                                                            Imagen</a>
+                                                    </div>
+                                                    <div class="col" style="align-self: center;">
+
+                                                        <p id="selected_filename">No file selected</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card image -->
+                                        <div class="col mb-4 text-center" style="min-width: 50%">
+                                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                                                 style="background: none;">
+                                                <img id="category_img" class="border-radius-lg w-50"
+                                                     src="{{asset($category->category_image_url)}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-static mb-4 mt-4">
+                                <input id="fileinput" name="category_image" type="file" accept=".jpg,.jpeg,.png"
+                                       style="display:none;">
                             </div>
                             <div class="row">
                                 <div class="col-md-6 text-start">
@@ -83,6 +124,22 @@
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#falseinput').click(function () {
+            $("#fileinput").click();
+        });
+    });
+    $('#fileinput').change(function () {
+        $('#selected_filename').text($('#fileinput')[0].files[0].name);
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#category_img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+</script>
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
