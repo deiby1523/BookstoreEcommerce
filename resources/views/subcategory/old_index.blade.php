@@ -38,7 +38,7 @@
                                 <p>No categories</p>
                             @endforelse
 
-                            <!-- Agrega más filas según sea necesario -->
+                            <!-- Agrega más filas según sea necesario. -->
                             </tbody>
                         </table>
 
