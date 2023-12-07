@@ -4,7 +4,7 @@
 
 
 <head>
-    <title>Ecommerce</title>
+    <title>Inicio</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
@@ -211,7 +211,7 @@
                         <i class="fas fa-2x fa-chevron-left position-absolute start-0 ms-3 mt-7 mt-md-0 ms-n5 ms-md-0" aria-hidden="true"></i>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next text-dark position-absolute bottom-0 end-0 ms-auto ms-4" href="#carousel-testimonials" role="button" data-bs-slide="next">
+                    <a class="carousel-control-next text-dark position-absolute bottom-0 end-0 ms-4" href="#carousel-testimonials" role="button" data-bs-slide="next">
                         <i class="fas fa-2x fa-chevron-right mt-7 mt-md-0" aria-hidden="true"></i>
                         <span class="sr-only">Next</span>
                     </a>
