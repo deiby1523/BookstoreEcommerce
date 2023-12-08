@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <h2>{{$category->category_name}}</h2>
-                                <div class="display-4 text-md">Creada el {{$category->created_at}} y ultima vez
+                                <div class="display-4 text-md">Creada el {{$category->created_at}} y última vez
                                     actualizada el {{$category->updated_at}}</div><br>
                                 <p>{{$category->category_description}}</p>
                                 <div class="row">
