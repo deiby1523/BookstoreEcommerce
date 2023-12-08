@@ -44,40 +44,49 @@
                     <div class="col-lg-12 text-center" style="min-width: 50%">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
                              style="background: none;">
-                            <img id="category_img" class="border-radius-lg w-50"
-                                 src="{{asset($category->category_image_url)}}">
+
                         </div>
                     </div>
                     <div class="card-body pb-2">
-                        <div class="col-lg-12">
-                            <h2>{{$category->category_name}}</h2>
-                            <div class="display-4 text-md">Creada el {{$category->created_at}} y ultima vez actualizada el {{$category->updated_at}}</div>
-                            <p>{{$category->category_description}}</p>
-                        </div>
-
                         <div class="row">
-                            <div class="col-lg-12">
-                                @if(count($category->subcategories) > 0)
-                                    <br>
-                                    <h4> Subcategorias </h4>
-                                    <ul class="list-group">
-                                        @foreach($category->subcategories as $subcategory)
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                {{$subcategory->subcategory_name}}
-                                                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Esta subcategoria tiene 0 libros" class="badge bg-gradient-warning">0</span>
-                                            </li>
+                            <div class="col-lg-6">
+                                <h2>{{$category->category_name}}</h2>
+                                <div class="display-4 text-md">Creada el {{$category->created_at}} y ultima vez
+                                    actualizada el {{$category->updated_at}}</div><br>
+                                <p>{{$category->category_description}}</p>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @if(count($category->subcategories) > 0)
+                                            <br>
+                                            <h4> Subcategorias </h4>
+                                            <ul class="list-group">
+                                                @foreach($category->subcategories as $subcategory)
+                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                        {{$subcategory->subcategory_name}}
+                                                        <span data-bs-toggle="tooltip" data-bs-placement="left"
+                                                              title="Esta subcategoria tiene 0 libros"
+                                                              class="badge bg-gradient-warning">0</span>
+                                                    </li>
 
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <p class="display-4" style="font-size: x-large"> No existen
-                                        subcategorias para esta
-                                        categoria.</p>
-                                @endif
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <p class="display-4" style="font-size: x-large"> No existen
+                                                subcategorias para esta
+                                                categoria.</p>
+                                        @endif
+                                    </div>
+
+
+                                </div>
                             </div>
-
-
+                            <div class="col-lg-6 text-center">
+                                <img id="category_img" class="border-radius-lg w-65"
+                                     src="{{asset($category->category_image_url)}}" alt="No se pudo cargar la imagen">  {{-- TODO: Investigate what it is for (alt=" ") --}}
+                            </div>
                         </div>
+
+
                         <br>
 
                         <div class="row">
