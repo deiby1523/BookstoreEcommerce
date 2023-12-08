@@ -93,12 +93,12 @@ Welcome to the Ecommerce Book Store project, a web-based application for buying 
 
 ## Technologies
 
-- PHP
-- Laravel Framework
-- MySQL
-- HTML/CSS
-- JavaScript
-- Bootstrap - Material UI (for styling)
+- PHP.
+- Laravel Framework.
+- MySQL.
+- HTML/CSS.
+- JavaScript.
+- Bootstrap - Material UI (for styling).
 
 ## Contributing
 
