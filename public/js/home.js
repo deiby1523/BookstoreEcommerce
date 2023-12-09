@@ -1,3 +1,4 @@
+// Function for load spinner
 document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function () {
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 if (screen.width < 900) {
     // Small screen
 
-    // Ocultar objetos con la clase desktopBanner en pantallas pequeñas
+    // Hiding objects with the desktopBanner class on small screens
     const desktopBanners = document.querySelectorAll('.desktopBanner');
     for (let i = 0; i < desktopBanners.length; i++) {
         desktopBanners[i].classList.add('d-none');
@@ -23,7 +24,7 @@ if (screen.width < 900) {
 } else {
     // Big screen
 
-    // Ocultar objetos con la clase phoneBanner en pantallas grandes
+    // Hiding objects with the phoneBanner class on large screens
     const phoneBanners = document.querySelectorAll('.phoneBanner');
     for (let j = 0; j < phoneBanners.length; j++) {
         phoneBanners[j].classList.add('d-none');
@@ -32,20 +33,20 @@ if (screen.width < 900) {
 
 // Carousel of categories, automatic slide change
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtén la referencia al carousel
+    // Get the carousel reference
     var carousel = new bootstrap.Carousel(document.getElementById('carousel-categories'));
 
-    // Establece el intervalo para cambiar al siguiente elemento cada 10 segundos
+    // Sets the interval to change to the next item every 10 seconds
     var intervalo = setInterval(function () {
         carousel.next();
     }, 10000);
 
-    // Detén el intervalo al pasar el ratón sobre el carousel
+    // Stop the interval by hovering the mouse over the carousel
     document.getElementById('carousel-categories').addEventListener('mouseover', function () {
         clearInterval(intervalo);
     });
 
-    // Reanuda el intervalo al quitar el ratón del carousel
+    // Resumes the interval when removing the mouse from the carousel
     document.getElementById('carousel-categories').addEventListener('mouseout', function () {
         intervalo = setInterval(function () {
             carousel.next();
