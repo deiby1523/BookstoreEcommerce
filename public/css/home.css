@@ -42,7 +42,7 @@
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-/* Cambiamos el fondo cuando esté en active */
+/* Change the background when active */
 .book-horizontal-slider::-webkit-scrollbar-thumb:active {
     background-color: #999999;
 }
