@@ -49,18 +49,6 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/picture2.jpg')}}"
-                             alt="First slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/picture1.jpg')}}"
-                             alt="First slide">
-                    </div>
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg.jpg')}}"
-                             alt="Second slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm.jpg')}}"
-                             alt="Second slide">
-                    </div>
-                    <div class="carousel-item" style="text-align: -webkit-center;">
                         <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg2.jpg')}}"
                              alt="Third slide">
                         <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm2.jpg')}}"
@@ -72,16 +60,18 @@
                         <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm3.jpg')}}"
                              alt="fourth slide">
                     </div>
+
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg6.jpg')}}"
+                             alt="seven slide">
+                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm6.jpg')}}"
+                             alt="six slide">
+                    </div>
+
                     <div class="carousel-item" style="text-align: -webkit-center;">
                         <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg5.jpg')}}"
-                             alt="five slide">
+                             alt="seven slide">
                         <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm5.jpg')}}"
-                             alt="five slide">
-                    </div>
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg10.jpg')}}"
-                             alt="six slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm10.jpg')}}"
                              alt="six slide">
                     </div>
 
@@ -89,12 +79,10 @@
                 <a class="carousel-control-prev" href="#carouselExample" role="button"
                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only hidden">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExample" role="button"
                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only hidden">Next</span>
                 </a>
             </div>
         </div>
@@ -121,8 +109,8 @@
     {{--Main Body--}}
     <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
 
-        <section class="py-7 position-relative">
-            <div class="row justify-content-center mt-7 mb-7">
+        <section class="py-2 position-relative">
+            <div class="row justify-content-center mt-2 mb-7">
                 <div class="col-lg-6">
                     <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
                     <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de
@@ -131,125 +119,94 @@
                         llamarle la atención.</p>
                 </div>
             </div>
-            <div id="carousel-testimonials" class="carousel slide carousel-team">
+            <div id="carousel-categories" class="carousel slide carousel-team">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-md-5 ms-lg-auto">
                                     <div class="p-3">
-                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1609365635346-524d0024684f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80" alt="First slide" loading="lazy">
+                                        <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
+                                             src="{{asset($categories[0]->category_image_url)}}" alt="" loading="eager">
                                     </div>
                                 </div>
                                 <div class="col-md-5 me-lg-auto position-relative">
-                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">First Step</h6>
-                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Give your best</h1>
-                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
-                                        Give your best to create something unique with high impact.
+                                    <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
+                                        {{  "1°" }}</h4>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">{{$categories[0]->category_name}}</h1>
+                                    <p class="my-4 lead fadeIn2 fadeInBottom">
+                                        {{$categories[0]->category_description}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-md-5 ms-lg-auto">
-                                    <div class="p-3">
-                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1602781975725-cab34bd38d94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80" alt="Second slide" loading="lazy">
+                    @for($i = 2; $i < 5; $i++)
+                        <div class="carousel-item">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-md-5 ms-lg-auto">
+                                        <div class="p-3">
+                                            <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
+                                                 src="{{$categories[$i-1]->category_image_url}}" alt="" loading="eager">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-5 me-lg-auto position-relative">
-                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">Second Step</h6>
-                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Plan your work</h1>
-                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
-                                        As we live, our hearts turn colder. Cause pain is what we go through.
-                                    </p>
+                                    <div class="col-md-5 me-lg-auto position-relative">
+                                        <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
+                                            {{$i."°"}}</h4>
+                                        <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">{{$categories[$i-1]->category_name}}</h1>
+                                        <p class="my-4 lead fadeIn2 fadeInBottom">
+                                            {{$categories[$i-1]->category_description}}
+                                        </p>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-md-5 ms-lg-auto">
-                                    <div class="p-3">
-                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=974&amp;q=80" alt="Third slide" loading="lazy">
-                                    </div>
-                                </div>
-                                <div class="col-md-5 me-lg-auto position-relative">
-                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">Third Step</h6>
-                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Follow your dreams</h1>
-                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
-                                        The time is now for it to be okay to be great. People in this world shun people.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-md-5 ms-lg-auto">
-                                    <div class="p-3">
-                                        <img class="w-100 border-radius-xl max-height-600 fadeIn2 fadeInBottom" src="https://images.unsplash.com/photo-1579523616974-c2b09289c27e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=966&amp;q=80" alt="Fourth slide" loading="lazy">
-                                    </div>
-                                </div>
-                                <div class="col-md-5 me-lg-auto position-relative">
-                                    <h6 class="opacity-7 text-uppercase font-weight-bolder text-sm fadeIn4 fadeInBottom">Fourth Step</h6>
-                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">Never give up</h1>
-                                    <p class="my-4 lead text-dark fadeIn2 fadeInBottom">
-                                        Everyone’s born confident, and everything’s taken away from you.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    @endfor
+
                 </div>
-                <div class="position-relative mt-n6">
-                    <a class="carousel-control-prev text-dark position-absolute bottom-0 end-0 ms-auto" href="#carousel-testimonials" role="button" data-bs-slide="prev">
-                        <i class="fas fa-2x fa-chevron-left position-absolute start-0 ms-3 mt-7 mt-md-0 ms-n5 ms-md-0" aria-hidden="true"></i>
-                        <span class="sr-only">Previous</span>
+
+                <div class="position-relative mt-n6 carouselButtons">
+                    <a class="carousel-control-prev text-dark position-absolute bottom-0 end-14 ms-auto"
+                       href="#carousel-categories" role="button" data-bs-slide="prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512">
+                            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                            <path
+                                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+                        </svg>
                     </a>
-                    <a class="carousel-control-next text-dark position-absolute bottom-0 end-0 ms-4" href="#carousel-testimonials" role="button" data-bs-slide="next">
-                        <i class="fas fa-2x fa-chevron-right mt-7 mt-md-0" aria-hidden="true"></i>
-                        <span class="sr-only">Next</span>
+                    <a class="carousel-control-next text-dark position-absolute bottom-0 end-12 ms-4"
+                       href="#carousel-categories" role="button" data-bs-slide="next">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512">
+                            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                            <path
+                                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+                        </svg>
+                        {{--                        <span class="sr-only">Next</span>--}}
                     </a>
                 </div>
             </div>
-            <div class="row mt-10">
-                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
-                    <a href="javascript:;" class="text-lg text-gradient text-success h3 ps-3 active" data-bs-target="#carousel-testimonials" data-bs-slide-to="0">
-                        <span>01</span>
-                        <span class="ms-2">Give your best</span>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
-                    <a href="javascript:;" class="text-lg text-gradient text-success h3" data-bs-target="#carousel-testimonials" data-bs-slide-to="1">
-                        <span>02</span>
-                        <span class="ms-2">Plan your work</span>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
-                    <a href="javascript:;" class="text-lg text-gradient text-success h3" data-bs-target="#carousel-testimonials" data-bs-slide-to="2">
-                        <span>03</span>
-                        <span class="ms-2"> Follow your dreams </span>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
-                    <a href="javascript:;" class="text-lg text-gradient text-success h3" data-bs-target="#carousel-testimonials" data-bs-slide-to="3">
-                        <span>04</span>
-                        <span class="ms-2"> Never give up </span>
-                    </a>
-                </div>
+            <div class="row" style="margin-top: 7rem">
+                @for($i = 0 ; $i < 4; $i++)
+                    <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                        <a href="javascript:;" class="text-lg text-gradient text-warning h3 ps-3 active"
+                           data-bs-target="#carousel-categories" data-bs-slide-to="{{$i}}">
+                            <span>0{{$i+1}}</span>
+                            <span class="ms-2">{{$categories[$i]->category_name}}</span>
+                        </a>
+                    </div>
+
+                @endfor
+
             </div>
         </section>
 
         <section class="py-5">
             <div class="container-fluid">
-                <div class="row flex" style="justify-content: center">
-                    <div style="margin-right: 20px"
-                         class="col-lg-6 d-flex justify-content-center flex-column ml-auto text-lg-start">
+                <div class="row mt-4">
+                    <div class="col-lg-6">
                         <h1 class="mb-4">Somos más que una librería</h1>
                         <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran
                             vida y la pasión por
@@ -273,11 +230,7 @@
                                     lectura
                                     está
                                     aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
-                        </ul>
-                        <div class="col-lg-12 mt-4 mb-4" style="align-self: center;">
-                            <img class="phoneBanner min-w-fit border-radius-lg shadow-lg ml-0 w-100"
-                                 src="{{asset('img/bg13.jpg')}}" alt="">
-                        </div>
+                        </ul><br>
                         <p style="font-size: 20px">Únete a nosotros y déjate llevar por la experiencia única que
                             ofrecemos. En
                             nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado
@@ -286,34 +239,48 @@
                             verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
                             lectura!"</p><br>
                     </div>
-                    <div class="col-lg-6 my-auto">
+                    <div class="col-lg-6 text-center">
                         <img style="margin-left: 4rem"
-                             class="desktopBanner min-w-fit border-radius-lg shadow-lg w-100"
+                             class="desktopBanner border-radius-lg shadow-lg w-50"
                              src="{{asset('img/bg13.jpg')}}" alt="">
+                        <img
+                             class="phoneBanner border-radius-lg shadow-lg w-100"
+                             src="{{asset('img/bg13.jpg')}}" alt="">
+
                     </div>
                 </div>
-                <div class="row flex mx-0" style="justify-content: center">
-                    <div class="col-12" style="max-width: 1333px;">
-                        <h1 class="mt-4 ">Artículos religiosos</h1>
-                        <div class="col-lg-12 mx-auto my-5">
-                            <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
-                                 src="{{asset('img/picture4.jpg')}}" alt="">
-                            <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100"
-                                 src="{{asset('img/picture5.jpg')}}" alt="">
+
+                <div class="row flex mx-0 mt-4" style="justify-content: center">
+
+                    <div class="col-lg-10">
+
+                        <div class="row">
+                            <h1 class="my-4 ">Artículos religiosos</h1>
+                            <div class="col-lg-6">
+                                <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100 mb-4"
+                                     src="{{asset('img/picture4.jpg')}}" alt="">
+                                <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100 mb-4"
+                                     src="{{asset('img/picture5.jpg')}}" alt="">
+                            </div>
+                            <div class="col-lg-6">
+                                <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia gama
+                                    de
+                                    productos
+                                    para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
+                                    imágenes
+                                    religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
+                                    creencias. </p>
+                            </div>
+
                         </div>
-                        <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia gama
-                            de
-                            productos
-                            para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
-                            imágenes
-                            religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
-                            creencias. </p>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <div class="container mb-4">
+        <div class="container mb-4 text-center">
+            <h1>Editoriales disponibles</h1>
             <hr class="horizontal dark my-5">
             <div class="row">
                 <div class="col-lg-2 mb-4 col-md-4 col-6 ms-auto">
@@ -335,207 +302,6 @@
 
         </div>
 
-        <section class="pb-6">
-            <div class="container">
-                <div class="row justify-content-center mt-7 mb-7">
-                    <div class="col-lg-6">
-                        <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
-                        <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de
-                            este
-                            mes, que pueden
-                            llamarle la atención.</p>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-lg-4 mb-4">
-
-                        <a href="javascript:">
-                            <div class="card card-background h-100">
-                                <div class="full-background"
-                                     style="background-image: url({{asset('img/category1.jpg')}})"
-                                     loading="lazy"></div>
-
-                                <div class="card-body pt-12">
-                                    <h4 class="text-white">Autoayuda y Bienestar</h4>
-                                    <p class="text-white">Encuentra inspiración y herramientas prácticas para una
-                                        vida
-                                        equilibrada y satisfactoria</p>
-                                </div>
-
-                            </div>
-
-                        </a>
-
-                    </div>
-                    <div class="col-lg-4 mb-4">
-
-                        <a href="javascript:;">
-                            <div class="card card-background">
-                                <div class="full-background"
-                                     style="background-image: url('{{asset('img/category2.jpg')}}')"
-                                     loading="lazy"></div>
-                                <div class="card-body pt-12">
-                                    <h4 class="text-white">Niños y jóvenes</h4>
-                                    <p class="text-white">Explora emocionantes aventuras, historias educativas y
-                                        libros
-                                        creativos que estimulan la imaginación y fomentan el amor por la lectura en
-                                        los
-                                        más
-                                        jóvenes.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="col-lg-4 mb-4">
-
-                        <a href="javascript:;">
-                            <div class="card card-background">
-                                <div class="full-background"
-                                     style="background-image: url('{{asset('img/category3.jpg')}}')"
-                                     loading="lazy"></div>
-                                <div class="card-body pt-12">
-                                    <h4 class="text-white">Ficción</h4>
-                                    <p class="text-white">Sumérgete en mundos imaginarios y emocionantes narrativas.
-                                        Descubre historias cautivadoras, personajes inolvidables y tramas que te
-                                        transportarán a lugares inexplorados.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="col-lg-4 mb-4">
-
-                        <a href="javascript:;">
-                            <div class="card card-background">
-                                <div class="full-background"
-                                     style="background-image: url('{{asset('img/category4.jpg')}}')"
-                                     loading="lazy"></div>
-                                <div class="card-body pt-12">
-                                    <h4 class="text-white">Negocios y Economía</h4>
-                                    <p class="text-white">Accede a conocimientos clave para el éxito empresarial.
-                                        Descubre
-                                        estrategias empresariales, consejos de liderazgo y análisis financiero en
-                                        libros
-                                        que
-                                        te guiarán hacia el crecimiento profesional y el logro de tus metas
-                                        económicas.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="col-lg-4 mb-4">
-
-                        <a href="javascript:;">
-                            <div class="card card-background">
-                                <div class="full-background"
-                                     style="background-image: url('{{asset('img/category5.jpg')}}')"
-                                     loading="lazy"></div>
-                                <div class="card-body pt-12">
-                                    <h4 class="text-white">Espiritualidad</h4>
-                                    <p class="text-white">Explora la búsqueda interior y encuentra paz. Descubre
-                                        libros
-                                        que
-                                        te guiarán en la espiritualidad, ofreciendo sabiduría, reflexiones y
-                                        prácticas
-                                        para
-                                        nutrir tu alma y encontrar armonía en la vida cotidiana.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-5">
-            <div class="container w-100">
-                <div class="row">
-                    <div class="col-lg-6 mx-auto text-center mb-5">
-                        <span class="badge badge-primary mb-2">Esta mes</span>
-                        <h1>Categorías Populares</h1>
-                        <p style="font-size: 20px">
-                            Selección de las categorías mas populares de este mes, que pueden
-                            llamarle la atención.
-                        </p>
-                    </div>
-                </div>
-                <div class="row min-vh-25">
-                    <div class="col-md-4 mb-3">
-                        <a href="#">
-                            <div
-                                style="text-align: center; background-image: url({{asset('img/category1.jpg')}})"
-                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                <div class="h-100 w-100 d-flex">
-                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Autoayuda y Bienestar</h3>
-                                </div>
-
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="#">
-                            <div
-                                style="background-image: url({{asset('img/category2.jpg')}})"
-                                class="w-100 h-100 border-radius-lg bg-cover move-on-hover">
-                                <div class="h-100 w-100 d-flex">
-                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Niños y Jóvenes</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                        <a href="#">
-                            <div
-                                style="background-image: url({{asset('img/category3.jpg')}})"
-                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                <div class="h-100 w-100 d-flex">
-                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ficción</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row min-vh-25 mt-1">
-                    <div class="col-md-3 mb-3">
-                        <a href="#">
-                            <div
-                                style="background-image: url({{asset('img/category4.jpg')}})"
-                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                <div class="h-100 w-100 d-flex">
-                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Negocios y Economía</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                        <a href="#">
-                            <div
-                                style="background-image: url({{asset('img/category5.jpg')}})"
-                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                <div class="h-100 w-100 d-flex">
-                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Espiritualidad</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <a href="#">
-                            <div
-                                style="background-image: url({{asset('img/category6.jpg')}})"
-                                class="w-100 h-100 border-radius-lg shadow bg-cover move-on-hover">
-                                <div class="h-100 w-100 d-flex">
-                                    <h3 class="m-auto text-white fadeIn2 fadeInBottom">Ver todas las categorías</h3>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="py-5">
             <div class="container-fluid">
                 <div class="row">
@@ -543,7 +309,7 @@
                     <p class="mb-0 text-center" style="font-size: 20px">Libros recientemente añadidos</p>
                 </div>
                 <div id="latestBooks" class="book-horizontal-slider">
-                    <div class="row flex-nowrap" style=" max-width: 210px; position: relative;">
+                    <div class="row flex-nowrap rowBooks" style=" max-width: 210px; position: relative;">
                         @forelse($latestBooks as $book)
 
                             <div class="card mb-5 mt-2 mx-3 shadow-lg"

@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
 
-    setTimeout(function() {
+    setTimeout(function () {
         const load = document.getElementById("load");
         const spin = document.getElementById("spin");
-        const html =document.getElementById("html");
+        const html = document.getElementById("html");
         spin.classList.add("loading");
         load.classList.remove("loading");
         document.body.classList.remove("loading");
@@ -30,3 +30,26 @@ if (screen.width < 900) {
         phoneBanners[j].classList.add('d-none');
     }
 }
+
+// Carousel of categories, automatic slide change
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén la referencia al carousel
+    var carousel = new bootstrap.Carousel(document.getElementById('carousel-categories'));
+
+    // Establece el intervalo para cambiar al siguiente elemento cada 10 segundos
+    var intervalo = setInterval(function () {
+        carousel.next();
+    }, 10000);
+
+    // Detén el intervalo al pasar el ratón sobre el carousel
+    document.getElementById('carousel-categories').addEventListener('mouseover', function () {
+        clearInterval(intervalo);
+    });
+
+    // Reanuda el intervalo al quitar el ratón del carousel
+    document.getElementById('carousel-categories').addEventListener('mouseout', function () {
+        intervalo = setInterval(function () {
+            carousel.next();
+        }, 10000);
+    });
+});
