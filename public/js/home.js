@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
     setTimeout(function () {
         const load = document.getElementById("load");
         const spin = document.getElementById("spin");

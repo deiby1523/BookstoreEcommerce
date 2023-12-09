@@ -49,29 +49,28 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg2.jpg')}}"
-                             alt="Third slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm2.jpg')}}"
-                             alt="Third slide">
-                    </div>
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg3.jpg')}}"
-                             alt="fourth slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm3.jpg')}}"
-                             alt="fourth slide">
-                    </div>
-
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg6.jpg')}}"
+                        <img class="desktopBanner w-100" src="{{asset('img/bg6.jpg')}}"
                              alt="seven slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm6.jpg')}}"
+                        <img class="phoneBanner w-100" src="{{asset('img/bgm6.jpg')}}"
                              alt="six slide">
                     </div>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-100" src="{{asset('img/bg2.jpg')}}"
+                             alt="Third slide">
+                        <img class="phoneBanner w-100" src="{{asset('img/bgm2.jpg')}}"
+                             alt="Third slide">
+                    </div>
+                    <div class="carousel-item" style="text-align: -webkit-center;">
+                        <img class="desktopBanner w-100" src="{{asset('img/bg3.jpg')}}"
+                             alt="fourth slide">
+                        <img class="phoneBanner w-100" src="{{asset('img/bgm3.jpg')}}"
+                             alt="fourth slide">
+                    </div>
 
                     <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-95 border-radius-lg" src="{{asset('img/bg5.jpg')}}"
+                        <img class="desktopBanner w-100" src="{{asset('img/bg5.jpg')}}"
                              alt="seven slide">
-                        <img class="phoneBanner w-95 border-radius-lg" src="{{asset('img/bgm5.jpg')}}"
+                        <img class="phoneBanner w-100" src="{{asset('img/bgm5.jpg')}}"
                              alt="six slide">
                     </div>
 
