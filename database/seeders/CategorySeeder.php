@@ -46,7 +46,7 @@ class CategorySeeder extends Seeder
 
         Category::create([
             'id' => 4,
-            'category_name' => 'Ciencia y naturaleza',
+            'category_name' => 'Ciencia y Tecnología',
             'category_description' => 'Esta categoría abarca libros que exploran y explican el mundo que nos rodea. Desde descubrimientos científicos hasta libros que analizan la informatica y lo digital, ofrece lecturas que buscan comprender mejor los fenómenos científicos y tecnológicos que impactan nuestra vida diaria.',
             'category_image_url' => 'img/categories/Ciencia-y-tecnologia.jpg',
             'created_at' => '2023-11-04 02:40:52',
