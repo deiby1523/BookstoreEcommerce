@@ -28,7 +28,7 @@
 }
 
 .book-horizontal-slider::-webkit-scrollbar {
-    height: 8px; /* Tamaño del scroll en horizontal */
+    height: 8px; /* Horizontal scroll size */
 }
 
 .book-horizontal-slider::-webkit-scrollbar-thumb {
