@@ -16,7 +16,7 @@
     }
 }
 
-/*noinspection ALL*/
+/*no inspection ALL*/
 .book-horizontal-slider {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr));
