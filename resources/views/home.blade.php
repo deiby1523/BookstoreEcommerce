@@ -36,8 +36,8 @@
 
     {{--Carousel--}}
 
-    <div class="row" style="margin-top: 7rem">
-        <div class="col-lg-12 mx-auto">
+    <div class="row mt-9">
+        <div class="col-lg-12 mx-auto" style="width: 97% !important;">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>
@@ -47,7 +47,7 @@
                     <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>
                     <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>
                 </ol>
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="border-radius: 10px">
                     <div class="carousel-item active" style="text-align: -webkit-center;">
                         <img class="desktopBanner w-100" src="{{asset('img/bg6.jpg')}}"
                              alt="seven slide">

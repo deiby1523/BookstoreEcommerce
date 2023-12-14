@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-lg-6 text-center">
                                 <img id="category_img" class="border-radius-lg w-65"
-                                     src="{{asset($category->category_image_url)}}" alt="No se pudo cargar la imagen">  {{-- TODO: Investigate what it is for (alt=" ") --}}
+                                     src="{{asset($category->category_image_url)}}" alt="Imagen de categoria">
                             </div>
                         </div>
 
