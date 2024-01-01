@@ -64,8 +64,8 @@
                                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                                         {{$subcategory->subcategory_name}}
                                                         <span data-bs-toggle="tooltip" data-bs-placement="left"
-                                                              title="Esta subcategoria tiene 0 libros"
-                                                              class="badge bg-gradient-warning">0</span>
+                                                              title="Esta subcategoria tiene {{count($subcategory->books)}} libros"
+                                                              class="badge bg-gradient-warning">{{count($subcategory->books)}}</span>
                                                     </li>
 
                                                 @endforeach
