@@ -180,7 +180,7 @@ $isbn = convertToISBN($number);
                                     <td class="align-middle" style="text-align: center;">
 
 
-                                        <a href="{{-- {{ route('category.show', $book->id) }}--}}"
+                                        <a href="{{ route('book.show', $book->id) }}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit user">
                                             Visualizar
