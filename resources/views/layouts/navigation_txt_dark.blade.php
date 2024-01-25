@@ -23,9 +23,9 @@
 
 </style>
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 my-3 navbar-dark">
-    <div class="container" style="max-width: 90%">
+    <div class="container" style="max-width: 100%">
         <a class="navbar-brand text-dark text-8xl" style="margin-right: 0;" href="#">
-            <img src="{{asset('img/logos/Large-Logo-transparent.jpg')}}" alt="Logo" style="max-width: 200px" class="navbar-brand-img">
+            <img src="{{asset('img/logos/Logo_Home.jpeg')}}" alt="Logo" style="max-width: 200px" class="navbar-brand-img">
         </a>
 
         <button class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
