@@ -37,7 +37,7 @@
     {{--Carousel--}}
 
     <div class="row mt-9">
-        <div class="col-lg-12 mx-auto" style="width: 100% !important;">
+        <div class="col-lg-12 mx-auto" style="width: 95% !important;">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>
@@ -47,7 +47,7 @@
                     <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>
                     <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>
                 </ol>
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="border-radius: 10px">
                     <div class="carousel-item active" style="text-align: -webkit-center;">
                         <img class="desktopBanner w-100" src="{{asset('img/bg6.jpg')}}"
                              alt="seven slide">
@@ -169,16 +169,16 @@
 
                 <div class="position-relative mt-n6 carouselButtons">
                     <a class="carousel-control-prev text-dark position-absolute bottom-0 end-14 ms-auto"
-                       href="#carousel-categories" role="button" data-bs-slide="prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512">
+                       href="#carousel-categories" role="button" data-bs-slide="prev" style="margin-top: -38%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 320 512">
                             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                             <path
                                 d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
                         </svg>
                     </a>
                     <a class="carousel-control-next text-dark position-absolute bottom-0 end-12 ms-4"
-                       href="#carousel-categories" role="button" data-bs-slide="next">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512">
+                       href="#carousel-categories" role="button" data-bs-slide="next" style="margin-top: -38%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 320 512">
                             <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                             <path
                                 d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
