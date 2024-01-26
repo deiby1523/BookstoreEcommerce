@@ -171,4 +171,29 @@ class BookController extends Controller
         return redirect()->route('book.index')->with('success', "Libro eliminado correctamente");
     }
 
+    public function searchSelect(Request $request,$search)
+    {
+        $sql = "SELECT
+    books.id,
+    books.book_isbn,
+    books.book_title,
+    authors.author_name,
+    publishers.publisher_name,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM books, authors, publishers, categories, subcategories
+    WHERE books.author_id = authors.id
+    AND books.publisher_id = publishers.id
+    AND books.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+    AND(
+        books.book_title LIKE '%$search%' OR
+        books.book_isbn LIKE '%$search%' OR
+        authors.author_name LIKE '%$search%' OR
+        publishers.publisher_name LIKE '%$search%')";
+
+        $books = DB::select($sql);
+        return response()->json($books,200);
+    }
+
 }
