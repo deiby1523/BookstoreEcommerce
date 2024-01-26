@@ -205,7 +205,7 @@
                                 <label>Resumen</label>
                                 <textarea name="book_description" class="form-control"
                                           id="book_description" rows="6"
-                                          placeholder="resumen o descripcion del libro"></textarea>
+                                          placeholder="Resumen o descripcion del libro"></textarea>
                             </div>
 
                             <div class="row">
