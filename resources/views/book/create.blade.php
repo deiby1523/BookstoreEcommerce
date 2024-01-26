@@ -30,7 +30,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-<style type="text/css">
+<style>
     .listbox {
         margin-top: 10px !important;
     }
@@ -210,7 +210,7 @@
 
                             <div class="row">
                                 <div class="card mt-5"
-                                     style="box-shadow: 0px 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
+                                     style="box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
                                     <div class="row">
                                         <!-- Card body -->
                                         <div class="col" style="min-width: 250px">
@@ -238,7 +238,7 @@
                                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
                                                  style="background: none;">
                                                 <img id="book_img" class="border-radius-lg w-50"
-                                                     src="">
+                                                     src="" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +271,6 @@
         </div>
     </div>
 
-</div>
 </div>
 
 
