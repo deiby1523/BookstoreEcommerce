@@ -37,7 +37,7 @@
     });
 
 
-    // Publisher
+    // Author
     // Ajax request according to what's in the search box
     function get_authors(search) {
         $.ajax({
@@ -68,7 +68,7 @@
                     $("#author_id").val(authorId);
                 });
             });
-    }
+        }
 
     // publisher
     // Ajax request according to what's in the search box
