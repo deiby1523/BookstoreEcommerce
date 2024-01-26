@@ -31,7 +31,7 @@ class Book extends Model
 
     public function category()
     {
-        return $this->hasManyThrough(
+        return $this->hasOneThrough(
             Category::class,
             Subcategory::class,
             'category_id', // Foreign key on the subcategory table

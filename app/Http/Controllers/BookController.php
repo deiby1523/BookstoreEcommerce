@@ -157,6 +157,12 @@ class BookController extends Controller
         return redirect()->route('book.index')->with('success','Libro actualizado exitosamente.');
     }
 
+    public function show($id) {
+        $categories = Category::all();
+        $book = Book::findOrFail($id);
+        return view('book.show', compact('book','categories'));
+    }
+
     public function delete($id) {
         $book = Book::findOrFail($id);
 
