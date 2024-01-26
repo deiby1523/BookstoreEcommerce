@@ -40,7 +40,7 @@
                     <div class="card move-on-hover" style="height: 100%">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                                                         countto="21">{{ count($categories) }}   </span>
+                                                                         >{{ count($categories) }}   </span>
                             </h1>
                             <h6 class="mb-0 font-weight-bolder">Categorias</h6>
                         </div>
@@ -53,7 +53,7 @@
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                                                         countto="21"> {{ count($subcategories)}}   </span>
+                                                                         > {{ count($subcategories)}}   </span>
                             </h1>
                             <h6 class="mb-0 font-weight-bolder">Sub-categorias</h6>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                                                         countto="21">{{ count($authors)}}</span></h1>
+                                                                         >{{ count($authors)}}</span></h1>
                             <h6 class="mb-0 font-weight-bolder">Autores</h6>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                                                         countto="21">{{count($publishers)}}</span></h1>
+                                                                         >{{count($publishers)}}</span></h1>
                             <h6 class="mb-0 font-weight-bolder">Editoriales</h6>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                 <a href="{{ route('book.index') }}">
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
-                            <h1 class="text-gradient text-warning"><span id="status1" countto="21">{{count($books)}}</span></h1>
+                            <h1 class="text-gradient text-warning"><span id="status1" >{{count($books)}}</span></h1>
                             <h6 class="mb-0 font-weight-bolder">Libros</h6>
                         </div>
                     </div>
@@ -262,9 +262,9 @@
 {{--            </p>--}}
 {{--          </div>--}}
 {{--        </div>--}}
-</div>
-</div>
-</footer>
+{{--</div>--}}
+{{--</div>--}}
+{{--</footer>--}}
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
