@@ -121,7 +121,7 @@
             </ul>
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 @if(Auth::user() !== null)
-                    <li class="nav-item dropdown dropdown-hover mx-2">
+                    <li class="nav-item dropdown dropdown-hover mx-2" style="margin-right: 3.5rem !important;">
                         <a class="nav-link ps-2 d-flex align-items-center user-select-none cursor-default">
                             {{ Auth::user()->name }} <img src="{{asset('img/down-arrow-white.svg')}}" alt="down-arrow"
                                                           class="arrow ms-auto ms-md-2">
