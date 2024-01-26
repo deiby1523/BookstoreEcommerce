@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
 
+{{-- TODO: Organizar el codigo y pasar los scripts y CSS a otro archivo --}}
 
 <head>
     <title>Ecommerce</title>
