@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
