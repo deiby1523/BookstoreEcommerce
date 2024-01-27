@@ -30,51 +30,12 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-<style>
-    .listbox {
-        margin-top: 10px !important;
-    }
+{{-- aditional styles--}}
+@include('book.styles.create')
 
-
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-
-
-    input[type=date]::-webkit-inner-spin-button,
-    input[type=date]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type=date] {
-        -moz-appearance: textfield;
-    }
-
-    .selectSearch {
-        display: none;
-    }
-
-    .show {
-        display: block;
-    }
-
-    input::file-selector-button {
-        padding: 7px 7px 7px 7px !important;
-        background-color: lightgray !important;
-        border-radius: 10px;
-    !important
-    }
-</style>
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
-    {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
+{{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="container">
