@@ -21,12 +21,12 @@
 
 <body>
 <!-- Navbar Transparent -->
-@include('layouts.navigation_txt_dark')
+@include('layouts.navigation')
 <!-- End Navbar -->
 
 @include('layouts.alerts')
 
-<div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
+<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 
@@ -46,7 +46,9 @@
                 <div class="col" style="text-align: end"><a href="{{route('category.create')}}"
                                                             class="btn btn-sm btn-warning">Crear categoria</a></div>
             </div>
-            @php $ncategories = count($categories); @endphp
+            @php if(isset($categories)){
+$ncategories = count($categories);
+} @endphp
             @if($ncategories > 0)
                 <div class="card">
                     <div class="table-responsive">
@@ -319,9 +321,10 @@
 {{--            </p>--}}
 {{--          </div>--}}
 {{--        </div>--}}
-</div>
-</div>
-</footer>
+{{--</div>--}}
+{{--</div>--}}
+{{--</footer>--}}
+
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
