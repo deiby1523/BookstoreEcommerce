@@ -36,6 +36,20 @@
             transform: rotate(360deg);
         }
     }
+
+    .truncated-text-large {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 350px; /* max width before truncate */
+    }
+
+    .truncated-text-short {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px; /* max width before truncate */
+    }
 </style>
 
 @if ($message = Session::get('success'))
