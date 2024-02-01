@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
@@ -24,7 +25,7 @@ return new class extends Migration {
         });
 
         DB::table('users')->insert([
-            ['id' => 1, 'name' => 'admin', 'email' => 'deibyfabianpradaquintero@gmail.com', 'password' => Hash::make('Admin123+'), 'role_id' => 1]
+            ['id' => 1, 'name' => 'admin', 'email' => 'deibyfabianpradaquintero@gmail.com', 'password' => Hash::make('Defapra123+'), 'role_id' => 1]
         ]);
 
     }
