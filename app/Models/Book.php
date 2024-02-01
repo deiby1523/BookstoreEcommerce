@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Facades\File;
 
 class Book extends Model
@@ -16,19 +18,22 @@ class Book extends Model
         'book_number_pages',
         'book_publication_date',
         'book_description',
-        'book_image_url'];
+        'book_image_url',
+        'book_price',
+        'book_stock',
+        'book_discount'];
 
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
     }
 
-    public function publisher()
+    public function publisher(): BelongsTo
     {
         return $this->belongsTo(Publisher::class);
     }
 
-    public function category()
+    public function category(): HasOneThrough
     {
         return $this->hasOneThrough(
             Category::class,
@@ -40,12 +45,12 @@ class Book extends Model
         );
     }
 
-    public function subcategory()
+    public function subcategory(): BelongsTo
     {
         return $this->belongsTo(Subcategory::class);
     }
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 

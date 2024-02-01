@@ -35,7 +35,7 @@
 
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
-{{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
+    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="container">
@@ -59,8 +59,8 @@
 
 
                                     <label>Codigo ISBN</label>
-                                    <input name="book_isbn" id="book_isbn" class="form-control" aria-label="Full Name"
-                                           type="text" autofocus>
+                                    <input name="book_isbn" id="book_isbn" class="form-control"
+                                           type="text" placeholder="escanear o digitar el codigo IBSN" autofocus>
                                     <span class="input-group-text" style="right: 18px"> <svg
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
@@ -88,9 +88,9 @@
                                 </div>
                                 <div class="input-group input-group-static mb-4">
 
-                                    <label>Nombre</label>
-                                    <input name="book_title" id="book_title" class="form-control" aria-label="Full Name"
-                                           type="text">
+                                    <label>Titulo</label>
+                                    <input name="book_title" id="book_title" class="form-control"
+                                           type="text" placeholder="Nombre del libro">
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Autor</label>
@@ -152,22 +152,45 @@
 
                                     <label>Numero de páginas</label>
                                     <input name="book_number_pages" id="book_number_pages" class="form-control"
-                                           aria-label="Full Name" type="number">
+                                           type="number" placeholder="Numero de paginas del libro">
                                 </div>
 
                                 <div class="input-group input-group-static mb-4">
                                     <label>Fecha de publicación</label>
                                     <input name="book_publication_date" id="book_publication_date" class="form-control"
-                                           aria-label="Full Name" type="date">
+                                           type="date">
                                 </div>
                             </div>
 
-                            <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
+                            <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
                                 <label>Resumen</label>
                                 <textarea name="book_description" class="form-control"
                                           id="book_description" rows="6"
                                           placeholder="Resumen o descripcion del libro"></textarea>
                             </div>
+
+                            <div class="input-group input-group-static mb-4">
+
+                                <label>Precio</label>
+                                <input name="book_price" id="book_price" class="form-control"
+                                       type="number" placeholder="Precio del libro sin iva">
+                            </div>
+
+                            <div class="input-group input-group-static mb-4">
+
+                                <label>Descuento</label>
+                                <input name="book_discount" id="book_discount" class="form-control"
+                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%">
+                            </div>
+
+                            <div class="input-group input-group-static mb-4">
+
+                                <label>Unidades en inventario</label>
+                                <input name="book_stock" id="book_stock" class="form-control"
+                                       type="number" placeholder="Cantidad de unidades en inventario">
+                            </div>
+
+
 
                             <div class="row">
                                 <div class="card mt-5"

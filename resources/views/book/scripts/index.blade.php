@@ -1,6 +1,8 @@
 
 <script>
     $(document).ready(function () {
+
+
         let typingTimer;  // Variable para almacenar el temporizador de escritura
         const doneTypingInterval = 2000;  // Intervalo de tiempo después del cual se considera que la escritura ha terminado (en milisegundos)
         let loaderTimeout; // Variable para almacenar el temporizador de la animación de carga
@@ -52,15 +54,19 @@
                     return 'ISBN ' + number.substring(0, 3) + '-' + number.substring(3, 4) + '-' + number.substring(4, 8) + '-' + number.substring(8, 12) + '-' + number.substring(12, 13);
                 }
 
-                let resultsList = ""; // Create a variable to store the list of results
+                let resultsList;
+                resultsList = ""; // Create a variable to store the list of results
+
                 books.forEach(function (book) {
 
                     let isbn = convertToISBN(book.book_isbn);
 
                     resultsList += `<tr>
-                                                    <td class='align-middle text-center '><p class=' mb-0'>${isbn}</p></td>
-                                                    <td><p class='mb-0'>${book.book_title}</p></td>
-                                                    <td class='align-middle'><p class='mb-0'>${book.publisher_name}</p></td>
+                                                    <td class='align-middle text-center'><p class=' mb-0'>${isbn}</p></td>
+                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'>${book.book_title}</p></td>
+                                                    <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.publisher_name}'>${book.publisher_name}</p></td>
+                                                    <td class='align-middle'><p class='mb-0'>$ ${book.book_price.toLocaleString()}</p>
+                                    </td>
                                                     <td class='align-middle' style='text-align: center;'>
                                                         <a href='book/show/${book.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
                                                             Visualizar
@@ -93,11 +99,20 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>`;
+                                                </div>
+
+`;
                 });
+
+
 
                 // Insert the complete list of results in #bookDisplay after all authors have been processed
                 $("#bookDisplay").html(resultsList);
+
+                let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                });
 
                 // Obtiene la referencia a la tabla por su ID
                 const table = document.getElementById("table");

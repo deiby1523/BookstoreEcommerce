@@ -8,6 +8,9 @@ use App\Models\Category;
 use App\Models\Publisher;
 use App\Models\Subcategory;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -17,28 +20,30 @@ use Illuminate\Support\Facades\Storage;
 class BookController extends Controller
 {
     // in admin dashbhoard
-    public function index()
+    public function index(): View
     {
-//        $books = Book::all();
+        $sql = 'SELECT
+        books.id,
+        books.book_isbn,
+        books.book_title,
+        books.book_price,
+        authors.author_name,
+        publishers.publisher_name,
+        categories.category_name,
+        subcategories.subcategory_name
+        FROM books, authors, publishers, categories, subcategories
+        WHERE books.author_id = authors.id
+        AND books.publisher_id = publishers.id
+        AND books.subcategory_id = subcategories.id
+        AND subcategories.category_id = categories.id
+        ORDER BY books.updated_at DESC
+        LIMIT 30';
 
-    $sql = 'SELECT
-    books.id,
-    books.book_isbn,
-    books.book_title,
-    authors.author_name,
-    publishers.publisher_name,
-    categories.category_name,
-    subcategories.subcategory_name
-    FROM books, authors, publishers, categories, subcategories
-    WHERE books.author_id = authors.id
-    AND books.publisher_id = publishers.id
-    AND books.subcategory_id = subcategories.id
-    AND subcategories.category_id = categories.id';
         $books = DB::select($sql);
         return view('book.index', compact('books'));
     }
 
-    public function create()
+    public function create(): View
     {
         $authors = Author::all();
         $publishers = Publisher::all();
@@ -46,7 +51,8 @@ class BookController extends Controller
         return view('book.create', compact('authors', 'publishers', 'categories'));
     }
 
-    public function save(Request $request) {
+    public function save(Request $request): RedirectResponse
+    {
         $request->validate([
             'book_isbn' => 'required|min:8|max:13',
             'category_id' => 'required|min:1|integer',
@@ -56,12 +62,14 @@ class BookController extends Controller
             'publisher_id'=> 'required|min:1|integer',
             'book_publication_date' => 'required|date',
             'book_image' => 'required|image',
-            'book_number_pages' => 'required'
+            'book_number_pages' => 'required',
+            'book_price' => 'required',
+            'book_stock' => 'required|integer',
+            'book_discount' => 'integer|max:100'
         ]);
 
-        // script para subir la imagen
+        // image upload script
         if($request->hasFile("book_image")) {
-
             $image = $request->file("book_image");
             $imageName = Str::slug($request->book_isbn) . "." . $image->guessExtension();
             $route = public_path("img/books/");
@@ -79,6 +87,9 @@ class BookController extends Controller
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
                 'book_image_url' => 'img/books/' . $imageName,
+                'book_price' => $request->book_price,
+                'book_stock' => $request->book_stock,
+                'book_discount' => $request->book_discount,
                 'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
@@ -88,7 +99,8 @@ class BookController extends Controller
 
     }
 
-    public function edit($id) {
+    public function edit($id): View
+    {
         $book = Book::findOrFail($id);
         $subcategory = Subcategory::findOrFail($book->subcategory_id);
         $category = Category::findOrFail($subcategory->category_id);
@@ -101,7 +113,7 @@ class BookController extends Controller
         return view('book.edit',compact('book','subcategory','category','author','publisher','authors','publishers','categories'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id): RedirectResponse {
         $request->validate([
             'book_isbn' => 'required|min:8|max:13',
             'category_id' => 'required|min:1|integer',
@@ -110,7 +122,10 @@ class BookController extends Controller
             'author_id'=> 'required|min:1|integer',
             'publisher_id'=> 'required|min:1|integer',
             'book_publication_date' => 'required|date',
-            'book_number_pages' => 'required'
+            'book_number_pages' => 'required',
+            'book_price' => 'required',
+            'book_stock' => 'required|integer',
+            'book_discount' => 'integer|max:100'
         ]);
 
         $book = Book::findOrFail($id);
@@ -137,6 +152,9 @@ class BookController extends Controller
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
                 'book_image_url' => 'img/books/' . $imageName,
+                'book_price' => $request->book_price,
+                'book_stock' => $request->book_stock,
+                'book_discount' => $request->book_discount,
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
 
@@ -150,6 +168,9 @@ class BookController extends Controller
                 'book_number_pages' => $request->book_number_pages,
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
+                'book_price' => $request->book_price,
+                'book_stock' => $request->book_stock,
+                'book_discount' => $request->book_discount,
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
         }
@@ -157,13 +178,13 @@ class BookController extends Controller
         return redirect()->route('book.index')->with('success','Libro actualizado exitosamente.');
     }
 
-    public function show($id) {
+    public function show($id): View{
         $categories = Category::all();
         $book = Book::findOrFail($id);
         return view('book.show', compact('book','categories'));
     }
 
-    public function delete($id) {
+    public function delete($id): RedirectResponse {
         $book = Book::findOrFail($id);
 
         $book->delete();
@@ -171,12 +192,13 @@ class BookController extends Controller
         return redirect()->route('book.index')->with('success', "Libro eliminado correctamente");
     }
 
-    public function searchSelect(Request $request,$search)
+    public function searchSelect($search): JsonResponse
     {
         $sql = "SELECT
     books.id,
     books.book_isbn,
     books.book_title,
+    books.book_price,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -190,10 +212,12 @@ class BookController extends Controller
         books.book_title LIKE '%$search%' OR
         books.book_isbn LIKE '%$search%' OR
         authors.author_name LIKE '%$search%' OR
-        publishers.publisher_name LIKE '%$search%')";
+        publishers.publisher_name LIKE '%$search%')
+        ORDER BY books.updated_at DESC
+        LIMIT 30";
 
         $books = DB::select($sql);
-        return response()->json($books,200);
+        return response()->json($books);
     }
 
 }

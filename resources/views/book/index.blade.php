@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Ecommerce</title>
+    <title>Libros</title>
     <!-- Required meta tags --->
     <meta charset="UTF-8">
 
@@ -96,6 +96,9 @@ $nbooks = count($books);
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Editorial
                                 </th>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Precio
+                                </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
@@ -116,14 +119,19 @@ $nbooks = count($books);
                                 @endphp
                                 <tr>
                                     <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $isbn }}</p>
+                                        <p class="mb-0">{{ $isbn }}</p>
                                     </td>
                                     <td>
-                                        <p class=" mb-0">{{ $book->book_title }}</p>
+                                        <p class="mb-0 truncated-text-large" data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="{{$book->book_title}}">{{ $book->book_title }}</p>
                                     </td>
                                     <td class="align-middle ">
-                                        <p class=" mb-0">{{ $book->publisher_name }}</p>
+                                        <p class="mb-0 truncated-text-short" data-bs-toggle='tooltip' data-bs-placement='top' title='{{$book->publisher_name}}'>{{ $book->publisher_name }}</p>
                                     </td>
+                                    <td class="align-middle ">
+                                        <p class="mb-0">$ {{ number_format($book->book_price) }}</p>
+                                    </td>
+
                                     <td class="align-middle" style="text-align: center;">
 
 

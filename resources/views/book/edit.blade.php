@@ -30,7 +30,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-<style type="text/css">
+<style>
     .listbox {
         margin-top: 10px !important;
     }
@@ -100,7 +100,7 @@
 
                                     <label>Codigo ISBN</label>
                                     <input name="book_isbn" id="book_isbn" class="form-control" aria-label="Full Name"
-                                           type="text" value="{{$book->book_isbn}}">
+                                           type="text" placeholder="escanear o digitar el codigo IBSN" value="{{$book->book_isbn}}">
                                     <span class="input-group-text" style="right: 18px"> <svg
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
@@ -129,9 +129,9 @@
                                 </div>
                                 <div class="input-group input-group-static mb-4">
 
-                                    <label>Nombre</label>
+                                    <label>Titulo</label>
                                     <input name="book_title" id="book_title" class="form-control" aria-label="Full Name"
-                                           type="text" value="{{$book->book_title}}">
+                                           type="text" placeholder="Nombre del libro" value="{{$book->book_title}}">
                                 </div>
                                 <div class="input-group input-group-static mb-4">
                                     <label>Autor</label>
@@ -195,7 +195,7 @@
 
                                     <label>Numero de páginas</label>
                                     <input name="book_number_pages" id="book_number_pages" class="form-control"
-                                           aria-label="Full Name" type="number" value="{{$book->book_number_pages}}">
+                                           aria-label="Full Name" type="number" placeholder="Numero de paginas del libro" value="{{$book->book_number_pages}}">
                                 </div>
 
                                 <div class="input-group input-group-static mb-4">
@@ -205,16 +205,37 @@
                                 </div>
                             </div>
 
-                            <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
+                            <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
                                 <label>Resumen</label>
                                 <textarea name="book_description" class="form-control"
                                           id="book_description" rows="6"
-                                          placeholder="resumen o descripcion del libro">{{$book->book_description}}</textarea>
+                                          placeholder="Resumen o descripcion del libro">{{$book->book_description}}</textarea>
+                            </div>
+
+                            <div class="input-group input-group-static mb-4">
+
+                                <label>Precio</label>
+                                <input name="book_price" id="book_price" class="form-control"
+                                       type="number" placeholder="Precio del libro sin iva" value="{{$book->book_price}}">
+                            </div>
+
+                            <div class="input-group input-group-static mb-4">
+
+                                <label>Descuento</label>
+                                <input name="book_discount" id="book_discount" class="form-control"
+                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{$book->book_discount}}">
+                            </div>
+
+                            <div class="input-group input-group-static mb-4">
+
+                                <label>Unidades en inventario</label>
+                                <input name="book_stock" id="book_stock" class="form-control"
+                                       type="number" placeholder="Cantidad de unidades en inventario" value="{{$book->book_stock}}">
                             </div>
 
                             <div class="row">
                                 <div class="card mt-5"
-                                     style="box-shadow: 0px 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
+                                     style="box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
                                     <div class="row">
                                         <!-- Card body -->
                                         <div class="col" style="min-width: 250px">
@@ -243,7 +264,7 @@
                                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
                                                  style="background: none;">
                                                 <img id="book_img" class="border-radius-lg w-50"
-                                                     src="{{asset($book->book_image_url)}}">
+                                                     src="{{asset($book->book_image_url)}}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -276,7 +297,6 @@
         </div>
     </div>
 
-</div>
 </div>
 
 
