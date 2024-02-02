@@ -62,8 +62,8 @@ class BookController extends Controller
             'publisher_id'=> 'required|min:1|integer',
             'book_publication_date' => 'required|date',
             'book_image' => 'required|image',
-            'book_number_pages' => 'required',
-            'book_price' => 'required',
+            'book_number_pages' => 'required|integer|min:1',
+            'book_price' => 'required|min:0',
             'book_stock' => 'required|integer',
             'book_discount' => 'integer|max:100'
         ]);
@@ -122,8 +122,8 @@ class BookController extends Controller
             'author_id'=> 'required|min:1|integer',
             'publisher_id'=> 'required|min:1|integer',
             'book_publication_date' => 'required|date',
-            'book_number_pages' => 'required',
-            'book_price' => 'required',
+            'book_number_pages' => 'required|integer|min:1',
+            'book_price' => 'required|min:0',
             'book_stock' => 'required|integer',
             'book_discount' => 'integer|max:100'
         ]);

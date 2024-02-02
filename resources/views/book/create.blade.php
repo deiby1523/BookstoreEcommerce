@@ -55,12 +55,20 @@
                         <div class="card-body pb-2">
                             <div class="row">
 
+                                {{-- ISBN code --}}
                                 <div class="input-group input-group-static mb-4 mt-4">
-
-
                                     <label>Codigo ISBN</label>
-                                    <input name="book_isbn" id="book_isbn" class="form-control"
-                                           type="text" placeholder="escanear o digitar el codigo IBSN" autofocus>
+                                    @if(count($errors->get('book_isbn')) >= 1)
+                                        <input name="book_isbn" id="book_isbn" class="form-control"
+                                               type="text" placeholder="Escanear o digitar el codigo ISN"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               autofocus value="{{app('request')->old('book_isbn', null)}}">
+                                    @else
+                                        <input name="book_isbn" id="book_isbn" class="form-control"
+                                               type="text" placeholder="escanear o digitar el codigo ISBN" autofocus
+                                               value="{{app('request')->old('book_isbn', null)}}">
+                                    @endif
+
                                     <span class="input-group-text" style="right: 18px"> <svg
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
@@ -68,34 +76,79 @@
                                                 d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z"/>
                                         </svg></span>
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_isbn')"></x-input-error>
 
+                                {{-- Category select --}}
                                 <div class="input-group input-group-static mb-4">
                                     <label>Categoria</label>
-                                    <select name="category_id" id="category_id" class="form-control">
-                                        <option selected disabled hidden value=""></option>
-                                        @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                        @endforeach
-                                    </select>
+                                    @if(count($errors->get('category_id')) >= 1)
+                                        <select name="category_id" id="category_id" class="form-control"
+                                                style="box-shadow: 0 0 8px 2px #ff000061;">
+                                            <option selected disabled hidden value=""></option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <select name="category_id" id="category_id" class="form-control">
+                                            <option selected disabled hidden value=""></option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    @endif
 
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('category_id')"></x-input-error>
+
+                                {{-- Subcategory select --}}
                                 <div class="input-group input-group-static mb-4">
                                     <label>Subcategoria</label>
-                                    <select name="subcategory_id" id="subcategory_id" class="form-control">
+                                    @if(count($errors->get('subcategory_id')) >= 1)
+                                        <select name="subcategory_id" id="subcategory_id" class="form-control"
+                                                style="box-shadow: 0 0 8px 2px #ff000061;">
 
-                                    </select>
+                                        </select>
+                                    @else
+                                        <select name="subcategory_id" id="subcategory_id" class="form-control">
+
+                                        </select>
+                                    @endif
 
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('subcategory_id')"></x-input-error>
+
+                                {{-- Title --}}
                                 <div class="input-group input-group-static mb-4">
-
                                     <label>Titulo</label>
-                                    <input name="book_title" id="book_title" class="form-control"
-                                           type="text" placeholder="Nombre del libro">
+                                    @if(count($errors->get('book_title')) >= 1)
+                                        <input name="book_title" id="book_title" class="form-control"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               type="text" placeholder="Nombre del libro"
+                                               value="{{app('request')->old('book_title', null)}}">
+                                    @else
+                                        <input name="book_title" id="book_title" class="form-control"
+                                               type="text" placeholder="Nombre del libro"
+                                               value="{{app('request')->old('book_title', null)}}">
+                                    @endif
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_title')"></x-input-error>
+
+                                {{-- Author --}}
                                 <div class="input-group input-group-static mb-4">
                                     <label>Autor</label>
-                                    <input value="" readonly="readonly" name="author_name" id="author_name"
-                                           placeholder="Seleccione un autor" class="form-control"/>
+                                    @if(count($errors->get('author_id')) >= 1)
+                                        <input readonly="readonly" name="author_name" id="author_name"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               placeholder="Seleccione un autor" class="form-control"/>
+                                    @else
+                                        <input value="" readonly="readonly" name="author_name" id="author_name"
+                                               placeholder="Seleccione un autor" class="form-control"/>
+                                    @endif
                                     <input name="author_id" id="author_id" value="" hidden>
 
                                     <ul name="selectAuthor" id="selectAuthor"
@@ -120,10 +173,20 @@
                                     </ul>
 
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('author_id')"></x-input-error>
+
+                                {{-- Publisher --}}
                                 <div class="input-group input-group-static mb-4">
                                     <label>Editorial</label>
-                                    <input value="" readonly="readonly" name="publisher_name" id="publisher_name"
-                                           placeholder="Seleccione una editorial" class="form-control"/>
+                                    @if(count($errors->get('publisher_id')) >= 1)
+                                        <input value="" readonly="readonly" name="publisher_name" id="publisher_name"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               placeholder="Seleccione una editorial" class="form-control"/>
+                                    @else
+                                        <input value="" readonly="readonly" name="publisher_name" id="publisher_name"
+                                               placeholder="Seleccione una editorial" class="form-control"/>
+                                    @endif
                                     <input name="publisher_id" id="publisher_id" value="" hidden>
 
                                     <ul name="selectPublisher" id="selectPublisher"
@@ -148,53 +211,109 @@
                                     </ul>
 
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('publisher_id')"></x-input-error>
+
+                                {{-- Number Of Pages --}}
                                 <div class="input-group input-group-static mb-4">
-
                                     <label>Numero de páginas</label>
-                                    <input name="book_number_pages" id="book_number_pages" class="form-control"
-                                           type="number" placeholder="Numero de paginas del libro">
-                                </div>
+                                    @if(count($errors->get('book_number_pages')) >= 1)
+                                        <input name="book_number_pages" id="book_number_pages" class="form-control"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               type="number" placeholder="Numero de paginas del libro"
+                                               value="{{app('request')->old('book_number_pages', null)}}">
+                                    @else
+                                        <input name="book_number_pages" id="book_number_pages" class="form-control"
+                                               type="number" placeholder="Numero de paginas del libro"
+                                               value="{{app('request')->old('book_number_pages', null)}}">
+                                    @endif
 
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_number_pages')"></x-input-error>
+
+                                {{-- Publication Date --}}
                                 <div class="input-group input-group-static mb-4">
                                     <label>Fecha de publicación</label>
-                                    <input name="book_publication_date" id="book_publication_date" class="form-control"
-                                           type="date">
+                                    @if(count($errors->get('book_publication_date')) >= 1)
+                                        <input name="book_publication_date" id="book_publication_date"
+                                               class="form-control"
+                                               type="date"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               value="{{app('request')->old('book_publication_date', null)}}">
+                                    @else
+                                        <input name="book_publication_date" id="book_publication_date"
+                                               class="form-control"
+                                               type="date"
+                                               value="{{app('request')->old('book_publicaton_date', null)}}">
+                                    @endif
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_publication_date')"></x-input-error>
                             </div>
 
+                            {{-- Description --}}
                             <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
                                 <label>Resumen</label>
-                                <textarea name="book_description" class="form-control"
-                                          id="book_description" rows="6"
-                                          placeholder="Resumen o descripcion del libro"></textarea>
+                                @if(count($errors->get('book_description')) >= 1)
+                                    <textarea name="book_description" class="form-control"
+                                              id="book_description" rows="6"
+                                              placeholder="Resumen o descripcion del libro"
+                                              style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{app('request')->old('book_description', null)}}</textarea>
+                                @else
+                                    <textarea name="book_description" class="form-control"
+                                              id="book_description" rows="6"
+                                              placeholder="Resumen o descripcion del libro">{{app('request')->old('book_description', null)}}</textarea>
+                                @endif
                             </div>
+                            <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_description')"></x-input-error>
 
+                            {{-- Price --}}
                             <div class="input-group input-group-static mb-4">
-
                                 <label>Precio</label>
-                                <input name="book_price" id="book_price" class="form-control"
-                                       type="number" placeholder="Precio del libro sin iva">
+                                @if(count($errors->get('book_price')) >= 1)
+                                <input name="book_price" id="book_price" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                       type="number" placeholder="Precio del libro sin iva" value="{{app('request')->old('book_price', null)}}">
+                                @else
+                                    <input name="book_price" id="book_price" class="form-control"
+                                       type="number" placeholder="Precio del libro sin iva" value="{{app('request')->old('book_price', null)}}">
+                                @endif
                             </div>
+                            <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_price')"></x-input-error>
 
+                            {{-- Discount --}}
                             <div class="input-group input-group-static mb-4">
-
                                 <label>Descuento</label>
-                                <input name="book_discount" id="book_discount" class="form-control"
-                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%">
+                                @if(count($errors->get('book_discount')) >= 1)
+                                <input name="book_discount" id="book_discount" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{app('request')->old('book_discount', null)}}">
+                                @else
+                                    <input name="book_discount" id="book_discount" class="form-control"
+                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{app('request')->old('book_discount', null)}}">
+                                @endif
                             </div>
+                            <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_discount')"></x-input-error>
 
+                            {{-- Stock --}}
                             <div class="input-group input-group-static mb-4">
-
                                 <label>Unidades en inventario</label>
-                                <input name="book_stock" id="book_stock" class="form-control"
-                                       type="number" placeholder="Cantidad de unidades en inventario">
+                                @if(count($errors->get('book_stock')) >= 1)
+                                <input name="book_stock" id="book_stock" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                       type="number" placeholder="Cantidad de unidades en inventario" value="{{app('request')->old('book_stock', null)}}">
+                                @else
+                                    <input name="book_stock" id="book_stock" class="form-control"
+                                       type="number" placeholder="Cantidad de unidades en inventario" value="{{app('request')->old('book_stock', null)}}">
+                                @endif
                             </div>
+                            <x-input-error class="text-danger"
+                                               :messages="$errors->get('book_stock')"></x-input-error>
 
-
-
+                            {{-- image display --}}
                             <div class="row">
-                                <div class="card mt-5"
-                                     style="box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
+                                <div class="card mt-5" <?php if (count($errors->get('book_image')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
                                     <div class="row">
                                         <!-- Card body -->
                                         <div class="col" style="min-width: 250px">
@@ -204,6 +323,8 @@
                                                     que la imagen cumpla con una
                                                     relación de aspecto de 5:7 para garantizar una visualización óptima.
                                                 </p>
+                                                <x-input-error class="text-danger"
+                                                               :messages="$errors->get('book_image')"></x-input-error>
                                                 <div class="row mt-5">
                                                     <div class="col-md-4">
 
@@ -229,12 +350,13 @@
                                 </div>
                             </div>
 
+                            {{-- image input --}}
                             <div class="input-group input-group-static mb-4 mt-4">
-                                <input id="fileinput" name="book_image" type="file" accept=".jpg,.jpeg,.png"
-                                       style="display:none;">
+                                    <input id="fileinput" name="book_image" type="file" accept=".jpg,.jpeg,.png"
+                                           style="display:none;">
                             </div>
 
-
+                            {{-- Buttons --}}
                             <div class="row">
                                 <div class="col-sm-6 text-start">
                                     <a href="{{route('book.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
