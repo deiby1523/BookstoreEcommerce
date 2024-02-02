@@ -179,9 +179,8 @@ class BookController extends Controller
     }
 
     public function show($id): View{
-        $categories = Category::all();
         $book = Book::findOrFail($id);
-        return view('book.show', compact('book','categories'));
+        return view('book.show', compact('book'));
     }
 
     public function delete($id): RedirectResponse {
