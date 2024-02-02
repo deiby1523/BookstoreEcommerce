@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Ecommerce</title>
+    <title>Crear Libro</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
