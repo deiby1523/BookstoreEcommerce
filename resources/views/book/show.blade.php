@@ -26,14 +26,11 @@
 
 @php
     function convertToISBN($number):string {
-        return substr($number, 0, 3) . '-' . substr($number, 3, 1) . '-' . substr($number, 4, 4) . '-' . substr($number, 8, 4) . '-' . substr($number, 12, 1);
-    }
-@endphp
+         return substr($number, 0, 3) . '-' . substr($number, 3, 1) . '-' . substr($number, 4, 4) . '-' . substr($number, 8, 4) . '-' . substr($number, 12, 1);
+     }
 
-@php
-    // Ejemplo de uso
-    $number = $book->book_isbn; // Tu número de 13 dígitos
-    $isbn = convertToISBN($number);
+     $number = $book->book_isbn;
+     $isbn = convertToISBN($number);
 
 @endphp
 
@@ -83,7 +80,7 @@
                                         <h4>Categoria: </h4>
                                     </div>
                                     <div class="col">
-                                        <p style="font-size: large">{{$book->category->category_name}}</p>
+                                        <p style="font-size: large">{{$book->subcategory->category->category_name}}</p>
                                     </div>
                                 </div>
 
