@@ -16,7 +16,7 @@
     <link rel="stylesheet" href={{asset('icons/icons.css')}}>
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <!-- Material Kit CSS -->
+    <!-- Material Kit CSS --->
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
 </head>
