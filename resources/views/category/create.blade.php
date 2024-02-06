@@ -28,6 +28,7 @@
 @include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
 
+{{-- TODO: error displaying in create category --}}
 
 <div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
