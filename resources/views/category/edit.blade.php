@@ -24,6 +24,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
+{{-- TODO: Error displaying in edit category --}}
 
 <div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
