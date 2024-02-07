@@ -24,7 +24,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-{{-- TODO: Error displaying in create author --}}
+{{-- TODO: Error displaying in create author, error xd --}}
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
