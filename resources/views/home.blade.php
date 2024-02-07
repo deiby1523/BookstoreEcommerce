@@ -20,6 +20,7 @@
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
 </head>
+{{-- TODO: contiue development --}}
 
 <body class="loading">
 
