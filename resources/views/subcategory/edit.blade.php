@@ -24,6 +24,8 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
+{{-- TODO: Error diplaying in edit subcategory --}}
+
 <style>
     .listbox {
         margin-top: 10px !important;
