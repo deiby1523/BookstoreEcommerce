@@ -41,7 +41,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 350px; /* max width before truncate */
+        max-width: 350px; /* max width before truncate  */
     }
 
     .truncated-text-short {
