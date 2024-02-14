@@ -34,6 +34,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required',
+            'category_description' => 'required',
             'category_image' => 'required | image'
             // Agrega más validaciones según sea necesario
         ]);
@@ -89,6 +90,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'category_name' => 'required',
+            'category_description' => 'required'
             // Agrega más validaciones según sea necesario
         ]);
 
