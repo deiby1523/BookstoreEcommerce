@@ -24,9 +24,6 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-{{-- TODO: Error displaying in create publisher --}}
-
-
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
@@ -50,10 +47,18 @@
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
+                                        @if(count($errors->get('publisher_name')) >= 1)
                                         <input name="publisher_name" id="publisher_name" class="form-control"
-                                               placeholder="ej. Alfaomega" aria-label="Full Name"
-                                               type="text">
+                                               placeholder="Nombre de la editorial" aria-label="Full Name"
+                                               type="text" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;" value="{{app('request')->old('publisher_name', null)}}">
+                                        @else
+                                        <input name="publisher_name" id="publisher_name" class="form-control"
+                                               placeholder="Nombre de la editorial" aria-label="Full Name"
+                                               type="text" value="{{app('request')->old('publisher_name', null)}}">
+                                        @endif
                                     </div>
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('publisher_name')"></x-input-error>
                                 </div>
 
                             </div>
