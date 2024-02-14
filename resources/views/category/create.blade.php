@@ -18,7 +18,7 @@
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
 
-{{--    JQuery --}}
+    {{--    JQuery --}}
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
@@ -27,8 +27,6 @@
 <!-- Navbar Transparent -->
 @include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
-
-{{-- TODO: error displaying in create category --}}
 
 <div class="page-header" style="background-color: #f9f9f9; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
@@ -54,21 +52,42 @@
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
-                                        <input name="category_name" id="category_name" class="form-control"
-                                               placeholder="ej. Literatura" aria-label="Full Name" type="text">
+                                        @if(count($errors->get('category_name')) >= 1)
+                                            <input name="category_name" id="category_name" class="form-control"
+                                                   placeholder="Nombre de la categoria" aria-label="Full Name"
+                                                   type="text"
+                                                   style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                                   value="{{app('request')->old('category_name', null)}}">
+                                        @else
+                                            <input name="category_name" id="category_name" class="form-control"
+                                                   placeholder="Nombre de la categoria" aria-label="Full Name"
+                                                   type="text" value="{{app('request')->old('category_name', null)}}">
+                                        @endif
                                     </div>
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('category_name')"></x-input-error>
                                 </div>
 
                             </div>
                             <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
                                 <label>Descripcion</label>
-                                <textarea name="category_description" class="form-control" id="category_description"
-                                          rows="6"
-                                          placeholder="Una descripcion breve de la categoria"></textarea>
+                                @if(count($errors->get('category_description')) >= 1)
+                                    <textarea name="category_description" class="form-control" id="category_description"
+                                              rows="6"
+                                              placeholder="Una descripcion breve de la categoria"
+                                              style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{app('request')->old('category_description', null)}}</textarea>
+                                @else
+                                    <textarea name="category_description" class="form-control" id="category_description"
+                                              rows="6"
+                                              placeholder="Una descripcion breve de la categoria">{{app('request')->old('category_description', null)}}</textarea>
+                                @endif
                             </div>
+                            <x-input-error class="text-danger"
+                                           :messages="$errors->get('category_description')"></x-input-error>
+
+
                             <div class="row">
-                                <div class="card mt-5"
-                                     style="box-shadow: 0px 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;">
+                                <div class="card mt-5" <?php if (count($errors->get('category_image')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
                                     <div class="row">
                                         <!-- Card body -->
                                         <div class="col" style="min-width: 250px">
@@ -78,6 +97,8 @@
                                                     que la imagen cumpla con una
                                                     relación de aspecto de 5:6 para garantizar una visualización óptima.
                                                 </p>
+                                                <x-input-error class="text-danger"
+                                                               :messages="$errors->get('category_image')"></x-input-error>
                                                 <div class="row mt-5">
                                                     <div class="col-md-4">
 
@@ -96,7 +117,7 @@
                                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
                                                  style="background: none;">
                                                 <img id="category_img" class="border-radius-lg w-50"
-                                                     src="">
+                                                     src="" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +149,6 @@
         </div>
     </div>
 
-</div>
 </div>
 
 <script>
