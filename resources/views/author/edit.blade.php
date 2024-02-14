@@ -24,9 +24,6 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-{{-- TODO: Error displaying in edit author --}}
-
-
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
     {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
@@ -42,7 +39,8 @@
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
-                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('author.update',$author->id) }}">
+                    <form role="form" id="contact-form" method="POST" autocomplete="off"
+                          action="{{ route('author.update',$author->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="card-body pb-2">
@@ -50,8 +48,19 @@
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
-                                        <input value="{{$author->author_name}}" name="author_name" id="author_name" class="form-control" placeholder="ej. Gabriel Garcia Marquez" aria-label="Full Name" type="text">
+                                        @if(count($errors->get('author_name')) >= 1)
+                                            <input value="{{$author->author_name}}" name="author_name" id="author_name"
+                                                   class="form-control" placeholder="Nombre del autor"
+                                                   aria-label="Full Name" type="text"
+                                                   style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">
+                                        @else
+                                            <input value="{{$author->author_name}}" name="author_name" id="author_name"
+                                                   class="form-control" placeholder="Nombre del autor"
+                                                   aria-label="Full Name" type="text">
+                                        @endif
                                     </div>
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('author_name')"></x-input-error>
                                 </div>
 
                             </div>
