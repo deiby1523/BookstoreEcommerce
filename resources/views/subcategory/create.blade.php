@@ -19,18 +19,18 @@
 
 </head>
 
-<body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
-
-{{-- TODO: Error displaying in create subcategory --}}
-
 <style>
     .listbox {
         margin-top: 10px !important;
     }
 </style>
+
+<body>
+<!-- Navbar Transparent -->
+@include('layouts.navigation')
+<!-- End Navbar -->
+
+
 <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
 
 <div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
@@ -48,29 +48,54 @@
             <div class="card">
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
-                    <form role="form" id="contact-form" method="POST" autocomplete="off" action="{{ route('subcategory.save') }}">
+                    <form role="form" id="contact-form" method="POST" autocomplete="off"
+                          action="{{ route('subcategory.save') }}">
                         @csrf
                         <div class="card-body pb-2">
                             <div class="row">
                                 <div class="input-group input-group-static mb-4 mt-4">
                                     <label>Categoria</label>
-                                    <select name="category_id" id="category_id" class="form-control" name="choices-button" id="choices-button" placeholder="Categoria">
+                                    @if(count($errors->get('category_id')) >= 1)
+                                        <select name="category_id" id="category_id" class="form-control"
+                                                name="choices-button" id="choices-button"
+                                                style="box-shadow: 0 0 8px 2px #ff000061;">
                                             <option selected disabled hidden value="">Selecciona una categoria</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                        @endforeach
-                                    </select>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <select name="category_id" id="category_id" class="form-control"
+                                                name="choices-button" id="choices-button">
+                                            <option selected disabled hidden value="">Selecciona una categoria</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    @endif
 
                                 </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('category_id')"></x-input-error>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
-
                                         <label>Nombre</label>
-                                        <input name="subcategory_name" id="subcategory_name" class="form-control" placeholder="ej. Cuentos, Novelas, etc." aria-label="Full Name" type="text">
+                                        @if(count($errors->get('subcategory_name')) >= 1)
+                                            <input name="subcategory_name" id="subcategory_name" class="form-control"
+                                                   placeholder="Nombre de la subcategoria" aria-label="Full Name"
+                                                   type="text" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                                   value="{{app('request')->old('subcategory_name', null)}}">
+                                        @else
+                                            <input name="subcategory_name" id="subcategory_name" class="form-control"
+                                                   placeholder="Nombre de la subcategoria" aria-label="Full Name"
+                                                   type="text" value="{{app('request')->old('subcategory_name', null)}}">
+                                        @endif
                                     </div>
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('subcategory_name')"></x-input-error>
                                 </div>
 
                             </div>
@@ -78,17 +103,31 @@
 
                             <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
                                 <label>Descripcion</label>
-                                <textarea name="subcategory_description" class="form-control" id="subcategory_description" rows="6"
-                                          placeholder="Una descripcion breve de la subcategoria"></textarea>
+                                @if(count($errors->get('subcategory_description')) >= 1)
+                                    <textarea name="subcategory_description" class="form-control"
+                                              id="subcategory_description" rows="6"
+                                              placeholder="Una descripcion breve de la subcategoria" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{app('request')->old('subcategory_description', null)}}</textarea>
+                                @else
+                                    <textarea name="subcategory_description" class="form-control"
+                                              id="subcategory_description" rows="6"
+                                              placeholder="Una descripcion breve de la subcategoria">{{app('request')->old('subcategory_description', null)}}</textarea>
+                                @endif
+
                             </div>
+                            <x-input-error class="text-danger"
+                                           :messages="$errors->get('subcategory_description')"></x-input-error>
+
+
                             <div class="row">
                                 <div class="col-sm-6 text-start">
-                                    <a href="{{route('subcategory.index')}}" class="btn bg-gradient-danger mt-3 mb-0" style="max-width: 233px; width: -webkit-fill-available;">Cancelar
+                                    <a href="{{route('subcategory.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
+                                       style="max-width: 233px; width: -webkit-fill-available;">Cancelar
                                     </a>
                                 </div>
 
                                 <div class="col-sm-6 text-end">
-                                    <button type="submit" class="btn bg-gradient-warning mt-3 mb-0" style="max-width: 233px;width: -webkit-fill-available;">Crear
+                                    <button type="submit" class="btn bg-gradient-warning mt-3 mb-0"
+                                            style="max-width: 233px;width: -webkit-fill-available;">Crear
                                     </button>
                                 </div>
                             </div>
@@ -99,7 +138,6 @@
         </div>
     </div>
 
-</div>
 </div>
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
