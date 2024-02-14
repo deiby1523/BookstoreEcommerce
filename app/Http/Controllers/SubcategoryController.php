@@ -22,6 +22,7 @@ class SubcategoryController extends Controller
     public function save(Request $request) {
         $request->validate([
             'subcategory_name' => 'required',
+            'subcategory_description' => 'required',
             'category_id' => 'integer|required'
         ]);
 
@@ -53,6 +54,7 @@ class SubcategoryController extends Controller
     public function update(Request $request,$id) {
         $request->validate([
             'subcategory_name' => 'required',
+            'subcategory_description' => 'required',
             'category_id' => 'integer|required'
 
         ]);
