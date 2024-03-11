@@ -107,6 +107,7 @@
 
     {{--Main Body--}}
     <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
+{{--        <a href="{{ route('book.public_show', 1) }}">Librooo</a>--}}
 
         <section class="py-2 position-relative">
             <div class="row justify-content-center mt-2 mb-7">
@@ -205,7 +206,7 @@
         <section class="py-5">
             <div class="container-fluid">
                 <div class="row mt-4">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" style="margin-left: 10%;max-width: 600px;">
                         <h1 class="mb-4">Somos más que una librería</h1>
                         <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran
                             vida y la pasión por
@@ -253,7 +254,7 @@
 
                     <div class="col-lg-10">
 
-                        <div class="row">
+                        <div class="row" style="align-items: center;">
                             <h1 class="my-4 ">Artículos religiosos</h1>
                             <div class="col-lg-6">
                                 <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100 mb-4"
@@ -334,27 +335,7 @@
                                 <div class="card-footer d-flex pt-0" style="padding-right: 0">
                                     <div class="row w-100">
                                         <div class="col">
-                                            <p class="font-weight-normal my-auto">$1,549</p>
-                                        </div>
-                                        <div class="col-lg-6" style="min-width: 55%;">
-
-                                            <i class="material-icons position-relative ms-0 text-warning text-md ml-5 me-1 my-auto"
-                                               data-bs-toggle="tooltip" data-bs-placement="top"
-                                               data-bs-original-title="Saved to Wishlist">star</i><i
-                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-original-title="Saved to Wishlist">star</i><i
-                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-original-title="Saved to Wishlist">star</i><i
-                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-original-title="Saved to Wishlist">star</i><i
-                                                class="material-icons position-relative ms-0 text-warning text-md me-1 my-auto"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-original-title="Saved to Wishlist">star</i>
-
-
+                                            <p class="font-weight-normal my-auto">$ {{number_format($book->book_price)}}</p>
                                         </div>
                                     </div>
 
