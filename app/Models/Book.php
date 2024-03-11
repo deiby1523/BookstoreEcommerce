@@ -33,7 +33,7 @@ class Book extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function category(): HasOneThrough // TODO: Check this function later
+    public function category(): HasOneThrough // TODO: Check this function later (edit)
     {
         return $this->hasOneThrough(
             Category::class,

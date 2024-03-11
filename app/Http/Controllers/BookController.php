@@ -68,7 +68,7 @@ class BookController extends Controller
             'book_discount' => 'integer|max:100'
         ]);
 
-        // image upload script
+        // image upload script (edit)
         if($request->hasFile("book_image")) {
             $image = $request->file("book_image");
             $imageName = Str::slug($request->book_isbn) . "." . $image->guessExtension();
