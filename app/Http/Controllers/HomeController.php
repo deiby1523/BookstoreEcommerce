@@ -13,6 +13,7 @@ class HomeController extends Controller
     books.id,
     books.book_isbn,
     books.book_title,
+    books.book_price,
     books.book_image_url,
     authors.author_name,
     publishers.publisher_name,

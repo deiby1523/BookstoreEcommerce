@@ -183,6 +183,11 @@ class BookController extends Controller
         return view('book.show', compact('book'));
     }
 
+    public function public_show($id):View {
+        $book = Book::findOrFail($id);
+        return view('book.public_show', compact('book'));
+    }
+
     public function delete($id): RedirectResponse {
         $book = Book::findOrFail($id);
 
