@@ -25,9 +25,10 @@
 <!-- End Navbar -->
 
 
-<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
-        <span class="mask bg-gradient-dark opacity-6"></span>
+<div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
+    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
+
 <div style="margin-top: -20rem !important;" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="container">
         <div class="section text-left my-4">
