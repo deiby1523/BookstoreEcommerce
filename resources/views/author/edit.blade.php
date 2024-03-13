@@ -24,15 +24,20 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
-    {{--    <span class="mask bg-gradient-dark opacity-6"></span>--}}
+<div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
+    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('author.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>Volver
+            </a>
+        </div>
+    </div>
     <div class="container">
         <div class="section text-left my-4">
-            <a href="{{ route('author.index') }}" class="text-warning text-sm icon-move-left">
-                < volver
-            </a>
 
             <h2 class="title">Editar Autor</h2>
 

@@ -35,167 +35,89 @@
 @endphp
 
 
-<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">
-    <span class="mask bg-gradient-dark opacity-6"></span>
+<div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
+    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
-    <div class="container">
-        <div class="section text-left my-4">
-            <a href="{{ route('book.index') }}" class="text-warning text-sm icon-move-left">
-                < volver
+
+<div class="card card-body shadow-2xl shadow-dark mx-4 mx-md-5 mx-lg-10 mt-n12">
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('book.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>Volver
             </a>
+        </div>
+    </div>
+    {{--    <button class="btn btn-white ms-auto mt-n6 me-n3" type="button" name="button"><i class="material-icons me-2">shopping_cart</i>0 items</button>--}}
+    <div class="section my-4 my-lg-5">
+        <div class="container">
+            <div class="row flex-row">
+                <div class="col-lg-5">
+                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{asset($book->book_image_url)}}" alt="ladydady" loading="lazy">
+                </div>
+                <div class="col-lg-7">
+                    <div>
+                        <h3 class="mt-lg-0 mt-4">{{$book->book_title}}</h3>
+                        <p class="text-xs text-uppercase font-weight-bold text-gradient text-warning mb-4">{{$book->subcategory->subcategory_name}}</p>
+                        <h6 class="mb-0 mt-2 text-lg">Precio</h6>
+                        <p class="text-lg">$ {{number_format($book->book_price)}}</p>
 
-            <h2 class="title">Ver Libro</h2>
+                        <h6 class="mb-0 mt-2">Descuento</h6>
+                        <p class="text-lg">{{$book->book_discount}} %</p>
 
-            <div class="card">
+                         <h6 class="mb-0 mt-2">Precio público</h6>
+                        <p class="text-lg">$ {{number_format($book->book_price - $book->book_price * ($book->book_discount / 100))}}</p>
 
-                <div class="card d-flex justify-content-center p-4 shadow-lg">
+                        <h6 class="mb-0 mt-2">Categoria</h6>
+                        <p class="text-lg">{{$book->category->category_name}}</p>
 
-                    <div class="col-lg-12 text-center" style="min-width: 50%">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
-                             style="background: none;">
+                        <h6 class="mb-0 mt-2">Subcategoria</h6>
+                        <p class="text-lg">{{$book->subcategory->subcategory_name}}</p>
 
-                        </div>
-                    </div>
-                    <div class="card-body pb-2">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h1>{{$book->book_title}}</h1>
-                                <div class="display-4 text-md">Subido el {{$book->created_at}} y última vez
-                                    actualizado el {{$book->updated_at}}</div>
-                                <br>
+                        <h6 class="mb-0 mt-2">Autor</h6>
+                        <p class="text-lg">{{$book->author->author_name}}</p>
+
+                        <h6 class="mb-0 mt-2">Editorial</h6>
+                        <p class="text-lg">{{$book->publisher->publisher_name}}</p>
+
+                        <h6 class="mb-0 mt-2">Numero de paginas</h6>
+                        <p class="text-lg">{{$book->book_number_pages}}</p>
+
+                        <h6 class="mb-0 mt-2">Fecha de publicacion</h6>
+                        <p class="text-lg">{{$book->book_publication_date}}</p>
 
 
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>ISBN: </h4>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size: large">{{$isbn}}</p>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Categoria: </h4>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size: large">{{$book->subcategory->category->category_name}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Subcategoria: </h4>
-                                    </div>
-                                    <div class="col">
-                                        <p style="font-size: large">{{$book->subcategory->subcategory_name}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Autor: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">{{$book->author->author_name}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Editorial: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">{{$book->publisher->publisher_name}}</p>
+                        <div class="row mt-4">
+                            <div class="accordion" id="accordionRental">
+                                <div class="accordion-item mb-3">
+                                    <h5 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button border-bottom font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Resumen
+                                            <svg style="margin-left: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                                            </svg>
+                                        </button>
+                                    </h5>
+                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionRental" style="">
+                                        <div class="accordion-body text-md opacity-8">
+                                            {{$book->book_description}}
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Fecha de publicacion: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">{{$book->book_publication_date}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Numero de paginas: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">{{$book->book_number_pages}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Precio: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">$ {{number_format($book->book_price)}}</p>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Descuento: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">{{$book->book_discount}} %</p>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col" style="max-width: max-content; padding-right: 0">
-                                        <h4>Unidades en inventario: </h4>
-                                    </div>
-                                    <div class="col" style="max-width: max-content;">
-                                        <p style="font-size: large">{{$book->book_stock}}</p>
-                                    </div>
-                                </div>
-                                <br>
-
-
-                            </div>
-                            <div class="col-lg-6 text-center">
-                                <img id="category_img" class="border-radius-lg w-65 shadow-lg"
-                                     src="{{asset($book->book_image_url)}}" alt="Imagen del libro">
                             </div>
                         </div>
-                        <div class="row">
-                            <h4> Descripcion: </h4>
 
 
-                            <p>{{$book->book_description}}</p>
-                        </div>
-
-                        <br>
-
-                        <div class="row">
-                            <div class="col-md-12 text-start">
-                                <a href="{{route('book.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
-                                </a>
-                            </div>
-
-                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-<div class="container">
-    <div class="row">
 
-    </div>
-</div>
+
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
