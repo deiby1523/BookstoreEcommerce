@@ -314,7 +314,7 @@
                         @forelse($latestBooks as $book)
                                 <div class="card mb-5 mt-2 mx-3 shadow-lg">
                                     <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                        <a class="d-block blur-shadow-image" href="{{ route('book.public_show', $book->id) }}">
+                                        <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
                                             <img loading='eager' src="{{asset($book->book_image_url)}}"
                                                  alt="img-blur-shadow"
                                                  class="img-fluid border-radius-lg">
@@ -325,7 +325,7 @@
                                     <div class="card-body">
                                         <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
                                         <h5 class="font-weight-bold mt-3">
-                                            <a class="link-dark" href="{{ route('book.public_show', $book->id) }}">{{$book->book_title}}</a>
+                                            <a class="link-dark" href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
                                         </h5>
                                         <p class="mb-0 text-left">
                                             {{$book->author_name}}
