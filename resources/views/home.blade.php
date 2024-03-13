@@ -107,8 +107,6 @@
 
     {{--Main Body--}}
     <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
-{{--        <a href="{{ route('book.public_show', 1) }}">Librooo</a>--}}
-
         <section class="py-2 position-relative">
             <div class="row justify-content-center mt-2 mb-7">
                 <div class="col-lg-6">
@@ -230,7 +228,8 @@
                                     lectura
                                     está
                                     aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
-                        </ul><br>
+                        </ul>
+                        <br>
                         <p style="font-size: 20px">Únete a nosotros y déjate llevar por la experiencia única que
                             ofrecemos. En
                             nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado
@@ -244,8 +243,8 @@
                              class="desktopBanner border-radius-lg shadow-lg w-50"
                              src="{{asset('img/bg13.jpg')}}" alt="">
                         <img
-                             class="phoneBanner border-radius-lg shadow-lg w-100"
-                             src="{{asset('img/bg13.jpg')}}" alt="">
+                            class="phoneBanner border-radius-lg shadow-lg w-100"
+                            src="{{asset('img/bg13.jpg')}}" alt="">
 
                     </div>
                 </div>
@@ -263,10 +262,12 @@
                                      src="{{asset('img/picture5.jpg')}}" alt="">
                             </div>
                             <div class="col-lg-6">
-                                <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia gama
+                                <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia
+                                    gama
                                     de
                                     productos
-                                    para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
+                                    para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y
+                                    hermosas
                                     imágenes
                                     religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
                                     creencias. </p>
@@ -309,39 +310,37 @@
                     <p class="mb-0 text-center" style="font-size: 20px">Libros recientemente añadidos</p>
                 </div>
                 <div id="latestBooks" class="book-horizontal-slider">
-                    <div class="row flex-nowrap rowBooks" style=" max-width: 210px; position: relative;">
+                    <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
                         @forelse($latestBooks as $book)
-
-                            <div class="card mb-5 mt-2 mx-3 shadow-lg"
-                                 style="">
-                                <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                    <a class="d-block blur-shadow-image">
-                                        <img loading='eager' src="{{asset($book->book_image_url)}}"
-                                             alt="img-blur-shadow"
-                                             class="img-fluid border-radius-lg">
-                                    </a>
-                                    <div class="colored-shadow"
-                                         style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
-                                </div>
-                                <div class="card-body">
-                                    <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
-                                    <h5 class="font-weight-bold mt-3">
-                                        <a class="link-dark" href="javascript:">{{$book->book_title}}</a>
-                                    </h5>
-                                    <p class="mb-0 text-left">
-                                        {{$book->author_name}}
-                                    </p>
-                                </div>
-                                <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                    <div class="row w-100">
-                                        <div class="col">
-                                            <p class="font-weight-normal my-auto">$ {{number_format($book->book_price)}}</p>
-                                        </div>
+                                <div class="card mb-5 mt-2 mx-3 shadow-lg">
+                                    <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
+                                        <a class="d-block blur-shadow-image" href="{{ route('book.public_show', $book->id) }}">
+                                            <img loading='eager' src="{{asset($book->book_image_url)}}"
+                                                 alt="img-blur-shadow"
+                                                 class="img-fluid border-radius-lg">
+                                        </a>
+                                        <div class="colored-shadow"
+                                             style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
                                     </div>
+                                    <div class="card-body">
+                                        <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
+                                        <h5 class="font-weight-bold mt-3">
+                                            <a class="link-dark" href="{{ route('book.public_show', $book->id) }}">{{$book->book_title}}</a>
+                                        </h5>
+                                        <p class="mb-0 text-left">
+                                            {{$book->author_name}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                        <div class="row w-100">
+                                            <div class="col">
+                                                <p class="font-weight-normal my-auto">
+                                                    $ {{number_format($book->book_price)}}</p>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
-                            </div>
-
                         @empty
                             <br>
                             <div class="row">
