@@ -519,6 +519,7 @@
             {{--        </div>--}}
         </div>
     </div>
+</div>
     </footer>
     <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
