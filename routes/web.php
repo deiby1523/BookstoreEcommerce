@@ -98,6 +98,6 @@ Route::middleware('UserAdmin')->group(function () {
 });
 
 //public books
-Route::get('/book/public/show/{book}',[BookController::class,'public_show'])->name('book.public_show');
+Route::get('/book/view/{book}',[BookController::class,'view'])->name('book.view');
 
 require __DIR__ . '/auth.php';
