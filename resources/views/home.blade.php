@@ -20,7 +20,6 @@
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
 </head>
-{{-- TODO: contiue development --}}
 
 <body class="loading">
 
@@ -106,6 +105,7 @@
     {{--</div>--}}
 
     {{--Main Body--}}
+
     <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
         <section class="py-2 position-relative">
             <div class="row justify-content-center mt-2 mb-7">
@@ -135,6 +135,14 @@
                                     <p class="my-4 lead fadeIn2 fadeInBottom">
                                         {{$categories[0]->category_description}}
                                     </p>
+                                    <form action="{{route('book.search2')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="category" id="category" value="{{$categories[0]->id}}">
+
+                                        <button type="submit" class="btn btn-warning">
+                                            <span>Explorar!</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -156,6 +164,14 @@
                                         <p class="my-4 lead fadeIn2 fadeInBottom">
                                             {{$categories[$i-1]->category_description}}
                                         </p>
+                                        <form action="{{route('book.search2')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="category" id="category" value="{{$categories[$i-1]->id}}">
+
+                                            <button type="submit" class="btn btn-warning">
+                                                <span>Explorar!</span>
+                                            </button>
+                                        </form>
 
                                     </div>
                                 </div>
