@@ -99,5 +99,7 @@ Route::middleware('UserAdmin')->group(function () {
 
 //public books
 Route::get('/book/view/{book}',[BookController::class,'view'])->name('book.view');
+Route::get('/book/search',[BookController::class,'search'])->name('book.search');
+Route::POST('/book/search',[BookController::class,'search2'])->name('book.search2');
 
 require __DIR__ . '/auth.php';

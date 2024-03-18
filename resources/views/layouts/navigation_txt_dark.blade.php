@@ -39,7 +39,7 @@
              style="border-radius: 10px; padding-left: 10px !important;">
             <ul class="navbar-nav navbar-nav-hover">
                 <li class="nav-item mx-2 ms-lg-6">
-                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center">
+                    <a href="{{route('home')}}" class="nav-link ps-2 d-flex cursor-pointer align-items-center">
 
                         inicio
                     </a>
@@ -70,9 +70,15 @@
 
                                                 </div>
                                                 @forelse($categories[$i+$j]->subcategories as $subcategory)
-                                                    <a href="#" class="dropdown-item border-radius-md">
+                                                        <form action="{{route('book.search2')}}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="category" id="category" value="{{$categories[$i+$j]->id}}">
+                                                            <input type="hidden" name="subcategory" id="subcategory" value="{{$subcategory->id}}">
+
+                                                    <button type="submit" class="dropdown-item border-radius-md">
                                                         <span>{{$subcategory->subcategory_name}}</span>
-                                                    </a>
+                                                    </button>
+                                                        </form>
                                                 @empty
                                                     <p>No hay subcategorías para {{$categories[$i+$j]->category_name}}</p>
                                                 @endforelse

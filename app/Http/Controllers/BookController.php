@@ -189,6 +189,74 @@ class BookController extends Controller
         return view('book.view', compact('book','categories'));
     }
 
+    public function search():View {
+        $categories = Category::all();
+
+        $sql = 'SELECT
+        books.id,
+        books.book_isbn,
+        books.book_title,
+        books.book_price,
+        books.book_image_url,
+        authors.author_name,
+        publishers.publisher_name,
+        categories.category_name,
+        subcategories.subcategory_name
+        FROM books, authors, publishers, categories, subcategories
+        WHERE books.author_id = authors.id
+        AND books.publisher_id = publishers.id
+        AND books.subcategory_id = subcategories.id
+        AND subcategories.category_id = categories.id
+        ORDER BY books.updated_at DESC
+        LIMIT 30';
+        $books = DB::select($sql);
+
+        return view('book.search',compact('categories','books'));
+    }
+    public function search2(Request $request):View {
+        $categorySelected = null;
+        if (isset($request->category)) {
+            $categorySelected = Category::findOrFail($request->category);
+        }
+
+        $subcategorySelected = null;
+        if (isset($request->subcategory)) {
+            $subcategorySelected = Subcategory::findOrFail($request->subcategory);
+        }
+        $categories = Category::all();
+        $sql = 'SELECT
+        books.id,
+        books.book_isbn,
+        books.book_title,
+        books.book_price,
+        books.book_image_url,
+        authors.author_name,
+        publishers.publisher_name,
+        categories.category_name,
+        subcategories.subcategory_name
+        FROM books, authors, publishers, categories, subcategories
+        WHERE books.author_id = authors.id
+        AND books.publisher_id = publishers.id
+        AND books.subcategory_id = subcategories.id
+        AND subcategories.category_id = categories.id';
+
+        if (isset($request->category)) {
+            $sql = $sql." AND categories.id = ".$request->category." ";
+        }
+
+        if (isset($request->subcategory)) {
+            $sql = $sql."AND subcategories.id = ".$request->subcategory;
+        }
+
+        $sql = $sql.' ORDER BY books.updated_at DESC LIMIT 50';
+
+
+
+        $books = DB::select($sql);
+
+        return view('book.search',compact('categories','categorySelected','subcategorySelected','books'));
+    }
+
     public function delete($id): RedirectResponse {
         $book = Book::findOrFail($id);
 
