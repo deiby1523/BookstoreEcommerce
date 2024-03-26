@@ -241,11 +241,11 @@ class BookController extends Controller
         AND subcategories.category_id = categories.id';
 
         if (isset($request->category)) {
-            $sql = $sql." AND categories.id = ".$request->category." ";
+            $sql = $sql." AND categories.id = ".$request->category;
         }
 
         if (isset($request->subcategory)) {
-            $sql = $sql."AND subcategories.id = ".$request->subcategory;
+            $sql = $sql." AND subcategories.id = ".$request->subcategory;
         }
 
         $sql = $sql.' ORDER BY books.updated_at DESC LIMIT 50';

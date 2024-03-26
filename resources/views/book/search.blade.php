@@ -57,11 +57,26 @@
                     <h4>categorias</h4>
                     <div class="container p-lg-1 mx-3">
                         @foreach($categories as $category)
-                            <h6>{{$category->category_name}}</h6>
+                            <form action="{{route('book.search2')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="category" id="category" value="{{$category->id}}">
+
+                                <button type="submit" class="h6" style="border: none; background: none; padding: 0; text-align: left">
+                                    <span>{{$category->category_name}}</span>
+                                </button>
+                            </form>
                             <ul>
                                 @foreach($category->subcategories as $subcategory)
                                     <li>
-                                        <a href="#" class="link-dark text-sm">{{$subcategory->subcategory_name}}</a>
+                                        <form action="{{route('book.search2')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="subcategory" id="subcategory" value="{{$subcategory->id}}">
+
+                                            <button type="submit" class="link-dark text-sm" style="border: none; background: none; padding: 0; text-align: left">
+                                                <span>{{$subcategory->subcategory_name}}</span>
+                                            </button>
+                                        </form>
+
                                     </li>
                                 @endforeach
                             </ul>
@@ -98,30 +113,12 @@
                 <div class="card shadow-lg mb-5">
                     <div class="card-body p-5">
 
-                        @if(isset($categorySelected))
-                            <div class="row mb-2">
-                                <div class="col-lg-6 justify-content-center d-flex flex-column">
-                                    <div class="card shadow-none">
-                                        <div class="d-block blur-shadow-image">
-                                            <img src="{{asset($categorySelected->category_image_url)}}" alt="img-blur-shadow-blog-2" class="img-fluid border-radius-lg" loading="lazy">
-                                        </div>
-                                        <div class="colored-shadow" style="background-image: url({{asset($categorySelected->category_image_url)}});"></div></div>
-
-                                </div>
-                                <div class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
-                                    <h3 class="card-title">
-                                        <a href="javascript:;" class="text-dark">{{$categorySelected->category_name}}</a>
-                                    </h3>
-                                    <p class="card-description">
-                                        {{$categorySelected->category_description}}
-                                    </p>
-                                </div>
-                            </div>
-
-                        @endif
-<br><br>
                         @if(isset($subcategorySelected))
                             <h3>{{$subcategorySelected->subcategory_name}}</h3>
+                        @endif
+
+                        @if(isset($categorySelected))
+                            <h3>{{$categorySelected->category_name}}</h3>
                         @endif
 
                         <div class="row" style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
@@ -148,7 +145,7 @@
                                     <div class="row w-100">
                                         <div class="col">
                                             <p class="font-weight-normal my-auto">
-                                                $ {{$book->book_price}}</p>
+                                                $ {{number_format($book->book_price)}}</p>
                                         </div>
                                     </div>
 
