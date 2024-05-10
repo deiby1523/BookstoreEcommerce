@@ -69,7 +69,7 @@
                         <p class="text-lg">$ {{number_format($book->book_price - $book->book_price * ($book->book_discount / 100))}}</p>
 
                         <h6 class="mb-0 mt-2">Categoria</h6>
-                        <p class="text-lg">{{$book->category->category_name}}</p>
+                        <p class="text-lg">{{$book->subcategory->category->category_name}}</p>
 
                         <h6 class="mb-0 mt-2">Subcategoria</h6>
                         <p class="text-lg">{{$book->subcategory->subcategory_name}}</p>
