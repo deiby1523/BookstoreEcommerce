@@ -53,35 +53,73 @@
         <div class="row">
             <div class="col-lg-3 card shadow-lg mb-lg-0 mb-5 mt-8 mt-md-5 mt-lg-0">
                 <div class="card-body p-5 categories">
-
-                    <h4>categorias</h4>
-                    <div class="container p-lg-1 mx-3">
+                    <div class="accordion" id="accordionCategories">
+                        @php
+                        $first = true;
+                        @endphp
                         @foreach($categories as $category)
-                            <form action="{{route('book.search2')}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="category" id="category" value="{{$category->id}}">
-
-                                <button type="submit" class="h6" style="border: none; background: none; padding: 0; text-align: left">
-                                    <span>{{$category->category_name}}</span>
-                                </button>
-                            </form>
-                            <ul>
-                                @foreach($category->subcategories as $subcategory)
-                                    <li>
-                                        <form action="{{route('book.search2')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="subcategory" id="subcategory" value="{{$subcategory->id}}">
-
-                                            <button type="submit" class="link-dark text-sm" style="border: none; background: none; padding: 0; text-align: left">
-                                                <span>{{$subcategory->subcategory_name}}</span>
-                                            </button>
-                                        </form>
-
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <div class="accordion-item mb-3">
+                                <h5 class="accordion-header" id="heading{{ $category->id }}">
+                                    <button class="accordion-button border-bottom font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $category->id }}" aria-expanded="false" aria-controls="collapse{{ $category->id }}">
+                                        {{ $category->category_name }}
+                                        <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0"></i>
+                                        <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0"></i>
+                                    </button>
+                                </h5>
+                                <div id="collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{$category->id}}" data-bs-parent="#accordionCategories">
+                                    <div class="accordion-body text-sm opacity-8">
+                                        [subcategorias]
+                                    </div>
+                                </div>
+                            </div>
+                        @php
+                        $first = false;
+                        @endphp
                         @endforeach
+                        <div class="accordion-item mb-3">
+                            <h5 class="accordion-header" id="headingFifth">
+                                <button class="accordion-button border-bottom font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
+                                    Where do I find the shipping details?
+                                    <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0"></i>
+                                    <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0"></i>
+                                </button>
+                            </h5>
+                            <div id="collapseFifth" class="accordion-collapse collapse" aria-labelledby="headingFifth" data-bs-parent="#accordionRental">
+                                <div class="accordion-body text-sm opacity-8">
+                                    There’s nothing I really wanted to do in life that I wasn’t able to get good at. That’s my skill. I’m not really specifically talented at anything except for the ability to learn. That’s what I do. That’s what I’m here for. Don’t be afraid to be wrong because you can’t learn anything from a compliment.
+                                    I always felt like I could do anything. That’s the main thing people are controlled by! Thoughts- their perception of themselves! They&#39;re slowed down by their perception of themselves. If you&#39;re taught you can’t do anything, you won’t do anything. I was taught I could do everything.
+                                </div>
+                            </div>
+                        </div>
                     </div>
+<!--                    <h4>categorias</h4>-->
+<!--                    <div class="container p-lg-1 mx-3">-->
+<!--                        @foreach($categories as $category)-->
+<!--                            <form action="{{route('book.search2')}}" method="POST">-->
+<!--                                @csrf-->
+<!--                                <input type="hidden" name="category" id="category" value="{{$category->id}}">-->
+<!---->
+<!--                                <button type="submit" class="h6" style="border: none; background: none; padding: 0; text-align: left">-->
+<!--                                    <span>{{$category->category_name}}</span>-->
+<!--                                </button>-->
+<!--                            </form>-->
+<!--                            <ul>-->
+<!--                                @foreach($category->subcategories as $subcategory)-->
+<!--                                    <li>-->
+<!--                                        <form action="{{route('book.search2')}}" method="POST">-->
+<!--                                            @csrf-->
+<!--                                            <input type="hidden" name="subcategory" id="subcategory" value="{{$subcategory->id}}">-->
+<!---->
+<!--                                            <button type="submit" class="link-dark text-sm" style="border: none; background: none; padding: 0; text-align: left">-->
+<!--                                                <span>{{$subcategory->subcategory_name}}</span>-->
+<!--                                            </button>-->
+<!--                                        </form>-->
+<!---->
+<!--                                    </li>-->
+<!--                                @endforeach-->
+<!--                            </ul>-->
+<!--                        @endforeach-->
+<!--                    </div>-->
 
                     <h4>Precio</h4>
                     <div class="">
@@ -110,7 +148,7 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <div class="card shadow-lg mb-5">
+                <div class="mb-5">
                     <div class="card-body p-5">
 
                         @if(isset($subcategorySelected))
