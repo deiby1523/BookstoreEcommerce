@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
-    // in admin dashbhoard
+//     in admin dashbhoard
     public function index(): View
     {
         $sql = 'SELECT
