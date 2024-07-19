@@ -68,7 +68,7 @@
                                 </h5>
                                 <div id="collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{$category->id}}" data-bs-parent="#accordionCategories">
                                     <div class="accordion-body text-sm opacity-8">
-                                        [subcategorias]
+<!--                                        [subcategorias] TODO: Poner las subcategorias -->
                                     </div>
                                 </div>
                             </div>
