@@ -265,8 +265,9 @@ class BookController extends Controller
         return redirect()->route('book.index')->with('success', "Libro eliminado correctamente");
     }
 
-    public function searchSelect($search): JsonResponse
+    public function searchSelect(Request $request): JsonResponse
     {
+        //        TODO: Revisar el uso que se le esta dando a esta informacion y eliminar contenido que sea irrelevante
         $sql = "SELECT
     books.id,
     books.book_isbn,
@@ -282,15 +283,15 @@ class BookController extends Controller
     AND books.subcategory_id = subcategories.id
     AND subcategories.category_id = categories.id
     AND(
-        books.book_title LIKE '%$search%' OR
-        books.book_isbn LIKE '%$search%' OR
-        authors.author_name LIKE '%$search%' OR
-        publishers.publisher_name LIKE '%$search%')
-        ORDER BY books.updated_at DESC
-        LIMIT 30";
+        books.book_title LIKE '%$request->search%' OR
+        books.book_isbn LIKE '%$request->search%' OR
+        authors.author_name LIKE '%$request->search%' OR
+        publishers.publisher_name LIKE '%$request->search%')
+        ORDER BY books.book_title ASC
+        LIMIT 8";
 
         $books = DB::select($sql);
-        return response()->json($books);
+        return response()->json($books,200);
     }
 
 }

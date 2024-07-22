@@ -21,7 +21,20 @@
         transition: background-color 0.2s ease, color 0.2s ease;
     }
 
+    .selectSearch {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .listbox {
+        margin-top: 10px !important;
+    }
+
 </style>
+
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 my-3 navbar-dark">
     <div class="container" style="max-width: 100%">
         <a class="navbar-brand text-dark text-8xl" style="margin-right: 0;" href="#">
@@ -126,6 +139,9 @@
                 </li>
                 <li class="nav-item mx-4" style="width:500px">
                     <div class="input-group input-group-dynamic">
+                        <form role="form" id="search-form" method="POST" autocomplete="off"
+                              action="" enctype="multipart/form-data">
+                            @csrf
 
                         <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg></span>
 
@@ -140,7 +156,7 @@
 
                         </div>
 
-
+                        </form>
                     </div>
                 </li>
             </ul>
@@ -219,36 +235,123 @@
     </div>
 </nav>
 
-{{--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-{{--<!-- jQuery (opcional pero necesario para algunas funciones de Bootstrap) -->--}}
-{{--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>--}}
-{{--<!-- Script para abrir y cerrar el menú -->--}}
-{{--<script>--}}
-{{--    $(document).ready(function () {--}}
-{{--        // Selector del botón de la hamburguesa--}}
-{{--        var $navbarToggler = $('.navbar-toggler');--}}
 
-{{--        // Selector del menú desplegable--}}
-{{--        var $navigation = $('#navigation');--}}
+<!-- Script para abrir y cerrar el menú -->
 
-{{--        // Manejador de eventos para el clic en el botón de la hamburguesa--}}
-{{--        $navbarToggler.on('click', function () {--}}
-{{--            // Alternar la clase 'show' en el menú desplegable--}}
-{{--            if ($navigation.classList.contains("show")) {--}}
-{{--                $navigation.classList.remove("show");--}}
-{{--            } else {--}}
-{{--            $navigation.classList.add("show");--}}
-{{--            }--}}
-{{--        });--}}
+<!--Jquery-->
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script>
 
-{{--        // Manejador de eventos para cerrar el menú cuando se hace clic fuera de él--}}
-{{--        $(document).on('click', function (event) {--}}
-{{--            if (!$navbarToggler.is(event.target) && !$navigation.is(event.target) && $navigation.has(event.target).length === 0) {--}}
-{{--                // Si se hace clic fuera del botón de la hamburguesa y el menú, cierra el menú--}}
-{{--                $navigation.removeClass('show');--}}
-{{--            }--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
+    $(document).ready(function () {
+        // Selector del botón de la hamburguesa
+        var $navbarToggler = $('.navbar-toggler');
+
+        // Selector del menú desplegable
+        var $navigation = $('#navigation');
+
+        // Manejador de eventos para el clic en el botón de la hamburguesa
+        $navbarToggler.on('click', function () {
+            // Alternar la clase 'show' en el menú desplegable
+            if ($navigation.classList.contains("show")) {
+                $navigation.classList.remove("show");
+            } else {
+            $navigation.classList.add("show");
+            }
+        });
+
+        // Manejador de eventos para cerrar el menú cuando se hace clic fuera de él
+        $(document).on('click', function (event) {
+            if (!$navbarToggler.is(event.target) && !$navigation.is(event.target) && $navigation.has(event.target).length === 0) {
+                // Si se hace clic fuera del botón de la hamburguesa y el menú, cierra el menú
+                $navigation.removeClass('show');
+            }
+        });
+
+
+    });
+</script>
+<script>
+    // products
+    // Event click to display the search box
+    document.getElementById('searchNav').addEventListener('click', function (event) {
+        event.preventDefault(); // Bypasses the default behavior of the select
+        var searchResults = document.getElementById('searchResults');
+        searchResults.classList.add('show');
+
+
+    });
+
+    // author
+    // 'input' event using the debounce function
+    $(document).on('input', '#searchNav', function () {
+        var searchValue = $('#searchNav').val();
+        if (searchValue !== "") {
+            ProductDelayedRequest(searchValue);
+        } else {
+            $("#searchResults").html("");
+        }
+    });
+
+    // products
+    // Event to close the search box if you click outside of it
+    document.addEventListener('click', function (e) {
+        if (!searchNav.contains(e.target) && e.target.id !== 'searchNav') {
+            var searchResults = document.getElementById('searchResults');
+            searchResults.classList.remove('show');
+        }
+    });
+
+    // Author
+    // Ajax request according to what's in the search box
+    function get_products(search) {
+        console.log(search);
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
+            url: '{{ route('book.searchNav') }}',
+            type: 'POST',
+            dataType: 'json',
+            data: {'search': search}
+        })
+            .done(function (books) {
+                var resultsList = ""; // Create a variable to store the list of results
+                books.forEach(function (book) {
+                    // Add a data attribute with the value of the book to the <a> element.
+                    resultsList += `<li style="cursor: default;"><a class='dropdown-item'>${book.book_title}</a></li>`;
+                });
+
+                // Insert the complete list of results in #searchResults after all products have been processed
+                $("#searchResults").html(resultsList);
+
+            });
+    }
+
+    // TODO: Comprobar si esta funcionando el debounce
+
+    // Function to implement debounce for delaying Ajax calls
+    function debounce(func, delay) {
+        let timer;
+        return function () {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                func.apply(context, args);
+            }, delay);
+        };
+    }
+
+
+    // search
+    // Wrapped Ajax function with debounce
+    const ProductDelayedRequest = debounce(function (search) {
+        get_products(search);
+    }, 500); // 300ms delay, adjustable based on your needs
+
+
+
+
+</script>
 
