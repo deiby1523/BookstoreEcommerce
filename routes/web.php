@@ -95,7 +95,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/book/show/{book}',[BookController::class, 'show'])->name('book.show');
     Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
     Route::get('/book/search/{search}', [BookController::class, 'searchSelect'])->name('book.searchSelect');    // TODO: cambiar el nombre de esta ruta
-    Route::POST('/product/search', [BookController::class, 'searchSelect'])->name('book.searchNav');
+    Route::POST('/product/search', [BookController::class, 'searchNav'])->name('book.searchNav');
 });
 
 //public books

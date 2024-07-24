@@ -294,4 +294,39 @@ class BookController extends Controller
         return response()->json($books,200);
     }
 
+    public function searchNav(Request $request): JsonResponse
+    {
+        $max = 5;   // limite de libros para mostrar
+
+        if($request->search == "" || $request->search == " ") {
+            $max = 0;   // si la cadena de busqueda esta vacia no devuelve nada
+        }
+
+        $sql = "SELECT
+        books.id,
+        books.book_isbn,
+        books.book_title,
+        books.book_price,
+        books.book_image_url,
+        authors.author_name,
+        publishers.publisher_name,
+        categories.category_name,
+        subcategories.subcategory_name
+        FROM books, authors, publishers, categories, subcategories
+        WHERE books.author_id = authors.id
+        AND books.publisher_id = publishers.id
+        AND books.subcategory_id = subcategories.id
+        AND subcategories.category_id = categories.id
+        AND(books.book_title LIKE '%$request->search%' OR
+            books.book_isbn LIKE '%$request->search%' OR
+            authors.author_name LIKE '%$request->search%' OR
+            publishers.publisher_name LIKE '%$request->search%')
+        ORDER BY books.book_title ASC
+        LIMIT $max";
+
+        $books = DB::select($sql);
+        return response()->json($books,200);
+    }
+
+
 }
