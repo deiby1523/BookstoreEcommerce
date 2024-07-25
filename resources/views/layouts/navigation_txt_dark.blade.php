@@ -1,5 +1,7 @@
 <style>
 
+    /*    TODO: Mover este CSS a un archivo separado o revisar si se puede dejar */
+
     @media (min-width: 992px) {
         .dropdown-xl {
             width: 75rem;
@@ -157,9 +159,8 @@
                 </li>
                 <li class="nav-item mx-4" style="width:500px">
 
-                    <ul name="selectProduct" id="selectProduct"
-                        style="margin-top: -12px;"
-                        class="selectSearch dropdown-menu show" aria-labelledby="navbarDropdownMenuLink2">
+                    <!--  Search Bar    -->
+                    <ul name="selectProduct" id="selectProduct" style="margin-top: -12px;" class="selectSearch dropdown-menu show" aria-labelledby="navbarDropdownMenuLink2">
 
                         <div class="container mr-1 mt-1 ml-1 mb-1">
                             <div class="input-group input-group-dynamic is-filled">
@@ -177,25 +178,6 @@
 
                         </div>
                     </ul>
-
-
-                    <!--                   Version anterior del buscador-->
-
-                    <!--                    <div class="input-group input-group-dynamic">-->
-                    <!---->
-                    <!---->
-                    <!--                        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg></span>-->
-                    <!---->
-                    <!---->
-                    <!--                        <input id="searchNav" name="searchNav" type="text" class="form-control" placeholder="Buscar Libro">  TODO: arreglar el diseño del buscador -->
-                    <!---->
-                    <!--                        <div id="searchResults" name="searchResults">-->
-                    <!---->
-                    <!--                        </div>-->
-                    <!---->
-                    <!---->
-                    <!--                    </div>-->
-
 
                 </li>
             </ul>
@@ -275,54 +257,17 @@
 </nav>
 
 
-
 <!--                WARNING: NO USAR ESTE SCRIPT JAMAS EN LA VIDA                                                    -->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
 <!--    MALDITO SCRIPT DE MRD TE RECORDARE POR EL RESTO DE MI VIDA, ME HICISTE PERDER 4 HORAS VALIOSAS     >:C       -->
 
-
-
-<!-- Script para abrir y cerrar el menú -->
 
 <!--Jquery-->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script>
 
-    // $(document).ready(function () {
-    //     // Selector del botón de la hamburguesa
-    //     var $navbarToggler = $('.navbar-toggler');
-    //
-    //     // Selector del menú desplegable
-    //     var $navigation = $('#navigation');
-    //
-    //     // Manejador de eventos para el clic en el botón de la hamburguesa
-    //     $navbarToggler.on('click', function () {
-    //         // Alternar la clase 'show' en el menú desplegable
-    //         if (document.getElementById("navigation").classList.contains("show")) {
-    //             document.getElementById("navigation").classList.remove("show");
-    //         } else {
-    //             document.getElementById("navigation").classList.add("show");
-    //         }
-    //     });
-    //
-    //     // Manejador de eventos para cerrar el menú cuando se hace clic fuera de él
-    //     $(document).on('click', function (event) {
-    //         if (!$navbarToggler.is(event.target) && !$navigation.is(event.target) && $navigation.has(event.target).length === 0) {
-    //             // Si se hace clic fuera del botón de la hamburguesa y el menú, cierra el menú
-    //             $navigation.removeClass('show');
-    //         }
-    //     });
-    //
-    //
-    // });
-</script>
-<script>
-    // products
-    // Event click to display the search box
-    document.getElementById('navbar-toggler').addEventListener('click', function (event) {
-        console.log("Se hizo click en el boton");
-    });
+    // TODO: Pasar esto a un archivo JS por separado
 
     // products
     // Event click to display the search box
@@ -336,7 +281,7 @@
     // 'input' event using the debounce function
     $(document).on('input', '#searchNav', function () {
         var searchValue = $('#searchNav').val();
-        if (searchValue !== "" && searchValue!=" ") {
+        if (searchValue !== "" && searchValue != " ") {
             ProductDelayedRequest(searchValue);
         } else {
             ProductDelayedRequest(searchValue);
@@ -378,8 +323,6 @@
 
             });
     }
-
-    // TODO: Comprobar si esta funcionando el debounce
 
     // Function to implement debounce for delaying Ajax calls
     function debounce(func, delay) {

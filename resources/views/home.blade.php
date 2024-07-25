@@ -377,6 +377,7 @@
                     <div class="row mt-4"
                          style="width: 100%;  padding-right: 0;  margin-left: -1%;  margin-right: 0px; justify-content: center">
 
+<!--                        TODO: Agregar mas secciones de libros -->
 
                     </div>
 
@@ -539,7 +540,7 @@
     {{--</div>--}}
 </div>
 
-{{-- WARNING: //////////////////////////////////////////////// Be careful when changing the order of the following scripts //////////////////////////////////////////////// --}}
+<!--WARNING: //////////////////////////////////////////////// Be careful when changing the order of the following scripts ////////////////////////////////////////////////-->
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
