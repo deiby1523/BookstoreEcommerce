@@ -16,6 +16,17 @@
         }
     }
 
+    .selectSearch {
+        width: 40%;
+    }
+
+    @media (max-width: 767.98px) {
+        .selectSearch {
+            position: relative;
+            width: 60%;
+        }
+    }
+
     .dropdown-item {
         width: 95% !important;
         transition: background-color 0.2s ease, color 0.2s ease;
@@ -42,13 +53,13 @@
                  class="navbar-brand-img">
         </a>
 
-        <button class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse"
+        <button id="navbar-toggler" class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
                 aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon mt-2">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
+            <span id="navbar-toggler" class="navbar-toggler-icon mt-2">
+                <span id="navbar-toggler" class="navbar-toggler-bar bar1"></span>
+                <span id="navbar-toggler" class="navbar-toggler-bar bar2"></span>
+                <span id="navbar-toggler" class="navbar-toggler-bar bar3"></span>
             </span>
         </button>
         <div class="collapse bg-white navbar-collapse w-100 pt-3 pb-2 py-lg-0 ps-lg-5" id="navigation"
@@ -146,9 +157,8 @@
                 </li>
                 <li class="nav-item mx-4" style="width:500px">
 
-
                     <ul name="selectProduct" id="selectProduct"
-                        style="width:inherit; position: absolute; margin-top: -12px; margin-left: 5%"
+                        style="margin-top: -12px;"
                         class="selectSearch dropdown-menu show" aria-labelledby="navbarDropdownMenuLink2">
 
                         <div class="container mr-1 mt-1 ml-1 mb-1">
@@ -264,7 +274,12 @@
     </div>
 </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!--                WARNING: NO USAR ESTE SCRIPT JAMAS EN LA VIDA                                                    -->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--    MALDITO SCRIPT DE MRD TE RECORDARE POR EL RESTO DE MI VIDA, ME HICISTE PERDER 4 HORAS VALIOSAS     >:C       -->
+
 
 
 <!-- Script para abrir y cerrar el menú -->
@@ -274,43 +289,47 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script>
 
-    $(document).ready(function () {
-        // Selector del botón de la hamburguesa
-        var $navbarToggler = $('.navbar-toggler');
-
-        // Selector del menú desplegable
-        var $navigation = $('#navigation');
-
-        // Manejador de eventos para el clic en el botón de la hamburguesa
-        $navbarToggler.on('click', function () {
-            // Alternar la clase 'show' en el menú desplegable
-            if ($navigation.classList.contains("show")) {
-                $navigation.classList.remove("show");
-            } else {
-                $navigation.classList.add("show");
-            }
-        });
-
-        // Manejador de eventos para cerrar el menú cuando se hace clic fuera de él
-        $(document).on('click', function (event) {
-            if (!$navbarToggler.is(event.target) && !$navigation.is(event.target) && $navigation.has(event.target).length === 0) {
-                // Si se hace clic fuera del botón de la hamburguesa y el menú, cierra el menú
-                $navigation.removeClass('show');
-            }
-        });
-
-
-    });
+    // $(document).ready(function () {
+    //     // Selector del botón de la hamburguesa
+    //     var $navbarToggler = $('.navbar-toggler');
+    //
+    //     // Selector del menú desplegable
+    //     var $navigation = $('#navigation');
+    //
+    //     // Manejador de eventos para el clic en el botón de la hamburguesa
+    //     $navbarToggler.on('click', function () {
+    //         // Alternar la clase 'show' en el menú desplegable
+    //         if (document.getElementById("navigation").classList.contains("show")) {
+    //             document.getElementById("navigation").classList.remove("show");
+    //         } else {
+    //             document.getElementById("navigation").classList.add("show");
+    //         }
+    //     });
+    //
+    //     // Manejador de eventos para cerrar el menú cuando se hace clic fuera de él
+    //     $(document).on('click', function (event) {
+    //         if (!$navbarToggler.is(event.target) && !$navigation.is(event.target) && $navigation.has(event.target).length === 0) {
+    //             // Si se hace clic fuera del botón de la hamburguesa y el menú, cierra el menú
+    //             $navigation.removeClass('show');
+    //         }
+    //     });
+    //
+    //
+    // });
 </script>
 <script>
+    // products
+    // Event click to display the search box
+    document.getElementById('navbar-toggler').addEventListener('click', function (event) {
+        console.log("Se hizo click en el boton");
+    });
+
     // products
     // Event click to display the search box
     document.getElementById('searchNav').addEventListener('click', function (event) {
         event.preventDefault(); // Bypasses the default behavior of the select
         var searchResults = document.getElementById('searchResults');
         searchResults.classList.add('show');
-
-
     });
 
     // author
@@ -330,7 +349,6 @@
     // products
     // Event to close the search box if you click outside of it
     document.addEventListener('click', function (e) {
-        console.log(e.target.id)
         if (e.target.id !== 'searchNav') {
             var searchResults = document.getElementById('searchResults');
             $("#searchResults").html("");
@@ -341,7 +359,6 @@
     // Author
     // Ajax request according to what's in the search box
     function get_products(search) {
-        console.log(search);
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')},
             url: '{{ route('book.searchNav') }}',
