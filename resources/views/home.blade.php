@@ -10,7 +10,7 @@
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="csrf_token" content="{{ csrf_token() }}" />
+    <meta name="csrf_token" content="{{ csrf_token() }}"/>
 
     <!--     Fonts and icons   -->
     <link rel="stylesheet" type="text/css"
@@ -89,22 +89,37 @@
     </div>
     {{--End carousel--}}
 
-    {{--<div class="page-header min-vh-80" style="background-color: #ffffff">--}}
-    {{--    --}}{{--     <span class="mask bg-gradient-dark opacity-6"></span>--}}
-    {{--    <div class="container">--}}
-    {{--        <div class="row">--}}
+    {{--
+    <div class="page-header min-vh-80" style="background-color: #ffffff">--}}
+        {{-- --}}{{-- <span class="mask bg-gradient-dark opacity-6"></span>--}}
+        {{--
+        <div class="container">--}}
+            {{--
+            <div class="row">--}}
 
-    {{--            <div class="col-md-8 mx-auto">--}}
-    {{--                <div class="text-center">--}}
-    {{--                    <h1 class="text-white"></h1>--}}
-    {{--                    <h3 class="text-white"></h3>--}}
-    {{--                </div>--}}
+                {{--
+                <div class="col-md-8 mx-auto">--}}
+                    {{--
+                    <div class="text-center">--}}
+                        {{-- <h1 class="text-white"></h1>--}}
+                        {{-- <h3 class="text-white"></h3>--}}
+                        {{--
+                    </div>
+                    --}}
 
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+                    {{--
+                </div>
+                --}}
+                {{--
+            </div>
+            --}}
+            {{--
+        </div>
+        --}}
 
-    {{--</div>--}}
+        {{--
+    </div>
+    --}}
 
     {{-- Main Body --}}
 
@@ -132,14 +147,16 @@
                                 </div>
                                 <div class="col-md-5 me-lg-auto position-relative">
                                     <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
-                                        {{  "1°" }}</h4>
-                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">{{$categories[0]->category_name}}</h1>
+                                        {{ "1°" }}</h4>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
+                                        {{$categories[0]->category_name}}</h1>
                                     <p class="my-4 lead fadeIn2 fadeInBottom">
                                         {{$categories[0]->category_description}}
                                     </p>
                                     <form action="{{route('book.search2')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="category" id="category" value="{{$categories[0]->id}}">
+                                        <input type="hidden" name="category" id="category"
+                                               value="{{$categories[0]->id}}">
 
                                         <button type="submit" class="btn btn-warning">
                                             <span>Explorar!</span>
@@ -150,35 +167,37 @@
                         </div>
                     </div>
                     @for($i = 2; $i < 5; $i++)
-                        <div class="carousel-item">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-5 ms-lg-auto">
-                                        <div class="p-3">
-                                            <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
-                                                 src="{{$categories[$i-1]->category_image_url}}" alt="" loading="eager">
-                                        </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-5 ms-lg-auto">
+                                    <div class="p-3">
+                                        <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
+                                             src="{{$categories[$i-1]->category_image_url}}" alt="" loading="eager">
                                     </div>
-                                    <div class="col-md-5 me-lg-auto position-relative">
-                                        <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
-                                            {{$i."°"}}</h4>
-                                        <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">{{$categories[$i-1]->category_name}}</h1>
-                                        <p class="my-4 lead fadeIn2 fadeInBottom">
-                                            {{$categories[$i-1]->category_description}}
-                                        </p>
-                                        <form action="{{route('book.search2')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="category" id="category" value="{{$categories[$i-1]->id}}">
+                                </div>
+                                <div class="col-md-5 me-lg-auto position-relative">
+                                    <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
+                                        {{$i."°"}}</h4>
+                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
+                                        {{$categories[$i-1]->category_name}}</h1>
+                                    <p class="my-4 lead fadeIn2 fadeInBottom">
+                                        {{$categories[$i-1]->category_description}}
+                                    </p>
+                                    <form action="{{route('book.search2')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="category" id="category"
+                                               value="{{$categories[$i-1]->id}}">
 
-                                            <button type="submit" class="btn btn-warning">
-                                                <span>Explorar!</span>
-                                            </button>
-                                        </form>
+                                        <button type="submit" class="btn btn-warning">
+                                            <span>Explorar!</span>
+                                        </button>
+                                    </form>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     @endfor
 
@@ -200,24 +219,57 @@
                             <path
                                 d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
                         </svg>
-                        {{--                        <span class="sr-only">Next</span>--}}
+                        {{-- <span class="sr-only">Next</span>--}}
                     </a>
                 </div>
             </div>
             <div class="row" style="margin-top: 7rem">
                 @for($i = 0 ; $i < 4; $i++)
-                    <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
-                        <a href="javascript:;" class="text-lg text-gradient text-warning h3 ps-3 active"
-                           data-bs-target="#carousel-categories" data-bs-slide-to="{{$i}}">
-                            <span>0{{$i+1}}</span>
-                            <span class="ms-2">{{$categories[$i]->category_name}}</span>
-                        </a>
-                    </div>
+                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                    <a href="javascript:;" class="text-lg text-gradient text-warning h3 ps-3 active"
+                       data-bs-target="#carousel-categories" data-bs-slide-to="{{$i}}">
+                        <span>0{{$i+1}}</span>
+                        <span class="ms-2">{{$categories[$i]->category_name}}</span>
+                    </a>
+                </div>
 
                 @endfor
 
             </div>
         </section>
+
+
+
+            <div class="mt-10 mb-10 min-vh-90">
+                <img class="img-custom position-absolute end-0 border-radius-top-start-lg"
+                     src="https://images.unsplash.com/photo-1539803442075-48618f39bb3d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=963&amp;q=80"
+                     alt="lakeHouse" loading="lazy">
+                <div class="container">
+                    <div class="row mt-8">
+                        <div class="col-lg-8 d-flex justify-content-center flex-column">
+                            <div
+                                class="card card-body d-flex justify-content-center shadow-lg p-sm-5 blur align-items-center">
+                                <h3 style="align-self: start">Somos más que una librería</h3>
+                                <p style="font-size: large">
+                                    somos un espacio acogedor donde las historias cobran vida y la pasión por la lectura
+                                    se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás
+                                    tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
+                                    exigentes. Nuestra librería es un refugio para los amantes de la lectura, un lugar
+                                    donde la calidad, la diversidad y la inspiración se entrelazan.
+                                </p>
+                                <br>
+                                <h3 style="align-self: end">Articulos religiosos</h3>
+                                <p style="text-align: right">
+                                    No solo ofrecemos libros, también disponemos de una amplia gama de productos para
+                                    enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
+                                    imágenes religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de
+                                    las creencias.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <section class="py-5">
             <div class="container-fluid">
@@ -330,44 +382,45 @@
                 <div id="latestBooks" class="book-horizontal-slider">
                     <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
                         @forelse($latestBooks as $book)
-                                <div class="card mb-5 mt-2 mx-3 shadow-lg">
-                                    <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                        <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
-                                            <img loading='eager' src="{{asset($book->book_image_url)}}"
-                                                 alt="img-blur-shadow"
-                                                 class="img-fluid border-radius-lg">
-                                        </a>
-                                        <div class="colored-shadow"
-                                             style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">{{$book->subcategory_name}}</p>
-                                        <h5 class="font-weight-bold mt-3">
-                                            <a class="link-dark" href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
-                                        </h5>
-                                        <p class="mb-0 text-left">
-                                            {{$book->author_name}}
-                                        </p>
-                                    </div>
-                                    <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                        <div class="row w-100">
-                                            <div class="col">
-                                                <p class="font-weight-normal my-auto">
-                                                    $ {{number_format($book->book_price)}}</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                        @empty
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
-                                        este
-                                        momento.</p>
-                                </div>
+                        <div class="card mb-5 mt-2 mx-3 shadow-lg">
+                            <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
+                                <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
+                                    <img loading='eager' src="{{asset($book->book_image_url)}}"
+                                         alt="img-blur-shadow"
+                                         class="img-fluid border-radius-lg">
+                                </a>
+                                <div class="colored-shadow"
+                                     style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
                             </div>
+                            <div class="card-body">
+                                <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
+                                    {{$book->subcategory_name}}</p>
+                                <h5 class="font-weight-bold mt-3">
+                                    <a class="link-dark" href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
+                                </h5>
+                                <p class="mb-0 text-left">
+                                    {{$book->author_name}}
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                <div class="row w-100">
+                                    <div class="col">
+                                        <p class="font-weight-normal my-auto">
+                                            $ {{number_format($book->book_price)}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @empty
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                    este
+                                    momento.</p>
+                            </div>
+                        </div>
                         @endforelse
 
                     </div>
@@ -377,21 +430,25 @@
                     <div class="row mt-4"
                          style="width: 100%;  padding-right: 0;  margin-left: -1%;  margin-right: 0px; justify-content: center">
 
-<!--                        TODO: Agregar mas secciones de libros -->
+                        <!--                        TODO: Agregar mas secciones de libros -->
 
                     </div>
 
                 </div>
             </div>
         </section>
+
+
     </div>
+    <br><br><br>
 </div>
 
 <!--WARNING: //////////////////////////////////////////////// Be careful when changing the order of the following scripts ////////////////////////////////////////////////-->
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script> {{--Important--}}
+<script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
+{{--Important--}}
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('js/home.js')}}" type="text/javascript"></script>
 

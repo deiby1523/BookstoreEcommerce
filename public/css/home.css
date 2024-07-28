@@ -89,3 +89,15 @@ div.loading {
     }
 }
 
+.img-custom {
+    width: 40%;
+    border-radius: 10px 0px 0px 10px
+}
+
+@media (max-width: 750px) {
+    .img-custom {
+        border-radius: 10px;
+        width: 100%;
+    }
+}
+
