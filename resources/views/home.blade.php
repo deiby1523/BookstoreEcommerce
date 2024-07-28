@@ -1,6 +1,6 @@
 <!doctype html>
 <!--suppress ALL -->
-<html lang="es" id="html" class="loading">
+<html lang="es" id="html" class="loading" xmlns:a="http://www.w3.org/1999/html">
 
 
 <head>
@@ -240,17 +240,16 @@
 
 
 
-            <div class="mt-10 mb-10 min-vh-90">
+            <div class="my-8">
                 <img class="img-custom position-absolute end-0 border-radius-top-start-lg"
-                     src="https://images.unsplash.com/photo-1539803442075-48618f39bb3d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=963&amp;q=80"
+                     src="{{asset('img/bg-16.jpg')}}"
                      alt="lakeHouse" loading="lazy">
                 <div class="container">
                     <div class="row mt-8">
                         <div class="col-lg-8 d-flex justify-content-center flex-column">
-                            <div
-                                class="card card-body d-flex justify-content-center shadow-lg p-sm-5 blur align-items-center">
+                            <div class="card card-body d-flex justify-content-center shadow-lg p-sm-5 blur align-items-center">
                                 <h3 style="align-self: start">Somos más que una librería</h3>
-                                <p style="font-size: large">
+                                <p class="p-custom">
                                     somos un espacio acogedor donde las historias cobran vida y la pasión por la lectura
                                     se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás
                                     tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
@@ -258,13 +257,7 @@
                                     donde la calidad, la diversidad y la inspiración se entrelazan.
                                 </p>
                                 <br>
-                                <h3 style="align-self: end">Articulos religiosos</h3>
-                                <p style="text-align: right">
-                                    No solo ofrecemos libros, también disponemos de una amplia gama de productos para
-                                    enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y hermosas
-                                    imágenes religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de
-                                    las creencias.
-                                </p>
+                                <a class="btn btn-warning" href="#">Conoce más</a>
                             </div>
                         </div>
                     </div>
@@ -273,53 +266,9 @@
 
         <section class="py-5">
             <div class="container-fluid">
-                <div class="row mt-4">
-                    <div class="col-lg-6" style="margin-left: 10%;max-width: 600px;">
-                        <h1 class="mb-4">Somos más que una librería</h1>
-                        <p class="mb-2" style="font-size: 20px">somos un espacio acogedor donde las historias cobran
-                            vida y la pasión por
-                            la lectura se fusiona con la excelencia. En cada rincón de nuestro establecimiento,
-                            encontrarás
-                            tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
-                            exigentes.
-                            Nuestra librería es un refugio para los amantes de la lectura, un lugar donde la
-                            calidad, la
-                            diversidad y la inspiración se entrelazan. <br><br>Lo que nos distingue:<br></p>
-                        <ul class="m-lg-2 m-auto" style="font-size: 20px">
-                            <li class="mb-2" style="font-size: 20px">Cuidada selección: <p style="font-size: 17px">
-                                    Cada
-                                    libro en nuestras
-                                    estanterías ha pasado por un riguroso proceso de selección, asegurando solo lo
-                                    mejor
-                                    para nuestros lectores.</p></li>
-                            <li class="mb-2" style="font-size: 20px">Asesoramiento personalizado: <p
-                                    style="font-size: 17px">¿Necesitas
-                                    ayuda para encontrar tu próximo libro favorito? Nuestro equipo amante de la
-                                    lectura
-                                    está
-                                    aquí para ofrecerte recomendaciones personalizadas y guiar tu búsqueda.</p></li>
-                        </ul>
-                        <br>
-                        <p style="font-size: 20px">Únete a nosotros y déjate llevar por la experiencia única que
-                            ofrecemos. En
-                            nuestra librería, la calidad literaria se combina con la calidez de un entorno pensado
-                            para
-                            los
-                            verdaderos amantes de los libros. ¡Te esperamos para compartir contigo el placer de la
-                            lectura!"</p><br>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <img style="margin-left: 4rem"
-                             class="desktopBanner border-radius-lg shadow-lg w-50"
-                             src="{{asset('img/bg13.jpg')}}" alt="">
-                        <img
-                            class="phoneBanner border-radius-lg shadow-lg w-100"
-                            src="{{asset('img/bg13.jpg')}}" alt="">
 
-                    </div>
-                </div>
 
-                <div class="row flex mx-0 mt-4" style="justify-content: center">
+                <div class="row flex mx-0" style="justify-content: center">
 
                     <div class="col-lg-10">
 
@@ -332,7 +281,7 @@
                                      src="{{asset('img/picture5.jpg')}}" alt="">
                             </div>
                             <div class="col-lg-6">
-                                <p style="font-size: 20px">No solo ofrecemos libros, también disponemos de una amplia
+                                <p class="p-custom">No solo ofrecemos libros, también disponemos de una amplia
                                     gama
                                     de
                                     productos

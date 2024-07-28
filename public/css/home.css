@@ -90,14 +90,26 @@ div.loading {
 }
 
 .img-custom {
-    width: 40%;
+    width: 50%;
     border-radius: 10px 0px 0px 10px
 }
 
-@media (max-width: 750px) {
+@media (max-width: 990px) {
     .img-custom {
         border-radius: 10px;
         width: 100%;
     }
 }
+
+.p-custom {
+    font-size: x-large;
+}
+
+@media (max-width: 1400px) {
+    .p-custom {
+        font-size: medium;
+    }
+}
+
+
 
