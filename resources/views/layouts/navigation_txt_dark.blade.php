@@ -315,7 +315,9 @@
                 var resultsList = ""; // Create a variable to store the list of results
                 books.forEach(function (book) {
                     // Add a data attribute with the value of the book to the <a> element.
-                    resultsList += `<li style="cursor: default;"><a class='dropdown-item'><div class="row"><div class="col-3"> <img style="width: 90%; border-radius: 10px" src="{{asset('${book.book_image_url}')}}" alt=""></div> <div class="col-6" style="white-space: normal; align-content: center; font-size: large"> ${book.book_title}</div></div></a></li>`;
+                    resultsList += `<li style="cursor: default;"><a href="/book/view/${book.id}" class='dropdown-item' style='margin: auto;border-radius: 10px;'><div class="row"><div class="col-sm-1" style="align-content: center;"> <img style="width: 100%; border-radius: 10px" src="{{asset('${book.book_image_url}')}}" alt=""></div> <div class="col-11" style="white-space: normal; align-content: center; font-size: large"> ${book.book_title}</div></div></a></li>`;
+
+
                 });
 
                 // Insert the complete list of results in #searchResults after all products have been processed

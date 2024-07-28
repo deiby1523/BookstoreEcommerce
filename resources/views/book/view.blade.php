@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>{{$book->book_name}}</title>
+    <title>{{$book->book_title}}</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
