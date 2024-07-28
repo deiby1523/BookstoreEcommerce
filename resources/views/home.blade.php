@@ -239,30 +239,30 @@
         </section>
 
 
-
-            <div class="my-8">
-                <img class="img-custom position-absolute end-0 border-radius-top-start-lg"
-                     src="{{asset('img/bg-16.jpg')}}"
-                     alt="lakeHouse" loading="lazy">
-                <div class="container">
-                    <div class="row mt-8">
-                        <div class="col-lg-8 d-flex justify-content-center flex-column">
-                            <div class="card card-body d-flex justify-content-center shadow-lg p-sm-5 blur align-items-center">
-                                <h3 style="align-self: start">Somos más que una librería</h3>
-                                <p class="p-custom">
-                                    somos un espacio acogedor donde las historias cobran vida y la pasión por la lectura
-                                    se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás
-                                    tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
-                                    exigentes. Nuestra librería es un refugio para los amantes de la lectura, un lugar
-                                    donde la calidad, la diversidad y la inspiración se entrelazan.
-                                </p>
-                                <br>
-                                <a class="btn btn-warning" href="#">Conoce más</a>
-                            </div>
+        <div class="my-8">
+            <img class="img-custom position-absolute end-0 border-radius-top-start-lg"
+                 src="{{asset('img/bg-16.jpg')}}"
+                 alt="lakeHouse" loading="lazy">
+            <div class="container">
+                <div class="row mt-8">
+                    <div class="col-lg-8 d-flex justify-content-center flex-column">
+                        <div
+                            class="card card-body d-flex justify-content-center shadow-lg p-sm-5 blur align-items-center">
+                            <h3 style="align-self: start">Somos más que una librería</h3>
+                            <p class="p-custom">
+                                somos un espacio acogedor donde las historias cobran vida y la pasión por la lectura
+                                se fusiona con la excelencia. En cada rincón de nuestro establecimiento, encontrarás
+                                tesoros literarios cuidadosamente seleccionados para satisfacer los gustos más
+                                exigentes. Nuestra librería es un refugio para los amantes de la lectura, un lugar
+                                donde la calidad, la diversidad y la inspiración se entrelazan.
+                            </p>
+                            <br>
+                            <a class="btn btn-warning" href="#">Conoce más</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <section class="py-5">
             <div class="container-fluid">
@@ -322,10 +322,11 @@
 
         </div>
 
+
         <section class="py-5">
             <div class="container-fluid">
                 <div class="row">
-                    <h1 class="mb-2 text-center">Ultimas Novedades</h1>
+                    <h1 class="mb-2 text-center">Ultimas novedades</h1>
                     <p class="mb-0 text-center" style="font-size: 20px">Libros recientemente añadidos</p>
                 </div>
                 <div id="latestBooks" class="book-horizontal-slider">
@@ -374,18 +375,121 @@
 
                     </div>
                 </div>
-
+            </div>
+        </section>
+        <section class="py-5">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="row mt-4"
-                         style="width: 100%;  padding-right: 0;  margin-left: -1%;  margin-right: 0px; justify-content: center">
+                    <h1 class="mb-2 text-center">Más vendidos</h1>
+                    <p class="mb-0 text-center" style="font-size: 20px">Libros más solicitados por nuestros clientes</p>
+                </div>
+                <div id="latestBooks" class="book-horizontal-slider">
+                    <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
+                        @forelse($sellingBooks as $book)
+                        <div class="card mb-5 mt-2 mx-3 shadow-lg">
+                            <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
+                                <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
+                                    <img loading='eager' src="{{asset($book->book_image_url)}}"
+                                         alt="img-blur-shadow"
+                                         class="img-fluid border-radius-lg">
+                                </a>
+                                <div class="colored-shadow"
+                                     style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
+                                    {{$book->subcategory_name}}</p>
+                                <h5 class="font-weight-bold mt-3">
+                                    <a class="link-dark" href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
+                                </h5>
+                                <p class="mb-0 text-left">
+                                    {{$book->author_name}}
+                                </p>
+                            </div>
+                            <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                <div class="row w-100">
+                                    <div class="col">
+                                        <p class="font-weight-normal my-auto">
+                                            $ {{number_format($book->book_price)}}</p>
+                                    </div>
+                                </div>
 
-                        <!--                        TODO: Agregar mas secciones de libros -->
+                            </div>
+                        </div>
+                        @empty
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                    este
+                                    momento.</p>
+                            </div>
+                        </div>
+                        @endforelse
 
                     </div>
-
                 </div>
             </div>
         </section>
+        <section class="py-5">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-lg-8 text-center mx-auto">
+                        <p class="mb-1 text-success text-uppercase font-weight-bold">Our Work</p>
+                        <h3>Some of our awesome projects - 1</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 position-relative">
+                        <img class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover" src="{{asset('img/testimonial-6-2.jpg')}}">
+
+                        <p class="blockquote border border-success rounded w-50 p-3 text-sm text-success float-md-end mx-auto mt-4 me-md-n2">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very
+                            slightly"
+                            <br>
+                            <br>
+                            <small>-NOAA</small>
+                        </p>
+
+                    </div>
+                    <div class="col-md-5">
+                        <!-- First image on the right side, above the article -->
+                        <img class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover" src="{{asset('img/content-5.jpg')}}">
+                        <div class="px-4">
+                            <p class="text-gradient text-success">Design</p>
+                            <h3 class="mb-4">Jeff Bezos</h3>
+                            <p>
+                                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-6 position-relative">
+                        <img class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover" src="../../assets/img/examples/content-4.jpg">
+                        <p class="blockquote border border-primary rounded w-50 p-3 text-sm text-primary float-md-end mt-4 me-md-n2 mx-auto">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very
+                            slightly"
+                            <br>
+                            <br>
+                            <small>-NOAA</small>
+                        </p>
+
+                    </div>
+                    <div class="col-md-5">
+                        <!-- First image on the right side, above the article -->
+                        <img class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover" src="../../assets/img/examples/testimonial-6-3.jpg">
+                        <div class="px-4">
+                            <p class="text-gradient text-primary">Development</p>
+                            <h3 class="mb-4">Mike Alfonso</h3>
+                            <p>
+                                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END Project section w/ 3 images & quote & text -->
+
 
 
     </div>

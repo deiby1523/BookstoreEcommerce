@@ -223,6 +223,7 @@ class BookController extends Controller
         if (isset($request->subcategory)) {
             $subcategorySelected = Subcategory::findOrFail($request->subcategory);
         }
+
         $categories = Category::all();
         $sql = 'SELECT
         books.id,
