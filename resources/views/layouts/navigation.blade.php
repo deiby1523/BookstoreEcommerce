@@ -41,6 +41,11 @@
                                     <a href="#" class="dropdown-item border-radius-md">
                                         <span>Productos</span>
                                     </a>
+                                    <a href="{{ route('dashboard.interface') }}" class="dropdown-item border-radius-md">
+                                        <span>Interfaz</span>
+                                    </a>
+
+
 
                                 @endif
 
