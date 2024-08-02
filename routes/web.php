@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InterfaceDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\ShoppingCartController;
@@ -46,6 +48,13 @@ Route::delete('/cart/remove/{cartId}', [ShoppingCartController::class, 'removeFr
 Route::middleware('UserAdmin')->group(function () {
     // Dashboards
     Route::get('/dashboard/books', [BookDashboardController::class, 'index'])->name('dashboard.books');
+    Route::get('/dashboard/interface', [InterfaceDashboardController::class, 'index'])->name('dashboard.interface');
+
+
+    //Featured types
+    Route::get('/Featured', [FeaturedController::class, 'index'])->name('featured.index');
+    Route::get('/featured/create',[FeaturedController::class,'create'])->name('featured.create');
+    Route::post('/featured/save', [FeaturedController::class, 'save'])->name('featured.save');
 
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
