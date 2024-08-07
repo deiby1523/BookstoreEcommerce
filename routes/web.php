@@ -43,6 +43,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/Featured', [FeaturedController::class, 'index'])->name('featured.index');
     Route::get('/featured/create',[FeaturedController::class,'create'])->name('featured.create');
     Route::post('/featured/save', [FeaturedController::class, 'save'])->name('featured.save');
+    Route::get('/Featured/edit/{featured}', [FeaturedController::class, 'edit'])->name('featured.edit');
+
 
 //    TODO: Para continuar con el desarrollo de los destacados
 

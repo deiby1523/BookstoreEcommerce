@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\FeaturedType;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class FeaturedController extends Controller
@@ -36,5 +37,10 @@ class FeaturedController extends Controller
 
 
         return redirect()->route('featured.index')->with('success', 'Seccion destacada creada exitosamente.');
+    }
+
+    public function edit($id) : View {
+        $featured = FeaturedType::findOrFail($id);
+        return view('featured.edit',compact('featured'));
     }
 }

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 
-<!-- TODO: Para continuar con el desarrollo de los detacados -->
+<!-- TODO: continuar trabajando en el modulo de destacados -->
 
 <head>
     <title>Ecommerce</title>
