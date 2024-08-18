@@ -43,4 +43,31 @@ class FeaturedController extends Controller
         $featured = FeaturedType::findOrFail($id);
         return view('featured.edit',compact('featured'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'featured_type_name' => 'required | min:3 | max : 60',
+            'featured_type_description' => 'required | min:3'
+        ]);
+
+        $featured = FeaturedType::findOrFail($id);
+
+        $featured->update([
+            'featured_type_name' => $request->featured_type_name,
+            'featured_type_description' => $request->featured_type_description,
+            'active' => ($request->active == 'on'),
+            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+        ]);
+
+        return redirect()->route('featured.index')->with('success', 'Sección destacada actualizada exitosamente.');
+    }
+
+    public function delete($id)
+    {
+        $featured = FeaturedType::findOrFail($id);
+        $featured->delete();
+
+        return redirect()->route('featured.index')->with('success', 'Sección destacada eliminada exitosamente.');
+    }
 }

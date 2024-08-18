@@ -129,7 +129,7 @@ $nfeatured = count($featured_types);
                                             Visualizar
                                         </a>
 
-                                        <a href=""
+                                        <a href="{{ route('featured.edit',$featured->id) }}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit user">
                                             Editar
@@ -138,7 +138,7 @@ $nfeatured = count($featured_types);
 
                                         <a href="" class="text-secondary font-weight-normal "
                                            data-bs-toggle="modal" data-bs-target="#deleteConfirm{{$featured->id}}"
-                                           data-toggle="tooltip" data-original-title="Delete user">
+                                           data-toggle="tooltip" data-original-title="Delete featured">
                                             Eliminar
                                         </a>
 
@@ -163,7 +163,7 @@ $nfeatured = count($featured_types);
                                                             data-bs-dismiss="modal">Cancelar
                                                     </button>
                                                     <form method="POST"
-                                                          action="">
+                                                          action="{{ route('featured.delete',$featured->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn bg-gradient-danger mb-0">

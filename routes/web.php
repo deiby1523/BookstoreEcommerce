@@ -40,17 +40,16 @@ Route::middleware('UserAdmin')->group(function () {
 
 
     //Featured types
-    Route::get('/Featured', [FeaturedController::class, 'index'])->name('featured.index');
+    Route::get('/featured', [FeaturedController::class, 'index'])->name('featured.index');
     Route::get('/featured/create',[FeaturedController::class,'create'])->name('featured.create');
     Route::post('/featured/save', [FeaturedController::class, 'save'])->name('featured.save');
-    Route::get('/Featured/edit/{featured}', [FeaturedController::class, 'edit'])->name('featured.edit');
+    Route::get('/featured/edit/{featured}', [FeaturedController::class, 'edit'])->name('featured.edit');
+    Route::put('/featured/update/{featured}',[FeaturedController::class,'update'])->name('featured.update');
+    Route::delete('/featured/delete/{featured}', [FeaturedController::class, 'delete'])->name('featured.delete');
+
 
 
 //    TODO: Para continuar con el desarrollo de los destacados
-
-    Route::get('/featured/edit/{featured}', [CategoryfeaturedController::class, 'edit'])->name('featured.edit');
-    Route::put('/featured/update/{featured}', [CategoryfeaturedController::class, 'update'])->name('featured.update');
-    Route::get('/featured/show/{featured}', [CategoryfeaturedController::class, 'show'])->name('featured.show');
 
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
