@@ -70,4 +70,10 @@ class FeaturedController extends Controller
 
         return redirect()->route('featured.index')->with('success', 'Sección destacada eliminada exitosamente.');
     }
+
+    public function show($id)
+    {
+        $featured = FeaturedType::findOrFail($id);
+        return view('featured.show', compact('featured'));
+    }
 }

@@ -1,10 +1,8 @@
 <!doctype html>
 <html lang="es">
 
-<!-- TODO: Para continuar con el desarrollo de los destacados -->
-
 <head>
-    <title>Ecommerce</title>
+    <title>Destacado</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
@@ -22,7 +20,7 @@
 
 <body>
 <!-- Navbar Transparent -->
-@include('layouts.navigation_txt_dark')
+@include('layouts.navigation')
 <!-- End Navbar -->
 
 
@@ -32,7 +30,7 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('category.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('featured.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                 </svg>Volver
             </a>
@@ -41,7 +39,7 @@
     <div class="container">
         <div class="section text-left my-4">
 
-            <h2 class="title">Ver Categoria</h2>
+            <h2 class="title">Ver Destacado</h2>
 
             <div class="card">
 
@@ -56,40 +54,19 @@
                     <div class="card-body pb-2">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h2>{{$category->category_name}}</h2>
-                                <div class="display-4 text-md">Creada el {{$category->created_at}} y última vez
-                                    actualizada el {{$category->updated_at}}</div><br>
-                                <p>{{$category->category_description}}</p>
+                                <h2>{{$featured->featured_type_name}}</h2>
+                                <div class="display-4 text-md">Creado el {{$featured->created_at}} y última vez
+                                    actualizada el {{$featured->updated_at}}</div><br>
+                                <p>{{$featured->featured_type_description}}</p>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        @if(count($category->subcategories) > 0)
-                                            <br>
-                                            <h4> Subcategorias </h4>
-                                            <ul class="list-group">
-                                                @foreach($category->subcategories as $subcategory)
-                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                        {{$subcategory->subcategory_name}}
-                                                        <span data-bs-toggle="tooltip" data-bs-placement="left"
-                                                              title="Esta subcategoria tiene {{count($subcategory->books)}} libros"
-                                                              class="badge bg-gradient-warning">{{count($subcategory->books)}}</span>
-                                                    </li>
 
-                                                @endforeach
-                                            </ul>
-                                        @else
-                                            <p class="display-4" style="font-size: x-large"> No existen
-                                                subcategorias para esta
-                                                categoria.</p>
-                                        @endif
                                     </div>
 
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 text-center">
-                                <img id="category_img" class="border-radius-lg w-65"
-                                     src="{{asset($category->category_image_url)}}" alt="Imagen de categoria">
-                            </div>
+
                         </div>
 
 
@@ -97,7 +74,7 @@
 
                         <div class="row">
                             <div class="col-md-12 text-start">
-                                <a href="{{route('category.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
+                                <a href="{{route('featured.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Volver
                                 </a>
                             </div>
 

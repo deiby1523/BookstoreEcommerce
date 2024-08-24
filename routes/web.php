@@ -46,6 +46,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/featured/edit/{featured}', [FeaturedController::class, 'edit'])->name('featured.edit');
     Route::put('/featured/update/{featured}',[FeaturedController::class,'update'])->name('featured.update');
     Route::delete('/featured/delete/{featured}', [FeaturedController::class, 'delete'])->name('featured.delete');
+    Route::get('/featured/show/{featured}',[FeaturedController::class,'show'])->name('featured.show');
 
 
 

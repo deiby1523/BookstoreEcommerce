@@ -123,7 +123,7 @@ $nfeatured = count($featured_types);
                                     <td class="align-middle" style="text-align: center;">
 
 
-                                        <a href=""
+                                        <a href="{{ route('featured.show',$featured->id) }}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit user">
                                             Visualizar
