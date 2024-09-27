@@ -26,14 +26,19 @@
 <!-- End Navbar -->
 
 <div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
+    {{-- <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('featured.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>Volver
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('featured.index')}}"
+               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
+                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>
+                Volver
             </a>
         </div>
     </div>
@@ -55,16 +60,16 @@
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
                                         @if(count($errors->get('category_name')) >= 1)
-                                            <input value="{{featured->featured_type_name}}" name="featured_type_name"
-                                                   id="featured_type_name" class="form-control"
-                                                   placeholder="Nombre de la sección destacada" aria-label="Full Name"
-                                                   type="text"
-                                                   style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">
+                                        <input value="{{featured->featured_type_name}}" name="featured_type_name"
+                                               id="featured_type_name" class="form-control"
+                                               placeholder="Nombre de la sección destacada" aria-label="Full Name"
+                                               type="text"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">
                                         @else
-                                            <input value="{{$featured->featured_type_name}}" name="featured_type_name"
-                                                   id="featured_type_name" class="form-control"
-                                                   placeholder="Nombre de la sección destacada" aria-label="Full Name"
-                                                   type="text">
+                                        <input value="{{$featured->featured_type_name}}" name="featured_type_name"
+                                               id="featured_type_name" class="form-control"
+                                               placeholder="Nombre de la sección destacada" aria-label="Full Name"
+                                               type="text">
                                         @endif
                                     </div>
                                     <x-input-error class="text-danger"
@@ -75,13 +80,16 @@
                             <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
                                 <label>Descripción</label>
                                 @if(count($errors->get('featured_name_description')) >= 1)
-                                    <textarea name="featured_type_description" class="form-control" id="featured_type_description"
-                                              rows="6"
-                                              placeholder="Una descripcion breve de la sección de destacados" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{$featured->featured_type_description}}</textarea>
+                                <textarea name="featured_type_description" class="form-control"
+                                          id="featured_type_description"
+                                          rows="6"
+                                          placeholder="Una descripcion breve de la sección de destacados"
+                                          style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{$featured->featured_type_description}}</textarea>
                                 @else
-                                    <textarea name="featured_type_description" class="form-control" id="featured_type_description"
-                                              rows="6"
-                                              placeholder="Una descripcion breve de la sección de destacados">{{$featured->featured_type_description}}</textarea>
+                                <textarea name="featured_type_description" class="form-control"
+                                          id="featured_type_description"
+                                          rows="6"
+                                          placeholder="Una descripcion breve de la sección de destacados">{{$featured->featured_type_description}}</textarea>
                                 @endif
                             </div>
                             <x-input-error class="text-danger"
@@ -93,9 +101,131 @@
                                 @else
                                 <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
                                 @endif
-                                <label class="form-check-label" for="active">Activado</label>
+                                <label class="form-check-label" for="active">Activado</label> <!-- TODO: Arreglar lo del check activado -->
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <h4>
+                                        Libros
+                                    </h4>
+                                </div>
+                                <div class="col-8">
+                                    <div class="input-group input-group-static mb-4" style="width: inherit; right: -30%">
+                                        <input readonly="readonly" name="author_name" id="author_name"
+                                               placeholder="Seleccione un autor" class="form-control w-70"/>
+                                        <input name="author_id" id="author_id" hidden>
+
+                                        <ul name="selectAuthor" id="selectAuthor"
+                                            style="width:-webkit-fill-available; position: absolute"
+                                            class="mt-6 card selectSearch dropdown-menu"
+                                            aria-labelledby="navbarDropdownMenuLink2">
+
+                                            <div class="container mr-1 mt-1 ml-1 mb-1">
+                                                <div class="input-group input-group-dynamic">
+                                                <span class="input-group-text" id="basic-addon1"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path
+                                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></span>
+                                                    <input id="searchAuthor" name="searchAuthor" type="text"
+                                                           class="form-control" placeholder="Buscar autor"
+                                                           aria-label="Username" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
+                                            <div id="authorOptions" name="authorOptions">
+
+                                            </div>
+                                        </ul>
+
+                                    </div>
+
+                                </div>   <!-- TODO: Continuar trabajando para poder añadir libros a los destacados, mirar ERP -->
+                                <div class="col-2">
+                                    <a style="float: right;" class="btn btn-outline-success" href="">Agregar Libro</a>
+                                </div>
+                            </div>
+                            <div class="card mb-5"> <!-- TODO: Todo este fragmento de codigo no es responsive -->
+                                <div class="table-responsive">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                                Codigo
+                                            </th>
+                                            <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                                Nombre
+                                            </th>
+                                            <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                                Imagen
+                                            </th>
+                                            <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+
+                                            </th>
+                                            <th class="text-secondary opacity-7"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="align-middle text-center ">
+                                                <p class=" mb-0">8349038904890</p>
+                                            </td>
+                                            <td>
+                                                <p class=" mb-0"> Un libro con un nombre cualquiera </p>
+                                            </td>
+
+                                            <td>
+                                                <p class=" mb-0"> (Imagen del libro) </p>
+                                            </td>
+
+                                            <td class="align-middle" style="text-align: center;">
+                                                <a href="" class="btn btn-sm btn-outline-danger"
+                                                   data-bs-toggle="modal"
+                                                   data-toggle="tooltip" data-original-title="Delete featured">
+                                                    Eliminar
+                                                </a>
+                                                <!--                                                data-bs-target="#deleteConfirm{{$featured->id}}"-->
+                                            </td>
+                                            <!--                                            <div class="modal fade" id="deleteConfirm{{$featured->id}}" tabindex="-1"-->
+                                            <!--                                                 aria-labelledby="deleteConfirm{{$featured->id}}" aria-hidden="true">-->
+                                            <!--                                                <div class="modal-dialog" style="margin-top: 10rem;">-->
+                                            <!--                                                    <div class="modal-content">-->
+                                            <!--                                                        <div class="modal-header">-->
+                                            <!--                                                            <h5 class="modal-title" id="exampleModalLabel">-->
+                                            <!--                                                                Confirmacion</h5>-->
+                                            <!--                                                            <button type="button" class="btn-close"-->
+                                            <!--                                                                    data-bs-dismiss="modal"-->
+                                            <!--                                                                    aria-label="Close"></button>-->
+                                            <!--                                                        </div>-->
+                                            <!--                                                        <div class="modal-body">-->
+                                            <!--                                                            Esta seguro que desea eliminar la seccion de libros-->
+                                            <!--                                                            destacados-->
+                                            <!--                                                            '{{ $featured->featured_type_name }}' ?-->
+                                            <!--                                                            <br><br>-->
+                                            <!--                                                            Esta accion es irreversible.-->
+                                            <!--                                                        </div>-->
+                                            <!--                                                        <div class="modal-footer justify-content-between">-->
+                                            <!--                                                            <button type="button" class="btn bg-gradient-dark mb-0"-->
+                                            <!--                                                                    data-bs-dismiss="modal">Cancelar-->
+                                            <!--                                                            </button>-->
+                                            <!--                                                            <form method="POST"-->
+                                            <!--                                                                  action="{{ route('featured.delete',$featured->id) }}">-->
+                                            <!--                                                                @csrf-->
+                                            <!--                                                                @method('DELETE')-->
+                                            <!--                                                                <button type="submit"-->
+                                            <!--                                                                        class="btn bg-gradient-danger mb-0">-->
+                                            <!--                                                                    Eliminar-->
+                                            <!--                                                                </button>-->
+                                            <!--                                                            </form>-->
+                                            <!--                                                        </div>-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <div class="row">
