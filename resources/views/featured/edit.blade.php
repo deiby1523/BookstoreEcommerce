@@ -59,8 +59,8 @@
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">
                                         <label>Nombre</label>
-                                        @if(count($errors->get('category_name')) >= 1)
-                                        <input value="{{featured->featured_type_name}}" name="featured_type_name"
+                                        @if(count($errors->get('featured_type_name')) >= 1)
+                                        <input value="{{$featured->featured_type_name}}" name="featured_type_name"
                                                id="featured_type_name" class="form-control"
                                                placeholder="Nombre de la sección destacada" aria-label="Full Name"
                                                type="text"
