@@ -97,11 +97,19 @@
 
                             <div class="form-check form-switch py-5">
                                 @if(count($errors->get('active')) >= 1)
-                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                    @if($featured->active)
+                                        <input class="form-check-input checked:true" type="checkbox" id="active" name="active" checked>
+                                    @else
+                                        <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                    @endif
                                 @else
-                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                    @if($featured->active)
+                                        <input class="form-check-input checked:true" type="checkbox" id="active" name="active" checked>
+                                    @else
+                                        <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                    @endif
                                 @endif
-                                <label class="form-check-label" for="active">Activado</label> <!-- TODO: Arreglar lo del check activado -->
+                                <label class="form-check-label" for="active">Activado</label>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>
