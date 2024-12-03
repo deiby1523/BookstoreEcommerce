@@ -6,8 +6,6 @@
         event.preventDefault(); // Bypasses the default behavior of the select
         var selectAuthor = document.getElementById('selectAuthor');
         selectAuthor.classList.add('show');
-
-
     });
 
     // publisher
@@ -16,8 +14,6 @@
         event.preventDefault(); // Bypasses the default behavior of the select
         var selectPublisher = document.getElementById('selectPublisher');
         selectPublisher.classList.add('show');
-
-
     });
 
     // author

@@ -297,7 +297,7 @@ class BookController extends Controller
 
     public function searchNav(Request $request): JsonResponse
     {
-        $max = 8;   // limite de libros para mostrar
+        $max = 8;   // límite de libros para mostrar
 
         if($request->search == "" || $request->search == " ") {
             $max = 0;   // si la cadena de busqueda esta vacia no devuelve nada
