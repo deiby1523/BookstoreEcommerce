@@ -48,6 +48,9 @@
         }
     });
 
+
+    // TODO: arreglar esta petición, crear nuevos métodos si hace falta
+
     // Book
     // Ajax request according to what's in the search box
     function get_books(search) {
