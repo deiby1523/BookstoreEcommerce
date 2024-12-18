@@ -47,10 +47,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/featured/update/{featured}',[FeaturedController::class,'update'])->name('featured.update');
     Route::delete('/featured/delete/{featured}', [FeaturedController::class, 'delete'])->name('featured.delete');
     Route::get('/featured/show/{featured}',[FeaturedController::class,'show'])->name('featured.show');
-
-
-
-//    TODO: Para continuar con el desarrollo de los destacados
+    Route::post('/featured/searchBook', [FeaturedController::class, 'searchBook'])->name('featured.searchBook');
 
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

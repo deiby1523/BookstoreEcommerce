@@ -49,14 +49,16 @@
     });
 
 
-    // TODO: arreglar esta petición, crear nuevos métodos si hace falta
-
     // Book
     // Ajax request according to what's in the search box
     function get_books(search) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            }
+        });
         $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            url: '{{ route('book.searchNav') }}',
+            url: '{{ route('featured.searchBook') }}',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -68,7 +70,7 @@
                 var resultsList = ""; // Create a variable to store the list of results
                 books.forEach(function (book) {
                     // Add a data attribute with the value of the author to the <a> element.
-                    // resultsList += `<li style="cursor: default;"><a class='dropdown-item' data-book-id="${book.id}" data-book-title="${book.book_title}">${book.book_title}</a></li>`;
+                    resultsList += `<li style="cursor: default;"><a class='dropdown-item' data-book-id="${book.id}" data-book-title="${book.book_title}">${book.book_title}</a></li>`;
                 });
 
                 // Insert the complete list of results in #authorOptions after all authors have been processed

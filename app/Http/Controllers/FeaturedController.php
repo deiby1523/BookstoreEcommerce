@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\FeaturedType;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FeaturedController extends Controller
 {
@@ -75,5 +77,33 @@ class FeaturedController extends Controller
     {
         $featured = FeaturedType::findOrFail($id);
         return view('featured.show', compact('featured'));
+    }
+
+    public function searchBook(Request $request): JsonResponse
+    {
+        $sql = "SELECT
+    books.id,
+    books.book_isbn,
+    books.book_title,
+    books.book_price,
+    authors.author_name,
+    publishers.publisher_name,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM books, authors, publishers, categories, subcategories
+    WHERE books.author_id = authors.id
+    AND books.publisher_id = publishers.id
+    AND books.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+    AND(
+        books.book_title LIKE '%$request->search%' OR
+        books.book_isbn LIKE '%$request->search%' OR
+        authors.author_name LIKE '%$request->search%' OR
+        publishers.publisher_name LIKE '%$request->search%')
+        ORDER BY books.book_title ASC
+        LIMIT 5";
+
+        $books = DB::select($sql);
+        return response()->json($books,200);
     }
 }
