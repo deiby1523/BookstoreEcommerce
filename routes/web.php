@@ -48,6 +48,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/featured/delete/{featured}', [FeaturedController::class, 'delete'])->name('featured.delete');
     Route::get('/featured/show/{featured}',[FeaturedController::class,'show'])->name('featured.show');
     Route::post('/featured/searchBook', [FeaturedController::class, 'searchBook'])->name('featured.searchBook');
+    Route::post('/featured/addBook', [FeaturedController::class, 'addBook'])->name('featured.addBook');
 
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

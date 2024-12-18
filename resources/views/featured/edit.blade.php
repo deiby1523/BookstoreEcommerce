@@ -134,37 +134,37 @@
                             </h4>
                         </div>
                         <div class="col-8">
+                            <form role="form" action="{{route('featured.addBook')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="input-group input-group-static mb-4"
+                                     style="width: inherit; right: -30%">
+                                    <input readonly="readonly" name="book_title" id="book_title"
+                                           placeholder="Seleccione un libro" class="form-control w-70"/>
+                                    <input type="hidden" name="featured_type_id" id="featured_type_id"  value="{{$featured->id}}">
+                                    <input id="book_id" name="book_id" hidden>
 
+                                    <ul id="selectBook"
+                                        style="width:-webkit-fill-available; position: absolute"
+                                        class="mt-6 card selectSearch dropdown-menu">
 
-                            <!-- TODO: Search bar for add books -->
-                            <div class="input-group input-group-static mb-4"
-                                 style="width: inherit; right: -30%">
-                                <input readonly="readonly" name="book_title" id="book_title"
-                                       placeholder="Seleccione un libro" class="form-control w-70"/>
-                                <input name="book_id" id="book_id" hidden>
-
-                                <ul id="selectBook"
-                                    style="width:-webkit-fill-available; position: absolute"
-                                    class="mt-6 card selectSearch dropdown-menu">
-
-                                    <div class="container mr-1 mt-1 ml-1 mb-1">
-                                        <div class="input-group input-group-dynamic">
+                                        <div class="container mr-1 mt-1 ml-1 mb-1">
+                                            <div class="input-group input-group-dynamic">
                                                 <span class="input-group-text" id="basic-addon1"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path
                                                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></span>
-                                            <input id="searchBook" name="searchBook" type="text"
-                                                   class="form-control" placeholder="Buscar libro">
+                                                <input id="searchBook" name="searchBook" type="text"
+                                                       class="form-control" placeholder="Buscar libro">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div id="bookOptions">
+                                        <div id="bookOptions">
 
-                                    </div>
-                                </ul>
+                                        </div>
+                                    </ul>
 
-                            </div>
+                                </div>
 
-
+                            </form>
                         </div>
                         <!-- TODO: Continuar trabajando para poder añadir libros a los destacados, mirar ERP -->
                         <div class="col-2">

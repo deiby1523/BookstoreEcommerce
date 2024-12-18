@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\FeaturedType;
+use App\Models\Featured;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -105,5 +106,19 @@ class FeaturedController extends Controller
 
         $books = DB::select($sql);
         return response()->json($books,200);
+    }
+
+    public function addBook(Request $request) {
+
+        Featured::create([
+            'book_id' => $request->book_id,
+            'type_id' => $request->featured_type_id,
+            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+        ]);
+
+        // TODO: Continuar con el desarrollo de featured
+
+        return redirect()->route('featured.show',$request->featured_type_id)->with('success','Se añadió el libro exitosamente.');
     }
 }

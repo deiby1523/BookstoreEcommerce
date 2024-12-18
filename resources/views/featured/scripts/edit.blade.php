@@ -83,7 +83,7 @@
                     // Get the value of the data-author-id attribute
                     var bookId = $(this).data("book-id");
                     var bookTitle = $(this).data("book-title");
-                    // Assign the value to the input "author_name" and the id to the input "author_id".
+                    // Assign the value to the input "author_name" and the id to the input "book_id".
                     $("#book_title").val(bookTitle);
                     $("#book_id").val(bookId);
                 });
