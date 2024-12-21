@@ -30,7 +30,10 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
+{{-- aditional styles --}}
+@include('featured.styles.index')
 @include('featured.styles.edit')
+
 
 <div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
     {{-- <span class="mask bg-gradient-dark opacity-6"></span>--}}
@@ -136,6 +139,7 @@
                         <div class="col-8">
                             <form role="form" action="{{route('featured.addBook')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('POST')
                                 <div class="input-group input-group-static mb-4"
                                      style="width: inherit; right: -30%">
                                     <input readonly="readonly" name="book_title" id="book_title"

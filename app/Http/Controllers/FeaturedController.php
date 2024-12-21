@@ -42,9 +42,10 @@ class FeaturedController extends Controller
         return redirect()->route('featured.index')->with('success', 'Seccion destacada creada exitosamente.');
     }
 
-    public function edit($id) : View {
+    public function edit($id): View
+    {
         $featured = FeaturedType::findOrFail($id);
-        return view('featured.edit',compact('featured'));
+        return view('featured.edit', compact('featured'));
     }
 
     public function update(Request $request, $id)
@@ -105,20 +106,23 @@ class FeaturedController extends Controller
         LIMIT 5";
 
         $books = DB::select($sql);
-        return response()->json($books,200);
+        return response()->json($books, 200);
     }
 
-    public function addBook(Request $request) {
+    public function addBook(Request $request)
+    {
+        session_start();
 
-        Featured::create([
-            'book_id' => $request->book_id,
-            'type_id' => $request->featured_type_id,
-            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
-        ]);
+        $_SESSION['Bandera'] = "Esta entrando a la función addBook()";
 
-        // TODO: Continuar con el desarrollo de featured
+        $bId = $request->book_id;
+        $tId = $request->featured_type_id;
+        $cAt = Carbon::now('UTC')->format('Y-m-d H:i:s');
+        $uAt = Carbon::now('UTC')->format('Y-m-d H:i:s');
 
-        return redirect()->route('featured.show',$request->featured_type_id)->with('success','Se añadió el libro exitosamente.');
+
+        DB::insert('INSERT INTO featured(book_id,type_id,created_at,updated_at) VALUES (?,?,?,?)', [$bId, $tId, $cAt, $uAt]);
+
+        return redirect()->route('featured.show', $request->featured_type_id)->with('success', 'Se añadió el libro exitosamente.');
     }
 }
