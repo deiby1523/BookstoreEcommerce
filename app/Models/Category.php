@@ -26,7 +26,7 @@ class Category extends Model
     {
         parent::boot();
 
-        // Escuchamos el evento "deleting" del modelo Book
+        // Escuchamos el evento "deleting" del modelo Category
         static::deleting(function ($category) {
 
             // Delete the image associated with the book

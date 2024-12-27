@@ -54,9 +54,12 @@ Route::middleware('UserAdmin')->group(function () {
     // Banners
     Route::get('/banner',[BannerController::class, 'index'])->name('banner.index');
     Route::get('/banner/create',[BannerController::class,'create'])->name('banner.create');
+    Route::post('/banner/save', [BannerController::class, 'save'])->name('banner.save');
     Route::get('/banner/edit/{banner}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::put('/banner/update/{banner}',[BannerController::class,'update'])->name('banner.update');
     Route::delete('/banner/delete/{banner}', [BannerController::class, 'delete'])->name('banner.delete');
     Route::get('/banner/show/{featured}',[BannerController::class,'show'])->name('banner.show');
+
 
 
 
