@@ -191,7 +191,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
-                                            Código
+                                            ISBN
                                         </th>
                                         <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                             Nombre
@@ -207,9 +207,16 @@
                                     </thead>
                                     <tbody>
                                     @foreach($featured->books as $book)
+                                        @php
+
+                                            // Ejemplo de uso
+                                            $number = $book->book_isbn; // Tu número de 13 dígitos
+                                            $isbn = 'ISBN ' . substr($number, 0, 3) . '-'. substr($number, 3, 1). '-'. substr($number, 4, 4). '-'. substr($number, 8, 4). '-'. substr($number, 12, 1);
+
+                                        @endphp
                                         <tr>
                                             <td class="align-middle text-center">
-                                                <p class=" mb-0">{{$book->book_isbn}}</p>
+                                                <p class=" mb-0">{{$isbn}}</p>
                                             </td>
                                             <td>
                                                 <p class=" mb-0">{{$book->book_title}}</p>
@@ -220,13 +227,45 @@
                                             </td>
 
                                             <td class="align-middle" style="text-align: center;">
-                                                <a href="" class="btn btn-sm btn-outline-danger"
+                                                <a href="" class="text-secondary  mx-3 font-weight-normal "
                                                    data-bs-toggle="modal"
-                                                   data-toggle="tooltip" data-original-title="Delete featured">
+                                                   data-toggle="tooltip" data-original-title="Delete featured"
+                                                   data-bs-target="#deleteConfirm{{$book->id}}">
                                                     Eliminar
                                                 </a>
-                                                <!--                                                data-bs-target="#deleteConfirm{{$featured->id}}"-->
+
                                             </td>
+                                            <div class="modal fade" id="deleteConfirm{{$book->id}}" tabindex="-1"
+                                                 aria-labelledby="deleteConfirm{{$book->id}}" aria-hidden="true">
+                                                <div class="modal-dialog" style="margin-top: 10rem;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Esta seguro que desea eliminar el libro
+                                                            '{{ $book->book_title }}' de esta sección de destacados?
+                                                            <br><br>
+                                                            Esta acción es irreversible.
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn bg-gradient-dark mb-0"
+                                                                    data-bs-dismiss="modal">Cancelar
+                                                            </button>
+                                                            <form method="POST"
+                                                                  action="{{ route('featured.delBook',[$featured->id,$book->id]) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn bg-gradient-danger mb-0">
+                                                                    Eliminar
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -237,23 +276,24 @@
                         <br>
                         <div class="row text-center my-5">
                             <div class="col">
-                                <p class="display-4" style="font-size: x-large">Aún no se han agregado libros a esta sección destacada</p>
+                                <p class="display-4" style="font-size: x-large">Aún no se han agregado libros a esta
+                                    sección destacada</p>
                             </div>
                         </div>
                     @endif
 
-                        <div class="row">
-                            <div class="col-md-6 text-start">
-                                <a href="{{route('featured.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
-                                </a>
-                            </div>
-
-                            <div class="col-md-6 text-end">
-                                <button type="submit" form="featuredForm" class="btn bg-gradient-warning mt-3 mb-0">
-                                    Guardar
-                                </button>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-6 text-start">
+                            <a href="{{route('featured.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
+                            </a>
                         </div>
+
+                        <div class="col-md-6 text-end">
+                            <button type="submit" form="featuredForm" class="btn bg-gradient-warning mt-3 mb-0">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -128,4 +128,19 @@ class FeaturedController extends Controller
             return redirect()->route('featured.edit', $request->featured_type_id)->with('success', 'Se añadió el libro exitosamente.');
         }
     }
+
+    public function delBook($idF,$idB)
+    {
+        $featured = DB::select('SELECT * FROM featured WHERE type_id = ? AND book_id = ?', [$idF, $idB]);
+
+        if (count($featured) > 0) {
+            DB::delete('DELETE FROM featured WHERE id = ?',[$featured[0]->id]);
+        } else {
+            return redirect()->route('featured.edit', $idF)->with('danger', "Hubo un problema al eliminar el libro");
+
+        }
+
+        return redirect()->route('featured.edit', $idF)->with('success', 'Se eliminó el libro exitosamente.');
+
+    }
 }

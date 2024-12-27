@@ -38,8 +38,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/dashboard/books', [BookDashboardController::class, 'index'])->name('dashboard.books');
     Route::get('/dashboard/interface', [InterfaceDashboardController::class, 'index'])->name('dashboard.interface');
 
-
-    //Featured types
+    //Featured
     Route::get('/featured', [FeaturedController::class, 'index'])->name('featured.index');
     Route::get('/featured/create',[FeaturedController::class,'create'])->name('featured.create');
     Route::post('/featured/save', [FeaturedController::class, 'save'])->name('featured.save');
@@ -49,6 +48,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/featured/show/{featured}',[FeaturedController::class,'show'])->name('featured.show');
     Route::post('/featured/searchBook', [FeaturedController::class, 'searchBook'])->name('featured.searchBook');
     Route::post('/featured/addBook', [FeaturedController::class, 'addBook'])->name('featured.addBook');
+    Route::delete('/featured/delBook/{featured}/{book}',[FeaturedController::class,'delBook'])->name('featured.delBook');
 
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
