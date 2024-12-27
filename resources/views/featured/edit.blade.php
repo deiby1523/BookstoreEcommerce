@@ -38,6 +38,7 @@
 <div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
     {{-- <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
+
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="row mt-4">
         <div class="col-md-3">
@@ -137,14 +138,15 @@
                             </h4>
                         </div>
                         <div class="col-8">
-                            <form role="form" action="{{route('featured.addBook')}}" method="POST" enctype="multipart/form-data">
+                            <form role="form" action="{{route('featured.addBook')}}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="input-group input-group-static mb-4"
-                                     style="width: inherit; right: -30%">
+                                     style="width: inherit; right: -20%">
                                     <input readonly="readonly" name="book_title" id="book_title"
                                            placeholder="Seleccione un libro" class="form-control w-70"/>
-                                    <input type="hidden" name="featured_type_id" id="featured_type_id"  value="{{$featured->id}}">
+                                    <input type="hidden" name="featured_type_id" id="featured_type_id"
+                                           value="{{$featured->id}}">
                                     <input id="book_id" name="book_id" hidden>
 
                                     <ul id="selectBook"
@@ -166,109 +168,92 @@
                                         </div>
                                     </ul>
 
+                                    <div class="col-2">
+                                        <button type="submit" style="float: right;"
+                                                class="btn btn-outline-success btn-sm">Agregar
+                                            Libro
+                                        </button>
+                                    </div>
                                 </div>
 
                             </form>
                         </div>
                         <!-- TODO: Continuar trabajando para poder añadir libros a los destacados, mirar ERP -->
-                        <div class="col-2">
-                            <a style="float: right;" class="btn btn-outline-success btn-sm" href="">Agregar
-                                Libro</a>
-                        </div>
+
                     </div>
-                    <div class="card mb-5"> <!-- TODO: Todo este fragmento de código no es responsive -->
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                <tr>
-                                    <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
-                                        Código
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
-                                        Nombre
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
-                                        Imagen
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                    @php if(isset($featured->books)){
+                        $nfeatured = count($featured->books);
+                    } @endphp
+                    @if($nfeatured > 0)
+                        <div class="card mb-5"> <!-- TODO: Todo este fragmento de código no es responsive -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                            Código
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                            Nombre
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                            Subcategoría
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
 
-                                    </th>
-                                    <th class="text-secondary opacity-7"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <p class=" mb-0">8349038904890</p>
-                                    </td>
-                                    <td>
-                                        <p class=" mb-0"> Un libro con un nombre cualquiera </p>
-                                    </td>
+                                        </th>
+                                        <th class="text-secondary opacity-7"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($featured->books as $book)
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                <p class=" mb-0">{{$book->book_isbn}}</p>
+                                            </td>
+                                            <td>
+                                                <p class=" mb-0">{{$book->book_title}}</p>
+                                            </td>
 
-                                    <td>
-                                        <p class=" mb-0"> (Imagen del libro) </p>
-                                    </td>
+                                            <td>
+                                                <p class=" mb-0">{{$book->subcategory->subcategory_name}}</p>
+                                            </td>
 
-                                    <td class="align-middle" style="text-align: center;">
-                                        <a href="" class="btn btn-sm btn-outline-danger"
-                                           data-bs-toggle="modal"
-                                           data-toggle="tooltip" data-original-title="Delete featured">
-                                            Eliminar
-                                        </a>
-                                        <!--                                                data-bs-target="#deleteConfirm{{$featured->id}}"-->
-                                    </td>
-                                    <!--                                            <div class="modal fade" id="deleteConfirm{{$featured->id}}" tabindex="-1"-->
-                                    <!--                                                 aria-labelledby="deleteConfirm{{$featured->id}}" aria-hidden="true">-->
-                                    <!--                                                <div class="modal-dialog" style="margin-top: 10rem;">-->
-                                    <!--                                                    <div class="modal-content">-->
-                                    <!--                                                        <div class="modal-header">-->
-                                    <!--                                                            <h5 class="modal-title" id="exampleModalLabel">-->
-                                    <!--                                                                Confirmación</h5>-->
-                                    <!--                                                            <button type="button" class="btn-close"-->
-                                    <!--                                                                    data-bs-dismiss="modal"-->
-                                    <!--                                                                    aria-label="Close"></button>-->
-                                    <!--                                                        </div>-->
-                                    <!--                                                        <div class="modal-body">-->
-                                    <!--                                                            Esta seguro que desea eliminar la sección de libros-->
-                                    <!--                                                            destacados-->
-                                    <!--                                                            '{{ $featured->featured_type_name }}' ?-->
-                                    <!--                                                            <br><br>-->
-                                    <!--                                                            Esta acción es irreversible.-->
-                                    <!--                                                        </div>-->
-                                    <!--                                                        <div class="modal-footer justify-content-between">-->
-                                    <!--                                                            <button type="button" class="btn bg-gradient-dark mb-0"-->
-                                    <!--                                                                    data-bs-dismiss="modal">Cancelar-->
-                                    <!--                                                            </button>-->
-                                    <!--                                                            <form method="POST"-->
-                                    <!--                                                                  action="{{ route('featured.delete',$featured->id) }}">-->
-                                    <!--                                                                @csrf-->
-                                    <!--                                                                @method('DELETE')-->
-                                    <!--                                                                <button type="submit"-->
-                                    <!--                                                                        class="btn bg-gradient-danger mb-0">-->
-                                    <!--                                                                    Eliminar-->
-                                    <!--                                                                </button>-->
-                                    <!--                                                            </form>-->
-                                    <!--                                                        </div>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                </tr>
-                                </tbody>
-                            </table>
+                                            <td class="align-middle" style="text-align: center;">
+                                                <a href="" class="btn btn-sm btn-outline-danger"
+                                                   data-bs-toggle="modal"
+                                                   data-toggle="tooltip" data-original-title="Delete featured">
+                                                    Eliminar
+                                                </a>
+                                                <!--                                                data-bs-target="#deleteConfirm{{$featured->id}}"-->
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 text-start">
-                            <a href="{{route('featured.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
-                            </a>
+                    @else
+                        <br>
+                        <div class="row text-center my-5">
+                            <div class="col">
+                                <p class="display-4" style="font-size: x-large">Aún no se han agregado libros a esta sección destacada</p>
+                            </div>
                         </div>
+                    @endif
 
-                        <div class="col-md-6 text-end">
-                            <button type="submit" form="featuredForm" class="btn bg-gradient-warning mt-3 mb-0">Guardar
-                            </button>
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <a href="{{route('featured.index')}}" class="btn bg-gradient-danger mt-3 mb-0">Cancelar
+                                </a>
+                            </div>
+
+                            <div class="col-md-6 text-end">
+                                <button type="submit" form="featuredForm" class="btn bg-gradient-warning mt-3 mb-0">
+                                    Guardar
+                                </button>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
             </div>

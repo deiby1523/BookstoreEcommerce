@@ -45,6 +45,7 @@ class FeaturedController extends Controller
     public function edit($id): View
     {
         $featured = FeaturedType::findOrFail($id);
+
         return view('featured.edit', compact('featured'));
     }
 
@@ -111,18 +112,20 @@ class FeaturedController extends Controller
 
     public function addBook(Request $request)
     {
-        session_start();
-
-        $_SESSION['Bandera'] = "Esta entrando a la función addBook()";
-
         $bId = $request->book_id;
         $tId = $request->featured_type_id;
-        $cAt = Carbon::now('UTC')->format('Y-m-d H:i:s');
-        $uAt = Carbon::now('UTC')->format('Y-m-d H:i:s');
 
+        $exists = DB::select('SELECT id FROM featured WHERE type_id = ? AND book_id = ?', [$tId, $bId]);
 
-        DB::insert('INSERT INTO featured(book_id,type_id,created_at,updated_at) VALUES (?,?,?,?)', [$bId, $tId, $cAt, $uAt]);
+        if (count($exists) > 0) {
+            return redirect()->route('featured.edit', $request->featured_type_id)->with('danger', 'El libro ya pertenece a esta sección destacada');
+        } else {
+            $cAt = Carbon::now('UTC')->format('Y-m-d H:i:s');
+            $uAt = Carbon::now('UTC')->format('Y-m-d H:i:s');
 
-        return redirect()->route('featured.show', $request->featured_type_id)->with('success', 'Se añadió el libro exitosamente.');
+            DB::insert('INSERT INTO featured(book_id,type_id,created_at,updated_at) VALUES (?,?,?,?)', [$bId, $tId, $cAt, $uAt]);
+
+            return redirect()->route('featured.edit', $request->featured_type_id)->with('success', 'Se añadió el libro exitosamente.');
+        }
     }
 }

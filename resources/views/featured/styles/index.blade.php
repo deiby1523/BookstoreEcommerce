@@ -108,7 +108,7 @@
 }">
         <div id="alert" class="alert blur alert-danger text-white font-weight-bold" role="alert"
              style="transition: opacity 0.5s ease-in-out;box-shadow: none;background-image: initial;margin: 0 10% 10% 10%; position: absolute;    width: -webkit-fill-available;backdrop-filter: saturate(0%) blur(4px) !important;
-    background-color: rgb(7 255 0 / 15%) !important;    z-index: 1;">
+    background-color: rgba(255,0,0,0.25) !important;    z-index: 1;">
             {{$message}}
         </div>
     </div>
