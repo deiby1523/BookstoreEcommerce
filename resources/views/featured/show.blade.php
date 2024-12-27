@@ -66,7 +66,65 @@
 
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="row">
+                            @php if(isset($featured->books)){
+                        $nfeatured = count($featured->books);
+                    } @endphp
+                            @if($nfeatured > 0)
+                                <div class="card mb-5">
+                                    <div class="table-responsive">
+                                        <table class="table align-items-center mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                                    ISBN
+                                                </th>
+                                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                                    Nombre
+                                                </th>
+                                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                                    Subcategoría
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($featured->books as $book)
+                                                @php
+
+                                                    // Ejemplo de uso
+                                                    $number = $book->book_isbn; // Tu número de 13 dígitos
+                                                    $isbn = 'ISBN ' . substr($number, 0, 3) . '-'. substr($number, 3, 1). '-'. substr($number, 4, 4). '-'. substr($number, 8, 4). '-'. substr($number, 12, 1);
+
+                                                @endphp
+                                                <tr>
+                                                    <td class="align-middle text-center">
+                                                        <p class=" mb-0">{{$isbn}}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class=" mb-0">{{$book->book_title}}</p>
+                                                    </td>
+
+                                                    <td>
+                                                        <p class=" mb-0">{{$book->subcategory->subcategory_name}}</p>
+                                                    </td>
+
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            @else
+                                <br>
+                                <div class="row text-center my-5">
+                                    <div class="col">
+                                        <p class="display-4" style="font-size: x-large">Aún no se han agregado libros a esta
+                                            sección destacada</p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
 

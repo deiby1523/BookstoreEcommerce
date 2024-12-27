@@ -53,7 +53,6 @@ class FeaturedController extends Controller
     {
         $request->validate([
             'featured_type_name' => 'required | min:3 | max : 60',
-            'featured_type_description' => 'required | min:3'
         ]);
 
         $featured = FeaturedType::findOrFail($id);
