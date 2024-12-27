@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\CategoryController;
@@ -38,7 +39,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/dashboard/books', [BookDashboardController::class, 'index'])->name('dashboard.books');
     Route::get('/dashboard/interface', [InterfaceDashboardController::class, 'index'])->name('dashboard.interface');
 
-    //Featured
+    // Featured
     Route::get('/featured', [FeaturedController::class, 'index'])->name('featured.index');
     Route::get('/featured/create',[FeaturedController::class,'create'])->name('featured.create');
     Route::post('/featured/save', [FeaturedController::class, 'save'])->name('featured.save');
@@ -49,6 +50,16 @@ Route::middleware('UserAdmin')->group(function () {
     Route::post('/featured/searchBook', [FeaturedController::class, 'searchBook'])->name('featured.searchBook');
     Route::post('/featured/addBook', [FeaturedController::class, 'addBook'])->name('featured.addBook');
     Route::delete('/featured/delBook/{featured}/{book}',[FeaturedController::class,'delBook'])->name('featured.delBook');
+
+    // Banners
+    Route::get('/banner',[BannerController::class, 'index'])->name('banner.index');
+    Route::get('/banner/create',[BannerController::class,'create'])->name('banner.create');
+    Route::get('/banner/edit/{banner}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::delete('/banner/delete/{banner}', [BannerController::class, 'delete'])->name('banner.delete');
+    Route::get('/banner/show/{featured}',[BannerController::class,'show'])->name('banner.show');
+
+
+
 
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
