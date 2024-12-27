@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Ecommerce</title>
+    <title>Editar categoría</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
@@ -17,6 +17,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
+
+    {{--    JQuery --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -45,7 +49,7 @@
 
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
                     <form role="form" id="contact-form" method="POST" autocomplete="off"
-                          action="{{ route('category.update',$category->id) }} ">
+                          action="{{ route('category.update',$category->id) }} " enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-body pb-2">
@@ -125,7 +129,7 @@
                             </div>
 
                             <div class="input-group input-group-static mb-4 mt-4">
-                                <input id="fileinput" name="category_image" type="file" accept=".jpg,.jpeg,.png"
+                                <input id="fileinput" name="category_image" type="file" accept=".jpg,.jpeg,.png,.webp"
                                        style="display:none;">
                             </div>
                             <div class="row">

@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Ecommerce</title>
+    <title>Categoría</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
