@@ -347,7 +347,8 @@
                 </div>
             </div>
         </section>
-        <section class="py-5">
+
+        <section class="py-5"> <!-- TODO: Continuar con el desarrollo de destacados -->
             <div class="container-fluid">
                 <div class="row">
                     <h1 class="mb-2 text-center">Más vendidos</h1>
