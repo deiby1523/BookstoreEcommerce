@@ -40,39 +40,40 @@
         <div class="col-lg-12 mx-auto" style="width: 95% !important;">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>
-                    <li data-target="#carouselExample" data-bs-slide-to="1" class="active d"></li>
-                    <li data-target="#carouselExample" data-bs-slide-to="2" class="active d"></li>
-                    <li data-target="#carouselExample" data-bs-slide-to="3" class="active d"></li>
-                    <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>
-                    <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>
+                    @php $i = 0; @endphp
+                    @foreach($banners as $banner)
+                        @if($banner->active)
+                            <li data-target="#carouselExample" data-bs-slide-to="{{$i++}}" class="active d"></li>
+                        @endif
+                    @endforeach
+                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>--}}
+                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="1" class="active d"></li>--}}
+                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="2" class="active d"></li>--}}
+                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="3" class="active d"></li>--}}
+                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>--}}
+                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>--}}
                 </ol>
                 <div class="carousel-inner" style="border-radius: 10px">
-                    <div class="carousel-item active" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-100" src="{{asset('img/bg6.jpg')}}"
-                             alt="seven slide">
-                        <img class="phoneBanner w-100" src="{{asset('img/bgm6.jpg')}}"
-                             alt="six slide">
-                    </div>
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-100" src="{{asset('img/bg2.jpg')}}"
-                             alt="Third slide">
-                        <img class="phoneBanner w-100" src="{{asset('img/bgm2.jpg')}}"
-                             alt="Third slide">
-                    </div>
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-100" src="{{asset('img/bg3.jpg')}}"
-                             alt="fourth slide">
-                        <img class="phoneBanner w-100" src="{{asset('img/bgm3.jpg')}}"
-                             alt="fourth slide">
-                    </div>
-
-                    <div class="carousel-item" style="text-align: -webkit-center;">
-                        <img class="desktopBanner w-100" src="{{asset('img/bg5.jpg')}}"
-                             alt="seven slide">
-                        <img class="phoneBanner w-100" src="{{asset('img/bgm5.jpg')}}"
-                             alt="six slide">
-                    </div>
+                    @php $j = 0; @endphp
+                    @foreach($banners as $banner)
+                        @if($banner->active)
+                            @if($j==0)
+                                <div class="carousel-item active" style="text-align: -webkit-center;">
+                                    <img class="desktopBanner w-100" src="{{asset($banner->banner_image_url)}}"
+                                         alt="{{$j++}} slide">
+                                    <img class="phoneBanner w-100" src="{{asset($banner->banner_image_url)}}"
+                                         alt="{{$j++}} slide" style="height: 400px ">
+                                </div>
+                            @else
+                                <div class="carousel-item" style="text-align: -webkit-center;">
+                                    <img class="desktopBanner w-100" src="{{asset($banner->banner_image_url)}}"
+                                         alt="{{$j++}} slide">
+                                    <img class="phoneBanner w-100" src="{{asset($banner->banner_image_url)}}"
+                                         alt="{{$j++}} slide" style="height: 400px">
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
 
                 </div>
                 <a class="carousel-control-prev" href="#carouselExample" role="button"
@@ -88,37 +89,6 @@
     </div>
     {{--End carousel--}}
 
-    {{--
-    <div class="page-header min-vh-80" style="background-color: #ffffff">--}}
-        {{-- --}}{{-- <span class="mask bg-gradient-dark opacity-6"></span>--}}
-        {{--
-        <div class="container">--}}
-            {{--
-            <div class="row">--}}
-
-                {{--
-                <div class="col-md-8 mx-auto">--}}
-                    {{--
-                    <div class="text-center">--}}
-                        {{-- <h1 class="text-white"></h1>--}}
-                        {{-- <h3 class="text-white"></h3>--}}
-                        {{--
-                    </div>
-                    --}}
-
-                    {{--
-                </div>
-                --}}
-                {{--
-            </div>
-            --}}
-            {{--
-        </div>
-        --}}
-
-        {{--
-    </div>
-    --}}
 
     {{-- Main Body --}}
 
@@ -166,37 +136,37 @@
                         </div>
                     </div>
                     @for($i = 2; $i < 5; $i++)
-                    <div class="carousel-item">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-md-5 ms-lg-auto">
-                                    <div class="p-3">
-                                        <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
-                                             src="{{$categories[$i-1]->category_image_url}}" alt="" loading="eager">
+                        <div class="carousel-item">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-md-5 ms-lg-auto">
+                                        <div class="p-3">
+                                            <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
+                                                 src="{{$categories[$i-1]->category_image_url}}" alt="" loading="eager">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-5 me-lg-auto position-relative">
-                                    <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
-                                        {{$i."°"}}</h4>
-                                    <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
-                                        {{$categories[$i-1]->category_name}}</h1>
-                                    <p class="my-4 lead fadeIn2 fadeInBottom">
-                                        {{$categories[$i-1]->category_description}}
-                                    </p>
-                                    <form action="{{route('book.search2')}}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="category" id="category"
-                                               value="{{$categories[$i-1]->id}}">
+                                    <div class="col-md-5 me-lg-auto position-relative">
+                                        <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
+                                            {{$i."°"}}</h4>
+                                        <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
+                                            {{$categories[$i-1]->category_name}}</h1>
+                                        <p class="my-4 lead fadeIn2 fadeInBottom">
+                                            {{$categories[$i-1]->category_description}}
+                                        </p>
+                                        <form action="{{route('book.search2')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="category" id="category"
+                                                   value="{{$categories[$i-1]->id}}">
 
-                                        <button type="submit" class="btn btn-warning">
-                                            <span>Explorar!</span>
-                                        </button>
-                                    </form>
+                                            <button type="submit" class="btn btn-warning">
+                                                <span>Explorar!</span>
+                                            </button>
+                                        </form>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     @endfor
 
@@ -224,13 +194,13 @@
             </div>
             <div class="row" style="margin-top: 7rem">
                 @for($i = 0 ; $i < 4; $i++)
-                <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
-                    <a href="javascript:;" class="text-lg text-gradient text-warning h3 ps-3 active"
-                       data-bs-target="#carousel-categories" data-bs-slide-to="{{$i}}">
-                        <span>0{{$i+1}}</span>
-                        <span class="ms-2">{{$categories[$i]->category_name}}</span>
-                    </a>
-                </div>
+                    <div class="col-lg-3 col-6 mb-lg-0 mb-4 text-center">
+                        <a href="javascript:;" class="text-lg text-gradient text-warning h3 ps-3 active"
+                           data-bs-target="#carousel-categories" data-bs-slide-to="{{$i}}">
+                            <span>0{{$i+1}}</span>
+                            <span class="ms-2">{{$categories[$i]->category_name}}</span>
+                        </a>
+                    </div>
 
                 @endfor
 
@@ -331,45 +301,46 @@
                 <div id="latestBooks" class="book-horizontal-slider">
                     <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
                         @forelse($latestBooks as $book)
-                        <div class="card mb-5 mt-2 mx-3 shadow-lg">
-                            <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
-                                    <img loading='eager' src="{{asset($book->book_image_url)}}"
-                                         alt="img-blur-shadow"
-                                         class="img-fluid border-radius-lg">
-                                </a>
-                                <div class="colored-shadow"
-                                     style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
-                                    {{$book->subcategory_name}}</p>
-                                <h5 class="font-weight-bold mt-3">
-                                    <a class="link-dark" href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
-                                </h5>
-                                <p class="mb-0 text-left">
-                                    {{$book->author_name}}
-                                </p>
-                            </div>
-                            <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                <div class="row w-100">
-                                    <div class="col">
-                                        <p class="font-weight-normal my-auto">
-                                            $ {{number_format($book->book_price)}}</p>
-                                    </div>
+                            <div class="card mb-5 mt-2 mx-3 shadow-lg">
+                                <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
+                                    <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
+                                        <img loading='eager' src="{{asset($book->book_image_url)}}"
+                                             alt="img-blur-shadow"
+                                             class="img-fluid border-radius-lg">
+                                    </a>
+                                    <div class="colored-shadow"
+                                         style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
                                 </div>
+                                <div class="card-body">
+                                    <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
+                                        {{$book->subcategory_name}}</p>
+                                    <h5 class="font-weight-bold mt-3">
+                                        <a class="link-dark"
+                                           href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
+                                    </h5>
+                                    <p class="mb-0 text-left">
+                                        {{$book->author_name}}
+                                    </p>
+                                </div>
+                                <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                    <div class="row w-100">
+                                        <div class="col">
+                                            <p class="font-weight-normal my-auto">
+                                                $ {{number_format($book->book_price)}}</p>
+                                        </div>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
                         @empty
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
-                                    este
-                                    momento.</p>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                        este
+                                        momento.</p>
+                                </div>
                             </div>
-                        </div>
                         @endforelse
 
                     </div>
@@ -385,45 +356,46 @@
                 <div id="latestBooks" class="book-horizontal-slider">
                     <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
                         @forelse($sellingBooks as $book)
-                        <div class="card mb-5 mt-2 mx-3 shadow-lg">
-                            <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
-                                    <img loading='eager' src="{{asset($book->book_image_url)}}"
-                                         alt="img-blur-shadow"
-                                         class="img-fluid border-radius-lg">
-                                </a>
-                                <div class="colored-shadow"
-                                     style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
-                                    {{$book->subcategory_name}}</p>
-                                <h5 class="font-weight-bold mt-3">
-                                    <a class="link-dark" href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
-                                </h5>
-                                <p class="mb-0 text-left">
-                                    {{$book->author_name}}
-                                </p>
-                            </div>
-                            <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                <div class="row w-100">
-                                    <div class="col">
-                                        <p class="font-weight-normal my-auto">
-                                            $ {{number_format($book->book_price)}}</p>
-                                    </div>
+                            <div class="card mb-5 mt-2 mx-3 shadow-lg">
+                                <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
+                                    <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
+                                        <img loading='eager' src="{{asset($book->book_image_url)}}"
+                                             alt="img-blur-shadow"
+                                             class="img-fluid border-radius-lg">
+                                    </a>
+                                    <div class="colored-shadow"
+                                         style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
                                 </div>
+                                <div class="card-body">
+                                    <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
+                                        {{$book->subcategory_name}}</p>
+                                    <h5 class="font-weight-bold mt-3">
+                                        <a class="link-dark"
+                                           href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
+                                    </h5>
+                                    <p class="mb-0 text-left">
+                                        {{$book->author_name}}
+                                    </p>
+                                </div>
+                                <div class="card-footer d-flex pt-0" style="padding-right: 0">
+                                    <div class="row w-100">
+                                        <div class="col">
+                                            <p class="font-weight-normal my-auto">
+                                                $ {{number_format($book->book_price)}}</p>
+                                        </div>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
                         @empty
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
-                                    este
-                                    momento.</p>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                        este
+                                        momento.</p>
+                                </div>
                             </div>
-                        </div>
                         @endforelse
 
                     </div>
@@ -440,9 +412,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 position-relative">
-                        <img class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover" src="{{asset('img/testimonial-6-2.jpg')}}">
+                        <img
+                            class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover"
+                            src="{{asset('img/testimonial-6-2.jpg')}}">
 
-                        <p class="blockquote border border-success rounded w-50 p-3 text-sm text-success float-md-end mx-auto mt-4 me-md-n2">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very
+                        <p class="blockquote border border-success rounded w-50 p-3 text-sm text-success float-md-end mx-auto mt-4 me-md-n2">
+                            "Over the span of the satellite record, Arctic sea ice has been declining significantly,
+                            while sea ice in the Antarctichas increased very
                             slightly"
                             <br>
                             <br>
@@ -452,20 +428,28 @@
                     </div>
                     <div class="col-md-5">
                         <!-- First image on the right side, above the article -->
-                        <img class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover" src="{{asset('img/content-5.jpg')}}">
+                        <img
+                            class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover"
+                            src="{{asset('img/content-5.jpg')}}">
                         <div class="px-4">
                             <p class="text-gradient text-success">Design</p>
                             <h3 class="mb-4">Jeff Bezos</h3>
                             <p>
-                                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise.
+                                For a start, it does not automatically follow that a record amount of ice will melt this
+                                summer. More important for determining the size of the annual thaw is the state of the
+                                weather as the midnight sun approaches and temperatures rise.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-6 position-relative">
-                        <img class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover" src="../../assets/img/examples/content-4.jpg">
-                        <p class="blockquote border border-primary rounded w-50 p-3 text-sm text-primary float-md-end mt-4 me-md-n2 mx-auto">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very
+                        <img
+                            class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover"
+                            src="../../assets/img/examples/content-4.jpg">
+                        <p class="blockquote border border-primary rounded w-50 p-3 text-sm text-primary float-md-end mt-4 me-md-n2 mx-auto">
+                            "Over the span of the satellite record, Arctic sea ice has been declining significantly,
+                            while sea ice in the Antarctichas increased very
                             slightly"
                             <br>
                             <br>
@@ -475,12 +459,16 @@
                     </div>
                     <div class="col-md-5">
                         <!-- First image on the right side, above the article -->
-                        <img class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover" src="../../assets/img/examples/testimonial-6-3.jpg">
+                        <img
+                            class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover"
+                            src="../../assets/img/examples/testimonial-6-3.jpg">
                         <div class="px-4">
                             <p class="text-gradient text-primary">Development</p>
                             <h3 class="mb-4">Mike Alfonso</h3>
                             <p>
-                                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise.
+                                For a start, it does not automatically follow that a record amount of ice will melt this
+                                summer. More important for determining the size of the annual thaw is the state of the
+                                weather as the midnight sun approaches and temperatures rise.
                             </p>
                         </div>
                     </div>
@@ -488,7 +476,6 @@
             </div>
         </section>
         <!-- END Project section w/ 3 images & quote & text -->
-
 
 
     </div>

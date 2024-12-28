@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
+use App\Models\FeaturedType;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -45,9 +47,14 @@ class HomeController extends Controller
     AND subcategories.category_id = categories.id
     AND books.id IN(1)
     LIMIT 10';
+
         $sellingBooks = DB::select($sql);
 
+        $featuredBooks = FeaturedType::all();
+
+        $banners = Banner::all();
+
         $categories = Category::all();
-        return view('home', compact('latestBooks','sellingBooks','categories'));
+        return view('home', compact('latestBooks','sellingBooks','categories','featuredBooks','banners'));
     }
 }
