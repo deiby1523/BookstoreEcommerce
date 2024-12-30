@@ -403,6 +403,9 @@
                 </div>
             </div>
         </section>
+
+        {{-- TODO: seguir desarrollando los destacados--}}
+
         <section class="py-5">
             <div class="container">
                 <div class="row mb-5">
