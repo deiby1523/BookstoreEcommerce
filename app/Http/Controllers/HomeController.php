@@ -50,7 +50,7 @@ class HomeController extends Controller
 
         $sellingBooks = DB::select($sql);
 
-        $featuredBooks = FeaturedType::all();
+        $featuredBooks = FeaturedType::all()->sortBy('updated_at');
 
         $banners = Banner::all();
 
