@@ -46,12 +46,6 @@
                             <li data-target="#carouselExample" data-bs-slide-to="{{$i++}}" class="active d"></li>
                         @endif
                     @endforeach
-                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="0" class="active d"></li>--}}
-                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="1" class="active d"></li>--}}
-                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="2" class="active d"></li>--}}
-                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="3" class="active d"></li>--}}
-                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="4" class="active d"></li>--}}
-                    {{--                    <li data-target="#carouselExample" data-bs-slide-to="5" class="active d"></li>--}}
                 </ol>
                 <div class="carousel-inner" style="border-radius: 10px">
                     @php $j = 0; @endphp
