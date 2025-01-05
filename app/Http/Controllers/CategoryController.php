@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -97,8 +98,8 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         if($request->hasFile("category_image")) {
-            if(Storage::exists(public_path($category->category_image_url))) {
-                Storage::delete(public_path($category->categoory_image_url));
+            if(File::exists(public_path($category->category_image_url))) {
+                File::delete(public_path($category->category_image_url));
             }
 
             $image = $request->file("category_image");

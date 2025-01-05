@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -76,8 +77,8 @@ class BannerController extends Controller
         $banner = Banner::findOrFail($id);
 
         if($request->hasFile("banner_image")) {
-            if(Storage::exists(public_path($banner->banner_image_url))) {
-                Storage::delete(public_path($banner->banner_image_url));
+            if(File::exists(public_path($banner->banner_image_url))) {
+                File::delete(public_path($banner->banner_image_url));
             }
             $image = $request->file("banner_image");
             $imageName = Str::slug($request->banner_name) . "." . $image->guessExtension();

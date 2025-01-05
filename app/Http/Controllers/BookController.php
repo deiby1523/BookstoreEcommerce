@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -131,8 +132,8 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
 
         if($request->hasFile("book_image")) {
-            if(Storage::exists(public_path($book->book_image_url))) {
-                Storage::delete(public_path($book->book_image_url));
+            if(File::exists(public_path($book->book_image_url))) {
+                File::delete(public_path($book->book_image_url));
             }
 
             $image = $request->file("book_image");
