@@ -34,7 +34,7 @@
     @include('layouts.navigation_txt_dark')
     <!-- End Navbar -->
 
-    {{--Carousel--}}
+    {{-- Carousel --}}
 
     <div class="row mt-9">
         <div class="col-lg-12 mx-auto" style="width: 95% !important;">
