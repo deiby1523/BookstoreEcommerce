@@ -10,7 +10,7 @@ class SectionController extends Controller
 {
     public function index() {
         $sections = Section::all();
-        return view('sections.index', compact('sections'));
+        return view('section.index', compact('sections'));
     }
 
 

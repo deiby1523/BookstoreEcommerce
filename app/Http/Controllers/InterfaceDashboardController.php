@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Models\FeaturedType;
 
@@ -13,6 +14,7 @@ class InterfaceDashboardController extends Controller
     {
         $featured_types = FeaturedType::all();
         $banners = Banner::all();
-        return view('interface_dashboard', compact('featured_types','banners'));
+        $sections = Section::all();
+        return view('interface_dashboard', compact('featured_types','banners','sections'));
     }
 }
