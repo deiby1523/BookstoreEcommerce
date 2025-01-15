@@ -26,7 +26,7 @@
 
 @include('layouts.alerts')
 
-<div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
+<div class="page-header" style="background-color: #ff782dbf; height: 500px">
     {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 
