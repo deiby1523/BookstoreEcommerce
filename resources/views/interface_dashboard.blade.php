@@ -25,7 +25,7 @@
 <!-- End Navbar -->
 
 
-<div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
+<div class="page-header" style="background-color: #ff782dbf; height: 500px">
     {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 
@@ -61,10 +61,10 @@
                 </a>
             </div>
             <div class="col my-2">
-                <a href="{{ route('featured.index') }}">
+                <a href="{{ route('section.index') }}">
                     <div class="card move-on-hover" style="height: 100%">
                         <div class="card-body text-center">
-                            <h1 class="text-gradient text-warning"><span id="status3"> {{ count($featured_types) }}   </span>
+                            <h1 class="text-gradient text-warning"><span id="status3"> {{ count($sections) }}   </span>
                             </h1>
                             <h6 class="mb-0 font-weight-bolder">Secciones</h6>
                         </div>
