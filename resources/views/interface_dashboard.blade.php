@@ -55,7 +55,18 @@
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"> {{ count($featured_types) }}   </span>
                             </h1>
-                            <h6 class="mb-0 font-weight-bolder">Secciones Destacadas</h6>
+                            <h6 class="mb-0 font-weight-bolder">Libros Destacados</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col my-2">
+                <a href="{{ route('featured.index') }}">
+                    <div class="card move-on-hover" style="height: 100%">
+                        <div class="card-body text-center">
+                            <h1 class="text-gradient text-warning"><span id="status3"> {{ count($featured_types) }}   </span>
+                            </h1>
+                            <h6 class="mb-0 font-weight-bolder">Secciones</h6>
                         </div>
                     </div>
                 </a>
