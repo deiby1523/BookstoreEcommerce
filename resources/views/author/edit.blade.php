@@ -24,7 +24,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-<div class="page-header" style="background-image: url({{asset('img/bg-20.jpg')}}); height: 500px">
+<div class="page-header" style="background-color: #ff782dbf; height: 500px">
     {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
 </div>
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
