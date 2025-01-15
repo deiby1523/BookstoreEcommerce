@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('section_image_2_url',255)->nullable()->unique();
             $table->string('section_btn_link',255)->nullable();
             $table->integer('section_style')->nullable(false)->default(0);
+            $table->boolean('active')->nullable(false)->default(1);
             $table->timestamps();
         });
     }
