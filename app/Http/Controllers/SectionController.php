@@ -13,4 +13,5 @@ class SectionController extends Controller
         return view('sections.index', compact('sections'));
     }
 
+
 }
