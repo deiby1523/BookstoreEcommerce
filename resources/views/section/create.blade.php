@@ -258,8 +258,9 @@
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('section_text_2')"></x-input-error>
 
+                                {{-- TODO: Continuar con el desarrollo de Secciones, encontrar la forma de mostrar errores en color --}}
 
-
+                                {{-- Color --}}
                                 <div class="mb-4 mt-md-0 mt-4">
                                     <label>Color de énfasis</label>
                                     <div class="row text-center my-4">
