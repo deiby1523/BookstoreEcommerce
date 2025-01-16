@@ -72,7 +72,7 @@
 
                     <h2 class="title">Secciones</h2>
                 </div>
-                <div class="col" style="text-align: end"><a href="{{ route('banner.create') }}"
+                <div class="col" style="text-align: end"><a href="{{ route('section.create') }}"
                                                             class="btn btn-sm btn-warning">Añadir sección</a></div>
             </div>
             @php if(isset($sections)){
