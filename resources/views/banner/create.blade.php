@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="es">
 
-
 <head>
     <title>Añadir banner</title>
     <!-- Required meta tags -->
