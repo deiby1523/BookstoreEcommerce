@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="csrf_token" content="{{ csrf_token() }}"/>
 
-    <!--     Fonts and icons   -->
+    <!-- Fonts and icons -->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href={{asset('icons/icons.css')}}>
@@ -35,7 +35,6 @@
     <!-- End Navbar -->
 
     {{-- Carousel --}}
-
     <div class="row mt-9">
         <div class="col-lg-12 mx-auto" style="width: 95% !important;">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -83,9 +82,7 @@
     </div>
     {{--End carousel--}}
 
-
     {{-- Main Body --}}
-
     <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
         <section class="py-2 position-relative">
             <div class="row justify-content-center mt-2 mb-7">
@@ -229,12 +226,8 @@
 
         <section class="py-5">
             <div class="container-fluid">
-
-
                 <div class="row flex mx-0" style="justify-content: center">
-
                     <div class="col-lg-10">
-
                         <div class="row" style="align-items: center;">
                             <h1 class="my-4 ">Artículos religiosos</h1>
                             <div class="col-lg-6">
@@ -254,7 +247,6 @@
                                     religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
                                     creencias. </p>
                             </div>
-
                         </div>
                     </div>
 
@@ -282,9 +274,7 @@
                     <img class="w-100 opacity-4" src="{{asset('img/partner5.png')}}" alt="Logo">
                 </div>
             </div>
-
         </div>
-
 
         <section class="py-5">
             <div class="container-fluid">
