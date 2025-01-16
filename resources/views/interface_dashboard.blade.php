@@ -33,7 +33,6 @@
     <div class="container">
         <div class="section text-left my-4">
             <h2 class="title">Administracion de interfaz</h2>
-
         </div>
         <div class="row my-4">
             <div class="col my-2">
@@ -73,44 +72,6 @@
             </div>
         </div>
 
-<!--        <div class="row my-4">-->
-<!--            <div class="col my-2">-->
-<!--                <a href="{{ route('author.index') }}">-->
-<!--                    <div class="card move-on-hover">-->
-<!--                        <div class="card-body text-center">-->
-<!--                            <h1 class="text-gradient text-warning"><span id="status1"-->
-<!--                                                                         > CONTAR</span></h1>-->
-<!--                            <h6 class="mb-0 font-weight-bolder">Autores</h6>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <div class="col my-2">-->
-<!--                <a href="{{ route('publisher.index') }}">-->
-<!--                    <div class="card move-on-hover">-->
-<!--                        <div class="card-body text-center">-->
-<!--                            <h1 class="text-gradient text-warning"><span id="status1"-->
-<!--                                                                         > CONTAR </span></h1>-->
-<!--                            <h6 class="mb-0 font-weight-bolder">Editoriales</h6>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="col my-2">-->
-<!--                <a href="{{ route('book.index') }}">-->
-<!--                    <div class="card move-on-hover">-->
-<!--                        <div class="card-body text-center">-->
-<!--                            <h1 class="text-gradient text-warning"><span id="status1" > CONTAR </span></h1>-->
-<!--                            <h6 class="mb-0 font-weight-bolder">Libros</h6>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
     </div>
 </div>
 <div class="container">
