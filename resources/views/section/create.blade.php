@@ -259,6 +259,7 @@
                                                :messages="$errors->get('section_text_2')"></x-input-error>
 
                                 {{-- TODO: Continuar con el desarrollo de Secciones, encontrar la forma de mostrar errores en color --}}
+                                {{-- Tip: para saber el estado de los radios se puede usar el atributo checked --}}
 
                                 {{-- Color --}}
                                 <div class="mb-4 mt-md-0 mt-4">
