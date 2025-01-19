@@ -22,7 +22,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
-
 </head>
 
 <body>
@@ -44,11 +43,9 @@
             <a href="{{ route('book.index') }}" class="text-warning text-sm icon-move-left">
                 < volver
             </a>
-
             <h2 class="title">Crear Libro</h2>
 
             <div class="card">
-
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
                     <form role="form" id="contact-form" method="POST" autocomplete="off"
                           action="{{route('book.save') }}" enctype="multipart/form-data">
@@ -210,7 +207,6 @@
 
                                         </div>
                                     </ul>
-
                                 </div>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('publisher_id')"></x-input-error>
@@ -268,53 +264,66 @@
                                 @endif
                             </div>
                             <x-input-error class="text-danger"
-                                               :messages="$errors->get('book_description')"></x-input-error>
+                                           :messages="$errors->get('book_description')"></x-input-error>
 
                             {{-- Price --}}
                             <div class="input-group input-group-static mb-4">
                                 <label>Precio</label>
                                 @if(count($errors->get('book_price')) >= 1)
-                                <input name="book_price" id="book_price" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                       type="number" placeholder="Precio del libro sin iva" value="{{app('request')->old('book_price', null)}}">
+                                    <input name="book_price" id="book_price" class="form-control"
+                                           style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                           type="number" placeholder="Precio del libro sin iva"
+                                           value="{{app('request')->old('book_price', null)}}">
                                 @else
                                     <input name="book_price" id="book_price" class="form-control"
-                                       type="number" placeholder="Precio del libro sin iva" value="{{app('request')->old('book_price', null)}}">
+                                           type="number" placeholder="Precio del libro sin iva"
+                                           value="{{app('request')->old('book_price', null)}}">
                                 @endif
                             </div>
                             <x-input-error class="text-danger"
-                                               :messages="$errors->get('book_price')"></x-input-error>
+                                           :messages="$errors->get('book_price')"></x-input-error>
 
                             {{-- Discount --}}
                             <div class="input-group input-group-static mb-4">
                                 <label>Descuento</label>
                                 @if(count($errors->get('book_discount')) >= 1)
-                                <input name="book_discount" id="book_discount" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{app('request')->old('book_discount', null)}}">
+                                    <input name="book_discount" id="book_discount" class="form-control"
+                                           style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                           type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%"
+                                           value="{{app('request')->old('book_discount', null)}}">
                                 @else
                                     <input name="book_discount" id="book_discount" class="form-control"
-                                       type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{app('request')->old('book_discount', null)}}">
+                                           type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%"
+                                           value="{{app('request')->old('book_discount', null)}}">
                                 @endif
                             </div>
                             <x-input-error class="text-danger"
-                                               :messages="$errors->get('book_discount')"></x-input-error>
+                                           :messages="$errors->get('book_discount')"></x-input-error>
 
                             {{-- Stock --}}
                             <div class="input-group input-group-static mb-4">
                                 <label>Unidades en inventario</label>
                                 @if(count($errors->get('book_stock')) >= 1)
-                                <input name="book_stock" id="book_stock" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                       type="number" placeholder="Cantidad de unidades en inventario" value="{{app('request')->old('book_stock', null)}}">
+                                    <input name="book_stock" id="book_stock" class="form-control"
+                                           style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                           type="number" placeholder="Cantidad de unidades en inventario"
+                                           value="{{app('request')->old('book_stock', null)}}">
                                 @else
                                     <input name="book_stock" id="book_stock" class="form-control"
-                                       type="number" placeholder="Cantidad de unidades en inventario" value="{{app('request')->old('book_stock', null)}}">
+                                           type="number" placeholder="Cantidad de unidades en inventario"
+                                           value="{{app('request')->old('book_stock', null)}}">
                                 @endif
                             </div>
                             <x-input-error class="text-danger"
-                                               :messages="$errors->get('book_stock')"></x-input-error>
+                                           :messages="$errors->get('book_stock')"></x-input-error>
 
                             {{-- image display --}}
                             <div class="row">
-                                <div class="card mt-5" <?php if (count($errors->get('book_image')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
+                                <div class="card mt-5" <?php if (count($errors->get('book_image')) >= 1) {
+                                    echo("style='box-shadow: 0 0 8px 2px #ff000061;'");
+                                } else {
+                                    echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");
+                                } ?>>
                                     <div class="row">
                                         <!-- Card body -->
                                         <div class="col" style="min-width: 250px">
@@ -353,8 +362,8 @@
 
                             {{-- image input --}}
                             <div class="input-group input-group-static mb-4 mt-4">
-                                    <input id="fileinput" name="book_image" type="file" accept=".jpg,.jpeg,.png"
-                                           style="display:none;">
+                                <input id="fileinput" name="book_image" type="file" accept=".jpg,.jpeg,.png"
+                                       style="display:none;">
                             </div>
 
                             {{-- Buttons --}}
@@ -379,7 +388,6 @@
     </div>
 
 </div>
-
 
 @include('book.scripts.create')
 
