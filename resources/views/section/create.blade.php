@@ -29,6 +29,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
+{{-- TODO: Pasar estilos a un archivo aparte --}}
 <style>
 
     /* Warning */
@@ -469,6 +470,8 @@
 
 </div>
 
+
+{{-- TODO: Pasar scripts a un archivo aparte --}}
 <script>
     $(document).ready(function () {
         $('#falseinput1').click(function () {
