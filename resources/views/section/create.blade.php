@@ -29,82 +29,7 @@
 @include('layouts.navigation')
 <!-- End Navbar -->
 
-{{-- TODO: Pasar estilos a un archivo aparte --}}
-<style>
-
-    /* Warning */
-    .btn-outline-warning:hover:not(.active) {
-        background-color: #fb8c00;
-        opacity: 1;
-        box-shadow: none;
-        color: white;
-    }
-
-    .btn-check:checked + .btn-outline-warning {
-        color: white;
-    }
-
-    /* Success */
-    .btn-outline-success:hover:not(.active) {
-        background-color: #4CAF50;
-        opacity: 1;
-        box-shadow: none;
-        color: white;
-    }
-
-    .btn-check:checked + .btn-outline-success {
-        color: white;
-    }
-
-    /*  Danger  */
-    .btn-outline-danger:hover:not(.active) {
-        background-color: #F44335;
-        opacity: 1;
-        box-shadow: none;
-        color: white;
-    }
-
-    .btn-check:checked + .btn-outline-danger {
-        color: white;
-    }
-
-    /* Info */
-    .btn-outline-info:hover:not(.active) {
-        background-color: #1A73E8;
-        opacity: 1;
-        box-shadow: none;
-        color: white;
-    }
-
-    .btn-check:checked + .btn-outline-info {
-        color: white;
-    }
-
-    /* Primary */
-    .btn-outline-primary:hover:not(.active) {
-        background-color: #e91e63;
-        opacity: 1;
-        box-shadow: none;
-        color: white;
-    }
-
-    .btn-check:checked + .btn-outline-primary {
-        color: white;
-    }
-
-    /* Secondary */
-    .btn-outline-secondary:hover:not(.active) {
-        background-color: #7b809a;
-        opacity: 1;
-        box-shadow: none;
-        color: white;
-    }
-
-    .btn-check:checked + .btn-outline-secondary {
-        color: white;
-    }
-
-</style>
+@include('section.styles.create')
 
 <div class="page-header" style="background-color: #ff782dbf; height: 500px">
     {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
@@ -282,14 +207,18 @@
 
                                 {{-- image 1 display --}}
                                 <div class="row">
-                                    <div class="card mt-5" <?php if (count($errors->get('section_image_1')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
+                                    <div class="card mt-5" <?php if (count($errors->get('section_image_1')) >= 1) {
+                                        echo("style='box-shadow: 0 0 8px 2px #ff000061;'");
+                                    } else {
+                                        echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");
+                                    } ?>>
                                         <div class="row">
                                             <!-- Card body -->
                                             <div class="col" style="min-width: 250px">
                                                 <div class="card-body">
                                                     <h4 class="font-weight-normal mt-3">Imagen 1</h4>
-                                                    <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
-                                                        que la imagen sea de buena resolución para garantizar una visualización óptima.
+                                                    <p class="card-text mb-4">Asegúrate de que la imagen sea de buena
+                                                        resolución para garantizar una visualización óptima.
                                                     </p>
                                                     <x-input-error class="text-danger"
                                                                    :messages="$errors->get('section_image_1')"></x-input-error>
@@ -326,14 +255,20 @@
 
                                 {{-- image 2 display --}}
                                 <div class="row">
-                                    <div class="card mt-2" <?php if (count($errors->get('section_image_2')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
+                                    <div class="card mt-2" <?php if (count($errors->get('section_image_2')) >= 1) {
+                                        echo("style='box-shadow: 0 0 8px 2px #ff000061;'");
+                                    } else {
+                                        echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");
+                                    } ?>>
                                         <div class="row">
                                             <!-- Card body -->
                                             <div class="col" style="min-width: 250px">
                                                 <div class="card-body">
                                                     <h4 class="font-weight-normal mt-3">Imagen 2</h4>
-                                                    <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
-                                                        que la imagen sea de buena resolución para garantizar una visualización óptima.
+                                                    <p class="card-text mb-4">Asegúrate
+                                                        de
+                                                        que la imagen sea de buena resolución para garantizar una
+                                                        visualización óptima.
                                                     </p>
                                                     <x-input-error class="text-danger"
                                                                    :messages="$errors->get('section_image_2')"></x-input-error>
@@ -368,9 +303,7 @@
                                            style="display:none;">
                                 </div>
 
-
                                 {{-- Tip: para saber el estado de los radios se puede usar el atributo checked --}}
-
 
                                 {{-- Style select --}}
                                 <div class="input-group input-group-static mb-4">
@@ -378,13 +311,17 @@
                                     @if(count($errors->get('section_style')) >= 1)
                                         <select name="section_style" id="section_style" class="form-control"
                                                 style="box-shadow: 0 0 8px 2px #ff000061;">
-                                            <option selected disabled hidden value="">-- Seleccione un estilo de visualización --</option>
-                                                <option value="1">1</option>
+                                            <option selected disabled hidden value="">-- Seleccione un estilo de
+                                                visualización --
+                                            </option>
+                                            <option value="1">1</option>
                                         </select>
                                     @else
                                         <select name="section_style" id="section_style" class="form-control">
-                                            <option selected disabled hidden value="">-- Seleccione un estilo de visualización --</option>
-                                                <option value="1">1</option>
+                                            <option selected disabled hidden value="">-- Seleccione un estilo de
+                                                visualización --
+                                            </option>
+                                            <option value="1">1</option>
                                         </select>
                                     @endif
 
@@ -440,12 +377,11 @@
 
                             <label class="py-3">Activado</label>
                             <div class="form-check form-switch mb-6">
-                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active" style="scale: 1.3; margin-left: 0.03px">
+                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active"
+                                       style="scale: 1.3; margin-left: 0.03px">
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>
-
-
 
 
                             <div class="row">
@@ -470,40 +406,7 @@
 
 </div>
 
-
-{{-- TODO: Pasar scripts a un archivo aparte --}}
-<script>
-    $(document).ready(function () {
-        $('#falseinput1').click(function () {
-            $("#fileinput1").click();
-        });
-
-        $('#falseinput2').click(function () {
-            $("#fileinput2").click();
-        });
-    });
-
-    $('#fileinput1').change(function () {
-        $('#selected_filename1').text($('#fileinput1')[0].files[0].name);
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            $('#section_img_1').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(this.files[0]);
-    });
-
-    $('#fileinput2').change(function () {
-        $('#selected_filename2').text($('#fileinput2')[0].files[0].name);
-        let reader2 = new FileReader();
-        reader2.onload = (e) => {
-            $('#section_img_2').attr('src', e.target.result);
-        }
-        reader2.readAsDataURL(this.files[0]);
-    });
-
-
-
-</script>
+@include('section.scripts.create')
 
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
