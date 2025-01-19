@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('section_secondary_sub_title')->nullable();
             $table->text('section_text_1')->nullable();
             $table->text('section_text_2')->nullable();
-            $table->string('section_color')->nullable(false);
+            $table->integer('section_color')->nullable(false)->default(1);
             $table->string('section_image_1_url',255)->nullable()->unique();
             $table->string('section_image_2_url',255)->nullable()->unique();
             $table->string('section_btn_link',255)->nullable();

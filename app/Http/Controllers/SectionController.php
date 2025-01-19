@@ -31,8 +31,8 @@ class SectionController extends Controller
             'section_secondary_sub_title' => 'min:3 | max:50',
             'section_text_1' => 'min:5 | max:500',
             'section_text_2' => 'min:5 | max:500',
-            'section_color' => 'required',
-            'section_style' => 'required | min:1 | max:4',
+            'section_color' => 'required | min:1 | max:6 | integer',
+            'section_style' => 'required | min:1 | max:4 | integer',
         ]);
 
         $img1Exists = false;
@@ -48,7 +48,7 @@ class SectionController extends Controller
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
-            copy($image1->getRealPath(), $route . $imageName1);
+            copy($image1->getRealPath(), $route.$imageName1);
         }
 
         // script para subir la imagen 1
@@ -59,7 +59,7 @@ class SectionController extends Controller
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
-            copy($image2->getRealPath(), $route . $imageName2);
+            copy($image2->getRealPath(), $route.$imageName2);
         }
 
         if ($img1Exists && $img2Exists) {

@@ -258,112 +258,196 @@
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('section_text_2')"></x-input-error>
 
-                                {{-- TODO: Continuar con el desarrollo de Secciones, encontrar la forma de mostrar errores en color --}}
-                                {{-- Tip: para saber el estado de los radios se puede usar el atributo checked --}}
 
-                                {{-- Color --}}
-                                <div class="mb-4 mt-md-0 mt-4">
-                                    <label>Color de énfasis</label>
-                                    <div class="row text-center my-4">
-                                        <div class="col-2">
-                                            <input type="radio" class="btn-check" name="options-outlined"
-                                                   id="warning" autocomplete="off" checked>
-                                            <label class="btn btn-outline-warning" for="warning">Naranja</label>
-                                        </div>
+                                {{-- Button Link --}}
+                                <div class="input-group input-group-static mb-4">
+                                    <label>Acción del botón</label>
+                                    @if(count($errors->get('section_btn_link')) >= 1)
+                                        <input name="section_btn_link" id="section_btn_link" class="form-control"
+                                               placeholder="Enlace a una URL (Opcional)" aria-label="Full Name"
+                                               type="text"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               value="{{app('request')->old('section_btn_link', null)}}">
+                                    @else
+                                        <input name="section_btn_link" id="section_btn_link" class="form-control"
+                                               placeholder="Enlace a una URL (Opcional)" aria-label="Full Name"
+                                               type="text" value="{{app('request')->old('section_btn_link', null)}}">
+                                    @endif
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('section_btn_link')"></x-input-error>
 
-                                        <div class="col-2">
-                                            <input type="radio" class="btn-check" name="options-outlined"
-                                                   id="success" autocomplete="off">
-                                            <label class="btn btn-outline-success" for="success">Verde</label>
-                                        </div>
+                                {{-- image 1 display --}}
+                                <div class="row">
+                                    <div class="card mt-5" <?php if (count($errors->get('section_image_1')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
+                                        <div class="row">
+                                            <!-- Card body -->
+                                            <div class="col" style="min-width: 250px">
+                                                <div class="card-body">
+                                                    <h4 class="font-weight-normal mt-3">Imagen 1</h4>
+                                                    <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
+                                                        que la imagen sea de buena resolución para garantizar una visualización óptima.
+                                                    </p>
+                                                    <x-input-error class="text-danger"
+                                                                   :messages="$errors->get('section_image_1')"></x-input-error>
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-4">
 
-                                        <div class="col-2">
-                                            <input type="radio" class="btn-check" name="options-outlined"
-                                                   id="danger" autocomplete="off">
-                                            <label class="btn btn-outline-danger" for="danger">Rojo</label>
-                                        </div>
+                                                            <a id="falseinput1" class="btn btn-outline-warning">Subir
+                                                                Imagen</a>
+                                                        </div>
+                                                        <div class="col" style="align-self: center;">
 
-                                        <div class="col-2">
-                                            <input type="radio" class="btn-check" name="options-outlined"
-                                                   id="info" autocomplete="off">
-                                            <label class="btn btn-outline-info" for="info">Azul</label>
-                                        </div>
-
-                                        <div class="col-2">
-                                            <input type="radio" class="btn-check" name="options-outlined"
-                                                   id="primary" autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="primary">Magenta</label>
-                                        </div>
-
-                                        <div class="col-2">
-                                            <input type="radio" class="btn-check" name="options-outlined"
-                                                   id="secondary" autocomplete="off">
-                                            <label class="btn btn-outline-secondary" for="secondary">Gris</label>
+                                                            <p id="selected_filename1">No file selected</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Card image -->
+                                            <div class="col mb-4 text-center" style="min-width: 50%">
+                                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                                                     style="background: none;">
+                                                    <img id="section_img_1" class="border-radius-lg w-50"
+                                                         src="" alt="">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
+                                {{-- image input --}}
+                                <div class="input-group input-group-static mb-4 mt-4">
+                                    <input id="fileinput1" name="section_image_1" type="file" accept=".jpg,.jpeg,.png"
+                                           style="display:none;">
+                                </div>
+
+                                {{-- image 2 display --}}
+                                <div class="row">
+                                    <div class="card mt-2" <?php if (count($errors->get('section_image_2')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
+                                        <div class="row">
+                                            <!-- Card body -->
+                                            <div class="col" style="min-width: 250px">
+                                                <div class="card-body">
+                                                    <h4 class="font-weight-normal mt-3">Imagen 2</h4>
+                                                    <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
+                                                        que la imagen sea de buena resolución para garantizar una visualización óptima.
+                                                    </p>
+                                                    <x-input-error class="text-danger"
+                                                                   :messages="$errors->get('section_image_2')"></x-input-error>
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-4">
+
+                                                            <a id="falseinput2" class="btn btn-outline-warning">Subir
+                                                                Imagen</a>
+                                                        </div>
+                                                        <div class="col" style="align-self: center;">
+
+                                                            <p id="selected_filename2">No file selected</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Card image -->
+                                            <div class="col mb-4 text-center" style="min-width: 50%">
+                                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                                                     style="background: none;">
+                                                    <img id="section_img_2" class="border-radius-lg w-50"
+                                                         src="" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- image input --}}
+                                <div class="input-group input-group-static mb-4 mt-4">
+                                    <input id="fileinput2" name="section_image_2" type="file" accept=".jpg,.jpeg,.png"
+                                           style="display:none;">
+                                </div>
+
+
+                                {{-- Tip: para saber el estado de los radios se puede usar el atributo checked --}}
+
+
+                                {{-- Style select --}}
+                                <div class="input-group input-group-static mb-4">
+                                    <label>Estilo</label>
+                                    @if(count($errors->get('section_style')) >= 1)
+                                        <select name="section_style" id="section_style" class="form-control"
+                                                style="box-shadow: 0 0 8px 2px #ff000061;">
+                                            <option selected disabled hidden value="">-- Seleccione un estilo de visualización --</option>
+                                                <option value="1">1</option>
+                                        </select>
+                                    @else
+                                        <select name="section_style" id="section_style" class="form-control">
+                                            <option selected disabled hidden value="">-- Seleccione un estilo de visualización --</option>
+                                                <option value="1">1</option>
+                                        </select>
+                                    @endif
+
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('section_style')"></x-input-error>
+
+                                {{-- Color --}}
+                                <div class="mb-2 mt-md-0 mt-4">
+                                    <label>Color de énfasis</label>
+                                    <div class="row text-center my-4">
+                                        <div class="col-2">
+                                            <input type="radio" class="btn-check" name="section_color"
+                                                   id="warning" autocomplete="off" checked value="1">
+                                            <label class="btn btn-outline-warning" for="warning">Naranja</label>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <input type="radio" class="btn-check" name="section_color"
+                                                   id="success" autocomplete="off" value="2">
+                                            <label class="btn btn-outline-success" for="success">Verde</label>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <input type="radio" class="btn-check" name="section_color"
+                                                   id="danger" autocomplete="off" value="3">
+                                            <label class="btn btn-outline-danger" for="danger">Rojo</label>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <input type="radio" class="btn-check" name="section_color"
+                                                   id="info" autocomplete="off" value="4">
+                                            <label class="btn btn-outline-info" for="info">Azul</label>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <input type="radio" class="btn-check" name="section_color"
+                                                   id="primary" autocomplete="off" value="5">
+                                            <label class="btn btn-outline-primary" for="primary">Magenta</label>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <input type="radio" class="btn-check" name="section_color"
+                                                   id="secondary" autocomplete="off" value="6">
+                                            <label class="btn btn-outline-secondary" for="secondary">Gris</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('section_color')"></x-input-error>
 
                             </div>
 
-
-                            <div class="form-check form-switch py-3">
-                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
-                                <label class="form-check-label" for="active">Activado</label>
+                            <label class="py-3">Activado</label>
+                            <div class="form-check form-switch mb-6">
+                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active" style="scale: 1.3; margin-left: 0.03px">
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>
 
 
-                            <div class="row">
-                                <div class="card mt-5" <?php if (count($errors->get('banner_image')) >= 1) {
-                                    echo("style='box-shadow: 0 0 8px 2px #ff000061;'");
-                                } else {
-                                    echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");
-                                } ?>>
-                                    <div class="row">
-                                        <!-- Card body -->
-                                        <div class="col-5">
-                                            <div class="card-body">
-                                                <h4 class="font-weight-normal mt-3">Imagen</h4>
-                                                <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
-                                                    que la imagen sea ancha y de buena resolución.
-                                                </p>
-                                                <x-input-error class="text-danger"
-                                                               :messages="$errors->get('banner_image')"></x-input-error>
-                                                <div class="row mt-5">
-                                                    <div class="col-md-4">
 
-                                                        <a id="falseinput" class="btn btn-outline-warning">Subir
-                                                            Imagen</a>
-                                                    </div>
-                                                    <div class="col" style="align-self: center;">
-
-                                                        <p id="selected_filename">No file selected</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Card image -->
-                                        <div class="col-7 mb-4 text-center">
-                                            <div class="card-header p-0 position-relative mt-n4 z-index-2"
-                                                 style="background: none;">
-                                                <img id="banner_img" class="border-radius-lg w-100"
-                                                     src="" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="input-group input-group-static mb-4 mt-4">
-                                <input id="fileinput" name="banner_image" type="file" accept=".jpg,.jpeg,.png,.webp"
-                                       style="display:none;">
-                            </div>
 
                             <div class="row">
                                 <div class="col-sm-6 text-start">
-                                    <a href="{{route('banner.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
+                                    <a href="{{route('section.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
                                        style="max-width: 233px; width: -webkit-fill-available;">Cancelar
                                     </a>
                                 </div>
@@ -385,18 +469,35 @@
 
 <script>
     $(document).ready(function () {
-        $('#falseinput').click(function () {
-            $("#fileinput").click();
+        $('#falseinput1').click(function () {
+            $("#fileinput1").click();
+        });
+
+        $('#falseinput2').click(function () {
+            $("#fileinput2").click();
         });
     });
-    $('#fileinput').change(function () {
-        $('#selected_filename').text($('#fileinput')[0].files[0].name);
+
+    $('#fileinput1').change(function () {
+        $('#selected_filename1').text($('#fileinput1')[0].files[0].name);
         let reader = new FileReader();
         reader.onload = (e) => {
-            $('#banner_img').attr('src', e.target.result);
+            $('#section_img_1').attr('src', e.target.result);
         }
         reader.readAsDataURL(this.files[0]);
     });
+
+    $('#fileinput2').change(function () {
+        $('#selected_filename2').text($('#fileinput2')[0].files[0].name);
+        let reader2 = new FileReader();
+        reader2.onload = (e) => {
+            $('#section_img_2').attr('src', e.target.result);
+        }
+        reader2.readAsDataURL(this.files[0]);
+    });
+
+
+
 </script>
 
 
