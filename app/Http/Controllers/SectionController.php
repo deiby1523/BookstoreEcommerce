@@ -36,6 +36,9 @@ class SectionController extends Controller
             'section_style' => 'required | min:1 | max:4 | integer',
         ]);
 
+        $model = Section::latest('id')->first();
+        $id = intval($model->id) + 1;
+
         $img1Exists = false;
         $img2Exists = false;
         $imageName1 = null;
@@ -45,7 +48,7 @@ class SectionController extends Controller
         if ($request->hasFile("section_image_1")) {
             $img1Exists = true;
             $image1 = $request->file("section_image_1");
-            $imageName1 = Str::slug($request->section_name) . "_1" . "." . $image1->guessExtension();
+            $imageName1 = Str::slug($request->section_name)."_".$id. "_1" . "." . $image1->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
@@ -56,7 +59,7 @@ class SectionController extends Controller
         if ($request->hasFile("section_image_2")) {
             $img2Exists = true;
             $image2 = $request->file("section_image_2");
-            $imageName2 = Str::slug($request->section_name) . "_2" . "." . $image2->guessExtension();
+            $imageName2 = Str::slug($request->section_name)."_".$id. "_2" . "." . $image2->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
@@ -171,7 +174,7 @@ class SectionController extends Controller
 
             $img1Exists = true;
             $image1 = $request->file("section_image_1");
-            $imageName1 = Str::slug($request->section_name) . "_1" . "." . $image1->guessExtension();
+            $imageName1 = Str::slug($request->section_name)."_".$id. "_1" . "." . $image1->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
@@ -185,7 +188,7 @@ class SectionController extends Controller
             }
             $img2Exists = true;
             $image2 = $request->file("section_image_2");
-            $imageName2 = Str::slug($request->section_name) . "_2" . "." . $image2->guessExtension();
+            $imageName2 = Str::slug($request->section_name)."_".$id. "_2" . "." . $image2->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
