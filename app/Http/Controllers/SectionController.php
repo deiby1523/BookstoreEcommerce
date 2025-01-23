@@ -135,5 +135,11 @@ class SectionController extends Controller
         return redirect()->route('section.index')->with('success', 'Sección añadida exitosamente');
     }
 
+    public function edit($id)
+    {
+        $section = Section::findOrFail($id);
+        return view('section.edit', compact('section'));
+    }
+
 
 }
