@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="es">
-
-{{-- TODO: Realizar una busqueda y correccion de errroes al crear Secciones --}}
-
 <head>
     <title>Añadir sección</title>
     <!-- Required meta tags -->
