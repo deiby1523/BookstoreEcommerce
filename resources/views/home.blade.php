@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    {{--End carousel--}}
+    {{-- End carousel --}}
 
     {{-- Main Body --}}
     <div class="card card-body shadow-xl mx-3 mx-md-4" style="margin-top: 2rem">
