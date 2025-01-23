@@ -65,6 +65,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/section', [SectionController::class,'index'])->name('section.index');
     Route::get('/section/create',[SectionController::class,'create'])->name('section.create');
     Route::post('/section/save', [SectionController::class,'save'])->name('section.save');
+    Route::get('/section/edit/{section}', [SectionController::class,'edit'])->name('section.edit');
+
 
 
     // Categories
