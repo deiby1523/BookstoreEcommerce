@@ -136,7 +136,7 @@ $nsections = count($sections);
                                             Visualizar
                                         </a>
 
-                                        <a href=""
+                                        <a href="{{route('section.edit',$section->id)}}"
                                            class="text-secondary  mx-3 font-weight-normal "
                                            data-toggle="tooltip" data-original-title="Edit section">
                                             Editar
