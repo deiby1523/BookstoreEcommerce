@@ -36,8 +36,14 @@ class SectionController extends Controller
             'section_style' => 'required | min:1 | max:4 | integer',
         ]);
 
+        $id = 0;
         $model = Section::latest('id')->first();
-        $id = intval($model->id) + 1;
+
+        if ($model == null) {
+            $id = 1;
+        } else {
+            $id = intval($model->id) + 1;
+        }
 
         $img1Exists = false;
         $img2Exists = false;
@@ -48,22 +54,22 @@ class SectionController extends Controller
         if ($request->hasFile("section_image_1")) {
             $img1Exists = true;
             $image1 = $request->file("section_image_1");
-            $imageName1 = Str::slug($request->section_name)."_".$id. "_1" . "." . $image1->guessExtension();
+            $imageName1 = Str::slug($request->section_name) . "_" . $id . "_1" . "." . $image1->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
-            copy($image1->getRealPath(), $route.$imageName1);
+            copy($image1->getRealPath(), $route . $imageName1);
         }
 
         // script para subir la imagen 1
         if ($request->hasFile("section_image_2")) {
             $img2Exists = true;
             $image2 = $request->file("section_image_2");
-            $imageName2 = Str::slug($request->section_name)."_".$id. "_2" . "." . $image2->guessExtension();
+            $imageName2 = Str::slug($request->section_name) . "_" . $id . "_2" . "." . $image2->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
-            copy($image2->getRealPath(), $route.$imageName2);
+            copy($image2->getRealPath(), $route . $imageName2);
         }
 
         if ($img1Exists && $img2Exists) {
@@ -168,31 +174,31 @@ class SectionController extends Controller
 
         // script para subir la imagen 1
         if ($request->hasFile("section_image_1")) {
-            if(File::exists(public_path($section->section_image_1_url))) {
+            if (File::exists(public_path($section->section_image_1_url))) {
                 File::delete(public_path($section->section_image_1_url));
             }
 
             $img1Exists = true;
             $image1 = $request->file("section_image_1");
-            $imageName1 = Str::slug($request->section_name)."_".$id. "_1" . "." . $image1->guessExtension();
+            $imageName1 = Str::slug($request->section_name) . "_" . $id . "_1" . "." . $image1->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
-            copy($image1->getRealPath(), $route.$imageName1);
+            copy($image1->getRealPath(), $route . $imageName1);
         }
 
         // script para subir la imagen 1
         if ($request->hasFile("section_image_2")) {
-            if(File::exists(public_path($section->section_image_2_url))) {
+            if (File::exists(public_path($section->section_image_2_url))) {
                 File::delete(public_path($section->section_image_2_url));
             }
             $img2Exists = true;
             $image2 = $request->file("section_image_2");
-            $imageName2 = Str::slug($request->section_name)."_".$id. "_2" . "." . $image2->guessExtension();
+            $imageName2 = Str::slug($request->section_name) . "_" . $id . "_2" . "." . $image2->guessExtension();
             $route = public_path("img/sections/");
 
             //$image->move($route, $imageName);
-            copy($image2->getRealPath(), $route.$imageName2);
+            copy($image2->getRealPath(), $route . $imageName2);
         }
 
         if ($img1Exists && $img2Exists) {
