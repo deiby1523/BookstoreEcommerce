@@ -68,6 +68,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/section/edit/{section}', [SectionController::class,'edit'])->name('section.edit');
     Route::put('/section/update/{section}', [SectionController::class,'update'])->name('section.update');
     Route::delete('/section/delete/{section}', [SectionController::class,'delete'])->name('section.delete');
+    Route::get('/section/show/{section}',[SectionController::class,'show'])->name('section.show');
 
 
     // Categories
