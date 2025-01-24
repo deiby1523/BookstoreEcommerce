@@ -29,7 +29,7 @@ class Category extends Model
         // Escuchamos el evento "deleting" del modelo Category
         static::deleting(function ($category) {
 
-            // Delete the image associated with the book
+            // Delete the image associated with the category
             $imagePath = public_path($category->category_image_url);
 
             if (File::exists($imagePath)) {
