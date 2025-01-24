@@ -59,7 +59,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/banner/edit/{banner}', [BannerController::class, 'edit'])->name('banner.edit');
     Route::put('/banner/update/{banner}',[BannerController::class,'update'])->name('banner.update');
     Route::delete('/banner/delete/{banner}', [BannerController::class, 'delete'])->name('banner.delete');
-    Route::get('/banner/show/{featured}',[BannerController::class,'show'])->name('banner.show');
+    Route::get('/banner/show/{banner}',[BannerController::class,'show'])->name('banner.show');
 
     // Sections
     Route::get('/section', [SectionController::class,'index'])->name('section.index');
