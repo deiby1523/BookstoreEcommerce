@@ -170,7 +170,7 @@ $nsections = count($sections);
                                                             data-bs-dismiss="modal">Cancelar
                                                     </button>
                                                     <form method="POST"
-                                                          action="">
+                                                          action="{{route('section.delete',$section->id)}}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn bg-gradient-danger mb-0">
