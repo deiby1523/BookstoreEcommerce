@@ -277,4 +277,10 @@ class SectionController extends Controller
 
         return redirect()->route('section.index')->with('success', 'Sección eliminada exitosamente.');
     }
+
+    public function show($id)
+    {
+        $section = Section::findOrFail($id);
+        return view('section.show', compact('section'));
+    }
 }
