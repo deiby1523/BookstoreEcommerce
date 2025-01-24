@@ -264,9 +264,11 @@ class SectionController extends Controller
         return redirect()->route('section.index')->with('success', 'Sección editada exitosamente');
     }
 
+    public function delete($id)
+    {
+        $section = Section::findOrFail($id);
+        $section->delete();
 
-
-
-
-
+        return redirect()->route('section.index')->with('success', 'Sección eliminada exitosamente.');
+    }
 }
