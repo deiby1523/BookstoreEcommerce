@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="es">
 
-
 <head>
     <title>Banner</title>
     <!-- Required meta tags -->
