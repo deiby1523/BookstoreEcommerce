@@ -313,6 +313,7 @@
                                             <option @php if($section->section_style == 2) {echo('selected');} @endphp value="2">2</option>
                                             <option @php if($section->section_style == 3) {echo('selected');} @endphp value="3">3</option>
                                             <option @php if($section->section_style == 4) {echo('selected');} @endphp value="4">4</option>
+                                            <option @php if($section->section_style == 5) {echo('selected');} @endphp value="5">5</option>
                                         </select>
                                     @else
                                         <select name="section_style" id="section_style" class="form-control">
@@ -320,6 +321,7 @@
                                             <option @php if($section->section_style == 2) {echo('selected');} @endphp value="2">2</option>
                                             <option @php if($section->section_style == 3) {echo('selected');} @endphp value="3">3</option>
                                             <option @php if($section->section_style == 4) {echo('selected');} @endphp value="4">4</option>
+                                            <option @php if($section->section_style == 5) {echo('selected');} @endphp value="5">5</option>
                                         </select>
                                     @endif
 
