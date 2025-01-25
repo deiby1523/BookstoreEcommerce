@@ -33,7 +33,7 @@ class SectionController extends Controller
             'section_text_1' => 'min:5 | max:500',
             'section_text_2' => 'min:5 | max:500',
             'section_color' => 'required | min:1 | max:6 | integer',
-            'section_style' => 'required | min:1 | max:4 | integer',
+            'section_style' => 'required | min:1 | max:5 | integer',
         ]);
 
         $id = 0;
@@ -162,7 +162,7 @@ class SectionController extends Controller
             'section_text_1' => 'min:5 | max:500',
             'section_text_2' => 'min:5 | max:500',
             'section_color' => 'required | min:1 | max:6 | integer',
-            'section_style' => 'required | min:1 | max:4 | integer',
+            'section_style' => 'required | min:1 | max:5 | integer',
         ]);
 
         $section = Section::findOrFail($id);
