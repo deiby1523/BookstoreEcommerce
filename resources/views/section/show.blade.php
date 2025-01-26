@@ -209,7 +209,7 @@ $color = "";
                                             <h5>1. Listen to Social Conversations</h5>
                                             <p>
                                                 Gain access to the demographics, psychographics, and location of unique
-                                                people who are interested and talk about your brand.
+                                                people who are interested and talk about your brand
                                             </p>
                                         </div>
                                     </div>
@@ -218,7 +218,7 @@ $color = "";
                                             <h5>2. Performance Analyze</h5>
                                             <p>
                                                 Unify data from Facebook, Instagram, Twitter, LinkedIn, and Youtube to
-                                                gain rich insights from easy-to-use reports.
+                                                gain rich insights from easy-to-use reports
                                             </p>
                                         </div>
                                     </div>
@@ -227,7 +227,7 @@ $color = "";
                                             <h5>3. Social Conversions</h5>
                                             <p>
                                                 Track actions taken on your website that originated from social, and
-                                                understand the impact on your bottom line.
+                                                understand the impact on your bottom line
                                             </p>
                                         </div>
                                     </div>
