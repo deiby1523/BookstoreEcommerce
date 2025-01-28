@@ -213,35 +213,27 @@ $color = "";
                                                 <div class="card">
                                                     <div class="d-block blur-shadow-image">
                                                         <img
-                                                            src="https://images.unsplash.com/photo-1574766699303-ac3a5dffb74e?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
+                                                            src="{{asset($section->section_image_1_url)}}"
                                                             alt="img-blur-shadow-blog-2"
                                                             class="img-fluid border-radius-lg" loading="lazy">
                                                     </div>
                                                     <div class="colored-shadow"
-                                                         style="background-image: url(&quot;https://images.unsplash.com/photo-1574766699303-ac3a5dffb74e?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80&quot;);"></div>
+                                                         style="background-image: url({{asset($section->section_image_1_url)}});"></div>
                                                 </div>
                                             </div>
                                             <div
                                                 class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
-                                                <h6 class="category text-warning mt-3">Coworking</h6>
+                                                <h6 class="category text-{{$color}} mt-3">{{$section->section_secondary_title}}</h6>
                                                 <h3 class="card-title">
-                                                    <a href="javascript:;" class="text-dark">Warner Music Group buys
-                                                        concert discovery service Songkick</a>
+                                                    <a href="javascript:;" class="text-dark">{{$section->section_main_title}}</a>
                                                 </h3>
                                                 <p class="card-description">
-                                                    Warner Music Group announced today it’s acquiring the selected
-                                                    assets of the music platform Songkick, including its app for finding
-                                                    concerts and the company’s trademark. Songkick has been involved in
-                                                    a lawsuit against the major… <a href="javascript:;"
-                                                                                    class="text-darker icon-move-right text-sm">Read
+                                                    {{$section->section_text_1}}
+                                                    <a href="{{$section->section_btn_link}}"
+                                                                                    class="text-{{$color}} icon-move-right text-sm">Read
                                                         More
                                                         <i class="fas fa-arrow-right text-xs ms-1"></i>
                                                     </a>
-                                                </p>
-                                                <p class="author">
-                                                    by <a href="javascript:;" class="ms-1"><span
-                                                            class="font-weight-bold text-warning"> Sarah Perez</span></a>,
-                                                    2 days ago
                                                 </p>
                                             </div>
                                         </div>
