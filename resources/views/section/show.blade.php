@@ -130,7 +130,7 @@ $color = "";
                                             <p>
                                                 {{$section->section_text_1}}
                                             </p>
-                                            <a href="{{$section->section_btn_link}}" class="text-info text-sm icon-move-right">Read More
+                                            <a href="{{$section->section_btn_link}}" class="text-{{$color}} text-sm icon-move-right">Read More
                                                 <i class="fas fa-arrow-right text-xs ms-1"></i>
                                             </a>
                                         </div>
