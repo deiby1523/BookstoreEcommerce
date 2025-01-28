@@ -119,20 +119,18 @@ $color = "";
                                     <div class="card card-plain">
                                         <div class="card-header p-0 position-relative">
                                             <a class="d-block blur-shadow-image">
-                                                <img src="{{asset('img/testimonial-6-2.jpg')}}" alt="img-blur-shadow"
+                                                <img src="{{asset($section->section_image_1_url)}}" alt="img-blur-shadow"
                                                      class="img-fluid shadow border-radius-lg" loading="lazy">
                                             </a>
                                         </div>
                                         <div class="card-body px-0">
                                             <h5>
-                                                <a href="javascript:;" class="text-dark font-weight-bold">Rover raised
-                                                    $65 million</a>
+                                                <a href="javascript:;" class="text-dark font-weight-bold">{{$section->section_main_title}}</a>
                                             </h5>
                                             <p>
-                                                Finding temporary housing for your dog should be as easy as
-                                                renting an Airbnb. That’s the idea behind Rover ...
+                                                {{$section->section_text_1}}
                                             </p>
-                                            <a href="javascript:;" class="text-info text-sm icon-move-right">Read More
+                                            <a href="{{$section->section_btn_link}}" class="text-info text-sm icon-move-right">Read More
                                                 <i class="fas fa-arrow-right text-xs ms-1"></i>
                                             </a>
                                         </div>
