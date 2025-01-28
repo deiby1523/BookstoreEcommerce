@@ -181,15 +181,13 @@ $color = "";
                                     <div class="cursor-pointer">
                                         <div class="card card-background">
                                             <div class="full-background"
-                                                 style="background-image: url('https://images.unsplash.com/photo-1507207611509-ec012433ff52?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80')"></div>
+                                                 style="background-image: url('{{asset($section->section_image_1_url)}}')"></div>
                                             <div class="card-body pt-7 text-center">
-                                                <p class="text-white text-uppercase">Search and Discover!</p>
-                                                <h3 class="text-white up mb-0">The Most Important New Technology</h3>
-                                                <p class="text-white opacity-8">We’re constantly trying to express
-                                                    ourselves and actualize our dreams. If you have the opportunity to
-                                                    play this game of life you need to appreciate every moment.</p>
-                                                <button type="button" class="btn btn-white btn-sm mt-3">Get Started
-                                                </button>
+                                                <p class="text-white text-uppercase">{{$section->section_secondary_title}}</p>
+                                                <h3 class="text-white up mb-0">{{$section->section_main_title}}</h3>
+                                                <p class="text-white opacity-8">{{$section->section_text_1}}</p>
+                                                <a href="{{$section->section_btn_link}}" class="btn btn-white btn-sm mt-3">Get Started
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -197,28 +195,9 @@ $color = "";
                                 <div class="col-md-5 me-auto my-auto ms-md-5">
                                     <div class="p-3 info-horizontal d-flex">
                                         <div>
-                                            <h5>1. Listen to Social Conversations</h5>
+                                            <h5>{{$section->section_sub_title}}</h5>
                                             <p>
-                                                Gain access to the demographics, psychographics, and location of unique
-                                                people who are interested and talk about your brand.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="p-3 info-horizontal d-flex">
-                                        <div>
-                                            <h5>2. Performance Analyze</h5>
-                                            <p>
-                                                Unify data from Facebook, Instagram, Twitter, LinkedIn, and Youtube to
-                                                gain rich insights from easy-to-use reports.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="p-3 info-horizontal d-flex">
-                                        <div>
-                                            <h5>3. Social Conversions</h5>
-                                            <p>
-                                                Track actions taken on your website that originated from social, and
-                                                understand the impact on your bottom line.
+                                                {{$section->section_text_2}}
                                             </p>
                                         </div>
                                     </div>
