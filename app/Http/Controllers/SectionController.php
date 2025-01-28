@@ -30,8 +30,8 @@ class SectionController extends Controller
             'section_secondary_title' => 'min:3 | max:50',
             'section_sub_title' => 'min:3 | max:50',
             'section_secondary_sub_title' => 'min:3 | max:50',
-            'section_text_1' => 'min:5 | max:500',
-            'section_text_2' => 'min:5 | max:500',
+            'section_text_1' => 'min:5 | max:1000',
+            'section_text_2' => 'min:5 | max:1000',
             'section_color' => 'required | min:1 | max:6 | integer',
             'section_style' => 'required | min:1 | max:5 | integer',
         ]);
@@ -159,8 +159,8 @@ class SectionController extends Controller
             'section_secondary_title' => 'min:3 | max:50',
             'section_sub_title' => 'min:3 | max:50',
             'section_secondary_sub_title' => 'min:3 | max:50',
-            'section_text_1' => 'min:5 | max:500',
-            'section_text_2' => 'min:5 | max:500',
+            'section_text_1' => 'min:5 | max:1000',
+            'section_text_2' => 'min:5 | max:1000',
             'section_color' => 'required | min:1 | max:6 | integer',
             'section_style' => 'required | min:1 | max:5 | integer',
         ]);
