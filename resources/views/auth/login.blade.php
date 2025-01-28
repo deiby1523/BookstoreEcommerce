@@ -1,5 +1,6 @@
 <html lang="es">
 <head>
+    <!-- TODO: Revisar lo de registro de usuarios -->
     <title>Iniciar Sesion</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
