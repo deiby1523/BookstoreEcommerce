@@ -105,7 +105,10 @@ $color = "";
                                             <div class="px-4">
                                                 <p class="text-gradient text-{{$color}}">{{$section->section_secondary_sub_title}}</p>
                                                 <h3 class="mb-4">{{$section->section_sub_title}}</h3>
-                                                <p>{{$section->section_text_1}}</p>
+                                                <p>{{$section->section_text_1}}
+                                                    <br><br>
+                                                    <a class="link-{{$color}}" href="{{$section->section_btn_link}}">More info.</a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
