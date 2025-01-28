@@ -462,6 +462,9 @@
         <!-- END Project section w/ 3 images & quote & text -->
 
 
+        <!-- TODO: Mirar lo del footer, al menos en la página principal y páginas abiertas al público -->
+
+
     </div>
     <br><br><br>
 </div>
