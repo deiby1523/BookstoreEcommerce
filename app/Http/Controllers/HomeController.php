@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\FeaturedType;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -54,7 +55,9 @@ class HomeController extends Controller
 
         $banners = Banner::all();
 
+        $sections = Section::all();
+
         $categories = Category::all();
-        return view('home', compact('latestBooks','sellingBooks','categories','featuredBooks','banners'));
+        return view('home', compact('latestBooks','sellingBooks','categories','featuredBooks','banners','sections'));
     }
 }
