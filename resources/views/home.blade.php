@@ -437,8 +437,7 @@
                                         <h3 class="mb-4">{{$section->section_sub_title}}</h3>
                                         <p>{{$section->section_text_1}}
                                             <br><br>
-                                            <a class="link-{{$color}}" href="{{$section->section_btn_link}}">More
-                                                info.</a>
+                                            <a class="link-{{$color}}" href="{{$section->section_btn_link}}">Más info</a>
                                         </p>
                                     </div>
                                 </div>
