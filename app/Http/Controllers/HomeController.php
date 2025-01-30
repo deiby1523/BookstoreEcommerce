@@ -31,33 +31,17 @@ class HomeController extends Controller
     LIMIT 5';
         $latestBooks = DB::select($sql);
 
-        $sql = 'SELECT
-    books.id,
-    books.book_isbn,
-    books.book_title,
-    books.book_price,
-    books.book_image_url,
-    authors.author_name,
-    publishers.publisher_name,
-    categories.category_name,
-    subcategories.subcategory_name
-    FROM books, authors, publishers, categories, subcategories
-    WHERE books.author_id = authors.id
-    AND books.publisher_id = publishers.id
-    AND books.subcategory_id = subcategories.id
-    AND subcategories.category_id = categories.id
-    AND books.id IN(1)
-    LIMIT 10';
+        $sql = 'SELECT * FROM banners WHERE active = 1';
 
-        $sellingBooks = DB::select($sql);
+        $banners = DB::select($sql);
 
         $featuredBooks = FeaturedType::all()->sortBy('updated_at');
 
-        $banners = Banner::all();
+        $sql = 'SELECT * FROM sections WHERE active = 1';
 
-        $sections = Section::all();
+        $sections = DB::select($sql);
 
         $categories = Category::all();
-        return view('home', compact('latestBooks','sellingBooks','categories','featuredBooks','banners','sections'));
+        return view('home', compact('latestBooks', 'categories', 'featuredBooks', 'banners', 'sections'));
     }
 }
