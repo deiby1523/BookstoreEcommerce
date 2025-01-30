@@ -568,8 +568,7 @@
                                         <p class="card-description">
                                             {{$section->section_text_1}}
                                             <a href="{{$section->section_btn_link}}"
-                                               class="text-{{$color}} icon-move-right text-sm">Read
-                                                More
+                                               class="text-{{$color}} icon-move-right text-sm">Más info
                                                 <i class="fas fa-arrow-right text-xs ms-1"></i>
                                             </a>
                                         </p>
