@@ -523,8 +523,7 @@
                                         <p class="text-white text-uppercase">{{$section->section_secondary_title}}</p>
                                         <h3 class="text-white up mb-0">{{$section->section_main_title}}</h3>
                                         <p class="text-white opacity-8">{{$section->section_text_1}}</p>
-                                        <a href="{{$section->section_btn_link}}" class="btn btn-white btn-sm mt-3">Get
-                                            Started
+                                        <a href="{{$section->section_btn_link}}" class="btn btn-white btn-sm mt-3">Más info
                                         </a>
                                     </div>
                                 </div>
