@@ -465,7 +465,7 @@
                                         {{$section->section_text_1}}
                                     </p>
                                     <a href="{{$section->section_btn_link}}"
-                                       class="text-{{$color}} text-sm icon-move-right">Read More
+                                       class="text-{{$color}} text-sm icon-move-right">Más info
                                         <i class="fas fa-arrow-right text-xs ms-1"></i>
                                     </a>
                                 </div>
