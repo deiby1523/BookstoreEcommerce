@@ -501,8 +501,7 @@
                                             <h3 class="text-white mt-xl-0 mt-5">{{$section->section_sub_title}}</h3>
                                             <p class="text-sm text-white opacity-8">{{$section->section_text_2}}</p>
                                             <a href="{{$section->section_btn_link}}"
-                                               class="text-white icon-move-right text-sm">See
-                                                all products
+                                               class="text-white icon-move-right text-sm">Más info
                                                 <i class="fas fa-arrow-right text-xs ms-1"></i>
                                             </a>
                                         </div>
