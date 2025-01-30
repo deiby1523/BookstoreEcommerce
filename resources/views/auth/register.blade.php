@@ -22,7 +22,7 @@
     <div class="container">
         <a class="navbar-brand  text-dark " href="{{ route('home') }}" rel="tooltip"
            title="Designed and Coded by Deiby P." data-placement="bottom">
-            Ecommerce Example
+            <img src="{{asset('img/logos/Home_Logo.png')}}" alt="Logo" style="max-width: 200px" class="navbar-brand-img">
         </a>
 
     </div>
