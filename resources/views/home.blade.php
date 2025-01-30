@@ -131,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    @for($i = 2; $i < 5; $i++)
+                    @for($i = 2; $i < count($categories); $i++)
                         <div class="carousel-item">
                             <div class="container">
                                 <div class="row align-items-center">
