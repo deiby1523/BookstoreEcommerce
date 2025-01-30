@@ -62,16 +62,16 @@
 {{--@endphp--}}
 
 <section class="pt-3 pt-md-5 pb-md-5 pt-lg-8">
-    <div class="container">
+    <div class="container" style="max-width: 1800px">
         <div class="row">
-            <div class="col-lg-3 card shadow-lg mb-lg-0 mb-5 mt-8 mt-md-5 mt-lg-0">
+            <div class="col-lg-3 card shadow-lg mb-lg-0 mb-5 mt-8 mt-md-5 mt-lg-0 w-20">
                 <div class="card-body p-5 categories">
                     <div class="accordion" id="accordionCategories">
                         @php
                         $first = true;
                         @endphp
                         @foreach($categories as $category)
-                        <div class="accordion-item mb-3">
+                        <div class="accordion-item mb-0 mt-0">
                             <h5 class="accordion-header" id="heading{{ $category->id }}">
                                 <button class="accordion-button border-bottom font-weight-bold" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapse{{ $category->id }}"
@@ -238,6 +238,8 @@
         </div>
     </div>
 </section>
+
+<!-- TODO: Poner una paginacion para mostrar grandes cantidades de libros -->
 
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
