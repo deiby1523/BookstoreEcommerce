@@ -29,6 +29,7 @@
 
 
 <body class="loading">
+<!-- TODO: Desarrollar el modulo de productos -->
 
 <div class="container flex justify-content-center position-relative overflow-hidden w-10">
 
