@@ -595,7 +595,7 @@
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
-{{--Important--}}
+{{-- Important --}}
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
 <script src="{{asset('js/home.js')}}" type="text/javascript"></script>
 
