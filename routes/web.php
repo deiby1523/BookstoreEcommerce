@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InterfaceDashboardController;
+use App\Http\Controllers\ProductDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\SectionController;
@@ -39,6 +40,7 @@ Route::middleware('UserAdmin')->group(function () {
     // Dashboards
     Route::get('/dashboard/books', [BookDashboardController::class, 'index'])->name('dashboard.books');
     Route::get('/dashboard/interface', [InterfaceDashboardController::class, 'index'])->name('dashboard.interface');
+    Route::get('/dashboard/products',[ProductDashboardController::class, 'index'])->name('dashboard.products');
 
     // Featured
     Route::get('/featured', [FeaturedController::class, 'index'])->name('featured.index');
