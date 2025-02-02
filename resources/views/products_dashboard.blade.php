@@ -66,8 +66,8 @@
                 <a href="{{ route('book.index') }}">
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
-                            <h1 class="text-gradient text-warning"><span id="status1" ></span></h1>
-                            <h6 class="mb-0 font-weight-bolder">Libros</h6>
+                            <h1 class="text-gradient text-warning"><span id="status1" >0</span></h1>
+                            <h6 class="mb-0 font-weight-bolder">Productos</h6>
                         </div>
                     </div>
                 </a>
