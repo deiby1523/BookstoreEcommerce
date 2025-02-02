@@ -14,7 +14,7 @@ class ProductDashboardController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::where('category_type', 1)->get();
         $subcategories = Subcategory::all();
         return view('products_dashboard', compact('categories','subcategories'));
     }
