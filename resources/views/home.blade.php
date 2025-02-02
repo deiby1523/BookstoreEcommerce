@@ -585,7 +585,7 @@
 
     </div>
 
-    <!-- TODO: Datos del Footer -->
+    <!-- TODO: Introducir datos del Footer -->
     @include('layouts.footer')
 
 </div>
