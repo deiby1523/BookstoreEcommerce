@@ -22,8 +22,6 @@
 <!-- Navbar Transparent -->
 @include('layouts.navigation')
 
-
-
     @php($numSubCat = 0)
 
     @foreach($categories as $category)
