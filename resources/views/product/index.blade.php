@@ -29,7 +29,7 @@
 <!-- End Navbar -->
 
 {{-- aditional styles --}}
-@include('book.styles.index')
+@include('product.styles.index')
 
 
 <div class="page-header" style="background-color: #ff782dbf; height: 500px">
@@ -59,7 +59,7 @@
 
                     <h2 class="title">Productos</h2>
                 </div>
-                <div class="col" style="text-align: end"><a href=""
+                <div class="col" style="text-align: end"><a href="{{ route('product.create') }}"
                                                             class="btn btn-sm btn-warning">Crear Producto</a></div>
             </div>
 
