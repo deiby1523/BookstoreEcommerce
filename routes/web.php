@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InterfaceDashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
@@ -122,6 +123,9 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
     Route::get('/book/search/{search}', [BookController::class, 'searchSelect'])->name('book.searchSelect');    // TODO: cambiar el nombre de esta ruta
     Route::POST('/product/search', [BookController::class, 'searchNav'])->name('book.searchNav');
+
+    // Products
+    Route::get('/product',[ProductController::class, 'index'])->name('product.index');
 });
 
 //public books
