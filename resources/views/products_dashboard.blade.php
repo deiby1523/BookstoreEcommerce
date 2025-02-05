@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <div class="col my-2">
-                <a href="{{ route('book.index') }}">
+                <a href="{{ route('product.index') }}">
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1">0</span></h1>
