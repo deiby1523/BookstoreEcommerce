@@ -126,6 +126,7 @@ Route::middleware('UserAdmin')->group(function () {
 
     // Products
     Route::get('/product',[ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/create',[ProductController::class, 'create'])->name('product.create');
 });
 
 //public books
