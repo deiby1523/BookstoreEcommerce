@@ -23,6 +23,7 @@ return new class extends Migration
             $table->double('book_price')->nullable(false);
             $table->integer('book_stock')->nullable(false);
             $table->integer('book_discount')->nullable()->default(0);
+            $table->boolean('active')->nullable(false)->default(1);
             $table->timestamps();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('no action');
             $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('no action');

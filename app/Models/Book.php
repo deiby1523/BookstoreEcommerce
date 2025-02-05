@@ -21,7 +21,8 @@ class Book extends Model
         'book_image_url',
         'book_price',
         'book_stock',
-        'book_discount'];
+        'book_discount',
+        'active'];
 
     public function author(): BelongsTo
     {
