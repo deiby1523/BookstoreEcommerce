@@ -34,9 +34,14 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('category.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>Volver
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('category.index')}}"
+               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
+                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>
+                Volver
             </a>
         </div>
     </div>
@@ -52,6 +57,26 @@
                           action="{{ route('category.save') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body pb-2">
+
+                            {{-- type select --}}
+                            <div class="input-group input-group-static mb-4 mt-4">
+                                <label>Tipo</label>
+                                @if(count($errors->get('category_type')) >= 1)
+                                    <select name="category_type" id="category_type" class="form-control"
+                                            style="box-shadow: 0 0 8px 2px #ff000061;">
+                                        <option selected value="0">Categoría de libros</option>
+                                        <option value="1">Categoría de productos</option>
+                                    </select>
+                                @else
+                                    <select name="category_type" id="category_type" class="form-control">
+                                        <option selected value="0">Categoría de libros</option>
+                                        <option value="1">Categoría de productos</option>
+                                    </select>
+                                @endif
+
+                            </div>
+                            <x-input-error class="text-danger"
+                                           :messages="$errors->get('category_type')"></x-input-error>
                             <div class="row">
 
                                 <div class="col-md-12">
@@ -91,8 +116,13 @@
                                            :messages="$errors->get('category_description')"></x-input-error>
 
 
+
                             <div class="row">
-                                <div class="card mt-5" <?php if (count($errors->get('category_image')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
+                                <div class="card mt-5" <?php if (count($errors->get('category_image')) >= 1) {
+                                    echo("style='box-shadow: 0 0 8px 2px #ff000061;'");
+                                } else {
+                                    echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");
+                                } ?>>
                                     <div class="row">
                                         <!-- Card body -->
                                         <div class="col" style="min-width: 250px">
