@@ -38,7 +38,7 @@
                                     <a href="{{ route('dashboard.books') }}" class="dropdown-item border-radius-md">
                                         <span>Libros</span>
                                     </a>
-                                    <a href="#" class="dropdown-item border-radius-md">
+                                    <a href="{{ route('dashboard.products') }}" class="dropdown-item border-radius-md">
                                         <span>Productos</span>
                                     </a>
                                     <a href="{{ route('dashboard.interface') }}" class="dropdown-item border-radius-md">
