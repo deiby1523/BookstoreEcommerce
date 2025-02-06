@@ -24,8 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('category.create',compact('categories'));
+        return view('category.create');
     }
 
     /**
@@ -44,8 +43,17 @@ class CategoryController extends Controller
         // script para subir la imagen
         if($request->hasFile("category_image")) {
 
+            $id = 0;
+            $model = Category::latest('id')->first();
+
+            if ($model == null) {
+                $id = 1;
+            } else {
+                $id = intval($model->id) + 1;
+            }
+
             $image = $request->file("category_image");
-            $imageName = Str::slug($request->category_name) . "." . $image->guessExtension();
+            $imageName = Str::slug($request->category_name) . "_" . $id . "." . $image->guessExtension();
             $route = public_path("img/categories/");
 
             //$image->move($route, $imageName);
@@ -55,6 +63,7 @@ class CategoryController extends Controller
                 'category_name' => $request->category_name,
                 'category_description' => $request->category_description,
                 'category_image_url' => 'img/categories/' . $imageName,
+                'category_type' => $request->category_type,
                 'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
