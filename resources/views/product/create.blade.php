@@ -48,7 +48,7 @@
             <div class="card">
                 <div class="card d-flex justify-content-center p-4 shadow-lg">
                     <form role="form" id="contact-form" method="POST" autocomplete="off"
-                          action="" enctype="multipart/form-data">
+                          action="{{ route('product.save') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body pb-2">
                             <div class="row">
