@@ -18,7 +18,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('category_type', 1)->get();
         return view('product.create', compact('categories'));
     }
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('products.index')->with('success', 'Producto creado exitosamente.');
+        return redirect()->route('product.index')->with('success', 'Producto creado exitosamente.');
     }
 
     /**
