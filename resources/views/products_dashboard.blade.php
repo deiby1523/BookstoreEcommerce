@@ -56,7 +56,7 @@
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                >{{ $nSubCategories[0]->{"count(*)"} }}   </span>
+                                >{{ $nSubCategories }}   </span>
                             </h1>
                             <h6 class="mb-0 font-weight-bolder">Sub-categorias</h6>
                         </div>
