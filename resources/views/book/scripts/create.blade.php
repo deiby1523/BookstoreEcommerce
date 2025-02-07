@@ -197,6 +197,7 @@
             $("#fileinput").click();
         });
     });
+
     $('#fileinput').change(function () {
         $('#selected_filename').text($('#fileinput')[0].files[0].name);
         let reader = new FileReader();
