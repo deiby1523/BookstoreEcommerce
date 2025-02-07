@@ -64,13 +64,13 @@
                                 @if(count($errors->get('category_type')) >= 1)
                                     <select name="category_type" id="category_type" class="form-control"
                                             style="box-shadow: 0 0 8px 2px #ff000061;">
-                                        <option value="0">Categoría de libros</option>
-                                        <option value="1">Categoría de productos</option>
+                                        <option value="0">Libro</option>
+                                        <option value="1">Producto</option>
                                     </select>
                                 @else
                                     <select name="category_type" id="category_type" class="form-control">
-                                        <option value="0">Categoría de libros</option>
-                                        <option value="1">Categoría de productos</option>
+                                        <option value="0">Libro</option>
+                                        <option value="1">Producto</option>
                                     </select>
                                 @endif
 
