@@ -22,11 +22,7 @@
 <!-- Navbar Transparent -->
 @include('layouts.navigation')
 
-    @php($numSubCat = 0)
 
-    @foreach($categories as $category)
-        @php($numSubCat += count($category->subcategories))
-    @endforeach
 
 
 <!-- End Navbar -->
@@ -47,7 +43,7 @@
                     <div class="card move-on-hover" style="height: 100%">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                >{{ count($categories) }}   </span>
+                                >{{ $nCategories }}   </span>
                             </h1>
                             <h6 class="mb-0 font-weight-bolder">Categorias</h6>
                         </div>
@@ -60,7 +56,7 @@
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
                             <h1 class="text-gradient text-warning"><span id="status1"
-                                > {{$numSubCat}}   </span>
+                                >{{ $nSubCategories[0]->{"count(*)"} }}   </span>
                             </h1>
                             <h6 class="mb-0 font-weight-bolder">Sub-categorias</h6>
                         </div>
@@ -74,7 +70,7 @@
                 <a href="{{ route('product.index') }}">
                     <div class="card move-on-hover">
                         <div class="card-body text-center">
-                            <h1 class="text-gradient text-warning"><span id="status1">0</span></h1>
+                            <h1 class="text-gradient text-warning"><span id="status1">{{$nProducts}}</span></h1>
                             <h6 class="mb-0 font-weight-bolder">Productos</h6>
                         </div>
                     </div>
