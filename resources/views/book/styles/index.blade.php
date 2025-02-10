@@ -50,6 +50,10 @@
         text-overflow: ellipsis;
         max-width: 150px; /* max width before truncate */
     }
+
+    .pag-link {
+        width: 80px !important;
+    }
 </style>
 
 @if ($message = Session::get('success'))
