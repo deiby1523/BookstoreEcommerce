@@ -112,7 +112,6 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
     Route::POST('/publisher/search', [PublisherController::class, 'searchSelect'])->name('publisher.searchSelect');
 
-
     // Books
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
     Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
