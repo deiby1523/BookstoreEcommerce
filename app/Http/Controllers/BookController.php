@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Mockery\Undefined;
 
 class BookController extends Controller
 {
@@ -271,8 +272,13 @@ class BookController extends Controller
 
     public function searchSelect(Request $request): JsonResponse
     {
-        //        TODO: Revisar el uso que se le esta dando a esta informacion y eliminar contenido que sea irrelevante
-        $sql = "SELECT
+        $search = $request->search;
+        $page = $request->page;
+        $perPage = 3;
+        $offset = ($page-1) * $perPage;
+
+        if ($search != " ") {
+            $sql = "SELECT
     books.id,
     books.book_isbn,
     books.book_title,
@@ -287,15 +293,61 @@ class BookController extends Controller
     AND books.subcategory_id = subcategories.id
     AND subcategories.category_id = categories.id
     AND(
-        books.book_title LIKE '%$request->search%' OR
-        books.book_isbn LIKE '%$request->search%' OR
-        authors.author_name LIKE '%$request->search%' OR
-        publishers.publisher_name LIKE '%$request->search%')
-        ORDER BY books.book_title ASC
-        LIMIT 8";
+        books.book_title LIKE '%$search%' OR
+        books.book_isbn LIKE '%$search%' OR
+        authors.author_name LIKE '%$search%' OR
+        publishers.publisher_name LIKE '%$search%')
+        ORDER BY books.book_title ASC";
 
-        $books = DB::select($sql);
-        return response()->json($books, 200);
+            $books = DB::select($sql);
+            $numBooks = count($books);
+            $numPages = ceil($numBooks / $perPage);
+
+            $sql = "SELECT
+    books.id,
+    books.book_isbn,
+    books.book_title,
+    books.book_price,
+    authors.author_name,
+    publishers.publisher_name,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM books, authors, publishers, categories, subcategories
+    WHERE books.author_id = authors.id
+    AND books.publisher_id = publishers.id
+    AND books.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+    AND(
+        books.book_title LIKE '%$search%' OR
+        books.book_isbn LIKE '%$search%' OR
+        authors.author_name LIKE '%$search%' OR
+        publishers.publisher_name LIKE '%$search%')
+        ORDER BY books.book_title ASC
+        LIMIT $offset,$perPage";
+            $books = DB::select($sql);
+            return response()->json($books, 200)->withHeaders(['numBooks' => $numBooks,'numPages' => $numPages,'page' => $page, 'perPage' => $perPage,'display'=>'Mostrando del '.($offset+1).' al '.($offset+$perPage)]);
+        } else {
+            $sql = "SELECT
+    books.id,
+    books.book_isbn,
+    books.book_title,
+    books.book_price,
+    authors.author_name,
+    publishers.publisher_name,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM books, authors, publishers, categories, subcategories
+    WHERE books.author_id = authors.id
+    AND books.publisher_id = publishers.id
+    AND books.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+        ORDER BY books.book_title ASC
+        LIMIT $perPage
+        OFFSET $offset";
+
+            $books = DB::select($sql);
+            return response()->json($books, 200)->withHeaders(['numPages' => 10]);
+        }
     }
 
     public function searchNav(Request $request): JsonResponse

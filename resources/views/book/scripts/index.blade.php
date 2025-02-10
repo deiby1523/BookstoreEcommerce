@@ -1,8 +1,5 @@
-
 <script>
     $(document).ready(function () {
-
-
         let typingTimer;  // Variable para almacenar el temporizador de escritura
         const doneTypingInterval = 2000;  // Intervalo de tiempo después del cual se considera que la escritura ha terminado (en milisegundos)
         let loaderTimeout; // Variable para almacenar el temporizador de la animación de carga
@@ -34,26 +31,29 @@
         // Función que se ejecuta cuando la escritura ha terminado
         function doneTyping() {
             hideLoader();  // Oculta la animación de carga después de que haya pasado el intervalo de tiempo
-
-
         }
 
     });
 
     // Book
     // Ajax request according to what's in the search box
-    function get_books(search) {
+    function get_books(search,page) {
+        if (search === '') {
+            search = ' ';
+        }
+        console.log(search + ' ' + page);
         $.ajax({
             url: `book/search/${search}`,
             type: 'GET',
             dataType: 'json',
-            data: {'search': search},
+            data: {'search': search, 'page': page},
         })
-            .done(function (books) {
+            .done(function (books, response, xhr) {
                 function convertToISBN(number) {
                     return 'ISBN ' + number.substring(0, 3) + '-' + number.substring(3, 4) + '-' + number.substring(4, 8) + '-' + number.substring(8, 12) + '-' + number.substring(12, 13);
                 }
 
+                let paginationButtons = "";
                 let resultsList;
                 resultsList = ""; // Create a variable to store the list of results
 
@@ -99,11 +99,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-`;
+                                                </div>`;
                 });
-
 
 
                 // Insert the complete list of results in #bookDisplay after all authors have been processed
@@ -131,6 +128,32 @@
                     display.style.display = "block";
                     table.style.display = "none";
                 }
+
+                paginationButtons += `<li class="page-item">
+                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                        <i class="fa fa-angle-left"></i>
+                                        <span class="sr-only">Anterior</span>
+                                    </a>
+                                </li>`;
+                for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
+                    paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                }
+
+                $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numBooks")}</p>
+                                    <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
+                                    <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
+                                    <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
+                                    <p class="text-lg"><b></b>${xhr.getResponseHeader("display")}</p>`);
+
+
+                paginationButtons += `<li class="page-item">
+                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span class="sr-only">Siguiente</span>
+                                    </a>
+                                </li>`
+                $("#pagination").html(paginationButtons);
+
             });
     }
 
@@ -152,17 +175,18 @@
     // book
     // Wrapped Ajax function with debounce
     const BookDelayedRequest = debounce(function (search) {
-        get_books(search);
+        get_books(search,1);
     }, 2000); // 300ms delay, adjustable based on your needs
 
     // book
     // 'input' event using the debounce function
     $(document).on('input', '#searchBook', function () {
         const searchValue = $('#searchBook').val();
-        if (searchValue !== "") {
-            BookDelayedRequest(searchValue);
-        } else {
-            $("#bookDisplay").html("");
-        }
+        BookDelayedRequest(searchValue);
     });
+
+    window.addEventListener('load', function () {
+        get_books(" ",1);
+    });
+
 </script>
