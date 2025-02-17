@@ -127,6 +127,8 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/product',[ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create',[ProductController::class, 'create'])->name('product.create');
     Route::post('/product/save',[ProductController::class, 'save'])->name('product.save');
+    Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/product/update/{product}', [ProductController::class, 'update'])->name('product.update');
 });
 
 //public books
