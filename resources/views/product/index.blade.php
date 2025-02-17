@@ -177,14 +177,14 @@ $nproducts = count($products);
                                                     Esta seguro que desea eliminar el Producto
                                                     '{{ $product->product_name }}' ?
                                                     <br><br>
-                                                    Esta accion es irreversible.
+                                                    Esta acción es irreversible.
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn bg-gradient-dark mb-0"
                                                             data-bs-dismiss="modal">Cancelar
                                                     </button>
                                                     <form method="POST"
-                                                          action="">
+                                                          action="{{ route('product.delete',$product->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn bg-gradient-danger mb-0">

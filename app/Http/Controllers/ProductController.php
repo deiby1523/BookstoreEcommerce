@@ -153,6 +153,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente.');
+        return redirect()->route('product.index')->with('success', 'Producto eliminado exitosamente.');
     }
 }
