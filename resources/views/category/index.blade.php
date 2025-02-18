@@ -34,9 +34,14 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="javascript:history.back()" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>Volver
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="javascript:history.back()"
+               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
+                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>
+                Volver
             </a>
         </div>
     </div>
@@ -46,30 +51,37 @@
 
                 <div class="col">
 
-                    <h2 class="title">Categorias</h2>
+                    <h2 class="title">Categorías</h2>
                 </div>
                 <div class="col" style="text-align: end"><a href="{{route('category.create')}}"
                                                             class="btn btn-sm btn-warning">Crear categoria</a></div>
             </div>
-            @php if(isset($categories)){
-$ncategories = count($categories);
-} @endphp
-            @if($ncategories > 0)
+            @php
+                    $numCatLib = 0;
+                    if(isset($categories)) {
+                         foreach ($categories as $cat) {
+                             if($cat->category_type == 0) {$numCatLib++;}
+                         }
+                    }
+            @endphp
+
+            @if($numCatLib > 0)
                 <div class="card">
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
+                            <h5 class="my-1 mx-4 text-secondary font-weight-bolder opacity-9 text-center">Libros</h5>
                             <thead>
                             <tr>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                     Codigo
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                     Nombre
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                     Creada
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                     Actualizada
                                 </th>
                                 <th class="text-secondary opacity-7"></th>
@@ -77,76 +89,77 @@ $ncategories = count($categories);
                             </thead>
                             <tbody>
                             @foreach($categories as $category)
-
-                                <tr>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $category->id }}</p>
-                                    </td>
-                                    <td>
-                                        <p class=" mb-0">{{ $category->category_name }}</p>
-                                    </td>
-                                    <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $category->created_at }}</p>
-                                    </td>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $category->updated_at }}</p>
-                                    </td>
-                                    <td class="align-middle" style="text-align: center;">
-
-
-                                        <a href="{{ route('category.show', $category->id) }}"
-                                           class="text-secondary  mx-3 font-weight-normal "
-                                           data-toggle="tooltip" data-original-title="Edit user">
-                                            Visualizar
-                                        </a>
-
-                                        <a href="{{ route('category.edit', $category->id) }}"
-                                           class="text-secondary  mx-3 font-weight-normal "
-                                           data-toggle="tooltip" data-original-title="Edit user">
-                                            Editar
-                                        </a>
+                                @if($category->category_type == 0)
+                                    <tr>
+                                        <td class="align-middle text-center ">
+                                            <p class=" mb-0">{{ $category->id }}</p>
+                                        </td>
+                                        <td>
+                                            <p class=" mb-0">{{ $category->category_name }}</p>
+                                        </td>
+                                        <td class="align-middle text-center  ">
+                                            <p class=" mb-0">{{ $category->created_at }}</p>
+                                        </td>
+                                        <td class="align-middle text-center ">
+                                            <p class=" mb-0">{{ $category->updated_at }}</p>
+                                        </td>
+                                        <td class="align-middle" style="text-align: center;">
 
 
-                                        <a href="" class="text-secondary font-weight-normal "
-                                           data-bs-toggle="modal" data-bs-target="#deleteConfirm{{$category->id}}"
-                                           data-toggle="tooltip" data-original-title="Delete user">
-                                            Eliminar
-                                        </a>
+                                            <a href="{{ route('category.show', $category->id) }}"
+                                               class="text-secondary  mx-3 font-weight-normal "
+                                               data-toggle="tooltip" data-original-title="Edit user">
+                                                Visualizar
+                                            </a>
 
-                                    </td>
-                                    <div class="modal fade" id="deleteConfirm{{$category->id}}" tabindex="-1"
-                                         aria-labelledby="deleteConfirm{{$category->id}}" aria-hidden="true">
-                                        <div class="modal-dialog" style="margin-top: 10rem;">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Esta seguro que desea eliminar la categoria
-                                                    '{{ $category->category_name }}' ?
-                                                    <br><br>
-                                                    Esta accion es irreversible y podria afectar a todos los libros
-                                                    asociados a esta categoria.
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn bg-gradient-dark mb-0"
-                                                            data-bs-dismiss="modal">Cancelar
-                                                    </button>
-                                                    <form method="POST"
-                                                          action="{{ route('category.delete',$category->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn bg-gradient-danger mb-0">
-                                                            Eliminar
+                                            <a href="{{ route('category.edit', $category->id) }}"
+                                               class="text-secondary  mx-3 font-weight-normal "
+                                               data-toggle="tooltip" data-original-title="Edit user">
+                                                Editar
+                                            </a>
+
+
+                                            <a href="" class="text-secondary font-weight-normal "
+                                               data-bs-toggle="modal" data-bs-target="#deleteConfirm{{$category->id}}"
+                                               data-toggle="tooltip" data-original-title="Delete user">
+                                                Eliminar
+                                            </a>
+
+                                        </td>
+                                        <div class="modal fade" id="deleteConfirm{{$category->id}}" tabindex="-1"
+                                             aria-labelledby="deleteConfirm{{$category->id}}" aria-hidden="true">
+                                            <div class="modal-dialog" style="margin-top: 10rem;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Esta seguro que desea eliminar la categoria
+                                                        '{{ $category->category_name }}' ?
+                                                        <br><br>
+                                                        Esta accion es irreversible y podria afectar a todos los libros
+                                                        asociados a esta categoria.
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn bg-gradient-dark mb-0"
+                                                                data-bs-dismiss="modal">Cancelar
                                                         </button>
-                                                    </form>
+                                                        <form method="POST"
+                                                              action="{{ route('category.delete',$category->id) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn bg-gradient-danger mb-0">
+                                                                Eliminar
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </tr>
+                                    </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>
@@ -154,17 +167,139 @@ $ncategories = count($categories);
                 </div>
             @else
                 <br>
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col">
                         {{--                                                    <h3 class="title mt-3">{{$category->category_name}}</h3>--}}
                         <p class="display-4" style="font-size: x-large"> No existen
-                            categorias.</p>
+                            categorías de libros.</p>
+                    </div>
+                </div>
+            @endif
+            @php
+                $numCatProd = 0;
+                if(isset($categories)) {
+                     foreach ($categories as $cat) {
+                         if($cat->category_type == 1) {$numCatProd++;}
+                     }
+                }
+            @endphp
+            @if($numCatProd > 0)
+                <div class="card mt-5">
+                    <div class="table-responsive">
+                        <table class="table align-items-center mb-0">
+                            <h5 class="my-1 mx-4 text-secondary font-weight-bolder opacity-9 text-center">Productos</h5>
+                            <thead>
+                            <tr>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Codigo
+                                </th>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Nombre
+                                </th>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Creada
+                                </th>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Actualizada
+                                </th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($categories as $category)
+                                @if($category->category_type == 1)
+                                    <tr>
+                                        <td class="align-middle text-center ">
+                                            <p class=" mb-0">{{ $category->id }}</p>
+                                        </td>
+                                        <td>
+                                            <p class=" mb-0">{{ $category->category_name }}</p>
+                                        </td>
+                                        <td class="align-middle text-center  ">
+                                            <p class=" mb-0">{{ $category->created_at }}</p>
+                                        </td>
+                                        <td class="align-middle text-center ">
+                                            <p class=" mb-0">{{ $category->updated_at }}</p>
+                                        </td>
+                                        <td class="align-middle" style="text-align: center;">
+
+
+                                            <a href="{{ route('category.show', $category->id) }}"
+                                               class="text-secondary  mx-3 font-weight-normal "
+                                               data-toggle="tooltip" data-original-title="Edit user">
+                                                Visualizar
+                                            </a>
+
+                                            <a href="{{ route('category.edit', $category->id) }}"
+                                               class="text-secondary  mx-3 font-weight-normal "
+                                               data-toggle="tooltip" data-original-title="Edit user">
+                                                Editar
+                                            </a>
+
+
+                                            <a href="" class="text-secondary font-weight-normal "
+                                               data-bs-toggle="modal" data-bs-target="#deleteConfirm{{$category->id}}"
+                                               data-toggle="tooltip" data-original-title="Delete user">
+                                                Eliminar
+                                            </a>
+
+                                        </td>
+                                        <div class="modal fade" id="deleteConfirm{{$category->id}}" tabindex="-1"
+                                             aria-labelledby="deleteConfirm{{$category->id}}" aria-hidden="true">
+                                            <div class="modal-dialog" style="margin-top: 10rem;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Esta seguro que desea eliminar la categoria
+                                                        '{{ $category->category_name }}' ?
+                                                        <br><br>
+                                                        Esta accion es irreversible y podria afectar a todos los libros
+                                                        asociados a esta categoria.
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn bg-gradient-dark mb-0"
+                                                                data-bs-dismiss="modal">Cancelar
+                                                        </button>
+                                                        <form method="POST"
+                                                              action="{{ route('category.delete',$category->id) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn bg-gradient-danger mb-0">
+                                                                Eliminar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @else
+                <br>
+                <div class="row mt-5">
+                    <div class="col">
+                        {{--                                                    <h3 class="title mt-3">{{$category->category_name}}</h3>--}}
+                        <p class="display-4" style="font-size: x-large"> No existen
+                            categorías de productos.</p>
                     </div>
                 </div>
             @endif
         </div>
 
     </div>
+
+    <br><br>
+
+
 </div>
 <div class="container">
     <div class="row">

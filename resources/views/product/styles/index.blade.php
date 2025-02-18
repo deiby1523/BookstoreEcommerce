@@ -129,3 +129,6 @@
         mostrarAlerta();
     </script>
 @endif
+
+
+{{--TODO:Revisar paginacion Anterior - Siguiente y ocultar demasiadas paginas Ejemplo 1 2 3 4 . . . 98 99 100--}}

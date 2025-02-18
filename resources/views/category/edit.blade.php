@@ -53,6 +53,27 @@
                         @csrf
                         @method('PUT')
                         <div class="card-body pb-2">
+                            {{-- type select --}}
+                            <div class="input-group input-group-static mb-4 mt-4">
+                                <label>Tipo</label>
+                                @if(count($errors->get('category_type')) >= 1)
+                                    <select name="category_type" id="category_type" class="form-control"
+                                            style="box-shadow: 0 0 8px 2px #ff000061;">
+                                        <option @php if($category->category_type == 0) {echo('selected');} @endphp value="0">Categoría de libros</option>
+                                        <option @php if($category->category_type == 1) {echo('selected');} @endphp value="1">Categoría de productos</option>
+                                    </select>
+                                @else
+                                    <select name="category_type" id="category_type" class="form-control">
+                                        <option @php if($category->category_type == 0) {echo('selected');} @endphp value="0">Categoría de libros</option>
+                                        <option @php if($category->category_type == 1) {echo('selected');} @endphp value="1">Categoría de productos</option>
+                                    </select>
+                                @endif
+
+                            </div>
+                            <x-input-error class="text-danger"
+                                           :messages="$errors->get('category_type')"></x-input-error>
+
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static mb-4">

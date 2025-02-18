@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Libros</title>
+    <title>Productos</title>
     <!-- Required meta tags --->
     <meta charset="UTF-8">
 
@@ -29,7 +29,7 @@
 <!-- End Navbar -->
 
 {{-- aditional styles --}}
-@include('book.styles.index')
+@include('product.styles.index')
 
 
 <div class="page-header" style="background-color: #ff782dbf; height: 500px">
@@ -40,7 +40,7 @@
 <div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('dashboard.books')}}"
+            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('dashboard.products')}}"
                class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
                 <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                      fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
@@ -57,10 +57,10 @@
 
                 <div class="col">
 
-                    <h2 class="title">Libros</h2>
+                    <h2 class="title">Productos</h2>
                 </div>
-                <div class="col" style="text-align: end"><a href="{{route('book.create')}}"
-                                                            class="btn btn-sm btn-warning">Crear Libro</a></div>
+                <div class="col" style="text-align: end"><a href="{{ route('product.create') }}"
+                                                            class="btn btn-sm btn-warning">Crear Producto</a></div>
             </div>
 
             {{-- Search bar --}}
@@ -74,8 +74,8 @@
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></span>
 
 
-                        <input id="searchBook" name="searchBook" type="text" class="form-control"
-                               placeholder="Buscar libros">
+                        <input id="searchProduct" name="searchProduct" type="text" class="form-control"
+                               placeholder="Buscar Productos">
 
                     </div>
                 </div>
@@ -84,13 +84,13 @@
             </div>
 
 
-            {{--            <div id="bookDisplay">--}}
+            {{--            <div id="productDisplay">--}}
 
             {{--            </div>--}}
-            @php if(isset($books)){
-$nbooks = count($books);
+            @php if(isset($products)){
+$nproducts = count($products);
 } @endphp
-            @if($nbooks > 0)
+            @if($nproducts > 0)
                 <div class="card">
                     <div id="loader" style="align-self: center"></div>
                     <div class="table-responsive">
@@ -98,13 +98,16 @@ $nbooks = count($books);
                             <thead>
                             <tr>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    ISBN
+                                    Código
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Titulo
+                                    Imagen
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Editorial
+                                    Nombre
+                                </th>
+                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                    Categoría
                                 </th>
                                 <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                     Precio
@@ -112,11 +115,11 @@ $nbooks = count($books);
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
-                            <tbody id="bookDisplay">
+                            <tbody id="productDisplay">
 
                             </tbody>
                         </table>
-                        <nav aria-label="Pagination-books" class="mt-5">
+                        <nav aria-label="Pagination-products" class="mt-5">
                             <ul class="pagination pagination-warning justify-content-center" id="pagination">
 
                             </ul>
@@ -127,7 +130,7 @@ $nbooks = count($books);
                     <br>
                     <div class="row" id="noExistsDisplay" style="display: none">
                         <div class="col text-center">
-                            <p class="display-4" style="font-size: x-large"> No se encontró el libro</p>
+                            <p class="display-4" style="font-size: x-large"> No se encontró el Producto</p>
                         </div>
                     </div>
                     @else
@@ -136,7 +139,7 @@ $nbooks = count($books);
                             <div class="col">
                                 {{--                                                    <h3 class="title mt-3">{{$category->category_name}}</h3>--}}
                                 <p class="display-4" style="font-size: x-large"> No existen
-                                    libros.</p>
+                                    Productos.</p>
                             </div>
                         </div>
                     @endif
@@ -153,7 +156,7 @@ $nbooks = count($books);
 
 <br><br><br><br>
 
-@include('book.scripts.index')
+@include('product.scripts.index')-
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>

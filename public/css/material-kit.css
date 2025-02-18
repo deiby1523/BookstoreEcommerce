@@ -21,7 +21,7 @@
    * Copyright 2011-2022 Twitter, Inc.
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    */
-   
+
 :root {
   --bs-blue: #63B3ED;
   --bs-indigo: #596CFF;
@@ -5652,7 +5652,7 @@ subcategory-item:focus{
   --bs-pagination-hover-color: #e91e63;
   --bs-pagination-hover-bg: #f0f2f5;
   --bs-pagination-hover-border-color: #dee2e6;
-  --bs-pagination-focus-color: #e91e63;
+  --bs-pagination-focus-color: #e96c1e;
   --bs-pagination-focus-bg: #f0f2f5;
   --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
   --bs-pagination-active-color: #fff;
@@ -5701,7 +5701,7 @@ subcategory-item:focus{
 .page-link.active,
 .active>.page-link {
   z-index: 3;
-  color: var(--bs-pagination-active-color);
+  color: var(--bs-pagination-active-color) !important;
   background-color: var(--bs-pagination-active-bg);
   border-color: var(--bs-pagination-active-border-color);
 }
@@ -25018,9 +25018,9 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
   justify-content: center;
   color: #7b809a;
   padding: 0;
+  width: 35px;
   margin: 0 3px;
-  border-radius: 50% !important;
-  width: 36px;
+  border-radius: 0.5rem !important;
   height: 36px;
   font-size: 0.875rem;
 }

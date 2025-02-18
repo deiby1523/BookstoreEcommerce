@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class Category extends Model
 {
-    protected $fillable = ['category_name', 'category_description', 'category_image_url'];
+    protected $fillable = ['category_name', 'category_description', 'category_image_url','category_type'];
 
     public function subcategories() {
         return $this->hasMany(Subcategory::class);

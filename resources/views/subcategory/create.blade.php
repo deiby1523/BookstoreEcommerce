@@ -57,25 +57,26 @@
                           action="{{ route('subcategory.save') }}">
                         @csrf
                         <div class="card-body pb-2">
+                            {{-- type select --}}
+                            <div class="input-group input-group-static mb-2 mt-4">
+                                <label>Tipo</label>
+                                    <select name="category_type" id="category_type" class="form-control">
+                                        <option value="0">Libro</option>
+                                        <option value="1">Producto</option>
+                                    </select>
+                            </div>
+
+
                             <div class="row">
                                 <div class="input-group input-group-static mb-4 mt-4">
                                     <label>Categoria</label>
                                     @if(count($errors->get('category_id')) >= 1)
                                         <select name="category_id" id="category_id" class="form-control"
-                                                name="choices-button" id="choices-button"
                                                 style="box-shadow: 0 0 8px 2px #ff000061;">
-                                            <option selected disabled hidden value="">Selecciona una categoria</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                            @endforeach
                                         </select>
                                     @else
-                                        <select name="category_id" id="category_id" class="form-control"
-                                                name="choices-button" id="choices-button">
-                                            <option selected disabled hidden value="">Selecciona una categoria</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                            @endforeach
+                                        <select name="category_id" id="category_id" class="form-control">
+
                                         </select>
                                     @endif
 
@@ -144,6 +145,10 @@
     </div>
 
 </div>
+
+
+@include('subcategory.scripts.create')
+
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>

@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InterfaceDashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
@@ -111,7 +112,6 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
     Route::POST('/publisher/search', [PublisherController::class, 'searchSelect'])->name('publisher.searchSelect');
 
-
     // Books
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
     Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
@@ -122,6 +122,16 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
     Route::get('/book/search/{search}', [BookController::class, 'searchSelect'])->name('book.searchSelect');    // TODO: cambiar el nombre de esta ruta
     Route::POST('/product/search', [BookController::class, 'searchNav'])->name('book.searchNav');
+
+    // Products
+    Route::get('/product',[ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/create',[ProductController::class, 'create'])->name('product.create');
+    Route::post('/product/save',[ProductController::class, 'save'])->name('product.save');
+    Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/product/update/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/product/show/{product}', [ProductController::class, 'show'])->name('product.show');
+    Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/product/search/{search}', [ProductController::class, 'searchSelect'])->name('product.searchSelect');
 });
 
 //public books
