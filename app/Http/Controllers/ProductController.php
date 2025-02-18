@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -154,5 +156,66 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('product.index')->with('success', 'Producto eliminado exitosamente.');
+    }
+
+    public function searchSelect(Request $request): JsonResponse
+    {
+        $search = $request->search;
+        $page = $request->page;
+        $perPage = 3;
+        $offset = ($page-1) * $perPage;
+
+        if ($search != " ") {
+            $sql = "SELECT
+    products.id,
+    products.product_name,
+    products.product_price,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM products, categories, subcategories
+    WHERE products.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+    AND(
+        products.product_name LIKE '%$search%' OR
+        products.id LIKE '%$search%' )
+        ORDER BY products.product_name ASC";
+
+            $products = DB::select($sql);
+            $numProducts = count($products);
+            $numPages = ceil($numProducts / $perPage);
+
+            $sql = "SELECT
+    products.id,
+    products.product_name,
+    products.product_price,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM products, categories, subcategories
+    WHERE products.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+    AND(
+        products.product_name LIKE '%$search%' OR
+        products.id LIKE '%$search%')
+        ORDER BY products.product_name ASC
+        LIMIT $offset,$perPage";
+            $products = DB::select($sql);
+            return response()->json($products, 200)->withHeaders(['numProducts' => $numProducts,'numPages' => $numPages,'page' => $page, 'perPage' => $perPage,'display'=>'Mostrando del '.($offset+1).' al '.($offset+$perPage)]);
+        } else {
+            $sql = "SELECT
+    products.id,
+    products.product_name,
+    products.product_price,
+    categories.category_name,
+    subcategories.subcategory_name
+    FROM products, categories, subcategories
+    WHERE products.subcategory_id = subcategories.id
+    AND subcategories.category_id = categories.id
+        ORDER BY products.product_name ASC
+        LIMIT $perPage
+        OFFSET $offset";
+
+            $products = DB::select($sql);
+            return response()->json($products, 200)->withHeaders(['numPages' => 10]);
+        }
     }
 }

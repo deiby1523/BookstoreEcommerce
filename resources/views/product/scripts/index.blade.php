@@ -1,8 +1,5 @@
-
 <script>
     $(document).ready(function () {
-
-
         let typingTimer;  // Variable para almacenar el temporizador de escritura
         const doneTypingInterval = 2000;  // Intervalo de tiempo después del cual se considera que la escritura ha terminado (en milisegundos)
         let loaderTimeout; // Variable para almacenar el temporizador de la animación de carga
@@ -21,7 +18,7 @@
         }
 
         // Evento keyup para el campo de búsqueda
-        $('#searchBook').keyup(function () {
+        $('#searchProduct').keyup(function () {
             clearTimeout(typingTimer);  // Reinicia el temporizador en cada pulsación de tecla
             clearTimeout(loaderTimeout);  // Reinicia el temporizador de la animación de carga
 
@@ -34,52 +31,54 @@
         // Función que se ejecuta cuando la escritura ha terminado
         function doneTyping() {
             hideLoader();  // Oculta la animación de carga después de que haya pasado el intervalo de tiempo
-
-
         }
 
     });
 
-    // Book
+    // Product
     // Ajax request according to what's in the search box
-    function get_books(search) {
+    function get_products(search,page) {
+        if (search === '') {
+            search = ' ';
+        }
+        console.log(search + ' ' + page);
         $.ajax({
-            url: `book/search/${search}`,
+            url: `product/search/${search}`,
             type: 'GET',
             dataType: 'json',
-            data: {'search': search},
+            data: {'search': search, 'page': page},
         })
-            .done(function (books) {
+            .done(function (products, response, xhr) {
                 function convertToISBN(number) {
                     return 'ISBN ' + number.substring(0, 3) + '-' + number.substring(3, 4) + '-' + number.substring(4, 8) + '-' + number.substring(8, 12) + '-' + number.substring(12, 13);
                 }
 
+                let paginationButtons = "";
                 let resultsList;
                 resultsList = ""; // Create a variable to store the list of results
 
-                books.forEach(function (book) {
-
-                    let isbn = convertToISBN(book.book_isbn);
+                products.forEach(function (product) {
 
                     resultsList += `<tr>
-                                                    <td class='align-middle text-center'><p class=' mb-0'>${isbn}</p></td>
-                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'>${book.book_title}</p></td>
-                                                    <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.publisher_name}'>${book.publisher_name}</p></td>
-                                                    <td class='align-middle'><p class='mb-0'>$ ${book.book_price.toLocaleString()}</p>
+                                                    <td class='align-middle text-center'><p class=' mb-0'>${product.id}</p></td>
+                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${product.product_name}'>${product.product_name}</p></td>
+                                                    <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${product.product_name}'>${product.product_name}</p></td>
+                                                    <td class='align-middle'><p class='mb-0'> HOLA</p>
+                                                    <td class='align-middle'><p class='mb-0'>$ ${product.product_price.toLocaleString()}</p>
                                     </td>
                                                     <td class='align-middle' style='text-align: center;'>
-                                                        <a href='book/show/${book.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
+                                                        <a href='product/show/${product.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
                                                             Visualizar
                                                         </a>
-                                                        <a href='book/edit/${book.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Edit user'>
+                                                        <a href='product/edit/${product.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Edit user'>
                                                             Editar
                                                         </a>
-                                                        <a href='' class='text-secondary font-weight-normal' data-bs-toggle='modal' data-bs-target='#deleteConfirm${book.id}' data-toggle='tooltip' data-original-title='Delete user'>
+                                                        <a href='' class='text-secondary font-weight-normal' data-bs-toggle='modal' data-bs-target='#deleteConfirm${product.id}' data-toggle='tooltip' data-original-title='Delete user'>
                                                             Eliminar
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                <div class='modal fade' id='deleteConfirm${book.id}' tabindex='-1' aria-labelledby='deleteConfirm${book.id}' aria-hidden='true'>
+                                                <div class='modal fade' id='deleteConfirm${product.id}' tabindex='-1' aria-labelledby='deleteConfirm${product.id}' aria-hidden='true'>
                                                     <div class='modal-dialog' style='margin-top: 10rem;'>
                                                         <div class='modal-content'>
                                                             <div class='modal-header'>
@@ -87,27 +86,24 @@
                                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                             </div>
                                                             <div class='modal-body'>
-                                                                Esta seguro que desea eliminar el libro '${book.book_title}'?
+                                                                Esta seguro que desea eliminar el libro '${product.product_name}'?
                                                                 <br><br>
                                                                 Esta accion es irreversible.
                                                             </div>
                                                             <div class='modal-footer justify-content-between'>
                                                                 <button type='button' class='btn bg-gradient-dark mb-0' data-bs-dismiss='modal'>Cancelar</button>
-                                                                <form method='DELETE' action='book/delete/${book.id}'>
+                                                                <form method='DELETE' action='product/delete/${product.id}'>
                                                                     <button type='submit' class='btn bg-gradient-danger mb-0'>Eliminar</button>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-`;
+                                                </div>`;
                 });
 
 
-
-                // Insert the complete list of results in #bookDisplay after all authors have been processed
-                $("#bookDisplay").html(resultsList);
+                // Insert the complete list of results in #productDisplay after all authors have been processed
+                $("#productDisplay").html(resultsList);
 
                 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
                 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -131,6 +127,32 @@
                     display.style.display = "block";
                     table.style.display = "none";
                 }
+
+                paginationButtons += `<li class="page-item">
+                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                        <i class="fa fa-angle-left"></i>
+                                        <span class="sr-only">Anterior</span>
+                                    </a>
+                                </li>`;
+                for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
+                    paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                }
+
+                $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numProducts")}</p>
+                                    <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
+                                    <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
+                                    <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
+                                    <p class="text-lg"><b></b>${xhr.getResponseHeader("display")}</p>`);
+
+
+                paginationButtons += `<li class="page-item">
+                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span class="sr-only">Siguiente</span>
+                                    </a>
+                                </li>`
+                $("#pagination").html(paginationButtons);
+
             });
     }
 
@@ -149,20 +171,21 @@
     }
 
 
-    // book
+    // product
     // Wrapped Ajax function with debounce
-    const BookDelayedRequest = debounce(function (search) {
-        get_books(search);
+    const ProductDelayedRequest = debounce(function (search) {
+        get_products(search,1);
     }, 2000); // 300ms delay, adjustable based on your needs
 
-    // book
+    // product
     // 'input' event using the debounce function
-    $(document).on('input', '#searchBook', function () {
-        const searchValue = $('#searchBook').val();
-        if (searchValue !== "") {
-            BookDelayedRequest(searchValue);
-        } else {
-            $("#bookDisplay").html("");
-        }
+    $(document).on('input', '#searchProduct', function () {
+        const searchValue = $('#searchProduct').val();
+        ProductDelayedRequest(searchValue);
     });
+
+    window.addEventListener('load', function () {
+        get_products(" ",1);
+    });
+
 </script>

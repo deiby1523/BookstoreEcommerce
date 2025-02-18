@@ -131,6 +131,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/product/update/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/show/{product}', [ProductController::class, 'show'])->name('product.show');
     Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/product/search/{search}', [ProductController::class, 'searchSelect'])->name('product.searchSelect');
 });
 
 //public books

@@ -50,6 +50,10 @@
         text-overflow: ellipsis;
         max-width: 150px; /* max width before truncate */
     }
+
+    .pag-link {
+        width: 80px !important;
+    }
 </style>
 
 @if ($message = Session::get('success'))
@@ -125,3 +129,6 @@
         mostrarAlerta();
     </script>
 @endif
+
+
+{{--TODO:Revisar paginacion Anterior - Siguiente y ocultar demasiadas paginas Ejemplo 1 2 3 4 . . . 98 99 100--}}

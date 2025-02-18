@@ -115,7 +115,7 @@
 
                             {{-- Description --}}
                             <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
-                                <label>Resumen</label>
+                                <label>Descripción</label>
                                 @if(count($errors->get('product_description')) >= 1)
                                     <textarea name="product_description" class="form-control"
                                               id="product_description" rows="6"

@@ -74,7 +74,7 @@
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></span>
 
 
-                        <input id="searchBook" name="searchBook" type="text" class="form-control"
+                        <input id="searchProduct" name="searchProduct" type="text" class="form-control"
                                placeholder="Buscar Productos">
 
                     </div>
@@ -84,7 +84,7 @@
             </div>
 
 
-            {{--            <div id="bookDisplay">--}}
+            {{--            <div id="productDisplay">--}}
 
             {{--            </div>--}}
             @php if(isset($products)){
@@ -117,88 +117,14 @@ $nproducts = count($products);
                             </thead>
                             <tbody id="productDisplay">
 
-                            @foreach($products as $product)
-                                <tr>
-                                    <td class="align-middle text-center  ">
-                                        <p class="mb-0">{{ $product->id }}</p>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 truncated-text-large" data-bs-toggle="tooltip"
-                                           data-bs-placement="top"
-                                           title="{{$product->product_name}}">{{ $product->product_name }}</p>
-                                    </td>
-                                    <td class="align-middle ">
-                                        <p class="mb-0 truncated-text-short" data-bs-toggle='tooltip'
-                                           data-bs-placement='top'
-                                           title='{{$product->product_name}}'>{{ $product->product_name }}</p>
-                                    </td>
-                                    <td class="align-middle ">
-                                        <p class="mb-0 truncated-text-short" data-bs-toggle='tooltip'
-                                           data-bs-placement='top'
-                                           title='{{$product->subcategory->subcategory_name}}'>{{ $product->subcategory->subcategory_name }}</p>
-                                    </td>
-                                    <td class="align-middle ">
-                                        <p class="mb-0">$ {{ number_format($product->product_price) }}</p>
-                                    </td>
-
-                                    <td class="align-middle" style="text-align: center;">
-
-
-                                        <a href="{{ route('product.show',$product->id) }}"
-                                           class="text-secondary  mx-3 font-weight-normal "
-                                           data-toggle="tooltip" data-original-title="Show user">
-                                            Visualizar
-                                        </a>
-
-                                        <a href="{{ route('product.edit',$product->id) }}"
-                                           class="text-secondary  mx-3 font-weight-normal "
-                                           data-toggle="tooltip" data-original-title="Edit user">
-                                            Editar
-                                        </a>
-
-
-                                        <a href="" class="text-secondary font-weight-normal "
-                                           data-bs-toggle="modal" data-bs-target="#deleteConfirm{{$product->id}}"
-                                           data-toggle="tooltip" data-original-title="Delete user">
-                                            Eliminar
-                                        </a>
-
-                                    </td>
-                                    <div class="modal fade" id="deleteConfirm{{$product->id}}" tabindex="-1"
-                                         aria-labelledby="deleteConfirm{{$product->id}}" aria-hidden="true">
-                                        <div class="modal-dialog" style="margin-top: 10rem;">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Esta seguro que desea eliminar el Producto
-                                                    '{{ $product->product_name }}' ?
-                                                    <br><br>
-                                                    Esta acción es irreversible.
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn bg-gradient-dark mb-0"
-                                                            data-bs-dismiss="modal">Cancelar
-                                                    </button>
-                                                    <form method="POST"
-                                                          action="{{ route('product.delete',$product->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn bg-gradient-danger mb-0">
-                                                            Eliminar
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tr>
-                            @endforeach
                             </tbody>
                         </table>
+                        <nav aria-label="Pagination-products" class="mt-5">
+                            <ul class="pagination pagination-warning justify-content-center" id="pagination">
+
+                            </ul>
+                        </nav>
+                        <div id="infopag"></div>
                         <div id="loading" class="loading-animation"></div>
                     </div>
                     <br>
@@ -230,7 +156,7 @@ $nproducts = count($products);
 
 <br><br><br><br>
 
-{{--@include('book.scripts.index')--}}
+@include('product.scripts.index')-
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
