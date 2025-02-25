@@ -130,10 +130,10 @@
                 }
 
                 paginationButtons += `<li class="page-item">
-                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == 1 ? 'disabled' : ''}" tabindex="-1" onclick="get_books('${search}',${xhr.getResponseHeader("page") - 1});">
                                         <i class="fa fa-angle-left"></i>
                                         <span class="sr-only">Anterior</span>
-                                    </a>
+                                    </button>
                                 </li>`;
                 for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
                     paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
@@ -147,10 +147,10 @@
 
 
                 paginationButtons += `<li class="page-item">
-                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == xhr.getResponseHeader("numPages") ? 'disabled' : ''}" tabindex="-1" onclick="get_books('${search}',${parseInt(xhr.getResponseHeader("page")) + 1});">
                                         <i class="fa fa-angle-right"></i>
                                         <span class="sr-only">Siguiente</span>
-                                    </a>
+                                    </button>
                                 </li>`
                 $("#pagination").html(paginationButtons);
 
