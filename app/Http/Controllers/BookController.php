@@ -274,7 +274,7 @@ class BookController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 3;
+        $perPage = 1;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {
@@ -295,6 +295,7 @@ class BookController extends Controller
     AND(
         books.book_title LIKE '%$search%' OR
         books.book_isbn LIKE '%$search%' OR
+        categories.category_name LIKE '%$search%' OR
         authors.author_name LIKE '%$search%' OR
         publishers.publisher_name LIKE '%$search%')
         ORDER BY books.book_title ASC";
@@ -320,9 +321,10 @@ class BookController extends Controller
     AND(
         books.book_title LIKE '%$search%' OR
         books.book_isbn LIKE '%$search%' OR
+        categories.category_name LIKE '%$search%' OR
         authors.author_name LIKE '%$search%' OR
         publishers.publisher_name LIKE '%$search%')
-        ORDER BY books.book_title ASC
+       ORDER BY books.created_at DESC
         LIMIT $offset,$perPage";
             $books = DB::select($sql);
             return response()->json($books, 200)->withHeaders(['numBooks' => $numBooks,'numPages' => $numPages,'page' => $page, 'perPage' => $perPage,'display'=>'Mostrando del '.($offset+1).' al '.($offset+$perPage)]);
@@ -341,7 +343,7 @@ class BookController extends Controller
     AND books.publisher_id = publishers.id
     AND books.subcategory_id = subcategories.id
     AND subcategories.category_id = categories.id
-        ORDER BY books.book_title ASC
+        ORDER BY books.created_at DESC
         LIMIT $perPage
         OFFSET $offset";
 

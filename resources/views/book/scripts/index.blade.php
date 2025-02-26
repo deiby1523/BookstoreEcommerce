@@ -37,7 +37,7 @@
 
     // Book
     // Ajax request according to what's in the search box
-    function get_books(search,page) {
+    function get_books(search, page) {
         if (search === '') {
             search = ' ';
         }
@@ -64,6 +64,7 @@
                     resultsList += `<tr>
                                                     <td class='align-middle text-center'><p class=' mb-0'>${isbn}</p></td>
                                                     <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'>${book.book_title}</p></td>
+                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.category_name}'>${book.category_name}</p></td>
                                                     <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.publisher_name}'>${book.publisher_name}</p></td>
                                                     <td class='align-middle'><p class='mb-0'>$ ${book.book_price.toLocaleString()}</p>
                                     </td>
@@ -135,15 +136,45 @@
                                         <span class="sr-only">Anterior</span>
                                     </button>
                                 </li>`;
-                for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
-                    paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+
+                if (parseInt(xhr.getResponseHeader("numPages")) <= 15) {
+                    for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                    }
+                } else {
+                    for (let i = 1; i <= 5; i++) {
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                    }
+                    paginationButtons += "......";
+                    if (parseInt(xhr.getResponseHeader("page")) > 5 && parseInt(xhr.getResponseHeader("page")) < xhr.getResponseHeader("numPages") - 4) {
+                        paginationButtons += `<li class="page-item active"><button class="page-link" onclick="get_books('${search}',${xhr.getResponseHeader("page")});">${xhr.getResponseHeader("page")}</button></li>`;
+                        paginationButtons += "......";
+                    }
+
+                    for (let i = xhr.getResponseHeader("numPages") - 4; i <= xhr.getResponseHeader("numPages"); i++) {
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                    }
                 }
 
-                $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numBooks")}</p>
-                                    <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
-                                    <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
-                                    <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
-                                    <p class="text-lg"><b></b>${xhr.getResponseHeader("display")}</p>`);
+
+
+                $("#searchPageContainer").html(`
+<div class="row" style="justify-content: center">
+    <div class="col-sm-1">
+        <div class="input-group input-group-static">
+            <input id="inputPag" type="number" class="form-control" placeholder="Buscar pág" min=1 max=${xhr.getResponseHeader("numPages")}>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <button id="btnBuscarPag" class="btn btn-sm btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg></button>
+    </div>
+</div>`)
+
+                // $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numBooks")}</p>
+                //                     <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
+                //                     <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
+                //                     <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
+                //                     <p class="text-lg"><b></b>${xhr.getResponseHeader("display")}</p>`);
 
 
                 paginationButtons += `<li class="page-item">
@@ -175,7 +206,7 @@
     // book
     // Wrapped Ajax function with debounce
     const BookDelayedRequest = debounce(function (search) {
-        get_books(search,1);
+        get_books(search, 1);
     }, 2000); // 300ms delay, adjustable based on your needs
 
     // book
@@ -185,8 +216,14 @@
         BookDelayedRequest(searchValue);
     });
 
+    $(document).on('click','#btnBuscarPag', function () {
+        const searchValue = $('#searchBook').val();
+        const page = $('#inputPag').val();
+        get_books(searchValue,page);
+    })
+
     window.addEventListener('load', function () {
-        get_books(" ",1);
+        get_books(" ", 1);
     });
 
 </script>

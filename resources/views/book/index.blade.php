@@ -97,13 +97,16 @@ $nbooks = count($books);
                         <table class="table align-items-center mb-0" id="table">
                             <thead>
                             <tr>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     ISBN
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Titulo
                                 </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">
+                                    Categoría
+                                </th>
+                                <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Editorial
                                 </th>
                                 <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
@@ -121,13 +124,16 @@ $nbooks = count($books);
 
                             </ul>
                         </nav>
+                        <div class="container" id="searchPageContainer">
+
+                        </div>
                         <div id="infopag"></div>
                         <div id="loading" class="loading-animation"></div>
                     </div>
                     <br>
                     <div class="row" id="noExistsDisplay" style="display: none">
                         <div class="col text-center">
-                            <p class="display-4" style="font-size: x-large"> No se encontró el libro</p>
+                            <p class="display-4" style="font-size: x-large"> No se encontró</p>
                         </div>
                     </div>
                     @else
