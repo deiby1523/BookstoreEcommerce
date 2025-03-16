@@ -49,10 +49,6 @@
             data: {'search': search, 'page': page},
         })
             .done(function (products, response, xhr) {
-                function convertToISBN(number) {
-                    return 'ISBN ' + number.substring(0, 3) + '-' + number.substring(3, 4) + '-' + number.substring(4, 8) + '-' + number.substring(8, 12) + '-' + number.substring(12, 13);
-                }
-
                 let paginationButtons = "";
                 let resultsList;
                 resultsList = ""; // Create a variable to store the list of results
@@ -62,9 +58,11 @@
                     resultsList += `<tr>
                                                     <td class='align-middle text-center'><p class=' mb-0'>${product.id}</p></td>
                                                     <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${product.product_name}'>${product.product_name}</p></td>
-                                                    <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${product.product_name}'>${product.product_name}</p></td>
-                                                    <td class='align-middle'><p class='mb-0'> HOLA</p>
+                                                    <td class='align-middle'><p class='mb-0'> ${product.category_name}</p>
                                                     <td class='align-middle'><p class='mb-0'>$ ${product.product_price.toLocaleString()}</p>
+                                                    <td class="align-middle text-center text-sm">
+                                            <span class="badge badge-sm badge-${ product.active ? 'success' : 'secondary'}">${ product.active ? 'Activado' : 'Desactivado'}</span>
+                                        </td>
                                     </td>
                                                     <td class='align-middle' style='text-align: center;'>
                                                         <a href='product/show/${product.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
@@ -129,27 +127,57 @@
                 }
 
                 paginationButtons += `<li class="page-item">
-                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == 1 ? 'disabled' : ''}" tabindex="-1" onclick="get_products('${search}',${xhr.getResponseHeader("page") - 1});">
                                         <i class="fa fa-angle-left"></i>
                                         <span class="sr-only">Anterior</span>
-                                    </a>
+                                    </button>
                                 </li>`;
-                for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
-                    paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+
+                if (parseInt(xhr.getResponseHeader("numPages")) <= 15) {
+                    for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                    }
+                } else {
+                    for (let i = 1; i <= 5; i++) {
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                    }
+                    paginationButtons += "......";
+                    if (parseInt(xhr.getResponseHeader("page")) > 5 && parseInt(xhr.getResponseHeader("page")) < xhr.getResponseHeader("numPages") - 4) {
+                        paginationButtons += `<li class="page-item active"><button class="page-link" onclick="get_products('${search}',${xhr.getResponseHeader("page")});">${xhr.getResponseHeader("page")}</button></li>`;
+                        paginationButtons += "......";
+                    }
+
+                    for (let i = xhr.getResponseHeader("numPages") - 4; i <= xhr.getResponseHeader("numPages"); i++) {
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                    }
                 }
 
-                $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numProducts")}</p>
-                                    <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
-                                    <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
-                                    <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
-                                    <p class="text-lg"><b></b>${xhr.getResponseHeader("display")}</p>`);
+
+
+                $("#searchPageContainer").html(`
+<div class="row" style="justify-content: center">
+    <div class="col-sm-1">
+        <div class="input-group input-group-static">
+            <input id="inputPag" type="number" class="form-control" placeholder="Buscar pág" min=1 max=${xhr.getResponseHeader("numPages")}>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <button id="btnBuscarPag" class="btn btn-sm btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg></button>
+    </div>
+</div>`)
+
+                // $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numBooks")}</p>
+                //                     <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
+                //                     <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
+                //                     <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
+                //                     <p class="text-lg"><b></b>${xhr.getResponseHeader("display")}</p>`);
 
 
                 paginationButtons += `<li class="page-item">
-                                    <a class="page-link pag-link" href="javascript:;" tabindex="-1">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == xhr.getResponseHeader("numPages") ? 'disabled' : ''}" tabindex="-1" onclick="get_products('${search}',${parseInt(xhr.getResponseHeader("page")) + 1});">
                                         <i class="fa fa-angle-right"></i>
                                         <span class="sr-only">Siguiente</span>
-                                    </a>
+                                    </button>
                                 </li>`
                 $("#pagination").html(paginationButtons);
 
@@ -183,6 +211,12 @@
         const searchValue = $('#searchProduct').val();
         ProductDelayedRequest(searchValue);
     });
+
+    $(document).on('click','#btnBuscarPag', function () {
+        const searchValue = $('#searchProduct').val();
+        const page = $('#inputPag').val();
+        get_products(searchValue,page);
+    })
 
     window.addEventListener('load', function () {
         get_products(" ",1);

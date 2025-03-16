@@ -162,7 +162,7 @@ class ProductController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 3;
+        $perPage = 30;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {
@@ -170,6 +170,7 @@ class ProductController extends Controller
     products.id,
     products.product_name,
     products.product_price,
+    products.active,
     categories.category_name,
     subcategories.subcategory_name
     FROM products, categories, subcategories
@@ -188,6 +189,7 @@ class ProductController extends Controller
     products.id,
     products.product_name,
     products.product_price,
+    products.active,
     categories.category_name,
     subcategories.subcategory_name
     FROM products, categories, subcategories
@@ -196,7 +198,7 @@ class ProductController extends Controller
     AND(
         products.product_name LIKE '%$search%' OR
         products.id LIKE '%$search%')
-        ORDER BY products.product_name ASC
+        ORDER BY products.created_at DESC
         LIMIT $offset,$perPage";
             $products = DB::select($sql);
             return response()->json($products, 200)->withHeaders(['numProducts' => $numProducts,'numPages' => $numPages,'page' => $page, 'perPage' => $perPage,'display'=>'Mostrando del '.($offset+1).' al '.($offset+$perPage)]);
@@ -205,12 +207,13 @@ class ProductController extends Controller
     products.id,
     products.product_name,
     products.product_price,
+    products.active,
     categories.category_name,
     subcategories.subcategory_name
     FROM products, categories, subcategories
     WHERE products.subcategory_id = subcategories.id
     AND subcategories.category_id = categories.id
-        ORDER BY products.product_name ASC
+        ORDER BY products.created_at DESC
         LIMIT $perPage
         OFFSET $offset";
 

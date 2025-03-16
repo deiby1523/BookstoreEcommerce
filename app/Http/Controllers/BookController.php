@@ -274,7 +274,7 @@ class BookController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 1;
+        $perPage = 30;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {

@@ -101,16 +101,16 @@ $nproducts = count($products);
                                     Código
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                    Imagen
-                                </th>
-                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Nombre
                                 </th>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Categoría
                                 </th>
-                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
                                     Precio
+                                </th>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Estado
                                 </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
@@ -124,13 +124,16 @@ $nproducts = count($products);
 
                             </ul>
                         </nav>
+                        <div class="container" id="searchPageContainer">
+
+                        </div>
                         <div id="infopag"></div>
                         <div id="loading" class="loading-animation"></div>
                     </div>
                     <br>
                     <div class="row" id="noExistsDisplay" style="display: none">
                         <div class="col text-center">
-                            <p class="display-4" style="font-size: x-large"> No se encontró el Producto</p>
+                            <p class="display-4" style="font-size: x-large"> No se encontró</p>
                         </div>
                     </div>
                     @else
