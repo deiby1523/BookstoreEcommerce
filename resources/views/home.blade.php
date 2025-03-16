@@ -29,7 +29,6 @@
 
 
 <body class="loading">
-<!-- TODO: Desarrollar el modulo de productos y categorías -->
 
 <div class="container flex justify-content-center position-relative overflow-hidden w-10">
 
@@ -108,21 +107,22 @@
                                 <div class="col-md-5 ms-lg-auto">
                                     <div class="p-3">
                                         <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
-                                             src="{{asset($categories[0]->category_image_url)}}" alt="" loading="eager">
+                                             src="{{asset($bookCategories[0]->category_image_url)}}" alt=""
+                                             loading="eager">
                                     </div>
                                 </div>
                                 <div class="col-md-5 me-lg-auto position-relative">
                                     <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
                                         {{ "1°" }}</h4>
                                     <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
-                                        {{$categories[0]->category_name}}</h1>
+                                        {{$bookCategories[0]->category_name}}</h1>
                                     <p class="my-4 lead fadeIn2 fadeInBottom">
-                                        {{$categories[0]->category_description}}
+                                        {{$bookCategories[0]->category_description}}
                                     </p>
                                     <form action="{{route('book.search2')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="category" id="category"
-                                               value="{{$categories[0]->id}}">
+                                               value="{{$bookCategories[0]->id}}">
 
                                         <button type="submit" class="btn btn-warning">
                                             <span>Explorar!</span>
@@ -132,28 +132,29 @@
                             </div>
                         </div>
                     </div>
-                    @for($i = 2; $i < count($categories); $i++)
+                    @for($i = 2; $i < count($bookCategories); $i++)
                         <div class="carousel-item">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-5 ms-lg-auto">
                                         <div class="p-3">
                                             <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
-                                                 src="{{$categories[$i-1]->category_image_url}}" alt="" loading="eager">
+                                                 src="{{$bookCategories[$i-1]->category_image_url}}" alt=""
+                                                 loading="eager">
                                         </div>
                                     </div>
                                     <div class="col-md-5 me-lg-auto position-relative">
                                         <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
                                             {{$i."°"}}</h4>
                                         <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
-                                            {{$categories[$i-1]->category_name}}</h1>
+                                            {{$bookCategories[$i-1]->category_name}}</h1>
                                         <p class="my-4 lead fadeIn2 fadeInBottom">
-                                            {{$categories[$i-1]->category_description}}
+                                            {{$bookCategories[$i-1]->category_description}}
                                         </p>
                                         <form action="{{route('book.search2')}}" method="POST">
                                             @csrf
                                             <input type="hidden" name="category" id="category"
-                                                   value="{{$categories[$i-1]->id}}">
+                                                   value="{{$bookCategories[$i-1]->id}}">
 
                                             <button type="submit" class="btn btn-warning">
                                                 <span>Explorar!</span>
@@ -195,7 +196,7 @@
                         <a href="javascript:;" class="text-lg text-gradient text-warning h3 ps-3 active"
                            data-bs-target="#carousel-categories" data-bs-slide-to="{{$i}}">
                             <span>0{{$i+1}}</span>
-                            <span class="ms-2">{{$categories[$i]->category_name}}</span>
+                            <span class="ms-2">{{$bookCategories[$i]->category_name}}</span>
                         </a>
                     </div>
 
@@ -438,7 +439,8 @@
                                         <h3 class="mb-4">{{$section->section_sub_title}}</h3>
                                         <p>{{$section->section_text_1}}
                                             <br><br>
-                                            <a class="link-{{$color}}" href="{{$section->section_btn_link}}">Más info</a>
+                                            <a class="link-{{$color}}" href="{{$section->section_btn_link}}">Más
+                                                info</a>
                                         </p>
                                     </div>
                                 </div>
@@ -524,7 +526,8 @@
                                         <p class="text-white text-uppercase">{{$section->section_secondary_title}}</p>
                                         <h3 class="text-white up mb-0">{{$section->section_main_title}}</h3>
                                         <p class="text-white opacity-8">{{$section->section_text_1}}</p>
-                                        <a href="{{$section->section_btn_link}}" class="btn btn-white btn-sm mt-3">Más info
+                                        <a href="{{$section->section_btn_link}}" class="btn btn-white btn-sm mt-3">Más
+                                            info
                                         </a>
                                     </div>
                                 </div>

@@ -41,7 +41,9 @@ class HomeController extends Controller
 
         $sections = DB::select($sql);
 
-        $categories = Category::all();
-        return view('home', compact('latestBooks', 'categories', 'featuredBooks', 'banners', 'sections'));
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+
+        return view('home', compact('latestBooks', 'bookCategories','productCategories', 'featuredBooks', 'banners', 'sections'));
     }
 }

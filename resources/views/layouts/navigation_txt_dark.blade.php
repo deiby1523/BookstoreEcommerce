@@ -74,6 +74,7 @@
                     </a>
                 </li>
 
+                {{-- Libros --}}
                 <li class="nav-item dropdown dropdown-hover mx-2">
                     <a id="dropdownBooks" role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,23 +88,23 @@
                         <div class="row d-none d-lg-block">
                             <div class="col-12 px-4 py-2">
                                 <div class="row">
-                                    @for($i = 0; $i < round(count($categories)/2); $i++)
+                                    @for($i = 0; $i < round(count($bookCategories)/2); $i++)
                                     <div class="col-3 position-relative">
 
                                         @for($j = $i; $j < ($i+2); $j++)
-                                        @if(($i+$j) < count($categories))
+                                        @if(($i+$j) < count($bookCategories))
                                         <div
                                             class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
 
-                                            {{$categories[$i+$j]->category_name}}
+                                            {{$bookCategories[$i+$j]->category_name}}
 
 
                                         </div>
-                                        @forelse($categories[$i+$j]->subcategories as $subcategory)
+                                        @forelse($bookCategories[$i+$j]->subcategories as $subcategory)
                                         <form action="{{route('book.search2')}}" method="POST">
                                             @csrf
                                             <input type="hidden" name="category" id="category"
-                                                   value="{{$categories[$i+$j]->id}}">
+                                                   value="{{$bookCategories[$i+$j]->id}}">
                                             <input type="hidden" name="subcategory" id="subcategory"
                                                    value="{{$subcategory->id}}">
 
@@ -112,11 +113,11 @@
                                             </button>
                                         </form>
                                         @empty
-                                        <p>No hay subcategorías para {{$categories[$i+$j]->category_name}}</p>
+                                        <p>No hay subcategorías para {{$bookCategories[$i+$j]->category_name}}</p>
                                         @endforelse
                                         @endif
                                         @endfor
-                                        @if($i != ((count($categories)/2)-1))
+                                        @if($i != ((count($bookCategories)/2)-1))
                                         <hr class="vertical dark" style="width: 3px; margin-right: 10px">
                                         @endif
                                     </div>
@@ -125,7 +126,7 @@
                             </div>
                         </div>
                         <div class="d-lg-none">
-                            @forelse($categories as $category)
+                            @forelse($bookCategories as $category)
                             <div style="color: #344767"
                                  class="dropdown-header font-weight-bolder d-flex align-items-center px-0">
                                 {{$category->category_name}}
@@ -145,11 +146,76 @@
                     </div>
                 </li>
 
-                <li class="nav-item mx-2">
-                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center">
-
-                        productos
+                {{-- Productos --}}
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                    <a id="dropdownProducts" role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Productos
+                        <img src="{{asset('img/down-arrow-dark.svg')}}" alt="down-arrow"
+                             class="arrow ms-auto ms-md-2">
                     </a>
+                    <div
+                        class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3"
+                        aria-labelledby="dropdownProducts" data-bs-popper="static">
+                        <div class="row d-none d-lg-block">
+                            <div class="col-12 px-4 py-2">
+                                <div class="row">
+                                    @for($i = 0; $i < round(count($productCategories)/2); $i++)
+                                        <div class="col-3 position-relative">
+
+                                            @for($j = $i; $j < ($i+2); $j++)
+                                                @if(($i+$j) < count($productCategories))
+                                                    <div
+                                                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+
+                                                        {{$productCategories[$i+$j]->category_name}}
+
+
+                                                    </div>
+                                                    @forelse($productCategories[$i+$j]->subcategories as $subcategory)
+                                                        <form action="{{route('book.search2')}}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="category" id="category"
+                                                                   value="{{$productCategories[$i+$j]->id}}">
+                                                            <input type="hidden" name="subcategory" id="subcategory"
+                                                                   value="{{$subcategory->id}}">
+
+                                                            <button type="submit" class="dropdown-item border-radius-md">
+                                                                <span>{{$subcategory->subcategory_name}}</span>
+                                                            </button>
+                                                        </form>
+                                                    @empty
+                                                        <p>No hay subcategorías para {{$productCategories[$i+$j]->category_name}}</p>
+                                                    @endforelse
+                                                @endif
+                                            @endfor
+                                            @if($i != ((count($productCategories)/2)-1))
+                                                <hr class="vertical dark" style="width: 3px; margin-right: 10px">
+                                            @endif
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-lg-none">
+                            @forelse($productCategories as $category)
+                                <div style="color: #344767"
+                                     class="dropdown-header font-weight-bolder d-flex align-items-center px-0">
+                                    {{$category->category_name}}
+                                </div>
+                                @forelse($category->subcategories as $subcategory)
+                                    <a href="#" class="dropdown-item border-radius-md">
+                                        {{$subcategory->subcategory_name}}
+                                    </a>
+                                @empty
+                                    <p>No hay subcategorías para {{$category}}</p>
+                                @endforelse
+                            @empty
+                                No hay categorías
+                            @endforelse
+
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center">
