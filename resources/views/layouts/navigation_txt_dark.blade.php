@@ -46,6 +46,18 @@
         margin-top: 10px !important;
     }
 
+    .image-search { /* Desktop */
+        width: 60px;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 767.98px) { /* Mobile */
+        .image-search {
+            width: 40px;
+            border-radius: 4px;
+        }
+    }
+
 </style>
 
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 my-3 navbar-dark">
@@ -384,9 +396,7 @@
                 var resultsList = ""; // Create a variable to store the list of results
                 books.forEach(function (book) {
                     // Add a data attribute with the value of the book to the <a> element.
-                    resultsList += `<li style="cursor: default;"><a href="/book/view/${book.id}" class='dropdown-item' style='margin: auto;border-radius: 10px;'><div class="row"><div class="col-sm-1" style="align-content: center;"> <img style="width: 100%; border-radius: 10px" src="{{asset('${book.book_image_url}')}}" alt=""></div> <div class="col-11" style="white-space: normal; align-content: center; font-size: large"> ${book.book_title}</div></div></a></li>`;
-
-
+                    resultsList += `<li style="cursor: default;"><a href="/book/view/${book.id}" class='dropdown-item' style='margin: auto;border-radius: 10px;'><div class="row"><div class="col-2" style="align-content: center;"> <img class="image-search" src="{{asset('${book.book_image_url}')}}" alt=""></div> <div class="col-10" style="white-space: normal; align-content: center; font-size: large"> ${book.book_title}</div></div></a></li>`;
                 });
 
                 // Insert the complete list of results in #searchResults after all products have been processed

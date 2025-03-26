@@ -239,8 +239,6 @@
     </div>
 </section>
 
-<!-- TODO: Poner una paginacion para mostrar grandes cantidades de libros -->
-
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>

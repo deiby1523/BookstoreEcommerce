@@ -60,14 +60,14 @@
                                     <img class="desktopBanner w-100" src="{{asset($banner->banner_image_url)}}"
                                          alt="{{$j++}} slide">
                                     <img class="phoneBanner w-100" src="{{asset($banner->banner_image_url)}}"
-                                         alt="{{$j++}} slide" style="height: 400px ">
+                                         alt="{{$j++}} slide">
                                 </div>
                             @else
                                 <div class="carousel-item" style="text-align: -webkit-center;">
                                     <img class="desktopBanner w-100" src="{{asset($banner->banner_image_url)}}"
                                          alt="{{$j++}} slide">
                                     <img class="phoneBanner w-100" src="{{asset($banner->banner_image_url)}}"
-                                         alt="{{$j++}} slide" style="height: 400px">
+                                         alt="{{$j++}} slide">
                                 </div>
                             @endif
                         @endif
