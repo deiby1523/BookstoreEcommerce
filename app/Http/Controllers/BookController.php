@@ -188,8 +188,9 @@ class BookController extends Controller
     public function view($id): View
     {
         $book = Book::findOrFail($id);
-        $categories = Category::all();
-        return view('book.view', compact('book', 'categories'));
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+        return view('book.view', compact('book', 'bookCategories','productCategories'));
     }
 
     public function search(): View

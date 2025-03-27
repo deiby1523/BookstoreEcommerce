@@ -24,15 +24,7 @@
 @include('layouts.navigation_txt_dark')
 <!-- End Navbar -->
 
-@php
-    function convertToISBN($number):string {
-         return substr($number, 0, 3) . '-' . substr($number, 3, 1) . '-' . substr($number, 4, 4) . '-' . substr($number, 8, 4) . '-' . substr($number, 12, 1);
-     }
 
-     $number = $book->book_isbn;
-     $isbn = convertToISBN($number);
-
-@endphp
 
 
 {{--<div class="page-header" style="background-color: #2b2b2b; min-height: 30rem !important;">--}}
