@@ -47,7 +47,7 @@ class BookController extends Controller
     {
         $authors = Author::all();
         $publishers = Publisher::all();
-        $categories = Category::all();
+        $categories = Category::where('category_type', 0)->get();
         return view('book.create', compact('authors', 'publishers', 'categories'));
     }
 
@@ -109,7 +109,8 @@ class BookController extends Controller
 
         $authors = Author::all();
         $publishers = Publisher::all();
-        $categories = Category::all();
+        $categories = Category::where('category_type', 0)->get();
+
         return view('book.edit', compact('book', 'subcategory', 'category', 'author', 'publisher', 'authors', 'publishers', 'categories'));
     }
 
@@ -195,7 +196,8 @@ class BookController extends Controller
 
     public function search(): View
     {
-        $categories = Category::all();
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
 
         $sql = 'SELECT
         books.id,
@@ -216,7 +218,7 @@ class BookController extends Controller
         LIMIT 30';
         $books = DB::select($sql);
 
-        return view('book.search', compact('categories', 'books'));
+        return view('book.search', compact('bookCategories','productCategories', 'books'));
     }
 
     public function search2(Request $request): View
@@ -259,7 +261,10 @@ class BookController extends Controller
         $sql = $sql . ' ORDER BY books.updated_at DESC LIMIT 50';
         $books = DB::select($sql);
 
-        return view('book.search', compact('categories', 'categorySelected', 'subcategorySelected', 'books'));
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+
+        return view('book.search', compact('bookCategories','productCategories',  'categorySelected', 'subcategorySelected', 'books'));
     }
 
     public function delete($id): RedirectResponse
