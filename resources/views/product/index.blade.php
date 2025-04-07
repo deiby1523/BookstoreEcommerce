@@ -19,38 +19,18 @@
     {{-- Jquery --}}
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-
+    @include('product.styles.index')
 </head>
 
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
-
-{{-- aditional styles --}}
-@include('product.styles.index')
+@include('layouts.alerts')
+@include('layouts.sidebar')
+@include('layouts.header')
 
 
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-
-
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('dashboard.products')}}"
-               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
-                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>
-                Volver
-            </a>
-        </div>
-    </div>
+<main>
     <div class="container">
+
         <div class="section text-left my-4">
             <div class="row">
 
@@ -129,6 +109,9 @@ $nproducts = count($products);
                         <div id="infopag"></div>
                         <div id="loading" class="loading-animation"></div>
                     </div>
+                    <div id="modals">
+
+                    </div>
                     <br>
                     <div class="row" id="noExistsDisplay" style="display: none">
                         <div class="col text-center">
@@ -149,12 +132,8 @@ $nproducts = count($products);
 
         </div>
     </div>
-    <div class="container">
-        <div class="row">
+</main>
 
-        </div>
-    </div>
-</div>
 
 <br><br><br><br>
 
