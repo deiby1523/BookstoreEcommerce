@@ -43,7 +43,7 @@
 
             {{-- Search bar --}}
             <div class="row">
-                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px;">
+                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px;background-color: white">
                     <div class="input-group input-group-dynamic">
 
                                     <span class="input-group-text" id="basic-addon1"><svg
