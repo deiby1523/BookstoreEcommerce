@@ -25,24 +25,18 @@
 </head>
 
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
 
 {{-- aditional styles--}}
 @include('book.styles.create')
 
+@include('layouts.sidebar')
 
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
+@include('layouts.header')
 
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
+<main>
     <div class="container">
+
         <div class="section text-left my-4">
-            <a href="{{ route('book.index') }}" class="text-warning text-sm icon-move-left">
-                < volver
-            </a>
             <h2 class="title">Crear Libro</h2>
 
             <div class="card">
@@ -385,9 +379,10 @@
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+</main>
+
 
 @include('book.scripts.create')
 

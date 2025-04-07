@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
     <title>Libros</title>
     <!-- Required meta tags --->
@@ -21,36 +20,16 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
+
+    {{-- aditional styles --}}
+    @include('book.styles.index')
 </head>
-
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
+@include('layouts.alerts')
+@include('layouts.sidebar')
+@include('layouts.header')
 
-{{-- aditional styles --}}
-@include('book.styles.index')
-
-
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-
-
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('dashboard.books')}}"
-               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
-                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>
-                Volver
-            </a>
-        </div>
-    </div>
+<main>
     <div class="container">
         <div class="section text-left my-4">
             <div class="row">
@@ -65,7 +44,7 @@
 
             {{-- Search bar --}}
             <div class="row">
-                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px">
+                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px; background-color: white">
                     <div class="input-group input-group-dynamic">
 
                                     <span class="input-group-text" id="basic-addon1"><svg
@@ -73,14 +52,10 @@
                                             fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></span>
 
-
                         <input id="searchBook" name="searchBook" type="text" class="form-control"
                                placeholder="Buscar libros">
-
                     </div>
                 </div>
-
-
             </div>
 
 
@@ -119,17 +94,21 @@ $nbooks = count($books);
 
                             </tbody>
                         </table>
-                        <nav aria-label="Pagination-books" class="mt-5">
-                            <ul class="pagination pagination-warning justify-content-center" id="pagination">
-
-                            </ul>
-                        </nav>
-                        <div class="container" id="searchPageContainer">
-
-                        </div>
-                        <div id="infopag"></div>
-                        <div id="loading" class="loading-animation"></div>
                     </div>
+                    <div id="modals">
+
+                    </div>
+                    </div>
+                <nav aria-label="Pagination-books" class="mt-5">
+                    <ul class="pagination pagination-warning justify-content-center" id="pagination">
+
+                    </ul>
+                </nav>
+                <div class="container" id="searchPageContainer">
+
+                </div>
+                <div id="infopag"></div>
+                <div id="loading" class="loading-animation"></div>
                     <br>
                     <div class="row" id="noExistsDisplay" style="display: none">
                         <div class="col text-center">
@@ -146,21 +125,11 @@ $nbooks = count($books);
                             </div>
                         </div>
                     @endif
-                </div>
-
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-
-        </div>
-    </div>
-</div>
-
-<br><br><br><br>
+</main>
 
 @include('book.scripts.index')
-
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>

@@ -120,6 +120,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/book/update/{book}', [BookController::class, 'update'])->name('book.update');
     Route::get('/book/show/{book}',[BookController::class, 'show'])->name('book.show');
     Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
+    Route::get('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
     Route::get('/book/search/{search}', [BookController::class, 'searchSelect'])->name('book.searchSelect');    // TODO: cambiar el nombre de esta ruta
 
     // Products

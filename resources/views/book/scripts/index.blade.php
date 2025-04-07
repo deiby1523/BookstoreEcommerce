@@ -54,8 +54,8 @@
                 }
 
                 let paginationButtons = "";
-                let resultsList;
-                resultsList = ""; // Create a variable to store the list of results
+                let resultsList = "";
+                let modals = "";
 
                 books.forEach(function (book) {
 
@@ -79,8 +79,11 @@
                                                             Eliminar
                                                         </a>
                                                     </td>
-                                                </tr>
-                                                <div class='modal fade' id='deleteConfirm${book.id}' tabindex='-1' aria-labelledby='deleteConfirm${book.id}' aria-hidden='true'>
+                                                </tr>`;
+                });
+
+                books.forEach(function (book) {
+                    modals += `<div class='modal fade' id='deleteConfirm${book.id}' tabindex='-1' aria-labelledby='deleteConfirm${book.id}' aria-hidden='true'>
                                                     <div class='modal-dialog' style='margin-top: 10rem;'>
                                                         <div class='modal-content'>
                                                             <div class='modal-header'>
@@ -100,12 +103,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>`;
-                });
+                                                </div>`
+                })
+
 
 
                 // Insert the complete list of results in #bookDisplay after all authors have been processed
                 $("#bookDisplay").html(resultsList);
+                $("#modals").html(modals);
 
                 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
                 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

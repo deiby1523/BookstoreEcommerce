@@ -10,9 +10,6 @@
         pointer-events: none;
     }
 
-    .row-hover:hover {
-        background-color: #f8f9fa;
-    }
 </style>
 
 @if ($message = Session::get('success'))
@@ -31,13 +28,14 @@
         // Llama a la función para mostrar la alerta
         mostrarAlerta();
     </script>
-    <div class="container" style="max-width: initial;
+    <div class="container" style="max-width: 800px;
     padding: unset;
     position: fixed;
-    margin-top: 8rem;
+    bottom: 10%;
+    right: 0;
     z-index: 1;
 }">
-        <div id="alert" class="alert blur alert-success text-white font-weight-bold" role="alert"
+        <div id="alert" class="alert alert-success text-white font-weight-bold" role="alert"
              style="transition: opacity 0.5s ease-in-out;box-shadow: none;margin: 0px 10% 10% 10%; position: absolute; background-color: rgb(174,255,169) !important;   width: -webkit-fill-available;
              z-index: 1;">
             {{$message}}
@@ -61,13 +59,14 @@
 
 @if ($message = Session::get('danger'))
 
-    <div class="container" style="max-width: initial;
+    <div class="container" style="max-width: 800px;
     padding: unset;
     position: fixed;
-    margin-top: 8rem;
+    bottom: 10%;
+    right: 0;
     z-index: 1;
 }">
-        <div id="alert" class="alert blur alert-danger text-dark font-weight-bold" role="alert"
+        <div id="alert" class="alert alert-danger text-dark font-weight-bold" role="alert"
              style="transition: opacity 0.5s ease-in-out;box-shadow: none;margin: 0px 10% 10% 10%; position: absolute;width: -webkit-fill-available;
     background-color: rgb(255,191,191) !important;    z-index: 1;">
             {{$message}}
