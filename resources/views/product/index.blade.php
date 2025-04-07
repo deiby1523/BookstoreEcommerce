@@ -30,7 +30,6 @@
 
 <main>
     <div class="container">
-
         <div class="section text-left my-4">
             <div class="row">
 
@@ -44,7 +43,7 @@
 
             {{-- Search bar --}}
             <div class="row">
-                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px">
+                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px;">
                     <div class="input-group input-group-dynamic">
 
                                     <span class="input-group-text" id="basic-addon1"><svg
@@ -135,9 +134,7 @@ $nproducts = count($products);
 </main>
 
 
-<br><br><br><br>
-
-@include('product.scripts.index')-
+@include('product.scripts.index')
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
