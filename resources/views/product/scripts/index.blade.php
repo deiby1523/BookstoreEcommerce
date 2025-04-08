@@ -87,7 +87,7 @@
                                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                             </div>
                                                             <div class='modal-body'>
-                                                                Esta seguro que desea eliminar el libro '${product.product_name}'?
+                                                                Esta seguro que desea eliminar el producto '${product.product_name}'?
                                                                 <br><br>
                                                                 Esta accion es irreversible.
                                                             </div>
