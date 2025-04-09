@@ -1,7 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
-
 <head>
     <title>Autores</title>
     <!-- Required meta tags --->
@@ -17,8 +15,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
-</head>
 
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+
+    {{-- aditional styles --}}
+    @include('author.styles.index')
+</head>
 <body>
 @include('layouts.alerts')
 @include('layouts.sidebar')
@@ -34,15 +39,37 @@
                     <h2 class="title">Autores</h2>
                 </div>
                 <div class="col" style="text-align: end"><a href="{{route('author.create')}}"
-                                                            class="btn btn-sm btn-warning">Crear autor</a></div>
+                                                            class="btn btn-sm btn-warning">Crear Autor</a></div>
+            </div>
+
+            {{-- Search bar --}}
+            <div class="row">
+                <div class="container w-60 my-5 shadow-lg p-2" style="border-radius: 10px; background-color: white">
+                    <div class="input-group input-group-dynamic">
+
+                                    <span class="input-group-text" id="basic-addon1"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></span>
+
+                        <input id="searchAuthor" name="searchAuthor" type="text" class="form-control"
+                               placeholder="Buscar Autores" autocomplete="off">
+                    </div>
+                </div>
             </div>
             @php if(isset($authors)){
 $nauthors = count($authors);
 } @endphp
             @if($nauthors > 0)
                 <div class="card">
+                    <div id="loader" style="align-self: center; margin: 8px"></div>
+                    <div class="row" id="noExistsDisplay" style="display: none">
+                        <div class="col text-center">
+                            <p class="display-4" style="font-size: x-large"> No se encontró</p>
+                        </div>
+                    </div>
                     <div class="table-responsive">
-                        <table class="table align-items-center mb-0">
+                        <table class="table align-items-center mb-0" id="table">
                             <thead>
                             <tr>
                                 <th class="text-center  text-uppercase text-secondary  font-weight-bolder opacity-7">
@@ -60,98 +87,40 @@ $nauthors = count($authors);
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            @foreach($authors as $author)
+                            <tbody id="authorDisplay">
 
-                                <tr>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $author->id }}</p>
-                                    </td>
-                                    <td>
-                                        <p class=" mb-0">{{ $author->author_name }}</p>
-                                    </td>
-                                    <td class="align-middle text-center  ">
-                                        <p class=" mb-0">{{ $author->created_at }}</p>
-                                    </td>
-                                    <td class="align-middle text-center ">
-                                        <p class=" mb-0">{{ $author->updated_at }}</p>
-                                    </td>
-                                    <td class="align-middle" style="text-align: center;">
-
-
-                                        <a href="{{ route('author.show', $author->id) }}"
-                                           class="text-secondary  mx-3 font-weight-normal "
-                                           data-toggle="tooltip" data-original-title="Edit user">
-                                            Visualizar
-                                        </a>
-
-                                        <a href="{{ route('author.edit', $author->id) }}"
-                                           class="text-secondary  mx-3 font-weight-normal "
-                                           data-toggle="tooltip" data-original-title="Edit user">
-                                            Editar
-                                        </a>
-
-
-                                        <a href="" class="text-secondary font-weight-normal "
-                                           data-bs-toggle="modal" data-bs-target="#deleteConfirm{{$author->id}}"
-                                           data-toggle="tooltip" data-original-title="Delete user">
-                                            Eliminar
-                                        </a>
-
-                                    </td>
-                                    <div class="modal fade" id="deleteConfirm{{$author->id}}" tabindex="-1"
-                                         aria-labelledby="deleteConfirm{{$author->id}}" aria-hidden="true">
-                                        <div class="modal-dialog" style="margin-top: 10rem;">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Esta seguro que desea eliminar el autor
-                                                    '{{ $author->author_name }}' ?
-                                                    <br><br>
-                                                    Esta accion es irreversible y podria afectar a todos los libros
-                                                    que tengan este autor.
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn bg-gradient-dark mb-0"
-                                                            data-bs-dismiss="modal">Cancelar
-                                                    </button>
-                                                    <form method="POST"
-                                                          action="{{ route('author.delete',$author->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn bg-gradient-danger mb-0">
-                                                            Eliminar
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
+                    <div id="modals">
+
+                    </div>
                 </div>
+                <nav aria-label="Pagination-authors" class="mt-5">
+                    <ul class="pagination pagination-warning justify-content-center" id="pagination">
+
+                    </ul>
+                </nav>
+                <div class="container" id="searchPageContainer">
+
+                </div>
+                <div id="infopag"></div>
+                <div id="loading" class="loading-animation"></div>
+
             @else
                 <br>
                 <div class="row">
                     <div class="col">
-                        {{--                                                    <h3 class="title mt-3">{{$author->author_name}}</h3>--}}
                         <p class="display-4" style="font-size: x-large"> No existen
                             autores.</p>
                     </div>
                 </div>
             @endif
         </div>
-
     </div>
 </main>
 
+@include('author.scripts.index')
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>

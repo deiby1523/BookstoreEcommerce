@@ -71,6 +71,11 @@ $nproducts = count($products);
             @if($nproducts > 0)
                 <div class="card">
                     <div id="loader" style="align-self: center; margin: 8px"></div>
+                    <div class="row" id="noExistsDisplay" style="display: none">
+                        <div class="col text-center">
+                            <p class="display-4" style="font-size: x-large"> No se encontró</p>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0" id="table">
                             <thead>

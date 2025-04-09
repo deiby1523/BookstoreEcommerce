@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href={{asset('icons/icons.css')}}>
-    <!-- Material Icons --->
+    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
@@ -57,17 +57,17 @@
                     </div>
                 </div>
             </div>
-
-
-            {{--            <div id="bookDisplay">--}}
-
-            {{--            </div>--}}
             @php if(isset($books)){
 $nbooks = count($books);
 } @endphp
             @if($nbooks > 0)
                 <div class="card">
                     <div id="loader" style="align-self: center; margin: 8px"></div>
+                    <div class="row" id="noExistsDisplay" style="display: none">
+                        <div class="col text-center">
+                            <p class="display-4" style="font-size: x-large"> No se encontró</p>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0" id="table">
                             <thead>
@@ -109,17 +109,11 @@ $nbooks = count($books);
                 </div>
                 <div id="infopag"></div>
                 <div id="loading" class="loading-animation"></div>
-                <br>
-                <div class="row" id="noExistsDisplay" style="display: none">
-                    <div class="col text-center">
-                        <p class="display-4" style="font-size: x-large"> No se encontró</p>
-                    </div>
-                </div>
+
             @else
                 <br>
                 <div class="row">
                     <div class="col">
-                        {{--                                                    <h3 class="title mt-3">{{$category->category_name}}</h3>--}}
                         <p class="display-4" style="font-size: x-large"> No existen
                             libros.</p>
                     </div>

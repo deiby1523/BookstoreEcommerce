@@ -101,6 +101,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/author/show/{author}', [AuthorController::class, 'show'])->name('author.show');
     Route::delete('/author/delete/{author}', [AuthorController::class, 'delete'])->name('author.delete');
     Route::POST('/author/search', [AuthorController::class, 'searchSelect'])->name('author.searchSelect');
+    Route::get('/author/search/{search}', [AuthorController::class, 'searchIndex'])->name('book.searchIndex');
 
     // Publishers
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
