@@ -98,7 +98,7 @@ $nbooks = count($books);
                     <div id="modals">
 
                     </div>
-                    </div>
+                </div>
                 <nav aria-label="Pagination-books" class="mt-5">
                     <ul class="pagination pagination-warning justify-content-center" id="pagination">
 
@@ -109,22 +109,22 @@ $nbooks = count($books);
                 </div>
                 <div id="infopag"></div>
                 <div id="loading" class="loading-animation"></div>
-                    <br>
-                    <div class="row" id="noExistsDisplay" style="display: none">
-                        <div class="col text-center">
-                            <p class="display-4" style="font-size: x-large"> No se encontró</p>
-                        </div>
+                <br>
+                <div class="row" id="noExistsDisplay" style="display: none">
+                    <div class="col text-center">
+                        <p class="display-4" style="font-size: x-large"> No se encontró</p>
                     </div>
-                    @else
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                {{--                                                    <h3 class="title mt-3">{{$category->category_name}}</h3>--}}
-                                <p class="display-4" style="font-size: x-large"> No existen
-                                    libros.</p>
-                            </div>
-                        </div>
-                    @endif
+                </div>
+            @else
+                <br>
+                <div class="row">
+                    <div class="col">
+                        {{--                                                    <h3 class="title mt-3">{{$category->category_name}}</h3>--}}
+                        <p class="display-4" style="font-size: x-large"> No existen
+                            libros.</p>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </main>
