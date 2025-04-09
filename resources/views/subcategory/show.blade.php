@@ -17,11 +17,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
+    @include('subcategory.styles.index')
 </head>
 
 <body>
 @include('layouts.sidebar')
 @include('layouts.header')
+
+@php
+    function convertToISBN($number):string {
+         return substr($number, 0, 3) . '-' . substr($number, 3, 1) . '-' . substr($number, 4, 4) . '-' . substr($number, 8, 4) . '-' . substr($number, 12, 1);
+     }
+@endphp
 
 <main>
     <div class="row mt-4">
@@ -61,16 +68,16 @@
                             <p class="mt-3">{{$subcategory->subcategory_description}}</p>
                         </div>
                         <br>
-                        <div class="row">
+                        <div class="row mb-5">
                             <div class="card">
-                                <div id="loader" style="align-self: center; margin: 8px"></div>
+                                <div id="loader" style="align-self: center;"></div>
                                 <div class="table-responsive">
                                     <table class="table align-items-center mb-0" id="table">
                                         <h5 class="my-1 mx-4 text-secondary font-weight-bolder opacity-9 text-center p-2">{{$subcategory->category->category_type == 0 ? 'Libros' : 'Productos'}}</h5>
                                         <thead>
                                         <tr>
                                             <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">
-                                                Código
+                                                {{$subcategory->category->category_type == 0 ? 'ISBN' : 'Código'}}
                                             </th>
                                             <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">
                                                 Nombre
@@ -85,7 +92,7 @@
                                                 @forelse($subcategory->books as $book)
                                                     <tr>
                                                         <td class="align-middle text-center ">
-                                                            <p class=" mb-0">{{ $book->book_isbn }}</p>
+                                                            <p class=" mb-0">{{ convertToISBN($book->book_isbn) }}</p>
                                                         </td>
                                                         <td>
                                                             <p class=" mb-0">{{ $book->book_title }}</p>
@@ -103,7 +110,26 @@
                                                     </div>
                                                 @endforelse
                                             @else
-
+                                                @forelse($subcategory->products as $product)
+                                                    <tr>
+                                                        <td class="align-middle text-center ">
+                                                            <p class=" mb-0">{{ $product->id }}</p>
+                                                        </td>
+                                                        <td>
+                                                            <p class=" mb-0">{{ $product->product_name }}</p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-sm"><!--dump($product->active == 1) -->
+                                                            <span class="badge badge-sm badge-{{$product->active ? 'success' : 'secondary'}}">{{$product->active ? 'Activado' : 'Desactivado'}}</span>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <br>
+                                                    <div class="row mt-5">
+                                                        <div class="col">
+                                                            <p class="display-4" style="font-size: x-large"> Aún no hay productos asociados a esta subcategoría</p>
+                                                        </div>
+                                                    </div>
+                                                @endforelse
                                             @endif
                                         </tbody>
                                     </table>
