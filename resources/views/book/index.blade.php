@@ -87,6 +87,9 @@ $nbooks = count($books);
                                 <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
                                     Precio
                                 </th>
+                                <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">
+                                    Estado
+                                </th>
                                 <th class="text-secondary opacity-7"></th>
                             </tr>
                             </thead>

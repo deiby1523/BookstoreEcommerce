@@ -18,7 +18,7 @@
         }
 
         // Evento keyup para el campo de búsqueda
-        $('#searchBook').keyup(function () {
+        $('#searchPublisher').keyup(function () {
             clearTimeout(typingTimer);  // Reinicia el temporizador en cada pulsación de tecla
             clearTimeout(loaderTimeout);  // Reinicia el temporizador de la animación de carga
 
@@ -35,20 +35,20 @@
 
     });
 
-    // Book
+    // Publisher
     // Ajax request according to what's in the search box
-    function get_books(search, page) {
+    function get_publishers(search, page) {
         if (search === '') {
             search = ' ';
         }
         console.log(search + ' ' + page);
         $.ajax({
-            url: `book/search/${search}`,
+            url: `publisher/search/${search}`,
             type: 'GET',
             dataType: 'json',
             data: {'search': search, 'page': page},
         })
-            .done(function (books, response, xhr) {
+            .done(function (publishers, response, xhr) {
                 function convertToISBN(number) {
                     return 'ISBN ' + number.substring(0, 3) + '-' + number.substring(3, 4) + '-' + number.substring(4, 8) + '-' + number.substring(8, 12) + '-' + number.substring(12, 13);
                 }
@@ -57,36 +57,29 @@
                 let resultsList = "";
                 let modals = "";
 
-                books.forEach(function (book) {
-
-                    let isbn = convertToISBN(book.book_isbn);
-
+                publishers.forEach(function (publisher) {
                     resultsList += `<tr>
-                                                    <td class='align-middle text-center'><p class=' mb-0'>${isbn}</p></td>
-                                                    <td><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'>${book.book_title}</p></td>
-                                                    <td><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.category_name}'>${book.category_name}</p></td>
-                                                    <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.publisher_name}'>${book.publisher_name}</p></td>
-                                                    <td class='align-middle'><p class='mb-0'>$ ${book.book_price.toLocaleString()}</p></td>
-                                                    <td class="align-middle text-center text-sm">
-                                                        <span class="badge badge-sm badge-${book.active ? 'success' : 'secondary'}">${book.active ? 'Activado' : 'Desactivado'}</span>
-                                                    </td>
+                                                    <td class='align-middle text-center'><p class=' mb-0'>${publisher.id}</p></td>
+                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='right' title='${publisher.publisher_name}'>${publisher.publisher_name}</p></td>
+                                                    <td class='align-middle'><p class='mb-0'>${publisher.created_at}</p>
+                                                    <td class='align-middle'><p class='mb-0'>${publisher.updated_at}</p>
 
                                                     <td class='align-middle' style='text-align: center;'>
-                                                        <a href='book/show/${book.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
+                                                        <a href='publisher/show/${publisher.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
                                                             Visualizar
                                                         </a>
-                                                        <a href='book/edit/${book.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Edit user'>
+                                                        <a href='publisher/edit/${publisher.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Edit user'>
                                                             Editar
                                                         </a>
-                                                        <a href='' class='text-secondary font-weight-normal' data-bs-toggle='modal' data-bs-target='#deleteConfirm${book.id}' data-toggle='tooltip' data-original-title='Delete user'>
+                                                        <a href='' class='text-secondary font-weight-normal' data-bs-toggle='modal' data-bs-target='#deleteConfirm${publisher.id}' data-toggle='tooltip' data-original-title='Delete user'>
                                                             Eliminar
                                                         </a>
                                                     </td>
                                                 </tr>`;
                 });
 
-                books.forEach(function (book) {
-                    modals += `<div class='modal fade' id='deleteConfirm${book.id}' tabindex='-1' aria-labelledby='deleteConfirm${book.id}' aria-hidden='true'>
+                publishers.forEach(function (publisher) {
+                    modals += `<div class='modal fade' id='deleteConfirm${publisher.id}' tabindex='-1' aria-labelledby='deleteConfirm${publisher.id}' aria-hidden='true'>
                                                     <div class='modal-dialog' style='margin-top: 10rem;'>
                                                         <div class='modal-content'>
                                                             <div class='modal-header'>
@@ -94,13 +87,13 @@
                                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                             </div>
                                                             <div class='modal-body'>
-                                                                Esta seguro que desea eliminar el libro '${book.book_title}'?
+                                                                Esta seguro que desea eliminar la editorial '${publisher.publisher_name}'?
                                                                 <br><br>
                                                                 Esta accion es irreversible.
                                                             </div>
                                                             <div class='modal-footer justify-content-between'>
                                                                 <button type='button' class='btn bg-gradient-dark mb-0' data-bs-dismiss='modal'>Cancelar</button>
-                                                                <form method='DELETE' action='book/delete/${book.id}'>
+                                                                <form method='DELETE' action='publisher/delete/${publisher.id}'>
                                                                     <button type='submit' class='btn bg-gradient-danger mb-0'>Eliminar</button>
                                                                 </form>
                                                             </div>
@@ -111,8 +104,8 @@
 
 
 
-                // Insert the complete list of results in #bookDisplay after all authors have been processed
-                $("#bookDisplay").html(resultsList);
+                // Insert the complete list of results in #publisherDisplay after all publishers have been processed
+                $("#publisherDisplay").html(resultsList);
                 $("#modals").html(modals);
 
                 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -139,7 +132,7 @@
                 }
 
                 paginationButtons += `<li class="page-item">
-                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == 1 ? 'disabled' : ''}" tabindex="-1" onclick="get_books('${search}',${xhr.getResponseHeader("page") - 1});">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == 1 ? 'disabled' : ''}" tabindex="-1" onclick="get_publishers('${search}',${xhr.getResponseHeader("page") - 1});">
                                         <i class="fa fa-angle-left"></i>
                                         <span class="sr-only">Anterior</span>
                                     </button>
@@ -147,20 +140,20 @@
 
                 if (parseInt(xhr.getResponseHeader("numPages")) <= 15) {
                     for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
-                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_publishers('${search}',${i});">${i}</button></li>`;
                     }
                 } else {
                     for (let i = 1; i <= 5; i++) {
-                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_publishers('${search}',${i});">${i}</button></li>`;
                     }
                     paginationButtons += "......";
                     if (parseInt(xhr.getResponseHeader("page")) > 5 && parseInt(xhr.getResponseHeader("page")) < xhr.getResponseHeader("numPages") - 4) {
-                        paginationButtons += `<li class="page-item active"><button class="page-link" onclick="get_books('${search}',${xhr.getResponseHeader("page")});">${xhr.getResponseHeader("page")}</button></li>`;
+                        paginationButtons += `<li class="page-item active"><button class="page-link" onclick="get_publishers('${search}',${xhr.getResponseHeader("page")});">${xhr.getResponseHeader("page")}</button></li>`;
                         paginationButtons += "......";
                     }
 
                     for (let i = xhr.getResponseHeader("numPages") - 4; i <= xhr.getResponseHeader("numPages"); i++) {
-                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_books('${search}',${i});">${i}</button></li>`;
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_publishers('${search}',${i});">${i}</button></li>`;
                     }
                 }
 
@@ -178,7 +171,7 @@
     </div>
 </div>`)
 
-                // $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numBooks")}</p>
+                // $("#infopag").html(`<p class="text-lg"><b>Libros: </b>${xhr.getResponseHeader("numPublishers")}</p>
                 //                     <p class="text-lg"><b>Por pagina: </b>${xhr.getResponseHeader("perPage")}</p>
                 //                     <p class="text-lg"><b>total paginas: </b>${xhr.getResponseHeader("numPages")}</p>
                 //                     <p class="text-lg"><b>pagina actual: </b>${xhr.getResponseHeader("page")}</p>
@@ -186,7 +179,7 @@
 
 
                 paginationButtons += `<li class="page-item">
-                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == xhr.getResponseHeader("numPages") ? 'disabled' : ''}" tabindex="-1" onclick="get_books('${search}',${parseInt(xhr.getResponseHeader("page")) + 1});">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == xhr.getResponseHeader("numPages") ? 'disabled' : ''}" tabindex="-1" onclick="get_publishers('${search}',${parseInt(xhr.getResponseHeader("page")) + 1});">
                                         <i class="fa fa-angle-right"></i>
                                         <span class="sr-only">Siguiente</span>
                                     </button>
@@ -211,27 +204,27 @@
     }
 
 
-    // book
+    // publisher
     // Wrapped Ajax function with debounce
-    const BookDelayedRequest = debounce(function (search) {
-        get_books(search, 1);
+    const PublisherDelayedRequest = debounce(function (search) {
+        get_publishers(search, 1);
     }, 2000); // 300ms delay, adjustable based on your needs
 
-    // book
+    // publisher
     // 'input' event using the debounce function
-    $(document).on('input', '#searchBook', function () {
-        const searchValue = $('#searchBook').val();
-        BookDelayedRequest(searchValue);
+    $(document).on('input', '#searchPublisher', function () {
+        const searchValue = $('#searchPublisher').val();
+        PublisherDelayedRequest(searchValue);
     });
 
     $(document).on('click','#btnBuscarPag', function () {
-        const searchValue = $('#searchBook').val();
+        const searchValue = $('#searchPublisher').val();
         const page = $('#inputPag').val();
-        get_books(searchValue,page);
+        get_publishers(searchValue,page);
     })
 
     window.addEventListener('load', function () {
-        get_books(" ", 1);
+        get_publishers(" ", 1);
     });
 
 </script>

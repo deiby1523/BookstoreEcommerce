@@ -100,8 +100,9 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
     Route::get('/author/show/{author}', [AuthorController::class, 'show'])->name('author.show');
     Route::delete('/author/delete/{author}', [AuthorController::class, 'delete'])->name('author.delete');
+    Route::get('/author/delete/{author}', [AuthorController::class, 'delete'])->name('author.delete');
     Route::POST('/author/search', [AuthorController::class, 'searchSelect'])->name('author.searchSelect');
-    Route::get('/author/search/{search}', [AuthorController::class, 'searchIndex'])->name('book.searchIndex');
+    Route::get('/author/search/{search}', [AuthorController::class, 'searchIndex'])->name('author.searchIndex');
 
     // Publishers
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
@@ -111,7 +112,9 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/publisher/update/{publisher}', [PublisherController::class, 'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}', [PublisherController::class, 'show'])->name('publisher.show');
     Route::delete('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
+    Route::get('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
     Route::POST('/publisher/search', [PublisherController::class, 'searchSelect'])->name('publisher.searchSelect');
+    Route::get('/publisher/search/{search}', [PublisherController::class, 'searchIndex'])->name('author.searchIndex');
 
     // Books
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
@@ -138,6 +141,7 @@ Route::middleware('UserAdmin')->group(function () {
 
 
 // TODO: Arreglar esta mrd
+// V.2 Fix this shit
     Route::POST('/product/search', [BookController::class, 'searchNav'])->name('book.searchNav');
 
 //public books

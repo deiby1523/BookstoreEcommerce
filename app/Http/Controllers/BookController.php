@@ -280,7 +280,7 @@ class BookController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 30;
+        $perPage = 20;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {
@@ -289,6 +289,7 @@ class BookController extends Controller
     books.book_isbn,
     books.book_title,
     books.book_price,
+    books.active,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -315,6 +316,7 @@ class BookController extends Controller
     books.book_isbn,
     books.book_title,
     books.book_price,
+    books.active,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -340,6 +342,7 @@ class BookController extends Controller
     books.book_isbn,
     books.book_title,
     books.book_price,
+    books.active,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -371,6 +374,7 @@ class BookController extends Controller
         books.book_title,
         books.book_price,
         books.book_image_url,
+        books.active,
         authors.author_name,
         publishers.publisher_name,
         categories.category_name,

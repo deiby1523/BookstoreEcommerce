@@ -162,7 +162,7 @@ class ProductController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 30;
+        $perPage = 20;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {

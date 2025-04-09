@@ -77,7 +77,7 @@ class AuthorController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 30;
+        $perPage = 20;
         $offset = ($page - 1) * $perPage;
 
         if ($search != " ") {
@@ -103,7 +103,7 @@ class AuthorController extends Controller
     FROM authors
     WHERE (authors.id LIKE '%$search%' OR
         authors.author_name LIKE '%$search%')
-       ORDER BY authors.id ASC
+       ORDER BY authors.id DESC
         LIMIT $offset,$perPage";
             $authors = DB::select($sql);
             return response()->json($authors, 200)->withHeaders(['numAuthors' => $numAuthors, 'numPages' => $numPages, 'page' => $page, 'perPage' => $perPage, 'display' => 'Mostrando del ' . ($offset + 1) . ' al ' . ($offset + $perPage)]);
