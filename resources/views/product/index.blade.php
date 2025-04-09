@@ -70,7 +70,7 @@ $nproducts = count($products);
 } @endphp
             @if($nproducts > 0)
                 <div class="card">
-                    <div id="loader" style="align-self: center"></div>
+                    <div id="loader" style="align-self: center; margin: 8px"></div>
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0" id="table">
                             <thead>
