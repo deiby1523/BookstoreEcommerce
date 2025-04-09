@@ -53,7 +53,7 @@
 
 
                         <input id="searchProduct" name="searchProduct" type="text" class="form-control"
-                               placeholder="Buscar Productos">
+                               placeholder="Buscar Productos" autocomplete="off">
 
                     </div>
                 </div>
