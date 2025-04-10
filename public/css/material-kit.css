@@ -3069,7 +3069,7 @@ textarea.form-control-lg {
 
 .form-switch .form-check-input {
   width: 1.875rem;
-  margin-left: -2.375rem;
+  /*margin-left: -2.375rem;*/
   background-image: none;
   background-position: left center;
   border-radius: 1.875rem;

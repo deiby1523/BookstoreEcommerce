@@ -22,6 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
+    @include('book.styles.edit')
 
 </head>
 
@@ -30,48 +31,6 @@
 @include('layouts.sidebar')
 @include('layouts.header')
 
-<style>
-    .listbox {
-        margin-top: 10px !important;
-    }
-
-
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-
-
-    input[type=date]::-webkit-inner-spin-button,
-    input[type=date]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type=date] {
-        -moz-appearance: textfield;
-    }
-
-    .selectSearch {
-        display: none;
-    }
-
-    .show {
-        display: block;
-    }
-
-    input::file-selector-button {
-        padding: 7px 7px 7px 7px !important;
-        background-color: lightgray !important;
-        border-radius: 10px;
-    !important
-    }
-</style>
 
 <main>
     <div class="row mt-4">
@@ -357,22 +316,30 @@
                             <x-input-error class="text-danger"
                                            :messages="$errors->get('book_discount')"></x-input-error>
 
-                            {{-- Stock --}}
-                            <div class="input-group input-group-static mb-4">
-                                <label>Unidades en inventario</label>
-                                @if(count($errors->get('book_stock')) >= 1)
-                                    <input name="book_stock" id="book_stock" class="form-control"
-                                           style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                           type="number" placeholder="Cantidad de unidades en inventario"
-                                           value="{{$book->book_stock}}">
+                            {{-- Active --}}
+                            <label>Activado</label>
+                            <div class="form-check form-switch py-2">
+                            @if(count($errors->get('active')) >= 1)
+                                @if($book->active)
+                                        <input class="form-check-input checked:true" type="checkbox" id="active"
+                                               name="active" checked>
+                                    @else
+                                        <input class="form-check-input checked:false" type="checkbox" id="active"
+                                               name="active">
+                                    @endif
                                 @else
-                                    <input name="book_stock" id="book_stock" class="form-control"
-                                           type="number" placeholder="Cantidad de unidades en inventario"
-                                           value="{{$book->book_stock}}">
+                                @if($book->active)
+                                        <input class="form-check-input checked:true" type="checkbox" id="active"
+                                               name="active" checked>
+                                    @else
+                                        <input class="form-check-input checked:false" type="checkbox" id="active"
+                                               name="active">
+                                    @endif
                                 @endif
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('active')"></x-input-error>
                             </div>
-                            <x-input-error class="text-danger"
-                                           :messages="$errors->get('book_stock')"></x-input-error>
+
 
                             {{-- image display --}}
                             <div class="row">

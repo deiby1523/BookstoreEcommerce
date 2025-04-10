@@ -163,22 +163,13 @@
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('product_discount')"></x-input-error>
 
-                                {{-- Stock --}}
-                                <div class="input-group input-group-static mb-4">
-                                    <label>Unidades en inventario</label>
-                                    @if(count($errors->get('product_stock')) >= 1)
-                                        <input name="product_stock" id="product_stock" class="form-control"
-                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                               type="number" placeholder="Cantidad de unidades en inventario"
-                                               value="{{app('request')->old('product_stock', null)}}">
-                                    @else
-                                        <input name="product_stock" id="product_stock" class="form-control"
-                                               type="number" placeholder="Cantidad de unidades en inventario"
-                                               value="{{app('request')->old('product_stock', null)}}">
-                                    @endif
+                                {{-- Active --}}
+                                    <label>Activado</label>
+                                <div class="form-check form-switch py-2">
+                                    <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('active')"></x-input-error>
                                 </div>
-                                <x-input-error class="text-danger"
-                                               :messages="$errors->get('product_stock')"></x-input-error>
 
                                 {{-- image display --}}
                                 <div class="row">

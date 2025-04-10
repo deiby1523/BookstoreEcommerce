@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
-
+    @include('product.styles.edit')
 </head>
 
 <body>
@@ -215,22 +215,29 @@
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('product_discount')"></x-input-error>
 
-                                {{-- Stock --}}
-                                <div class="input-group input-group-static mb-4">
-                                    <label>Unidades en inventario</label>
-                                    @if(count($errors->get('product_stock')) >= 1)
-                                        <input name="product_stock" id="product_stock" class="form-control"
-                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                               type="number" placeholder="Cantidad de unidades en inventario"
-                                               value="{{$product->product_stock}}">
+                                {{-- Active --}}
+                                <label>Activado</label>
+                                <div class="form-check form-switch py-2">
+                                @if(count($errors->get('active')) >= 1)
+                                    @if($product->active)
+                                            <input class="form-check-input checked:true" type="checkbox" id="active"
+                                                   name="active" checked>
+                                        @else
+                                            <input class="form-check-input checked:false" type="checkbox" id="active"
+                                                   name="active">
+                                        @endif
                                     @else
-                                        <input name="product_stock" id="product_stock" class="form-control"
-                                               type="number" placeholder="Cantidad de unidades en inventario"
-                                               value="{{$product->product_stock}}">
+                                    @if($product->active)
+                                            <input class="form-check-input checked:true" type="checkbox" id="active"
+                                                   name="active" checked>
+                                        @else
+                                            <input class="form-check-input checked:false" type="checkbox" id="active"
+                                                   name="active">
+                                        @endif
                                     @endif
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('active')"></x-input-error>
                                 </div>
-                                <x-input-error class="text-danger"
-                                               :messages="$errors->get('product_stock')"></x-input-error>
 
                                 {{-- image display --}}
                                 <div class="row">

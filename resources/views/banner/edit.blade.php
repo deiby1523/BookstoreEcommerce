@@ -76,9 +76,10 @@
 
                             </div>
 
-                            <div class="form-check form-switch py-3">
-                                @if(count($errors->get('active')) >= 1)
-                                    @if($banner->active)
+                            <label>Activado</label>
+                            <div class="form-check form-switch py-2">
+                            @if(count($errors->get('active')) >= 1)
+                                @if($banner->active)
                                         <input class="form-check-input checked:true" type="checkbox" id="active"
                                                name="active" checked>
                                     @else
@@ -86,7 +87,7 @@
                                                name="active">
                                     @endif
                                 @else
-                                    @if($banner->active)
+                                @if($banner->active)
                                         <input class="form-check-input checked:true" type="checkbox" id="active"
                                                name="active" checked>
                                     @else
@@ -94,7 +95,6 @@
                                                name="active">
                                     @endif
                                 @endif
-                                <label class="form-check-label" for="active">Activado</label>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>

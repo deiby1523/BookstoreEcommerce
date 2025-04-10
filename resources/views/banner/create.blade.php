@@ -74,9 +74,9 @@
 
                             </div>
 
-                            <div class="form-check form-switch py-3">
+                                <label>Activado</label>
+                            <div class="form-check form-switch py-2">
                                 <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
-                                <label class="form-check-label" for="active">Activado</label>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>

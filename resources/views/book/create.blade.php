@@ -25,7 +25,6 @@
 </head>
 
 <body>
-
 {{-- aditional styles--}}
 @include('book.styles.create')
 @include('layouts.sidebar')
@@ -34,9 +33,13 @@
 <main>
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-transparent mb-0 mt-lg-auto" href="{{route('book.index')}}"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>Volver
+            <a class="btn bg-transparent mb-0 mt-lg-auto" href="{{route('book.index')}}">
+                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>
+                Volver
             </a>
         </div>
     </div>
@@ -300,22 +303,14 @@
                             <x-input-error class="text-danger"
                                            :messages="$errors->get('book_discount')"></x-input-error>
 
-                            {{-- Stock --}}
-                            <div class="input-group input-group-static mb-4">
-                                <label>Unidades en inventario</label>
-                                @if(count($errors->get('book_stock')) >= 1)
-                                    <input name="book_stock" id="book_stock" class="form-control"
-                                           style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                           type="number" placeholder="Cantidad de unidades en inventario"
-                                           value="{{app('request')->old('book_stock', null)}}">
-                                @else
-                                    <input name="book_stock" id="book_stock" class="form-control"
-                                           type="number" placeholder="Cantidad de unidades en inventario"
-                                           value="{{app('request')->old('book_stock', null)}}">
-                                @endif
+                            {{-- Active --}}
+                            <label>Activado</label>
+                            <div class="form-check form-switch py-2">
+                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('active')"></x-input-error>
                             </div>
-                            <x-input-error class="text-danger"
-                                           :messages="$errors->get('book_stock')"></x-input-error>
+
 
                             {{-- image display --}}
                             <div class="row">
