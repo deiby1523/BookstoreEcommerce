@@ -306,7 +306,7 @@
                             {{-- Active --}}
                             <label>Activado</label>
                             <div class="form-check form-switch py-2">
-                                <input class="form-check-input checked:false" type="checkbox" id="active" name="active">
+                                <input class="form-check-input checked:true" type="checkbox" id="active" name="active" checked>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>
