@@ -9,7 +9,7 @@
         grid-template-areas:
       "sidebar header"
       "sidebar main";
-        grid-template-columns: 250px 1fr;
+        grid-template-columns: 300px 1fr;
         grid-template-rows: 60px 1fr;
         height: 100vh;
         overflow: hidden; /* Evita scroll global */
