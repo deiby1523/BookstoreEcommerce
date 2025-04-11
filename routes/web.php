@@ -6,6 +6,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InterfaceDashboardController;
@@ -73,7 +74,6 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/section/delete/{section}', [SectionController::class,'delete'])->name('section.delete');
     Route::get('/section/show/{section}',[SectionController::class,'show'])->name('section.show');
 
-
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -137,6 +137,9 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/product/search/{search}', [ProductController::class, 'searchSelect'])->name('product.searchSelect');
+
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 
