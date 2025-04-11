@@ -42,7 +42,7 @@
 $nsections = count($sections);
 } @endphp
             @if($nsections > 0)
-                <div class="card">
+                <div class="card mt-5">
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
                             <thead>
