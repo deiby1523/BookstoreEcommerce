@@ -6,6 +6,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InterfaceDashboardController;
@@ -73,7 +74,6 @@ Route::middleware('UserAdmin')->group(function () {
     Route::delete('/section/delete/{section}', [SectionController::class,'delete'])->name('section.delete');
     Route::get('/section/show/{section}',[SectionController::class,'show'])->name('section.show');
 
-
     // Categories
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -100,7 +100,9 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
     Route::get('/author/show/{author}', [AuthorController::class, 'show'])->name('author.show');
     Route::delete('/author/delete/{author}', [AuthorController::class, 'delete'])->name('author.delete');
+    Route::get('/author/delete/{author}', [AuthorController::class, 'delete'])->name('author.delete');
     Route::POST('/author/search', [AuthorController::class, 'searchSelect'])->name('author.searchSelect');
+    Route::get('/author/search/{search}', [AuthorController::class, 'searchIndex'])->name('author.searchIndex');
 
     // Publishers
     Route::get('/publisher', [PublisherController::class, 'index'])->name('publisher.index');
@@ -110,7 +112,9 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/publisher/update/{publisher}', [PublisherController::class, 'update'])->name('publisher.update');
     Route::get('/publisher/show/{publisher}', [PublisherController::class, 'show'])->name('publisher.show');
     Route::delete('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
+    Route::get('/publisher/delete/{publisher}', [PublisherController::class, 'delete'])->name('publisher.delete');
     Route::POST('/publisher/search', [PublisherController::class, 'searchSelect'])->name('publisher.searchSelect');
+    Route::get('/publisher/search/{search}', [PublisherController::class, 'searchIndex'])->name('author.searchIndex');
 
     // Books
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
@@ -120,6 +124,7 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/book/update/{book}', [BookController::class, 'update'])->name('book.update');
     Route::get('/book/show/{book}',[BookController::class, 'show'])->name('book.show');
     Route::delete('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
+    Route::get('/book/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
     Route::get('/book/search/{search}', [BookController::class, 'searchSelect'])->name('book.searchSelect');    // TODO: cambiar el nombre de esta ruta
 
     // Products
@@ -130,11 +135,16 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/product/update/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/show/{product}', [ProductController::class, 'show'])->name('product.show');
     Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/product/search/{search}', [ProductController::class, 'searchSelect'])->name('product.searchSelect');
+
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 
 // TODO: Arreglar esta mrd
+// V.2 Fix this shit
     Route::POST('/product/search', [BookController::class, 'searchNav'])->name('book.searchNav');
 
 //public books

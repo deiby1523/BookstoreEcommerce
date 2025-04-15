@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publisher;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -71,6 +72,56 @@ class PublisherController extends Controller
         $sql = "SELECT publishers.id, publishers.publisher_name FROM publishers WHERE publisher_name LIKE '%$request->search%' LIMIT 5";
         $publishers = DB::select($sql);
         return response()->json($publishers,200);
+    }
+
+    public function searchIndex(Request $request): JsonResponse
+    {
+        $search = $request->search;
+        $page = $request->page;
+        $perPage = 20;
+        $offset = ($page - 1) * $perPage;
+
+        if ($search != " ") {
+            $sql = "SELECT
+    publishers.id,
+    publishers.publisher_name,
+    publishers.created_at,
+    publishers.updated_at
+    FROM publishers
+    WHERE (publishers.id LIKE '%$search%' OR
+        publishers.publisher_name LIKE '%$search%')
+        ORDER BY publishers.publisher_name ASC";
+
+            $publishers = DB::select($sql);
+            $numPublishers = count($publishers);
+            $numPages = ceil($numPublishers / $perPage);
+
+            $sql = "SELECT
+    publishers.id,
+    publishers.publisher_name,
+    publishers.created_at,
+    publishers.updated_at
+    FROM publishers
+    WHERE (publishers.id LIKE '%$search%' OR
+        publishers.publisher_name LIKE '%$search%')
+       ORDER BY publishers.id DESC
+        LIMIT $offset,$perPage";
+            $publishers = DB::select($sql);
+            return response()->json($publishers, 200)->withHeaders(['numPublishers' => $numPublishers, 'numPages' => $numPages, 'page' => $page, 'perPage' => $perPage, 'display' => 'Mostrando del ' . ($offset + 1) . ' al ' . ($offset + $perPage)]);
+        } else {
+            $sql = "SELECT
+    publishers.id,
+    publishers.publisher_name,
+    publishers.created_at,
+    publishers.updated_at
+    FROM publishers
+        ORDER BY publishers.id ASC
+        LIMIT $perPage
+        OFFSET $offset";
+
+            $publishers = DB::select($sql);
+            return response()->json($publishers, 200)->withHeaders(['numPages' => 10]);
+        }
     }
 
 

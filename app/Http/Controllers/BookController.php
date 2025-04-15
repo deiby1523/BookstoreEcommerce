@@ -64,7 +64,6 @@ class BookController extends Controller
             'book_image' => 'required|image',
             'book_number_pages' => 'required|integer|min:1',
             'book_price' => 'required|min:0',
-            'book_stock' => 'required|integer',
             'book_discount' => 'integer|max:100'
         ]);
 
@@ -88,8 +87,8 @@ class BookController extends Controller
                 'book_description' => $request->book_description,
                 'book_image_url' => 'img/books/' . $imageName,
                 'book_price' => $request->book_price,
-                'book_stock' => $request->book_stock,
                 'book_discount' => $request->book_discount,
+                'active' => ($request->active == 'on'),
                 'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
@@ -126,7 +125,6 @@ class BookController extends Controller
             'book_publication_date' => 'required|date',
             'book_number_pages' => 'required|integer|min:1',
             'book_price' => 'required|min:0',
-            'book_stock' => 'required|integer',
             'book_discount' => 'integer|max:100'
         ]);
 
@@ -155,8 +153,8 @@ class BookController extends Controller
                 'book_description' => $request->book_description,
                 'book_image_url' => 'img/books/' . $imageName,
                 'book_price' => $request->book_price,
-                'book_stock' => $request->book_stock,
                 'book_discount' => $request->book_discount,
+                'active' => ($request->active == 'on'),
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
 
@@ -171,8 +169,8 @@ class BookController extends Controller
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
                 'book_price' => $request->book_price,
-                'book_stock' => $request->book_stock,
                 'book_discount' => $request->book_discount,
+                'active' => ($request->active == 'on'),
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
         }
@@ -280,7 +278,7 @@ class BookController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 30;
+        $perPage = 20;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {
@@ -289,6 +287,7 @@ class BookController extends Controller
     books.book_isbn,
     books.book_title,
     books.book_price,
+    books.active,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -315,6 +314,7 @@ class BookController extends Controller
     books.book_isbn,
     books.book_title,
     books.book_price,
+    books.active,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -340,6 +340,7 @@ class BookController extends Controller
     books.book_isbn,
     books.book_title,
     books.book_price,
+    books.active,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
@@ -371,6 +372,7 @@ class BookController extends Controller
         books.book_title,
         books.book_price,
         books.book_image_url,
+        books.active,
         authors.author_name,
         publishers.publisher_name,
         categories.category_name,

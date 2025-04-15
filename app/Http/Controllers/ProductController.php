@@ -35,7 +35,6 @@ class ProductController extends Controller
             'subcategory_id' => 'required|min:1|integer',
             'product_image' => 'required|image',
             'product_price' => 'required|min:0',
-            'product_stock' => 'required|integer',
             'product_discount' => 'integer|max:100'
         ]);
 
@@ -61,8 +60,8 @@ class ProductController extends Controller
                 'product_name' => $request->product_name,
                 'product_description' => $request->product_description,
                 'product_price' => $request->product_price,
-                'product_stock' => $request->product_stock,
                 'product_discount' => $request->product_discount,
+                'active' => ($request->active == 'on'),
                 'subcategory_id' => $request->subcategory_id,
                 'product_image_url' => 'img/products/' . $imageName,
                 'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
@@ -95,7 +94,6 @@ class ProductController extends Controller
             'category_id' => 'required|min:1|integer',
             'subcategory_id' => 'required|min:1|integer',
             'product_price' => 'required|min:0',
-            'product_stock' => 'required|integer',
             'product_discount' => 'integer|max:100'
         ]);
 
@@ -128,7 +126,6 @@ class ProductController extends Controller
                 'product_description' => $request->product_description,
                 'product_image_url' => 'img/products/' . $imageName,
                 'product_price' => $request->product_price,
-                'product_stock' => $request->product_stock,
                 'product_discount' => $request->product_discount,
                 'active' => ($request->active == 'on'),
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
@@ -162,7 +159,7 @@ class ProductController extends Controller
     {
         $search = $request->search;
         $page = $request->page;
-        $perPage = 30;
+        $perPage = 20;
         $offset = ($page-1) * $perPage;
 
         if ($search != " ") {

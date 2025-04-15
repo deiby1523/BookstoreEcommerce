@@ -22,15 +22,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
-
+    @include('product.styles.edit')
 </head>
 
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
 
-{{--TODO: Organize this styles later --}}
+@include('layouts.sidebar')
+@include('layouts.header')
+
 <style>
     .listbox {
         margin-top: 10px !important;
@@ -74,16 +73,16 @@
     }
 </style>
 
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
+<main>
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('product.index')}}" class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;"><svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>Volver
+            <a class="btn bg-transparent mb-0 mt-lg-auto" href="{{route('product.index')}}">
+                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>
+                Volver
             </a>
         </div>
     </div>
@@ -125,14 +124,16 @@
                                     @if(count($errors->get('category_id')) >= 1)
                                         <select name="category_id" id="category_id" class="form-control"
                                                 style="box-shadow: 0 0 8px 2px #ff000061;">
-                                            <option selected value="{{$category->id}}">{{$category->category_name}}</option>
+                                            <option selected
+                                                    value="{{$category->id}}">{{$category->category_name}}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->category_name}}</option>
                                             @endforeach
                                         </select>
                                     @else
                                         <select name="category_id" id="category_id" class="form-control">
-                                            <option selected value="{{$category->id}}">{{$category->category_name}}</option>
+                                            <option selected
+                                                    value="{{$category->id}}">{{$category->category_name}}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->category_name}}</option>
                                             @endforeach
@@ -163,132 +164,153 @@
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('subcategory_id')"></x-input-error>
 
-                            {{-- Description --}}
-                            <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
-                                <label>Descripción</label>
-                                @if(count($errors->get('product_description')) >= 1)
-                                    <textarea name="product_description" class="form-control"
-                                              id="product_description" rows="6"
-                                              placeholder="Resumen o descripcion del libro"
-                                              style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{$product->product_description}}</textarea>
-                                @else
-                                    <textarea name="product_description" class="form-control"
-                                              id="product_description" rows="6"
-                                              placeholder="Resumen o descripcion del libro">{{$product->product_description}}</textarea>
-                                @endif
-                            </div>
-                            <x-input-error class="text-danger"
-                                           :messages="$errors->get('product_description')"></x-input-error>
+                                {{-- Description --}}
+                                <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
+                                    <label>Descripción</label>
+                                    @if(count($errors->get('product_description')) >= 1)
+                                        <textarea name="product_description" class="form-control"
+                                                  id="product_description" rows="6"
+                                                  placeholder="Resumen o descripcion del libro"
+                                                  style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;">{{$product->product_description}}</textarea>
+                                    @else
+                                        <textarea name="product_description" class="form-control"
+                                                  id="product_description" rows="6"
+                                                  placeholder="Resumen o descripcion del libro">{{$product->product_description}}</textarea>
+                                    @endif
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('product_description')"></x-input-error>
 
-                            {{-- Price --}}
-                            <div class="input-group input-group-static mb-4">
-                                <label>Precio</label>
-                                @if(count($errors->get('product_price')) >= 1)
-                                    <input name="product_price" id="product_price" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                           type="number" placeholder="Precio del libro sin iva" value="{{$product->product_price}}">
-                                @else
-                                    <input name="product_price" id="product_price" class="form-control"
-                                           type="number" placeholder="Precio del libro sin iva" value="{{$product->product_price}}">
-                                @endif
-                            </div>
-                            <x-input-error class="text-danger"
-                                           :messages="$errors->get('product_price')"></x-input-error>
+                                {{-- Price --}}
+                                <div class="input-group input-group-static mb-4">
+                                    <label>Precio</label>
+                                    @if(count($errors->get('product_price')) >= 1)
+                                        <input name="product_price" id="product_price" class="form-control"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               type="number" placeholder="Precio del libro sin iva"
+                                               value="{{$product->product_price}}">
+                                    @else
+                                        <input name="product_price" id="product_price" class="form-control"
+                                               type="number" placeholder="Precio del libro sin iva"
+                                               value="{{$product->product_price}}">
+                                    @endif
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('product_price')"></x-input-error>
 
-                            {{-- Discount --}}
-                            <div class="input-group input-group-static mb-4">
-                                <label>Descuento</label>
-                                @if(count($errors->get('product_discount')) >= 1)
-                                    <input name="product_discount" id="product_discount" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                           type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{$product->product_discount}}">
-                                @else
-                                    <input name="product_discount" id="product_discount" class="form-control"
-                                           type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%" value="{{$product->product_discount}}">
-                                @endif
-                            </div>
-                            <x-input-error class="text-danger"
-                                           :messages="$errors->get('product_discount')"></x-input-error>
+                                {{-- Discount --}}
+                                <div class="input-group input-group-static mb-4">
+                                    <label>Descuento</label>
+                                    @if(count($errors->get('product_discount')) >= 1)
+                                        <input name="product_discount" id="product_discount" class="form-control"
+                                               style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
+                                               type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%"
+                                               value="{{$product->product_discount}}">
+                                    @else
+                                        <input name="product_discount" id="product_discount" class="form-control"
+                                               type="number" placeholder="Ingrese en porcentaje un descuento (0 - 100)%"
+                                               value="{{$product->product_discount}}">
+                                    @endif
+                                </div>
+                                <x-input-error class="text-danger"
+                                               :messages="$errors->get('product_discount')"></x-input-error>
 
-                            {{-- Stock --}}
-                            <div class="input-group input-group-static mb-4">
-                                <label>Unidades en inventario</label>
-                                @if(count($errors->get('product_stock')) >= 1)
-                                    <input name="product_stock" id="product_stock" class="form-control" style="box-shadow: 0 0 8px 2px #ff000061; border-radius: 10px !important;"
-                                           type="number" placeholder="Cantidad de unidades en inventario" value="{{$product->product_stock}}">
-                                @else
-                                    <input name="product_stock" id="product_stock" class="form-control"
-                                           type="number" placeholder="Cantidad de unidades en inventario" value="{{$product->product_stock}}">
-                                @endif
-                            </div>
-                            <x-input-error class="text-danger"
-                                           :messages="$errors->get('product_stock')"></x-input-error>
+                                {{-- Active --}}
+                                <label>Activado</label>
+                                <div class="form-check form-switch py-2">
+                                @if(count($errors->get('active')) >= 1)
+                                    @if($product->active)
+                                            <input class="form-check-input checked:true" type="checkbox" id="active"
+                                                   name="active" checked>
+                                        @else
+                                            <input class="form-check-input checked:false" type="checkbox" id="active"
+                                                   name="active">
+                                        @endif
+                                    @else
+                                    @if($product->active)
+                                            <input class="form-check-input checked:true" type="checkbox" id="active"
+                                                   name="active" checked>
+                                        @else
+                                            <input class="form-check-input checked:false" type="checkbox" id="active"
+                                                   name="active">
+                                        @endif
+                                    @endif
+                                    <x-input-error class="text-danger"
+                                                   :messages="$errors->get('active')"></x-input-error>
+                                </div>
 
-                            {{-- image display --}}
-                            <div class="row">
-                                <div class="card mt-5" <?php if (count($errors->get('product_image')) >=1 ) { echo ("style='box-shadow: 0 0 8px 2px #ff000061;'");} else { echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");} ?>>
-                                    <div class="row">
-                                        <!-- Card body -->
-                                        <div class="col" style="min-width: 250px">
-                                            <div class="card-body">
-                                                <h4 class="font-weight-normal mt-3">Imagen</h4>
-                                                <p class="card-text mb-4">Subir imagen con formato .jpg,.png,.webp Asegúrate de
-                                                    que la imagen tenga una buena resolución para garantizar una visualización óptima.
-                                                </p>
-                                                <x-input-error class="text-danger"
-                                                               :messages="$errors->get('product_image')"></x-input-error>
-                                                <div class="row mt-5">
-                                                    <div class="col-md-4">
+                                {{-- image display --}}
+                                <div class="row">
+                                    <div class="card mt-5" <?php if (count($errors->get('product_image')) >= 1) {
+                                        echo("style='box-shadow: 0 0 8px 2px #ff000061;'");
+                                    } else {
+                                        echo("style='box-shadow: 0 5px 15px -3px rgb(0 0 0 / 26%), 0 -4px 6px -2px rgb(0 0 0 / 5%) !important;'");
+                                    } ?>>
+                                        <div class="row">
+                                            <!-- Card body -->
+                                            <div class="col" style="min-width: 250px">
+                                                <div class="card-body">
+                                                    <h4 class="font-weight-normal mt-3">Imagen</h4>
+                                                    <p class="card-text mb-4">Subir imagen con formato .jpg,.png,.webp
+                                                        Asegúrate de
+                                                        que la imagen tenga una buena resolución para garantizar una
+                                                        visualización óptima.
+                                                    </p>
+                                                    <x-input-error class="text-danger"
+                                                                   :messages="$errors->get('product_image')"></x-input-error>
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-4">
 
-                                                        <a id="falseinput" class="btn btn-outline-warning">Subir
-                                                            Imagen</a>
-                                                    </div>
-                                                    <div class="col" style="align-self: center;">
+                                                            <a id="falseinput" class="btn btn-outline-warning">Subir
+                                                                Imagen</a>
+                                                        </div>
+                                                        <div class="col" style="align-self: center;">
 
-                                                        <p id="selected_filename">No file selected</p>
+                                                            <p id="selected_filename">No file selected</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Card image -->
-                                        <div class="col mb-4 text-center" style="min-width: 50%">
-                                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
-                                                 style="background: none;">
-                                                <img id="product_img" class="border-radius-lg w-50"
-                                                     src="{{asset($product->product_image_url)}}" alt="">
+                                            <!-- Card image -->
+                                            <div class="col mb-4 text-center" style="min-width: 50%">
+                                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
+                                                     style="background: none;">
+                                                    <img id="product_img" class="border-radius-lg w-50"
+                                                         src="{{asset($product->product_image_url)}}" alt="">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{-- image input --}}
-                            <div class="input-group input-group-static mb-4 mt-4">
-                                <input id="fileinput" name="product_image" type="file" accept=".jpg,.jpeg,.png"
-                                       style="display:none;">
-                            </div>
-
-                            {{-- Buttons --}}
-                            <div class="row">
-                                <div class="col-sm-6 text-start">
-                                    <a href="{{route('product.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
-                                       style="max-width: 233px; width: -webkit-fill-available;">Cancelar
-                                    </a>
+                                {{-- image input --}}
+                                <div class="input-group input-group-static mb-4 mt-4">
+                                    <input id="fileinput" name="product_image" type="file" accept=".jpg,.jpeg,.png"
+                                           style="display:none;">
                                 </div>
 
-                                <div class="col-sm-6 text-end">
-                                    <button type="submit" class="btn bg-gradient-warning mt-3 mb-0"
-                                            style="max-width: 233px;width: -webkit-fill-available;">Guardar
-                                    </button>
+                                {{-- Buttons --}}
+                                <div class="row">
+                                    <div class="col-sm-6 text-start">
+                                        <a href="{{route('product.index')}}" class="btn bg-gradient-danger mt-3 mb-0"
+                                           style="max-width: 233px; width: -webkit-fill-available;">Cancelar
+                                        </a>
+                                    </div>
+
+                                    <div class="col-sm-6 text-end">
+                                        <button type="submit" class="btn bg-gradient-warning mt-3 mb-0"
+                                                style="max-width: 233px;width: -webkit-fill-available;">Guardar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
+</main>
 
 
 @include('product.scripts.edit')

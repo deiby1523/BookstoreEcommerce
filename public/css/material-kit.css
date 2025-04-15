@@ -3069,7 +3069,7 @@ textarea.form-control-lg {
 
 .form-switch .form-check-input {
   width: 1.875rem;
-  margin-left: -2.375rem;
+  /*margin-left: -2.375rem;*/
   background-image: none;
   background-position: left center;
   border-radius: 1.875rem;
@@ -3684,7 +3684,7 @@ textarea.form-control.is-invalid {
 .btn:first-child:active,
 .btn.active,
 .btn.show {
-  color: var(--bs-btn-active-color);
+  /*color: var(--bs-btn-active-color);*/
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }

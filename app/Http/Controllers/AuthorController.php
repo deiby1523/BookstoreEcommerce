@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -69,7 +70,57 @@ class AuthorController extends Controller
     {
         $sql = "SELECT authors.id, authors.author_name FROM authors WHERE author_name LIKE '%$request->search%' LIMIT 5";
         $authors = DB::select($sql);
-        return response()->json($authors,200);
+        return response()->json($authors, 200);
+    }
+
+    public function searchIndex(Request $request): JsonResponse
+    {
+        $search = $request->search;
+        $page = $request->page;
+        $perPage = 20;
+        $offset = ($page - 1) * $perPage;
+
+        if ($search != " ") {
+            $sql = "SELECT
+    authors.id,
+    authors.author_name,
+    authors.created_at,
+    authors.updated_at
+    FROM authors
+    WHERE (authors.id LIKE '%$search%' OR
+        authors.author_name LIKE '%$search%')
+        ORDER BY authors.author_name ASC";
+
+            $authors = DB::select($sql);
+            $numAuthors = count($authors);
+            $numPages = ceil($numAuthors / $perPage);
+
+            $sql = "SELECT
+    authors.id,
+    authors.author_name,
+    authors.created_at,
+    authors.updated_at
+    FROM authors
+    WHERE (authors.id LIKE '%$search%' OR
+        authors.author_name LIKE '%$search%')
+       ORDER BY authors.id DESC
+        LIMIT $offset,$perPage";
+            $authors = DB::select($sql);
+            return response()->json($authors, 200)->withHeaders(['numAuthors' => $numAuthors, 'numPages' => $numPages, 'page' => $page, 'perPage' => $perPage, 'display' => 'Mostrando del ' . ($offset + 1) . ' al ' . ($offset + $perPage)]);
+        } else {
+            $sql = "SELECT
+    authors.id,
+    authors.author_name,
+    authors.created_at,
+    authors.updated_at
+    FROM authors
+        ORDER BY authors.id ASC
+        LIMIT $perPage
+        OFFSET $offset";
+
+            $authors = DB::select($sql);
+            return response()->json($authors, 200)->withHeaders(['numPages' => 10]);
+        }
     }
 
 

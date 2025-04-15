@@ -80,8 +80,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::all();
-        return view('category.show', compact('category','categories'));
+        return view('category.show', compact('category'));
     }
 
     /**

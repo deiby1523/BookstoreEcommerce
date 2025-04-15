@@ -19,9 +19,8 @@
 </head>
 
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
+@include('layouts.sidebar')
+@include('layouts.header')
 
 @php
 $color = "";
@@ -41,15 +40,10 @@ $color = "";
     @php($color = "secondary")
 @endif
 
-
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
+<main>
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('section.index')}}"
-               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
+            <a class="btn bg-transparent mb-0 mt-lg-auto" href="{{route('section.index')}}">
                 <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                      fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -263,12 +257,7 @@ $color = "";
         </div>
     </div>
 
-</div>
-<div class="container">
-    <div class="row">
-
-    </div>
-</div>
+</main>
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>

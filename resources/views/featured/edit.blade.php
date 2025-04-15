@@ -22,28 +22,18 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-
+    {{-- aditional styles --}}
+    @include('featured.styles.index')
+    @include('featured.styles.edit')
 </head>
-
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
+@include('layouts.sidebar')
+@include('layouts.header')
 
-{{-- aditional styles --}}
-@include('featured.styles.index')
-@include('featured.styles.edit')
-
-
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{-- <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
+<main>
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('featured.index')}}"
-               style="max-width: 233px; width: -webkit-fill-available;">
+            <a class="btn bg-transparent mb-0 mt-lg-auto" href="{{route('featured.index')}}">
                 <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                      fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -88,7 +78,7 @@
                                 </div>
 
                             </div>
-                            <div class="input-group input-group-static mb-0 mt-md-0 mt-4">
+                            <div class="input-group input-group-static mb-4 mt-md-0 mt-4">
                                 <label>Descripción</label>
                                 @if(count($errors->get('featured_name_description')) >= 1)
                                     <textarea name="featured_type_description" class="form-control"
@@ -106,9 +96,10 @@
                             <x-input-error class="text-danger"
                                            :messages="$errors->get('featured_type_description')"></x-input-error>
 
-                            <div class="form-check form-switch py-5">
-                                @if(count($errors->get('active')) >= 1)
-                                    @if($featured->active)
+                            <label class="form-check-label" for="active">Activado</label>
+                            <div class="form-check form-switch py-2 mb-5">
+                            @if(count($errors->get('active')) >= 1)
+                                @if($featured->active)
                                         <input class="form-check-input checked:true" type="checkbox" id="active"
                                                name="active" checked>
                                     @else
@@ -116,7 +107,7 @@
                                                name="active">
                                     @endif
                                 @else
-                                    @if($featured->active)
+                                @if($featured->active)
                                         <input class="form-check-input checked:true" type="checkbox" id="active"
                                                name="active" checked>
                                     @else
@@ -124,7 +115,6 @@
                                                name="active">
                                     @endif
                                 @endif
-                                <label class="form-check-label" for="active">Activado</label>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>
@@ -178,14 +168,13 @@
 
                             </form>
                         </div>
-                        <!-- TODO: Continuar trabajando para poder añadir libros a los destacados, mirar ERP -->
 
                     </div>
                     @php if(isset($featured->books)){
                         $nfeatured = count($featured->books);
                     } @endphp
                     @if($nfeatured > 0)
-                        <div class="card mb-5"> <!-- TODO: Todo este fragmento de código no es responsive -->
+                        <div class="card mb-5">
                             <div class="table-responsive">
                                 <table class="table align-items-center mb-0">
                                     <thead>
@@ -299,19 +288,9 @@
             </div>
         </div>
     </div>
-</div>
-
-</div>
-
-<div class="container">
-    <div class="row">
-
-    </div>
-</div>
-
+</main>
 
 @include('featured.scripts.edit')
-
 
 <script src="{{asset('js/plugins/flatpickr.min.js')}}"></script>
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>

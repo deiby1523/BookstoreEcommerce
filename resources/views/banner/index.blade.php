@@ -1,7 +1,5 @@
 <!doctype html>
 <html lang="es">
-
-
 <head>
     <title>Banners</title>
     <!-- Required meta tags  -->
@@ -17,52 +15,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
+    @include('banner.styles.index')
 </head>
-
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
-
 @include('layouts.alerts')
+@include('layouts.sidebar')
+@include('layouts.header')
 
-<style>
-    .badge-success {
-        color: #339537;
-        background-color: #bce2be;
-    }
-
-    .badge.badge-secondary {
-        background-color: #d7d9e1;
-        color: #6c757d;
-    }
-
-    .badge-sm {
-        padding: .45em .775em;
-        font-size: .65em;
-        border-radius: .375rem;
-    }
-</style>
-
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-
-
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('dashboard.interface')}}"
-               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
-                <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                     fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                </svg>
-                Volver
-            </a>
-        </div>
-    </div>
+<main>
     <div class="container">
         <div class="section text-left my-4">
             <div class="row">
@@ -78,7 +38,7 @@
 $nbanners = count($banners);
 } @endphp
             @if($nbanners > 0)
-                <div class="card">
+                <div class="card mt-5">
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
                             <thead>
@@ -197,7 +157,7 @@ $nbanners = count($banners);
         </div>
 
     </div>
-</div>
+</main>
 
 
 <script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>

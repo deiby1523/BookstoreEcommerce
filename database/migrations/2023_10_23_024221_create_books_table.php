@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('book_description')->nullable();
             $table->string('book_image_url',255)->nullable(false)->unique();
             $table->double('book_price')->nullable(false);
-            $table->integer('book_stock')->nullable(false);
+            $table->integer('book_stock')->nullable();
             $table->integer('book_discount')->nullable()->default(0);
             $table->boolean('active')->nullable(false)->default(1);
             $table->timestamps();

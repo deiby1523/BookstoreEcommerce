@@ -54,8 +54,8 @@
                 }
 
                 let paginationButtons = "";
-                let resultsList;
-                resultsList = ""; // Create a variable to store the list of results
+                let resultsList = "";
+                let modals = "";
 
                 books.forEach(function (book) {
 
@@ -63,11 +63,14 @@
 
                     resultsList += `<tr>
                                                     <td class='align-middle text-center'><p class=' mb-0'>${isbn}</p></td>
-                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'>${book.book_title}</p></td>
-                                                    <td><p class='mb-0 truncated-text-large' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.category_name}'>${book.category_name}</p></td>
+                                                    <td><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'>${book.book_title}</p></td>
+                                                    <td><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.category_name}'>${book.category_name}</p></td>
                                                     <td class='align-middle'><p class='mb-0 truncated-text-short' data-bs-toggle='tooltip' data-bs-placement='top' title='${book.publisher_name}'>${book.publisher_name}</p></td>
-                                                    <td class='align-middle'><p class='mb-0'>$ ${book.book_price.toLocaleString()}</p>
-                                    </td>
+                                                    <td class='align-middle'><p class='mb-0'>$ ${book.book_price.toLocaleString()}</p></td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <span class="badge badge-sm badge-${book.active ? 'success' : 'secondary'}">${book.active ? 'Activado' : 'Desactivado'}</span>
+                                                    </td>
+
                                                     <td class='align-middle' style='text-align: center;'>
                                                         <a href='book/show/${book.id}' class='text-secondary mx-3 font-weight-normal' data-toggle='tooltip' data-original-title='Show user'>
                                                             Visualizar
@@ -79,8 +82,11 @@
                                                             Eliminar
                                                         </a>
                                                     </td>
-                                                </tr>
-                                                <div class='modal fade' id='deleteConfirm${book.id}' tabindex='-1' aria-labelledby='deleteConfirm${book.id}' aria-hidden='true'>
+                                                </tr>`;
+                });
+
+                books.forEach(function (book) {
+                    modals += `<div class='modal fade' id='deleteConfirm${book.id}' tabindex='-1' aria-labelledby='deleteConfirm${book.id}' aria-hidden='true'>
                                                     <div class='modal-dialog' style='margin-top: 10rem;'>
                                                         <div class='modal-content'>
                                                             <div class='modal-header'>
@@ -100,12 +106,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>`;
+                                                </div>`
                 });
+
 
 
                 // Insert the complete list of results in #bookDisplay after all authors have been processed
                 $("#bookDisplay").html(resultsList);
+                $("#modals").html(modals);
 
                 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
                 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

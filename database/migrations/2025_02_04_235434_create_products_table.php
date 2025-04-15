@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('product_name')->nullable(false);
             $table->text('product_description')->nullable();
             $table->double('product_price')->nullable(false);
-            $table->integer('product_stock')->nullable(false);
+            $table->integer('product_stock')->nullable();
             $table->integer('product_discount')->nullable()->default(0);
             $table->string('product_image_url',255)->nullable(false)->unique();
             $table->boolean('active')->nullable(false)->default(1);

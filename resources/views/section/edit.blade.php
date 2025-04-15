@@ -19,23 +19,17 @@
     {{--    JQuery --}}
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    @include('section.styles.create')
 </head>
 
 <body>
-<!-- Navbar Transparent -->
-@include('layouts.navigation')
-<!-- End Navbar -->
+@include('layouts.sidebar')
+@include('layouts.header')
 
-@include('section.styles.create')
-
-<div class="page-header" style="background-color: #ff782dbf; height: 500px">
-    {{--        <span class="mask bg-gradient-dark opacity-6"></span>--}}
-</div>
-<div style="" class="card card-body shadow-xl mt-n12 mx-3 mx-md-4">
+<main>
     <div class="row mt-4">
         <div class="col-md-3">
-            <a class="btn bg-white mb-0 mt-lg-auto w-100" href="{{route('section.index')}}"
-               class="btn bg-gradient-faded-secondary" style="max-width: 233px; width: -webkit-fill-available;">
+            <a class="btn bg-transparent mb-0 mt-lg-auto" href="{{route('section.index')}}">
                 <svg style="margin-right: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                      fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -419,7 +413,7 @@
         </div>
     </div>
 
-</div>
+</main>
 
 @include('section.scripts.create')
 

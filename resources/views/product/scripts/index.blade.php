@@ -50,8 +50,8 @@
         })
             .done(function (products, response, xhr) {
                 let paginationButtons = "";
-                let resultsList;
-                resultsList = ""; // Create a variable to store the list of results
+                let resultsList = "";
+                let modals = "";
 
                 products.forEach(function (product) {
 
@@ -75,8 +75,11 @@
                                                             Eliminar
                                                         </a>
                                                     </td>
-                                                </tr>
-                                                <div class='modal fade' id='deleteConfirm${product.id}' tabindex='-1' aria-labelledby='deleteConfirm${product.id}' aria-hidden='true'>
+                                                </tr>`;
+                });
+
+                products.forEach(function (product) {
+                    modals += `<div class='modal fade' id='deleteConfirm${product.id}' tabindex='-1' aria-labelledby='deleteConfirm${product.id}' aria-hidden='true'>
                                                     <div class='modal-dialog' style='margin-top: 10rem;'>
                                                         <div class='modal-content'>
                                                             <div class='modal-header'>
@@ -84,7 +87,7 @@
                                                                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                                             </div>
                                                             <div class='modal-body'>
-                                                                Esta seguro que desea eliminar el libro '${product.product_name}'?
+                                                                Esta seguro que desea eliminar el producto '${product.product_name}'?
                                                                 <br><br>
                                                                 Esta accion es irreversible.
                                                             </div>
@@ -96,12 +99,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>`;
+                                                </div>`
                 });
 
 
                 // Insert the complete list of results in #productDisplay after all authors have been processed
                 $("#productDisplay").html(resultsList);
+                $("#modals").html(modals);
 
                 let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
                 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
