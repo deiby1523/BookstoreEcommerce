@@ -65,11 +65,9 @@
                         Bucaramanga, Santander
                     </li>
                     <li class="nav-item">
-                        deibyfabianpradaquintero@gmail.com
+                        yuliethpaolamorenosierra@gmail.com
                     </li>
-                    <li class="nav-item">
-                        cuentasdeiby@gmail.com
-                    </li>
+
                 </ul>
             </div>
             <div class="col-12">

@@ -21,7 +21,7 @@
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3">
     <div class="container">
         <a class="navbar-brand  text-dark " href="{{ route('home') }}" rel="tooltip"
-           title="Designed and Coded by Deiby P." data-placement="bottom">
+           title="Designed and Coded by Yulieth." data-placement="bottom">
             <img src="{{asset('img/logos/Home_Logo.png')}}" alt="Logo" style="max-width: 200px" class="navbar-brand-img">
         </a>
 
@@ -87,7 +87,7 @@
                         </script>
                         ,
                         Elaborado por
-                        <a href="https://www.creative-tim.com" class="font-weight-bold text-dark" target="_blank">Deiby
+                        <a href="https://www.creative-tim.com" class="font-weight-bold text-dark" target="_blank">
                             P.</a>
 
                     </div>

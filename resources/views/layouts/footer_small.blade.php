@@ -9,8 +9,7 @@
                     </script>
                     ,
                     Elaborado por
-                    <a href="" class="font-weight-bold text-dark" target="_blank">Deiby
-                        P.</a>
+                    <a href="" class="font-weight-bold text-dark" target="_blank">Yulieth M.</a>
 
                 </div>
             </div>
