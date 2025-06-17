@@ -76,7 +76,7 @@
                 <span id="navbar-toggler" class="navbar-toggler-bar bar3"></span>
             </span>
         </button>
-        <div class="collapse bg-white navbar-collapse w-100 pt-3 pb-2 py-lg-0 ps-lg-5" id="navigation"
+        <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ps-lg-5" id="navigation"
              style="border-radius: 10px; padding-left: 10px !important;">
             <ul class="navbar-nav navbar-nav-hover">
                 <li class="nav-item mx-2 ms-lg-6">

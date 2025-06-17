@@ -49,7 +49,7 @@
         <div class="container">
             <div class="row flex-row">
                 <div class="col-lg-5">
-                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{asset($book->book_image_url)}}" alt="ladydady" loading="eager">
+                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset("img/bookPlaceholder.webp")}}" alt="libro" loading="eager">
                 </div>
                 <div class="col-lg-7">
                     <div>

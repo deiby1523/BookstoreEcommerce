@@ -45,7 +45,7 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #e91e63;
+  --bs-primary: #fb8c00;
   --bs-secondary: #7b809a;
   --bs-success: #4CAF50;
   --bs-info: #1A73E8;
@@ -88,9 +88,9 @@
   --bs-border-radius-xl: 0.75rem;
   --bs-border-radius-2xl: 1rem;
   --bs-border-radius-pill: 50rem;
-  --bs-link-color: #e91e63;
-  --bs-link-hover-color: #e91e63;
-  --bs-code-color: #d63384;
+  --bs-link-color: #fb8c00;
+  --bs-link-hover-color: #fb8c00;
+  --bs-code-color: #fb8c00;
   --bs-highlight-bg: #fcf8e3;
 }
 
@@ -3038,16 +3038,16 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked[type="checkbox"] {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #ec8240 0%, #d85d1b 100%);
 }
 
 .form-check-input:checked[type="radio"] {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #ec8240 0%, #d85d1b 100%);
 }
 
 .form-check-input[type="checkbox"]:indeterminate {
-  background-color: #e91e63;
-  border-color: #e91e63;
+  background-color: #fb8c00;
+  border-color: #fb8c00;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 }
 
@@ -3147,7 +3147,7 @@ textarea.form-control-lg {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
-  background-color: #e91e63;
+  background-color: #fb8c00;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3161,7 +3161,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-webkit-slider-thumb:active {
-  background-color: #f9c1d4;
+  background-color: #f9dac1;
 }
 
 .form-range::-webkit-slider-runnable-track {
@@ -3177,7 +3177,7 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  background-color: #e91e63;
+  background-color: #fb8c00;
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3191,7 +3191,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-moz-range-thumb:active {
-  background-color: #f9c1d4;
+  background-color: #f9d6c1;
 }
 
 .form-range::-moz-range-track {
@@ -3572,7 +3572,7 @@ textarea.form-control.is-invalid {
 
 .was-validated .form-select:invalid:focus,
 .form-select.is-invalid:focus {
-  border-color: #fd5c70;
+  border-color: #fb8c00;
   box-shadow: 0 0 0 2px rgba(253, 92, 112, 0.25);
 }
 
@@ -3583,12 +3583,12 @@ textarea.form-control.is-invalid {
 
 .was-validated .form-check-input:invalid,
 .form-check-input.is-invalid {
-  border-color: #fd5c70;
+  border-color: #fb8c00;
 }
 
 .was-validated .form-check-input:invalid:checked,
 .form-check-input.is-invalid:checked {
-  background-color: #fd5c70;
+  background-color: #fb8c00;
 }
 
 .was-validated .form-check-input:invalid:focus,
@@ -3598,7 +3598,7 @@ textarea.form-control.is-invalid {
 
 .was-validated .form-check-input:invalid~.form-check-label,
 .form-check-input.is-invalid~.form-check-label {
-  color: #fd5c70;
+  color: #fb8c00;
 }
 
 .form-check-inline .form-check-input~.invalid-feedback {
@@ -22570,7 +22570,7 @@ body.dark-version {
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked,
 .form-check:not(.form-switch) .form-check-input[type="radio"]:checked {
-  border-color: #e91e63;
+  border-color: #fb8c00;
 }
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"] {
@@ -22580,7 +22580,7 @@ body.dark-version {
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:after {
   transition: opacity 0.25s ease-in-out;
   font-family: "FontAwesome";
-  content: "\f00c";
+  /*content: "\f00c";*/
   width: 100%;
   height: 100%;
   color: #fff;
@@ -22593,7 +22593,7 @@ body.dark-version {
 }
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
-  background: #e91e63;
+  background: #fb8c00;
 }
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked:after {
@@ -22612,7 +22612,7 @@ body.dark-version {
   width: 0.8375rem;
   height: 0.8375rem;
   border-radius: 50%;
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%), var(--bs-gradient);
+  background-image: linear-gradient(195deg, #fb8c00 0%, #fb8c00 100%), var(--bs-gradient);
   opacity: 0;
   left: 0;
   right: 0;

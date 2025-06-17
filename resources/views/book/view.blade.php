@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row flex-row">
                 <div class="col-lg-5">
-                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{asset($book->book_image_url)}}" alt="ladydady" loading="lazy">
+                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset("img/bookPlaceholder.webp")}}" alt="libro" loading="lazy">
                 </div>
                 <div class="col-lg-7">
                     <div>
@@ -93,9 +93,11 @@
                             </div>
 
                             <div class="col-md-3">
-                                <button class="btn bg-gradient-warning disabled mb-0 mt-lg-auto w-100" type="button" name="button">Comprar <svg style="margin-left: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                <button class="btn bg-gradient-warning disabled mb-0 mt-lg-auto w-100 btn-lg" type="button" name="button">Comprar
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                    </svg></button>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 

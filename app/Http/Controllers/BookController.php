@@ -221,48 +221,108 @@ class BookController extends Controller
 
     public function search2(Request $request): View
     {
-        $categorySelected = null;
-        if (isset($request->category)) {
-            $categorySelected = Category::findOrFail($request->category);
+        // Validación de los parámetros de entrada
+        $validated = $request->validate([
+            'category' => 'nullable|integer|exists:categories,id',
+            'subcategory' => 'nullable|integer|exists:subcategories,id',
+            'min_price' => 'nullable|numeric|min:0',
+            'max_price' => 'nullable|numeric|min:0|gte:min_price',
+            'format' => 'nullable|in:paperback,hardcover,digital',
+            'rating' => 'nullable|integer|between:1,5',
+            'sort' => 'nullable|in:relevance,price_asc,price_desc,rating,newest'
+        ]);
+
+        // Obtener categorías y subcategorías seleccionadas
+        $categorySelected = $validated['category'] ? Category::find($validated['category']) : null;
+        $subcategorySelected = $validated['subcategory'] ? Subcategory::find($validated['subcategory']) : null;
+
+        // Construir la consulta usando Eloquent para mayor seguridad y legibilidad
+        $query = Book::select([
+            'books.id',
+            'books.book_isbn',
+            'books.book_title',
+            'books.book_price',
+            'books.book_price',
+            'books.book_discount',
+            'books.book_image_url',
+            'books.updated_at',
+            'authors.author_name',
+            'publishers.publisher_name',
+            'categories.category_name',
+            'subcategories.subcategory_name'
+        ])
+            ->join('authors', 'books.author_id', '=', 'authors.id')
+            ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+            ->join('subcategories', 'books.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id');
+//            ->with(['reviews']); // Cargar relaciones si existen
+
+        // Aplicar filtros
+        if ($validated['category']) {
+            $query->where('categories.id', $validated['category']);
         }
 
-        $subcategorySelected = null;
-        if (isset($request->subcategory)) {
-            $subcategorySelected = Subcategory::findOrFail($request->subcategory);
+        if ($validated['subcategory']) {
+            $query->where('subcategories.id', $validated['subcategory']);
         }
 
-        $categories = Category::all();
-        $sql = 'SELECT
-        books.id,
-        books.book_isbn,
-        books.book_title,
-        books.book_price,
-        books.book_image_url,
-        authors.author_name,
-        publishers.publisher_name,
-        categories.category_name,
-        subcategories.subcategory_name
-        FROM books, authors, publishers, categories, subcategories
-        WHERE books.author_id = authors.id
-        AND books.publisher_id = publishers.id
-        AND books.subcategory_id = subcategories.id
-        AND subcategories.category_id = categories.id';
+//        // Filtro por precio
+//        if ($validated['min_price']) {
+//            $query->where('books.book_price', '>=', $validated['min_price']);
+//        }
+//
+//        if ($validated['max_price']) {
+//            $query->where('books.book_price', '<=', $validated['max_price']);
+//        }
 
-        if (isset($request->category)) {
-            $sql = $sql . " AND categories.id = " . $request->category;
+        // Filtro por formato (asumiendo que tienes un campo book_format en tu modelo)
+//        if ($validated['format']) {
+//            $query->where('books.book_format', $validated['format']);
+//        }
+
+        // Filtro por rating (asumiendo que tienes relación con reviews)
+//        if ($validated['rating']) {
+//            $query->whereHas('reviews', function($q) use ($validated) {
+//                $q->select(DB::raw('avg(rating) as average_rating'))
+//                    ->having('average_rating', '>=', $validated['rating']);
+//            });
+//        }
+
+        // Ordenación
+        switch ($validated['sort'] ?? 'relevance') {
+            case 'price_asc':
+                $query->orderBy('books.book_price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('books.book_price', 'desc');
+                break;
+            case 'rating':
+                $query->withAvg('reviews', 'rating')
+                    ->orderBy('reviews_avg_rating', 'desc');
+                break;
+            case 'newest':
+                $query->orderBy('books.updated_at', 'desc');
+                break;
+            default:
+                // Orden por relevancia (podrías implementar tu lógica aquí)
+                $query->orderBy('books.updated_at', 'desc');
         }
 
-        if (isset($request->subcategory)) {
-            $sql = $sql . " AND subcategories.id = " . $request->subcategory;
-        }
+        // Paginación en lugar de límite fijo
+        $books = $query->paginate(12); // 12 items por página
 
-        $sql = $sql . ' ORDER BY books.updated_at DESC LIMIT 50';
-        $books = DB::select($sql);
-
-        $bookCategories = Category::where('category_type', 0)->get();
+        // Obtener todas las categorías para los filtros
+        $bookCategories = Category::where('category_type', 0)->with('subcategories')->get();
         $productCategories = Category::where('category_type', 1)->get();
 
-        return view('book.search', compact('bookCategories','productCategories',  'categorySelected', 'subcategorySelected', 'books'));
+        return view('book.search', [
+            'bookCategories' => $bookCategories,
+            'productCategories' => $productCategories,
+            'categorySelected' => $categorySelected,
+            'subcategorySelected' => $subcategorySelected,
+            'books' => $books,
+            'filters' => $validated // Pasar los filtros aplicados a la vista
+        ]);
     }
 
     public function delete($id): RedirectResponse
