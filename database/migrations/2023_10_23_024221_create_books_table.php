@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('book_number_pages')->nullable(false);
             $table->date('book_publication_date')->nullable();
             $table->text('book_description')->nullable();
-            $table->string('book_image_url',255)->nullable(false)->unique();
+            $table->string('book_image_url',255)->nullable(true)->unique();
             $table->double('book_price')->nullable(false);
             $table->integer('book_stock')->nullable();
             $table->integer('book_discount')->nullable()->default(0);
