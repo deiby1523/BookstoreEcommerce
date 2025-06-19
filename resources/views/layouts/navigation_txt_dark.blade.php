@@ -60,7 +60,7 @@
 
 </style>
 
-<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 my-3 navbar-dark">
+<nav class="navbar bg-white navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 mb-3 pt-3 navbar-dark">
     <div class="container" style="max-width: 100%">
         <a class="navbar-brand text-dark text-8xl" style="margin-right: 0;" href="#">
             <img src="{{asset('img/logos/Logo_Home.jpeg')}}" alt="Logo" style="max-width: 200px"
@@ -76,7 +76,7 @@
                 <span id="navbar-toggler" class="navbar-toggler-bar bar3"></span>
             </span>
         </button>
-        <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ps-lg-5" id="navigation"
+        <div class="collapse bg-white navbar-collapse w-100 pt-3 pb-2 py-lg-0 ps-lg-5" id="navigation"
              style="border-radius: 10px; padding-left: 10px !important;">
             <ul class="navbar-nav navbar-nav-hover">
                 <li class="nav-item mx-2 ms-lg-6">

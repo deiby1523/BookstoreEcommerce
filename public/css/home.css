@@ -25,6 +25,7 @@
     grid-gap: 2rem;
     grid-auto-columns: minmax(24rem, 1fr);
     width: -webkit-fill-available;
+    padding: 20px;
 }
 
 .book-horizontal-slider::-webkit-scrollbar {

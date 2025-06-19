@@ -21,6 +21,7 @@
     <!-- Material Kit CSS -->
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('css/book-card.css')}}">
 </head>
 
 @php
@@ -126,8 +127,6 @@
                                                    value="{{$bookCategories[$i-1]->id}}">
                                             <input type="hidden" name="subcategory" id="subcategory"
                                                    value="">
-
-{{--                                            <a class="btn btn-warning" href="{{ route('book.search2', ['category' => $bookCategories[$i-1]->id,'subcategory' => $bookCategories[$i-1]->subcategories[1]->id]) }}">Holaaa</a>--}}
 
                                             <button type="submit" class="btn btn-warning">
                                                 <span>Explorar!</span>
@@ -267,36 +266,26 @@
                 <div id="latestBooks" class="book-horizontal-slider">
                     <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
                         @forelse($latestBooks as $book)
-                            <div class="card mb-5 mt-2 mx-3 shadow-lg">
-                                <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                    <a class="d-block blur-shadow-image" href="{{ route('book.view', $book->id) }}">
-                                        <img loading='eager'
-                                             src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset("img/bookPlaceholder.webp")}}"
-                                             alt="img-blur-shadow"
-                                             class="img-fluid border-radius-lg">
-                                    </a>
-                                    <div class="colored-shadow"
-                                         style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
+                            <div class="book-card">
+                                <div class="book-image-container">
+                                    <img src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp')}}"
+                                         alt="{{$book->book_title}}" class="book-image">
+                                    @if($book->book_discount > 0)
+                                        <span class="book-badge">-{{$book->book_discount}}%</span>
+                                    @endif
                                 </div>
-                                <div class="card-body">
-                                    <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
-                                        {{$book->subcategory_name}}</p>
-                                    <h5 class="font-weight-bold mt-3">
-                                        <a class="link-dark"
-                                           href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
+                                <div class="book-content">
+                                    <span class="book-category">{{$book->subcategory_name}}</span>
+                                    <h5 class="book-title">
+                                        <a href="{{route('book.view',$book->id)}}" class="text-decoration-none data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'">{{$book->book_title}}</a>
                                     </h5>
-                                    <p class="mb-0 text-left">
-                                        {{$book->author_name}}
-                                    </p>
-                                </div>
-                                <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                    <div class="row w-100">
-                                        <div class="col">
-                                            <p class="font-weight-normal my-auto">
-                                                $ {{number_format($book->book_price)}}</p>
-                                        </div>
+                                    <p class="book-author">{{$book->author_name}}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="book-price">${{number_format($book->book_price - (($book->book_price * $book->book_discount) / 100))}}</span>
+                                        @if($book->book_discount > 0)
+                                            <small class="text-muted text-decoration-line-through">${{number_format($book->book_price)}}</small>
+                                        @endif
                                     </div>
-
                                 </div>
                             </div>
                         @empty
@@ -328,37 +317,26 @@
                         <div id="latestBooks" class="book-horizontal-slider">
                             <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
                                 @foreach($featured->books as $book)
-                                    <div class="card mb-5 mt-2 mx-3 shadow-lg">
-                                        <div class="card-header p-0 position-relative mx-3 mt-3 z-index-2 shadow-xl">
-                                            <a class="d-block blur-shadow-image"
-                                               href="{{ route('book.view', $book->id) }}">
-                                                <img loading='eager'
-                                                     src="{{asset($book->book_image_url != null ? asset($book->book_image_url) : asset("img/bookPlaceholder.webp"))}}"
-                                                     alt="img-blur-shadow"
-                                                     class="img-fluid border-radius-lg">
-                                            </a>
-                                            <div class="colored-shadow"
-                                                 style="background-image: url('{{asset('img/bg1.jpg')}}');"></div>
+                                    <div class="book-card">
+                                        <div class="book-image-container">
+                                            <img src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp')}}"
+                                                 alt="{{$book->book_title}}" class="book-image">
+                                            @if($book->book_discount > 0)
+                                                <span class="book-badge">-{{$book->book_discount}}%</span>
+                                            @endif
                                         </div>
-                                        <div class="card-body">
-                                            <p class="mb-0 text-warning text-uppercase font-weight-normal text-sm">
-                                                {{$book->subcategory->subcategory_name}}</p>
-                                            <h5 class="font-weight-bold mt-3">
-                                                <a class="link-dark"
-                                                   href="{{ route('book.view', $book->id) }}">{{$book->book_title}}</a>
+                                        <div class="book-content">
+                                            <span class="book-category">{{$book->subcategory->subcategory_name}}</span>
+                                            <h5 class="book-title">
+                                                <a href="{{route('book.view',$book->id)}}" class="text-decoration-none data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'">{{$book->book_title}}</a>
                                             </h5>
-                                            <p class="mb-0 text-left">
-                                                {{$book->author->author_name}}
-                                            </p>
-                                        </div>
-                                        <div class="card-footer d-flex pt-0" style="padding-right: 0">
-                                            <div class="row w-100">
-                                                <div class="col">
-                                                    <p class="font-weight-normal my-auto">
-                                                        $ {{number_format($book->book_price)}}</p>
-                                                </div>
+                                            <p class="book-author">{{$book->author->author_name}}</p>
+                                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                                <span class="book-price">${{number_format($book->book_price - (($book->book_price * $book->book_discount) / 100))}}</span>
+                                                @if($book->book_discount > 0)
+                                                    <small class="text-muted text-decoration-line-through">${{number_format($book->book_price)}}</small>
+                                                @endif
                                             </div>
-
                                         </div>
                                     </div>
                                 @endforeach

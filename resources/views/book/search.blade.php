@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
     <link rel="stylesheet" href="{{asset('icons/icons.css')}}">
 
-    <!-- Estilos -->
+    <!-- Estilos principales -->
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
+
+    <!-- Estilos Card libros -->
+    <link rel="stylesheet" href="{{asset('css/book-card.css')}}">
+
     <style>
         :root {
             --primary-color: #fb8c00;
@@ -62,16 +66,17 @@
         }
 
         .filter-options {
-            max-height: 200px;
-            overflow-y: auto;
+            /*max-height: 200px;*/
+            /*overflow-y: auto;*/
         }
 
         .filter-option {
+            border: none;
+            background: none;
             display: block;
-            margin-bottom: 0.5rem;
             color: var(--gray-color);
             transition: all 0.2s;
-            padding: 0.25rem 0;
+            /*padding: 0.25rem 0;*/
         }
 
         .filter-option:hover {
@@ -79,90 +84,6 @@
             transform: translateX(2px);
         }
 
-        /* Tarjetas de libros */
-        .book-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .book-image-container {
-            height: 350px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .book-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .book-card:hover .book-image {
-            transform: scale(1.05);
-        }
-
-        .book-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .book-content {
-            padding: 1.25rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .book-category {
-            color: var(--secondary-color);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        .book-title {
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .book-author {
-            color: var(--gray-color);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .book-price {
-            font-weight: 700;
-            color: #7b809a;
-            font-size: 1.125rem;
-            margin-top: auto;
-        }
 
         /* Filtros móvil */
         .mobile-filters {
@@ -270,38 +191,33 @@
             <div class="col-lg-3 mb-5 mb-lg-0">
                 <div class="filter-sidebar">
                     <div class="filter-header">
-                        <h5 class="mb-0">Filtros</h5>
+                        <h5 class="mb-0">Categorías</h5>
                     </div>
 
                     <!-- Filtro de categorías -->
                     <div class="filter-section">
-                        <div class="filter-title" data-bs-toggle="collapse" data-bs-target="#categoriesCollapse">
-                            <span>Categorías</span>
-                            <i class="material-icons-round">expand_more</i>
-                        </div>
-                        <div class="collapse show" id="categoriesCollapse">
-                            <div class="filter-options">
-                                @foreach($bookCategories as $category)
-                                    <div class="mb-3">
-                                        <div class="filter-title subcategory-title" data-bs-toggle="collapse" data-bs-target="#subcategories{{$category->id}}">
-                                            <span>{{$category->category_name}}</span>
-                                            <i class="material-icons-round">chevron_right</i>
-                                        </div>
-                                        <div class="collapse" id="subcategories{{$category->id}}">
-                                            @foreach($category->subcategories as $subcategory)
-                                                <form action="{{route('book.search2')}}" method="POST" class="mb-2">
-                                                    @csrf
-                                                    <input type="hidden" name="category" value="{{$category->id}}">
-                                                    <input type="hidden" name="subcategory" value="{{$subcategory->id}}">
-                                                    <button type="submit" class="filter-option w-100 text-start">
-                                                        {{$subcategory->subcategory_name}}
-                                                    </button>
-                                                </form>
-                                            @endforeach
-                                        </div>
+                        <div class="filter-options">
+                            @foreach($bookCategories as $category)
+                                <div class="mb-3">
+                                    <div class="filter-title subcategory-title" data-bs-toggle="collapse"
+                                         data-bs-target="#subcategories{{$category->id}}">
+                                        <span>{{$category->category_name}}</span>
+                                        <i class="material-icons-round">chevron_right</i>
                                     </div>
-                                @endforeach
-                            </div>
+                                    <div class="collapse" id="subcategories{{$category->id}}">
+                                        @foreach($category->subcategories as $subcategory)
+                                            <form action="{{route('book.search2')}}" method="POST" class="mb-2">
+                                                @csrf
+                                                <input type="hidden" name="category" value="{{$category->id}}">
+                                                <input type="hidden" name="subcategory" value="{{$subcategory->id}}">
+                                                <button type="submit" class="filter-option w-100 text-start">
+                                                    {{$subcategory->subcategory_name}}
+                                                </button>
+                                            </form>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -396,33 +312,46 @@
 
                 <div class="row">
                     @forelse($books as $book)
-                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4 p-0" style="max-width: 50%">
                             <div class="book-card">
                                 <div class="book-image-container">
-                                    <img src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp')}}"
-                                         alt="{{$book->book_title}}" class="book-image">
-{{--                                    @if($book->book_discount > 0)--}}
-{{--                                        <span class="book-badge">-{{$book->book_discount}}%</span>--}}
-{{--                                    @endif--}}
+                                    <img
+                                        src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp')}}"
+                                        alt="{{$book->book_title}}" class="book-image">
+                                    @if($book->book_discount > 0)
+                                        <span class="book-badge">-{{$book->book_discount}}%</span>
+                                    @endif
                                 </div>
                                 <div class="book-content">
                                     <span class="book-category">{{$book->subcategory_name}}</span>
-                                    <h5 class="book-title">
-                                        <a href="{{route('book.view',$book->id)}}" class="text-decoration-none">{{$book->book_title}}</a>
-                                    </h5>
+                                    @if(strlen($book->book_title) > 54)
+                                        <h7 class="book-title">
+                                            <a href="{{route('book.view',$book->id)}}" class="text-decoration-none"
+                                               data-bs-toggle='tooltip' data-bs-placement='right'
+                                               title='{{$book->book_title}}'>{{$book->book_title}}</a>
+                                        </h7>
+                                    @else
+                                        <h6 class="book-title">
+                                            <a href="{{route('book.view',$book->id)}}" class="text-decoration-none">{{$book->book_title}}</a>
+                                        </h6>
+                                    @endif
+
                                     <p class="book-author">{{$book->author_name}}</p>
                                     <div class="d-flex justify-content-between align-items-center mt-auto">
-                                        <span class="book-price">${{number_format($book->book_price)}}</span>
-{{--                                        @if($book->book_discount > 0)--}}
-{{--                                            <small class="text-muted text-decoration-line-through">${{number_format(($book->book_price * $book->book_discount) / 100)}}</small>--}}
-{{--                                        @endif--}}
+                                        <span
+                                            class="book-price">${{number_format($book->book_price - (($book->book_price * $book->book_discount) / 100))}}</span>
+                                        @if($book->book_discount > 0)
+                                            <small
+                                                class="text-muted text-decoration-line-through">${{number_format($book->book_price)}}</small>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @empty
                         <div class="col-12 text-center py-5">
-                            <img src="{{asset('img/no-results.svg')}}" alt="No results" style="max-width: 300px;" class="mb-4">
+                            <img src="{{asset('img/no-results.svg')}}" alt="No results" style="max-width: 300px;"
+                                 class="mb-4">
                             <h4>No se encontraron libros</h4>
                             <p class="text-muted">Intenta ajustar tus filtros de búsqueda</p>
                             <button class="btn btn-primary mt-3">Limpiar filtros</button>
@@ -430,40 +359,40 @@
                     @endforelse
                 </div>
 
-{{--                <!-- Paginación -->--}}
-{{--                @if($books->hasPages())--}}
-{{--                    <div class="d-flex justify-content-center mt-5">--}}
-{{--                        <nav aria-label="Page navigation">--}}
-{{--                            <ul class="pagination">--}}
-{{--                                @if($books->onFirstPage())--}}
-{{--                                    <li class="page-item disabled">--}}
-{{--                                        <span class="page-link">Anterior</span>--}}
-{{--                                    </li>--}}
-{{--                                @else--}}
-{{--                                    <li class="page-item">--}}
-{{--                                        <a class="page-link" href="{{$books->previousPageUrl()}}">Anterior</a>--}}
-{{--                                    </li>--}}
-{{--                                @endif--}}
+                {{--                <!-- Paginación -->--}}
+                {{--                @if($books->hasPages())--}}
+                {{--                    <div class="d-flex justify-content-center mt-5">--}}
+                {{--                        <nav aria-label="Page navigation">--}}
+                {{--                            <ul class="pagination">--}}
+                {{--                                @if($books->onFirstPage())--}}
+                {{--                                    <li class="page-item disabled">--}}
+                {{--                                        <span class="page-link">Anterior</span>--}}
+                {{--                                    </li>--}}
+                {{--                                @else--}}
+                {{--                                    <li class="page-item">--}}
+                {{--                                        <a class="page-link" href="{{$books->previousPageUrl()}}">Anterior</a>--}}
+                {{--                                    </li>--}}
+                {{--                                @endif--}}
 
-{{--                                @foreach($books->getUrlRange(1, $books->lastPage()) as $page => $url)--}}
-{{--                                    <li class="page-item {{$books->currentPage() == $page ? 'active' : ''}}">--}}
-{{--                                        <a class="page-link" href="{{$url}}">{{$page}}</a>--}}
-{{--                                    </li>--}}
-{{--                                @endforeach--}}
+                {{--                                @foreach($books->getUrlRange(1, $books->lastPage()) as $page => $url)--}}
+                {{--                                    <li class="page-item {{$books->currentPage() == $page ? 'active' : ''}}">--}}
+                {{--                                        <a class="page-link" href="{{$url}}">{{$page}}</a>--}}
+                {{--                                    </li>--}}
+                {{--                                @endforeach--}}
 
-{{--                                @if($books->hasMorePages())--}}
-{{--                                    <li class="page-item">--}}
-{{--                                        <a class="page-link" href="{{$books->nextPageUrl()}}">Siguiente</a>--}}
-{{--                                    </li>--}}
-{{--                                @else--}}
-{{--                                    <li class="page-item disabled">--}}
-{{--                                        <span class="page-link">Siguiente</span>--}}
-{{--                                    </li>--}}
-{{--                                @endif--}}
-{{--                            </ul>--}}
-{{--                        </nav>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
+                {{--                                @if($books->hasMorePages())--}}
+                {{--                                    <li class="page-item">--}}
+                {{--                                        <a class="page-link" href="{{$books->nextPageUrl()}}">Siguiente</a>--}}
+                {{--                                    </li>--}}
+                {{--                                @else--}}
+                {{--                                    <li class="page-item disabled">--}}
+                {{--                                        <span class="page-link">Siguiente</span>--}}
+                {{--                                    </li>--}}
+                {{--                                @endif--}}
+                {{--                            </ul>--}}
+                {{--                        </nav>--}}
+                {{--                    </div>--}}
+                {{--                @endif--}}
             </div>
         </div>
     </div>
@@ -484,12 +413,12 @@
 
 <script>
     // Manejo de filtros en móvil
-    document.getElementById('mobileFilterBtn').addEventListener('click', function() {
+    document.getElementById('mobileFilterBtn').addEventListener('click', function () {
         document.querySelector('.filter-sidebar').classList.add('active');
         document.getElementById('filterOverlay').classList.add('active');
     });
 
-    document.getElementById('filterOverlay').addEventListener('click', function() {
+    document.getElementById('filterOverlay').addEventListener('click', function () {
         document.querySelector('.filter-sidebar').classList.remove('active');
         this.classList.remove('active');
     });
@@ -501,19 +430,19 @@
     const minInput = document.getElementById('minInput');
     const maxInput = document.getElementById('maxInput');
 
-    priceRange.addEventListener('input', function() {
+    priceRange.addEventListener('input', function () {
         const value = this.value;
         minPrice.textContent = `$${value}`;
     });
 
-    minInput.addEventListener('input', function() {
+    minInput.addEventListener('input', function () {
         if (parseInt(this.value) > parseInt(maxInput.value)) {
             this.value = maxInput.value;
         }
         priceRange.min = this.value || 0;
     });
 
-    maxInput.addEventListener('input', function() {
+    maxInput.addEventListener('input', function () {
         if (parseInt(this.value) < parseInt(minInput.value)) {
             this.value = minInput.value;
         }
@@ -522,7 +451,7 @@
 
     // Animación de iconos en acordeón
     document.querySelectorAll('.filter-title').forEach(title => {
-        title.addEventListener('click', function() {
+        title.addEventListener('click', function () {
             const icon = this.querySelector('i');
             if (icon) {
                 if (icon.textContent === 'expand_more') {

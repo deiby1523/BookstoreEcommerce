@@ -18,6 +18,7 @@ class HomeController extends Controller
     books.book_title,
     books.book_price,
     books.book_image_url,
+    books.book_discount,
     authors.author_name,
     publishers.publisher_name,
     categories.category_name,
