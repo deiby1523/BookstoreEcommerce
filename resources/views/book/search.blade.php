@@ -225,20 +225,31 @@
                     <div class="filter-section">
                         <div class="filter-title">Precio</div>
                         <div class="price-slider">
-                            <input type="range" class="form-range" min="0" max="300000" step="10000" id="priceRange">
                             <div class="slider-values">
-                                <span id="minPrice">$0</span>
-                                <span id="maxPrice">$300.000</span>
+                                <span id="minPrice">Desde: $0</span>
+                                <span id="maxPrice">Hasta: $300.000</span>
+                            </div>
+                            <input type="range" class="form-range mt-3" value="0" min="0" max="300000" step="5000"
+                                   id="priceRange">
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-6">
+                                <div class="input-group input-group-sm input-group-outline my-3">
+                                    <label class="form-label">Mínimo</label>
+                                    <input type="number" min="0" max="300000" class="form-control"
+                                           id="minInput">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group input-group-sm input-group-outline my-3">
+                                    <label class="form-label">Máximo</label>
+                                    <input type="number" max="300000" class="form-control"
+                                           id="maxInput">
+                                </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <input type="number" class="form-control" placeholder="Mínimo" id="minInput">
-                            </div>
-                            <div class="col-6">
-                                <input type="number" class="form-control" placeholder="Máximo" id="maxInput">
-                            </div>
-                        </div>
+                        {{--                        </div>--}}
                     </div>
 
                     <!-- Filtro de formato -->
@@ -332,7 +343,8 @@
                                         </h7>
                                     @else
                                         <h6 class="book-title">
-                                            <a href="{{route('book.view',$book->id)}}" class="text-decoration-none">{{$book->book_title}}</a>
+                                            <a href="{{route('book.view',$book->id)}}"
+                                               class="text-decoration-none">{{$book->book_title}}</a>
                                         </h6>
                                     @endif
 
@@ -430,23 +442,65 @@
     const minInput = document.getElementById('minInput');
     const maxInput = document.getElementById('maxInput');
 
+    const formatter = new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 0 // puedes cambiar a 2 si quieres mostrar decimales
+    });
+
     priceRange.addEventListener('input', function () {
         const value = this.value;
-        minPrice.textContent = `$${value}`;
+        // console.log(value)
+        minPrice.textContent = 'Desde: ' + formatter.format(value);
+        maxPrice.textContent = 'Hasta: ' + formatter.format(priceRange.max);
     });
 
     minInput.addEventListener('input', function () {
-        if (parseInt(this.value) > parseInt(maxInput.value)) {
-            this.value = maxInput.value;
+        if (parseInt(this.value) > 300000) {
+            this.value = 300000;
         }
-        priceRange.min = this.value || 0;
+
+        if (parseInt(this.value) < 0) {
+            this.value = 0;
+        }
+
+        if (parseInt(this.value) > parseInt(priceRange.max)) {
+            maxPrice.textContent = 'Hasta: ' + formatter.format(this.value);
+            priceRange.max = this.value;
+            maxInput.value = this.value;
+        }
+        minPrice.textContent = 'Desde: ' + formatter.format(this.value);
+        priceRange.min = this.value;
+        priceRange.value = this.value ? this.value : 0;
+        console.log(priceRange.value)
     });
 
     maxInput.addEventListener('input', function () {
-        if (parseInt(this.value) < parseInt(minInput.value)) {
-            this.value = minInput.value;
+        if (this.value == '') {
+            maxPrice.textContent = 'Hasta: $ 300.000';
+            priceRange.max = 300000;
+            console.log('Estoy entrando a comillas')
+            return;
         }
-        priceRange.max = this.value || 300000;
+
+        if (parseInt(this.value) > 300000) {
+            this.value = 300000;
+        }
+
+        if (parseInt(this.value) < 0) {
+            this.value = 0;
+            console.log('Estoy entrando a cerooo')
+        }
+
+        if (parseInt(this.value) < parseInt(priceRange.min)) {
+            maxPrice.textContent = 'Hasta: ' + formatter.format(priceRange.min);
+            priceRange.max = priceRange.min;
+        } else {
+            maxPrice.textContent = 'Hasta: ' + formatter.format(this.value);
+            priceRange.max = this.value;
+        }
+
+
     });
 
     // Animación de iconos en acordeón
@@ -455,7 +509,7 @@
             const icon = this.querySelector('i');
             if (icon) {
                 if (icon.textContent === 'expand_more') {
-                    icon.textContent = 'expand_less';
+                    icon.textContent = 'chevron_right';
                 } else if (icon.textContent === 'expand_less') {
                     icon.textContent = 'expand_more';
                 } else if (icon.textContent === 'chevron_right') {

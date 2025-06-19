@@ -266,10 +266,10 @@ class BookController extends Controller
             $query->where('subcategories.id', $validated['subcategory']);
         }
 
-//        // Filtro por precio
-//        if ($validated['min_price']) {
-//            $query->where('books.book_price', '>=', $validated['min_price']);
-//        }
+        // Filtro por precio
+        if ($validated['min_price']) {
+            $query->where('books.book_price', '>=', $validated['min_price']);
+        }
 //
 //        if ($validated['max_price']) {
 //            $query->where('books.book_price', '<=', $validated['max_price']);
