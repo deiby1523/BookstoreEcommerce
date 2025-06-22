@@ -121,9 +121,8 @@
                                                                    value="{{$bookCategories[$i+$j]->id}}">
                                                             <input type="hidden" name="subcategory" id="subcategory"
                                                                    value="{{$subcategory->id}}">
-                                                            <input type="hidden" name="min_price" id="min_price"
-                                                                   value="0">
-
+                                                            <input type="hidden" name="min_price" id="min_price" value="0">
+                                                            <input type="hidden" name="max_price" id="max_price" value="300000">
                                                             <button type="submit"
                                                                     class="dropdown-item border-radius-md">
                                                                 <span>{{$subcategory->subcategory_name}}</span>

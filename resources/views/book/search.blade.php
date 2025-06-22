@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
     <link rel="stylesheet" href="{{asset('icons/icons.css')}}">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- Estilos principales -->
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
 
@@ -222,79 +224,103 @@
                     </div>
 
                     <!-- Filtro de precio -->
-                    <div class="filter-section">
-                        <div class="filter-title">Precio</div>
-                        <div class="price-slider">
-                            <div class="slider-values">
-                                <span id="minPrice">Desde: $0</span>
-                                <span id="maxPrice">Hasta: $300.000</span>
-                            </div>
-                            <input type="range" class="form-range mt-3" value="0" min="0" max="300000" step="5000"
-                                   id="priceRange">
-                        </div>
+                    <form action="{{route('book.search2')}}" method="POST">
+                        @csrf
+                        <!-- Categoría seleccionada --->
+                        @if(isset($categorySelected))
+                            <input type="hidden" name="category" id="category"
+                                   value="{{$categorySelected->id}}">
+                        @else
+                            <input type="hidden" name="category" id="category">
+                        @endif
 
-                        <div class="row mt-1">
-                            <div class="col-6">
-                                <div class="input-group input-group-sm input-group-outline my-3">
-                                    <label class="form-label">Mínimo</label>
-                                    <input type="number" min="0" max="300000" class="form-control"
-                                           id="minInput">
+                        <!-- Subcategoría seleccionada -->
+                        @if(isset($subcategorySelected))
+                            <input type="hidden" name="subcategory" id="subcategory"
+                                   value="{{$subcategorySelected->id}}">
+                        @else
+                            <input type="hidden" name="subcategory" id="subcategory">
+                        @endif
+
+                        <div class="filter-section">
+                            <div class="filter-title">Precio</div>
+                            <div class="price-slider">
+                                <div class="slider-values">
+                                    <span id="minPrice">Desde: $ {{number_format($filters['min_price'] != null ? $filters['min_price'] : 0,0,',','.')}}</span>
+                                    <span id="maxPrice">Hasta: $ {{number_format($filters['max_price'] != null ? $filters['max_price'] : 300000,0,',','.')}}</span>
+                                </div>
+                                <input type="hidden" name="min_price" id="minPriceR" value="{{$filters['min_price']}}">
+                                <input type="hidden" name="max_price" id="maxPriceR" value="{{$filters['max_price']}}">
+                                <input type="range" class="form-range mt-3" value="{{$filters['min_price'] != null ? $filters['min_price'] : 0}}"
+                                       min="{{$filters['min_price'] != null ? $filters['min_price'] : 0}}" max="{{$filters['max_price'] != null ? $filters['max_price'] : 300000}}" step="5000"
+                                       id="priceRange">
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-6">
+                                    <div
+                                        class="input-group input-group-sm input-group-outline my-3 {{$filters['min_price'] != null ? 'is-filled' : ''}}">
+                                        <label class="form-label">Mínimo</label>
+                                        <input type="number" min="0" max="300000" class="form-control"
+                                               id="minInput" value="{{$filters['min_price']}}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div
+                                        class="input-group input-group-sm input-group-outline my-3 {{$filters['max_price'] != null ? 'is-filled' : ''}}">
+                                        <label class="form-label">Máximo</label>
+                                        <input type="number" max="300000" class="form-control"
+                                               id="maxInput" value="{{$filters['max_price']}}">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="input-group input-group-sm input-group-outline my-3">
-                                    <label class="form-label">Máximo</label>
-                                    <input type="number" max="300000" class="form-control"
-                                           id="maxInput">
-                                </div>
+                            {{--                        </div>--}}
+                        </div>
+
+                        <!-- Filtro de formato -->
+                        <div class="filter-section">
+                            <div class="filter-title">Formato</div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="formatPaperback">
+                                <label class="form-check-label" for="formatPaperback">Tapa blanda</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="formatHardcover">
+                                <label class="form-check-label" for="formatHardcover">Tapa dura</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="formatDigital">
+                                <label class="form-check-label" for="formatDigital">Digital</label>
                             </div>
                         </div>
-                        {{--                        </div>--}}
-                    </div>
 
-                    <!-- Filtro de formato -->
-                    <div class="filter-section">
-                        <div class="filter-title">Formato</div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" id="formatPaperback">
-                            <label class="form-check-label" for="formatPaperback">Tapa blanda</label>
+                        <!-- Filtro de rating -->
+                        <div class="filter-section">
+                            <div class="filter-title">Valoración</div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rating5">
+                                <label class="form-check-label" for="rating5">
+                                    <span class="text-warning">★★★★★</span> (4+)
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rating4">
+                                <label class="form-check-label" for="rating4">
+                                    <span class="text-warning">★★★★</span>☆ (3+)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rating3">
+                                <label class="form-check-label" for="rating3">
+                                    <span class="text-warning">★★★</span>☆☆ (2+)
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" id="formatHardcover">
-                            <label class="form-check-label" for="formatHardcover">Tapa dura</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="formatDigital">
-                            <label class="form-check-label" for="formatDigital">Digital</label>
-                        </div>
-                    </div>
 
-                    <!-- Filtro de rating -->
-                    <div class="filter-section">
-                        <div class="filter-title">Valoración</div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" id="rating5">
-                            <label class="form-check-label" for="rating5">
-                                <span class="text-warning">★★★★★</span> (4+)
-                            </label>
+                        <div class="filter-section text-center">
+                            <button type="submit" class="btn btn-apply w-100">Aplicar filtros</button>
                         </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" id="rating4">
-                            <label class="form-check-label" for="rating4">
-                                <span class="text-warning">★★★★</span>☆ (3+)
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="rating3">
-                            <label class="form-check-label" for="rating3">
-                                <span class="text-warning">★★★</span>☆☆ (2+)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="filter-section text-center">
-                        <button class="btn btn-apply w-100">Aplicar filtros</button>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -442,6 +468,14 @@
     const minInput = document.getElementById('minInput');
     const maxInput = document.getElementById('maxInput');
 
+    // Inputs reales
+    const min_price = document.getElementById('minPriceR');
+    const max_price = document.getElementById('maxPriceR');
+
+    // Max price const
+
+    const MAX_PRICE_CONST = 300000;
+
     const formatter = new Intl.NumberFormat('es-CO', {
         style: 'currency',
         currency: 'COP',
@@ -452,12 +486,14 @@
         const value = this.value;
         // console.log(value)
         minPrice.textContent = 'Desde: ' + formatter.format(value);
+        min_price.value = value;
         maxPrice.textContent = 'Hasta: ' + formatter.format(priceRange.max);
+        max_price.value = priceRange.max;
     });
 
     minInput.addEventListener('input', function () {
-        if (parseInt(this.value) > 300000) {
-            this.value = 300000;
+        if (parseInt(this.value) > MAX_PRICE_CONST) {
+            this.value = MAX_PRICE_CONST;
         }
 
         if (parseInt(this.value) < 0) {
@@ -466,37 +502,40 @@
 
         if (parseInt(this.value) > parseInt(priceRange.max)) {
             maxPrice.textContent = 'Hasta: ' + formatter.format(this.value);
+            max_price.value = this.value;
             priceRange.max = this.value;
             maxInput.value = this.value;
         }
         minPrice.textContent = 'Desde: ' + formatter.format(this.value);
+        min_price.value = this.value;
         priceRange.min = this.value;
         priceRange.value = this.value ? this.value : 0;
-        console.log(priceRange.value)
+        // console.log(priceRange.value)
     });
 
     maxInput.addEventListener('input', function () {
         if (this.value == '') {
-            maxPrice.textContent = 'Hasta: $ 300.000';
-            priceRange.max = 300000;
-            console.log('Estoy entrando a comillas')
+            maxPrice.textContent = 'Hasta: ' + formatter.format(MAX_PRICE_CONST);
+            max_price.value = this.value;
+            priceRange.max = MAX_PRICE_CONST;
             return;
         }
 
-        if (parseInt(this.value) > 300000) {
-            this.value = 300000;
+        if (parseInt(this.value) > MAX_PRICE_CONST) {
+            this.value = MAX_PRICE_CONST;
         }
 
         if (parseInt(this.value) < 0) {
             this.value = 0;
-            console.log('Estoy entrando a cerooo')
         }
 
         if (parseInt(this.value) < parseInt(priceRange.min)) {
             maxPrice.textContent = 'Hasta: ' + formatter.format(priceRange.min);
+            max_price.value = priceRange.min;
             priceRange.max = priceRange.min;
         } else {
             maxPrice.textContent = 'Hasta: ' + formatter.format(this.value);
+            max_price.value = this.value;
             priceRange.max = this.value;
         }
 

@@ -132,16 +132,11 @@
                                                 <span>Explorar!</span>
                                             </button>
                                         </form>
-
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     @endfor
-
                 </div>
 
                 <div class="position-relative mt-n6 carouselButtons">

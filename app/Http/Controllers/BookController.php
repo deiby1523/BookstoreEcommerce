@@ -221,20 +221,24 @@ class BookController extends Controller
 
     public function search2(Request $request): View
     {
-        // Validación de los parámetros de entrada
-        $validated = $request->validate([
-            'category' => 'nullable|integer|exists:categories,id',
-            'subcategory' => 'nullable|integer|exists:subcategories,id',
-            'min_price' => 'nullable|numeric|min:0',
-            'max_price' => 'nullable|numeric|min:0|gte:min_price',
-            'format' => 'nullable|in:paperback,hardcover,digital',
-            'rating' => 'nullable|integer|between:1,5',
-            'sort' => 'nullable|in:relevance,price_asc,price_desc,rating,newest'
-        ]);
+        $filters = $request;
+//        dump($request);
+        dump($request['min_price'], $request['max_price']);
+
+//         Validación de los parámetros de entrada
+//         $filters = $request->validate([
+//            'category' => 'nullable|integer|exists:categories,id',
+//            'subcategory' => 'nullable|integer|exists:subcategories,id',
+//            'min_price' => 'nullable|numeric|min:0',
+//            'max_price' => 'nullable|numeric|min:0|gte:min_price',
+//            'format' => 'nullable|in:paperback,hardcover,digital',
+//            'rating' => 'nullable|integer|between:1,5',
+//            'sort' => 'nullable|in:relevance,price_asc,price_desc,rating,newest'
+//        ]);
 
         // Obtener categorías y subcategorías seleccionadas
-        $categorySelected = $validated['category'] ? Category::find($validated['category']) : null;
-        $subcategorySelected = $validated['subcategory'] ? Subcategory::find($validated['subcategory']) : null;
+        $categorySelected = $filters['category'] ? Category::find($filters['category']) : null;
+        $subcategorySelected = $filters['subcategory'] ? Subcategory::find($filters['subcategory']) : null;
 
         // Construir la consulta usando Eloquent para mayor seguridad y legibilidad
         $query = Book::select([
@@ -258,22 +262,22 @@ class BookController extends Controller
 //            ->with(['reviews']); // Cargar relaciones si existen
 
         // Aplicar filtros
-        if ($validated['category']) {
-            $query->where('categories.id', $validated['category']);
+        if ($filters['category']) {
+            $query->where('categories.id', $filters['category']);
         }
 
-        if ($validated['subcategory']) {
-            $query->where('subcategories.id', $validated['subcategory']);
+        if ($filters['subcategory']) {
+            $query->where('subcategories.id', $filters['subcategory']);
         }
 
         // Filtro por precio
-        if ($validated['min_price']) {
-            $query->where('books.book_price', '>=', $validated['min_price']);
+        if ($filters['min_price']) {
+            $query->whereRaw('(books.book_price * (1 - books.book_discount / 100)) >= ?', [$filters['min_price']]);
         }
-//
-//        if ($validated['max_price']) {
-//            $query->where('books.book_price', '<=', $validated['max_price']);
-//        }
+
+        if ($filters['max_price']) {
+            $query->whereRaw('(books.book_price * (1 - books.book_discount / 100)) <= ?', [$filters['max_price']]);
+        }
 
         // Filtro por formato (asumiendo que tienes un campo book_format en tu modelo)
 //        if ($validated['format']) {
@@ -289,12 +293,12 @@ class BookController extends Controller
 //        }
 
         // Ordenación
-        switch ($validated['sort'] ?? 'relevance') {
+        switch ($filters['sort'] ?? 'relevance') {
             case 'price_asc':
-                $query->orderBy('books.book_price', 'asc');
+                $query->orderByRaw('(books.book_price * (1 - books.book_discount / 100)) asc');
                 break;
             case 'price_desc':
-                $query->orderBy('books.book_price', 'desc');
+                $query->orderByRaw('(books.book_price * (1 - books.book_discount / 100)) desc');
                 break;
             case 'rating':
                 $query->withAvg('reviews', 'rating')
@@ -321,7 +325,7 @@ class BookController extends Controller
             'categorySelected' => $categorySelected,
             'subcategorySelected' => $subcategorySelected,
             'books' => $books,
-            'filters' => $validated // Pasar los filtros aplicados a la vista
+            'filters' => $filters // Pasar los filtros aplicados a la vista
         ]);
     }
 
