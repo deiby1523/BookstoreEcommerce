@@ -223,7 +223,7 @@ class BookController extends Controller
     {
         $filters = $request;
 //        dump($request);
-        dump($request['min_price'], $request['max_price']);
+//        dump($request['min_price'], $request['max_price']);
 
 //         Validación de los parámetros de entrada
 //         $filters = $request->validate([

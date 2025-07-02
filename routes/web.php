@@ -40,9 +40,9 @@ Route::delete('/cart/remove/{cartId}', [ShoppingCartController::class, 'removeFr
 
 Route::middleware('UserAdmin')->group(function () {
     // Dashboards
-    Route::get('/dashboard/books', [BookController::class, 'index'])->name('dashboard.books');
-    Route::get('/dashboard/products',[ProductController::class, 'index'])->name('dashboard.products');
-    Route::get('/dashboard/interface',[DashboardController::class,'index'])->name('dashboard.interface');
+    //Route::get('/dashboard/books', [BookController::class, 'index'])->name('dashboard.books');
+    //Route::get('/dashboard/products',[ProductController::class, 'index'])->name('dashboard.products');
+    //Route::get('/dashboard/interface',[DashboardController::class,'index'])->name('dashboard.interface');
 
     // Featured
     Route::get('/featured', [FeaturedController::class, 'index'])->name('featured.index');

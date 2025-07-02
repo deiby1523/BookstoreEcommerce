@@ -83,7 +83,6 @@
             <ul class="navbar-nav navbar-nav-hover">
                 <li class="nav-item mx-2 ms-lg-6">
                     <a href="{{route('home')}}" class="nav-link ps-2 d-flex cursor-pointer align-items-center">
-
                         inicio
                     </a>
                 </li>
@@ -239,7 +238,6 @@
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link ps-2 d-flex cursor-pointer align-items-center">
-
                         nosotros
                     </a>
                 </li>
@@ -283,13 +281,13 @@
                                     <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
                                         Administrar
                                     </h6>
-                                    <a href="{{ route('dashboard.books') }}" class="dropdown-item border-radius-md">
+                                    <a href="{{ route('book.index') }}" class="dropdown-item border-radius-md">
                                         <span>Libros</span>
                                     </a>
-                                    <a href="{{ route('dashboard.products') }}" class="dropdown-item border-radius-md">
+                                    <a href="{{ route('product.index') }}" class="dropdown-item border-radius-md">
                                         <span>Productos</span>
                                     </a>
-                                    <a href="{{ route('dashboard.interface') }}" class="dropdown-item border-radius-md">
+                                    <a href="{{ route('banner.index') }}" class="dropdown-item border-radius-md">
                                         <span>Interfaz</span>
                                     </a>
 
