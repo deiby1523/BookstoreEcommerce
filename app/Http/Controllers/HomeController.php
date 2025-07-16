@@ -29,7 +29,7 @@ class HomeController extends Controller
     AND books.subcategory_id = subcategories.id
     AND subcategories.category_id = categories.id
     ORDER BY books.id DESC
-    LIMIT 5';
+    LIMIT 10';
         $latestBooks = DB::select($sql);
 
         $sql = 'SELECT * FROM banners WHERE active = 1';

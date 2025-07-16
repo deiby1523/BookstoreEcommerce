@@ -207,6 +207,14 @@
                                         <i class="material-icons-round">chevron_right</i>
                                     </div>
                                     <div class="collapse" id="subcategories{{$category->id}}">
+                                        <form action="{{route('book.search2')}}" method="POST" class="mb-2">
+                                            @csrf
+                                            <input type="hidden" name="category" value="{{$category->id}}">
+                                            {{-- <input type="hidden" name="subcategory" value="{{$subcategory->id}}"> --}}
+                                            <button type="submit" class="filter-option w-100 text-start">
+                                                {{$category->category_name}}
+                                            </button>
+                                        </form>
                                         @foreach($category->subcategories as $subcategory)
                                             <form action="{{route('book.search2')}}" method="POST" class="mb-2">
                                                 @csrf
@@ -281,21 +289,21 @@
                         <div class="filter-section">
                             <div class="filter-title">Formato</div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="formatPaperback">
+                                <input class="form-check-input" type="radio" id="formatAll" name="book_format" value="" {{($filters['book_format'] != 'paperback' && $filters['book_format'] != 'hardcover') ? 'checked' : ''}}>
+                                <label class="form-check-label" for="formatAll">Cualquier formato</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" id="formatPaperback" value="paperback" name="book_format" {{$filters['book_format'] == 'paperback' ? 'checked' : ''}}>
                                 <label class="form-check-label" for="formatPaperback">Tapa blanda</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="formatHardcover">
+                                <input class="form-check-input" type="radio" id="formatHardcover" value="hardcover" name="book_format" {{$filters['book_format'] == 'hardcover' ? 'checked' : ''}}>
                                 <label class="form-check-label" for="formatHardcover">Tapa dura</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="formatDigital">
-                                <label class="form-check-label" for="formatDigital">Digital</label>
                             </div>
                         </div>
 
                         <!-- Filtro de rating -->
-                        <div class="filter-section">
+                        {{-- <div class="filter-section">
                             <div class="filter-title">Valoración</div>
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" id="rating5">
@@ -315,12 +323,12 @@
                                     <span class="text-warning">★★★</span>☆☆ (2+)
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="filter-section text-center">
                             <button type="submit" class="btn btn-apply w-100">Aplicar filtros</button>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
 
@@ -337,24 +345,26 @@
 
                     <div class="sort-options">
                         <span class="sort-label">Ordenar por:</span>
-                        <select class="form-select form-select-sm" style="width: auto;">
-                            <option>Relevancia</option>
-                            <option>Precio: menor a mayor</option>
-                            <option>Precio: mayor a menor</option>
-                            <option>Mejor valorados</option>
-                            <option>Más recientes</option>
+                        <select class="form-select form-select-sm" style="width: auto;" name="sort" onchange="this.form.submit()">
+                            <option value="newest" {{$filters['sort'] == 'newest' ? 'selected' : ''}}>Más recientes</option>
+                            <option value="price_asc" {{$filters['sort'] == 'price_asc' ? 'selected' : ''}}>Precio: menor a mayor</option>
+                            <option value="price_desc" {{$filters['sort'] == 'price_desc' ? 'selected' : ''}}>Precio: mayor a menor</option>
                         </select>
                     </div>
                 </div>
+
+                </form>
 
                 <div class="row">
                     @forelse($books as $book)
                         <div class="col-xl-3 col-lg-4 col-md-6 mb-4 p-0" style="max-width: 50%">
                             <div class="book-card">
                                 <div class="book-image-container">
+                                    <a href="{{route('book.view',$book->id)}}">
                                     <img
                                         src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp')}}"
                                         alt="{{$book->book_title}}" class="book-image">
+                                    </a>
                                     @if($book->book_discount > 0)
                                         <span class="book-badge">-{{$book->book_discount}}%</span>
                                     @endif
@@ -387,13 +397,15 @@
                             </div>
                         </div>
                     @empty
+
+                    <form action="{{route('book.search2')}}" method="POST">
+                        @csrf
                         <div class="col-12 text-center py-5">
-                            <img src="{{asset('img/no-results.svg')}}" alt="No results" style="max-width: 300px;"
-                                 class="mb-4">
                             <h4>No se encontraron libros</h4>
                             <p class="text-muted">Intenta ajustar tus filtros de búsqueda</p>
-                            <button class="btn btn-primary mt-3">Limpiar filtros</button>
+                            <button type="submit" class="btn btn-warning mt-3">Limpiar filtros</button>
                         </div>
+                    </form>
                     @endforelse
                 </div>
 

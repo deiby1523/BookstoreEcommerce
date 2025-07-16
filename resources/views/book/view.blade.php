@@ -61,6 +61,18 @@
                         <h6 class="mb-0 mt-2">Editorial</h6>
                         <p class="text-lg">{{$book->publisher->publisher_name}}</p>
 
+                        @if ($book->book_format != null && $book->book_format != 'other')
+                        <h6 class="mb-0 mt-2">Formato</h6>
+                            @switch($book->book_format)
+                            @case('paperback')
+                                <p class="text-lg">Tapa blanda</p>
+                                @break
+                            @case('hardcover')
+                                <p class="text-lg">Tapa dura</p>
+                                @break
+                        @endswitch
+                        @endif
+
                         <h6 class="mb-0 mt-2">Numero de paginas</h6>
                         <p class="text-lg">{{$book->book_number_pages}}</p>
 

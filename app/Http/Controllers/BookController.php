@@ -64,7 +64,8 @@ class BookController extends Controller
             'book_image' => 'required|image',
             'book_number_pages' => 'required|integer|min:1',
             'book_price' => 'required|min:0',
-            'book_discount' => 'integer|max:100'
+            'book_discount' => 'integer|max:100',
+            'book_format' => 'nullable|in:paperback,hardcover,other',
         ]);
 
         // image upload script (edit)
@@ -82,6 +83,7 @@ class BookController extends Controller
                 'subcategory_id' => $request->subcategory_id,
                 'author_id' => $request->author_id,
                 'publisher_id' => $request->publisher_id,
+                'book_format' => $request->book_format,
                 'book_number_pages' => $request->book_number_pages,
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
@@ -125,7 +127,8 @@ class BookController extends Controller
             'book_publication_date' => 'required|date',
             'book_number_pages' => 'required|integer|min:1',
             'book_price' => 'required|min:0',
-            'book_discount' => 'integer|max:100'
+            'book_discount' => 'integer|max:100',
+            'book_format' => 'nullable|in:paperback,hardcover,other',
         ]);
 
         $book = Book::findOrFail($id);
@@ -148,6 +151,7 @@ class BookController extends Controller
                 'subcategory_id' => $request->subcategory_id,
                 'author_id' => $request->author_id,
                 'publisher_id' => $request->publisher_id,
+                'book_format' => $request->book_format,
                 'book_number_pages' => $request->book_number_pages,
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
@@ -166,6 +170,7 @@ class BookController extends Controller
                 'author_id' => $request->author_id,
                 'publisher_id' => $request->publisher_id,
                 'book_number_pages' => $request->book_number_pages,
+                'book_format' => $request->book_format,
                 'book_publication_date' => $request->book_publication_date,
                 'book_description' => $request->book_description,
                 'book_price' => $request->book_price,
@@ -249,6 +254,7 @@ class BookController extends Controller
             'books.book_price',
             'books.book_discount',
             'books.book_image_url',
+            'books.book_format',
             'books.updated_at',
             'authors.author_name',
             'publishers.publisher_name',
@@ -279,10 +285,10 @@ class BookController extends Controller
             $query->whereRaw('(books.book_price * (1 - books.book_discount / 100)) <= ?', [$filters['max_price']]);
         }
 
-        // Filtro por formato (asumiendo que tienes un campo book_format en tu modelo)
-//        if ($validated['format']) {
-//            $query->where('books.book_format', $validated['format']);
-//        }
+        // Filtro por formato
+       if ($filters['book_format']) {
+           $query->where('books.book_format', $filters['book_format']);
+       }
 
         // Filtro por rating (asumiendo que tienes relación con reviews)
 //        if ($validated['rating']) {
@@ -293,16 +299,12 @@ class BookController extends Controller
 //        }
 
         // Ordenación
-        switch ($filters['sort'] ?? 'relevance') {
+        switch ($filters['sort'] ?? 'newest') {
             case 'price_asc':
                 $query->orderByRaw('(books.book_price * (1 - books.book_discount / 100)) asc');
                 break;
             case 'price_desc':
                 $query->orderByRaw('(books.book_price * (1 - books.book_discount / 100)) desc');
-                break;
-            case 'rating':
-                $query->withAvg('reviews', 'rating')
-                    ->orderBy('reviews_avg_rating', 'desc');
                 break;
             case 'newest':
                 $query->orderBy('books.updated_at', 'desc');

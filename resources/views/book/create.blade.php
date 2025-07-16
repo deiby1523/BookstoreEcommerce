@@ -269,6 +269,27 @@
                             <x-input-error class="text-danger"
                                            :messages="$errors->get('book_description')"></x-input-error>
 
+                            {{-- Format select --}}
+                            <div class="input-group input-group-static mb-4">
+                                <label>Formato</label>
+                                @if(count($errors->get('book_format')) >= 1)
+                                    <select name="book_format" id="book_format" class="form-control"
+                                            style="box-shadow: 0 0 8px 2px #ff000061;">
+                                        <option value="paperback">Tapa blanda</option>
+                                        <option value="hardcover">Tapa dura</option>
+                                        {{-- <option>Otro</option> --}}
+                                    </select>
+                                @else
+                                    <select name="book_format" id="book_format" class="form-control">
+                                        <option value="paperback">Tapa blanda</option>
+                                        <option value="hardcover">Tapa dura</option>
+                                        {{-- <option>Otro</option> --}}
+                                    </select>
+                                @endif
+                            </div>
+                            <x-input-error class="text-danger"
+                                           :messages="$errors->get('book_format')"></x-input-error>
+
                             {{-- Price --}}
                             <div class="input-group input-group-static mb-4">
                                 <label>Precio</label>
@@ -306,7 +327,8 @@
                             {{-- Active --}}
                             <label>Activado</label>
                             <div class="form-check form-switch py-2">
-                                <input class="form-check-input checked:true" type="checkbox" id="active" name="active" checked>
+                                <input class="form-check-input checked:true" type="checkbox" id="active" name="active"
+                                       checked>
                                 <x-input-error class="text-danger"
                                                :messages="$errors->get('active')"></x-input-error>
                             </div>
