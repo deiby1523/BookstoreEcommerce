@@ -190,13 +190,14 @@
 
                                                     </div>
                                                     @forelse($productCategories[$i+$j]->subcategories as $subcategory)
-                                                        <form action="{{route('book.search2')}}" method="POST">
+                                                        <form action="{{route('product.search2')}}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="category" id="category"
-                                                                   value="{{$productCategories[$i+$j]->id}}">
+                                                                value="{{$productCategories[$i+$j]->id}}">
                                                             <input type="hidden" name="subcategory" id="subcategory"
-                                                                   value="{{$subcategory->id}}">
-
+                                                                value="{{$subcategory->id}}">
+                                                            <input type="hidden" name="min_price" id="min_price" value="0">
+                                                            <input type="hidden" name="max_price" id="max_price" value="300000">
                                                             <button type="submit"
                                                                     class="dropdown-item border-radius-md">
                                                                 <span>{{$subcategory->subcategory_name}}</span>

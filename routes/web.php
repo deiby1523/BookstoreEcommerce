@@ -145,11 +145,17 @@ Route::middleware('UserAdmin')->group(function () {
 
 // TODO: Arreglar esta mrd
 // V.2 Fix this shit
-    Route::POST('/product/search', [BookController::class, 'searchNav'])->name('book.searchNav');
+// V.3 Not fixed yet, wtf is this shit...
+    Route::POST('/products/search', [BookController::class, 'searchNav'])->name('book.searchNav');
 
 //public books
 Route::get('/book/view/{book}',[BookController::class,'view'])->name('book.view');
 Route::get('/book/search',[BookController::class,'search'])->name('book.search');
 Route::POST('/book/search',[BookController::class,'search2'])->name('book.search2');
+
+//public products
+Route::get('/product/view/{product}',[ProductController::class,'view'])->name('product.view');
+Route::get('/product/search',[ProductController::class,'search'])->name('product.search');
+Route::POST('/product/search',[ProductController::class,'search2'])->name('product.search2');
 
 require __DIR__ . '/auth.php';

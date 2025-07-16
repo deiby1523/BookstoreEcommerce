@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +79,14 @@ class ProductController extends Controller
         return view('product.show', compact('product'));
     }
 
+    public function view($id): View
+    {
+        $product = Product::findOrFail($id);
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+        return view('product.view', compact('product', 'bookCategories','productCategories'));
+    }
+
     public function edit($id)
     {
         $product = Product::findOrFail($id);
@@ -145,6 +154,83 @@ class ProductController extends Controller
         }
 
         return redirect()->route('product.index')->with('success', 'Producto actualizado exitosamente.');
+    }
+
+    public function search2(Request $request): View
+    {
+        $filters = $request;
+//        dump($request);
+//        dump($request['min_price'], $request['max_price']);
+
+        // Obtener categorías y subcategorías seleccionadas
+        $categorySelected = $filters['category'] ? Category::find($filters['category']) : null;
+        $subcategorySelected = $filters['subcategory'] ? Subcategory::find($filters['subcategory']) : null;
+
+        // Construir la consulta usando Eloquent para mayor seguridad y legibilidad
+        $query = Product::select([
+            'products.id',
+            'products.product_name',
+            'products.product_price',
+            // 'products.product_price',
+            'products.product_discount',
+            'products.product_image_url',
+            'products.updated_at',
+            'categories.category_name',
+            'subcategories.subcategory_name'
+        ])
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id');
+//            ->with(['reviews']); // Cargar relaciones si existen
+
+        // Aplicar filtros
+        if ($filters['category']) {
+            $query->where('categories.id', $filters['category']);
+        }
+
+        if ($filters['subcategory']) {
+            $query->where('subcategories.id', $filters['subcategory']);
+        }
+
+        // Filtro por precio
+        if ($filters['min_price']) {
+            $query->whereRaw('(products.product_price * (1 - products.product_discount / 100)) >= ?', [$filters['min_price']]);
+        }
+
+        if ($filters['max_price']) {
+            $query->whereRaw('(products.product_price * (1 - products.product_discount / 100)) <= ?', [$filters['max_price']]);
+        }
+
+        // Ordenación
+        switch ($filters['sort'] ?? 'newest') {
+            case 'price_asc':
+                $query->orderByRaw('(products.product_price * (1 - products.product_discount / 100)) asc');
+                break;
+            case 'price_desc':
+                $query->orderByRaw('(products.product_price * (1 - products.product_discount / 100)) desc');
+                break;
+            case 'newest':
+                $query->orderBy('products.updated_at', 'desc');
+                break;
+            default:
+                // Orden por relevancia (podrías implementar tu lógica aquí)
+                $query->orderBy('products.updated_at', 'desc');
+        }
+
+        // Paginación en lugar de límite fijo
+        $products = $query->paginate(12); // 12 items por página
+
+        // Obtener todas las categorías para los filtros
+        $bookCategories = Category::where('category_type', 0)->with('subcategories')->get();
+        $productCategories = Category::where('category_type', 1)->get();
+
+        return view('product.search', [
+            'bookCategories' => $bookCategories,
+            'productCategories' => $productCategories,
+            'categorySelected' => $categorySelected,
+            'subcategorySelected' => $subcategorySelected,
+            'products' => $products,
+            'filters' => $filters // Pasar los filtros aplicados a la vista
+        ]);
     }
 
     public function delete($id)

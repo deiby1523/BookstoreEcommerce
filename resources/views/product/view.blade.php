@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="es">
 
-
 <head>
-    <title>{{$book->book_title}}</title>
+    <title>{{$product->product_name}}</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
@@ -46,43 +45,21 @@
         <div class="container">
             <div class="row flex-row">
                 <div class="col-lg-5">
-                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset("img/bookPlaceholder.webp")}}" alt="libro" loading="lazy">
+                    <img class="w-80 shadow-lg border-radius-lg img-fluid ms-2" src="{{$product->product_image_url != null ? asset($product->product_image_url) : asset("img/bookPlaceholder.webp")}}" alt="libro" loading="lazy">
                 </div>
                 <div class="col-lg-7">
                     <div>
-                        <h3 class="mt-lg-0 mt-4">{{$book->book_title}}</h3>
-                        <p class="text-xs text-uppercase font-weight-bold text-gradient text-warning mb-4">{{$book->subcategory->subcategory_name}}</p>
+                        <h3 class="mt-lg-0 mt-4">{{$product->product_name}}</h3>
+                        <p class="text-xs text-uppercase font-weight-bold text-gradient text-warning mb-4">{{$product->subcategory->subcategory_name}}</p>
                         <h6 class="mb-0 mt-2 text-lg">Precio</h6>
-                        <p>$ {{number_format($book->book_price)}}</p>
-
-                        <h6 class="mb-0 mt-2">Autor</h6>
-                        <p class="text-lg">{{$book->author->author_name}}</p>
-
-                        <h6 class="mb-0 mt-2">Editorial</h6>
-                        <p class="text-lg">{{$book->publisher->publisher_name}}</p>
-
-                        @if ($book->book_format != null && $book->book_format != 'other')
-                        <h6 class="mb-0 mt-2">Formato</h6>
-                            @switch($book->book_format)
-                            @case('paperback')
-                                <p class="text-lg">Tapa blanda</p>
-                                @break
-                            @case('hardcover')
-                                <p class="text-lg">Tapa dura</p>
-                                @break
-                        @endswitch
-                        @endif
-
-                        <h6 class="mb-0 mt-2">Numero de paginas</h6>
-                        <p class="text-lg">{{$book->book_number_pages}}</p>
-
+                        <p>$ {{number_format($product->product_price)}}</p>
 
                         <div class="row mt-4">
                             <div class="accordion" id="accordionRental">
                                 <div class="accordion-item mb-3">
                                     <h5 class="accordion-header" id="headingOne">
                                         <button class="accordion-button border-bottom font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Resumen
+                                            Descripción
                                             <svg style="margin-left: 1rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
                                             </svg>
@@ -90,7 +67,7 @@
                                     </h5>
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionRental" style="">
                                         <div class="accordion-body text-md opacity-8">
-                                            {{$book->book_description}}
+                                            {{$product->product_description}}
                                         </div>
                                     </div>
                                 </div>

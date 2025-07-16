@@ -16,7 +16,7 @@ return new class extends Migration
             $table->double('product_price')->nullable(false);
             $table->integer('product_stock')->nullable();
             $table->integer('product_discount')->nullable()->default(0);
-            $table->string('product_image_url',255)->nullable(false)->unique();
+            $table->string('product_image_url',255)->nullable(true)->unique();
             $table->boolean('active')->nullable(false)->default(1);
             $table->unsignedBigInteger('subcategory_id')->nullable(false);
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('no action');

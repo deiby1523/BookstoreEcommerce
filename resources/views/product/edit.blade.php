@@ -285,7 +285,7 @@
 
                                 {{-- image input --}}
                                 <div class="input-group input-group-static mb-4 mt-4">
-                                    <input id="fileinput" name="product_image" type="file" accept=".jpg,.jpeg,.png"
+                                    <input id="fileinput" name="product_image" type="file" accept=".jpg,.jpeg,.png,.webp"
                                            style="display:none;">
                                 </div>
 

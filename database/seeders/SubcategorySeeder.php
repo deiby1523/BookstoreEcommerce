@@ -539,5 +539,41 @@ class SubcategorySeeder extends Seeder
             'created_at'=>'2023-11-04 21:10:31',
             'updated_at'=>'2023-11-04 21:10:31'
         ] );
+
+        Subcategory::create( [
+            'id'=>49,
+            'category_id'=>9,
+            'subcategory_name'=>'Velas pequeñas',
+            'subcategory_description'=>'Velas pequeñas para tener en casa, economicas, y de diferentes estilos y colores',
+            'created_at'=>'2023-11-05 21:10:31',
+            'updated_at'=>'2023-11-05 21:10:31'
+        ] );
+
+        Subcategory::create( [
+            'id'=>50,
+            'category_id'=>9,
+            'subcategory_name'=>'Velas para inglesias',
+            'subcategory_description'=>'Velas sagradas para una parroquia con diferentes imagenes',
+            'created_at'=>'2023-11-06 21:10:31',
+            'updated_at'=>'2023-11-06 21:10:31'
+        ] );
+
+        Subcategory::create( [
+            'id'=>51,
+            'category_id'=>10,
+            'subcategory_name'=>'Virgenes',
+            'subcategory_description'=>'Figuras en porcelana y de diferentes tamaños y colores',
+            'created_at'=>'2023-11-07 21:10:31',
+            'updated_at'=>'2023-11-07 21:10:31'
+        ] );
+
+        Subcategory::create( [
+            'id'=>52,
+            'category_id'=>10,
+            'subcategory_name'=>'crucifijos',
+            'subcategory_description'=>'crucifijos de madera y metalicos',
+            'created_at'=>'2023-11-08 21:10:31',
+            'updated_at'=>'2023-11-08 21:10:31'
+        ] );
     }
 }

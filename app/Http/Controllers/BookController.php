@@ -251,7 +251,7 @@ class BookController extends Controller
             'books.book_isbn',
             'books.book_title',
             'books.book_price',
-            'books.book_price',
+            // 'books.book_price',
             'books.book_discount',
             'books.book_image_url',
             'books.book_format',

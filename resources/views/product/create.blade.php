@@ -183,7 +183,7 @@
                                             <div class="col" style="min-width: 250px">
                                                 <div class="card-body">
                                                     <h4 class="font-weight-normal mt-3">Imagen</h4>
-                                                    <p class="card-text mb-4">Subir imagen con formato .jpg, Asegúrate de
+                                                    <p class="card-text mb-4">Subir imagen con formato .jpg, .png, .webp, Asegúrate de
                                                         que la imagen sea de buena resolución para garantizar una visualización óptima.
                                                     </p>
                                                     <x-input-error class="text-danger"
@@ -215,7 +215,7 @@
 
                                 {{-- image input --}}
                                 <div class="input-group input-group-static mb-4 mt-4">
-                                    <input id="fileinput" name="product_image" type="file" accept=".jpg,.jpeg,.png"
+                                    <input id="fileinput" name="product_image" type="file" accept=".jpg,.jpeg,.png,.webp"
                                            style="display:none;">
                                 </div>
 

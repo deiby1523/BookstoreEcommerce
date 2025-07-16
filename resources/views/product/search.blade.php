@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <title>Libros</title>
+    <title>Productos</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -17,7 +17,7 @@
     <link href="{{asset('css/material-kit.css')}}" rel="stylesheet"/>
 
     <!-- Estilos Card libros -->
-    <link rel="stylesheet" href="{{asset('css/book-card.css')}}">
+    <link rel="stylesheet" href="{{asset('css/product-card.css')}}">
 
     <style>
         :root {
@@ -199,7 +199,7 @@
                     <!-- Filtro de categorías -->
                     <div class="filter-section">
                         <div class="filter-options">
-                            @foreach($bookCategories as $category)
+                            @foreach($productCategories as $category)
                                 <div class="mb-3">
                                     <div class="filter-title subcategory-title" data-bs-toggle="collapse"
                                          data-bs-target="#subcategories{{$category->id}}">
@@ -207,7 +207,7 @@
                                         <i class="material-icons-round">chevron_right</i>
                                     </div>
                                     <div class="collapse" id="subcategories{{$category->id}}">
-                                        <form action="{{route('book.search2')}}" method="POST" class="mb-2">
+                                        <form action="{{route('product.search2')}}" method="POST" class="mb-2">
                                             @csrf
                                             <input type="hidden" name="category" value="{{$category->id}}">
                                             {{-- <input type="hidden" name="subcategory" value="{{$subcategory->id}}"> --}}
@@ -216,7 +216,7 @@
                                             </button>
                                         </form>
                                         @foreach($category->subcategories as $subcategory)
-                                            <form action="{{route('book.search2')}}" method="POST" class="mb-2">
+                                            <form action="{{route('product.search2')}}" method="POST" class="mb-2">
                                                 @csrf
                                                 <input type="hidden" name="category" value="{{$category->id}}">
                                                 <input type="hidden" name="subcategory" value="{{$subcategory->id}}">
@@ -232,7 +232,7 @@
                     </div>
 
                     <!-- Filtro de precio -->
-                    <form action="{{route('book.search2')}}" method="POST">
+                    <form action="{{route('product.search2')}}" method="POST">
                         @csrf
                         <!-- Categoría seleccionada --->
                         @if(isset($categorySelected))
@@ -282,48 +282,8 @@
                                     </div>
                                 </div>
                             </div>
-                            {{--                        </div>--}}
                         </div>
 
-                        <!-- Filtro de formato -->
-                        <div class="filter-section">
-                            <div class="filter-title">Formato</div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" id="formatAll" name="book_format" value="" {{($filters['book_format'] != 'paperback' && $filters['book_format'] != 'hardcover') ? 'checked' : ''}}>
-                                <label class="form-check-label" for="formatAll">Cualquier formato</label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" id="formatPaperback" value="paperback" name="book_format" {{$filters['book_format'] == 'paperback' ? 'checked' : ''}}>
-                                <label class="form-check-label" for="formatPaperback">Tapa blanda</label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" id="formatHardcover" value="hardcover" name="book_format" {{$filters['book_format'] == 'hardcover' ? 'checked' : ''}}>
-                                <label class="form-check-label" for="formatHardcover">Tapa dura</label>
-                            </div>
-                        </div>
-
-                        <!-- Filtro de rating -->
-                        {{-- <div class="filter-section">
-                            <div class="filter-title">Valoración</div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="rating5">
-                                <label class="form-check-label" for="rating5">
-                                    <span class="text-warning">★★★★★</span> (4+)
-                                </label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="rating4">
-                                <label class="form-check-label" for="rating4">
-                                    <span class="text-warning">★★★★</span>☆ (3+)
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="rating3">
-                                <label class="form-check-label" for="rating3">
-                                    <span class="text-warning">★★★</span>☆☆ (2+)
-                                </label>
-                            </div>
-                        </div> --}}
 
                         <div class="filter-section text-center">
                             <button type="submit" class="btn btn-apply w-100">Aplicar filtros</button>
@@ -340,7 +300,7 @@
                     @elseif(isset($categorySelected))
                         <h3 class="mb-0">{{$categorySelected->category_name}}</h3>
                     @else
-                        <h3 class="mb-0">Todos los libros</h3>
+                        <h3 class="mb-0">Todos los productos</h3>
                     @endif
 
                     <div class="sort-options">
@@ -356,41 +316,41 @@
                 </form>
 
                 <div class="row">
-                    @forelse($books as $book)
-                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4 p-0" style="max-width: 50%">
+                    @forelse($products as $product)
+                        <div class="col-xl-4 col-lg-3 col-md-6 mb-4 p-0">
                             <div class="book-card">
                                 <div class="book-image-container">
-                                    <a href="{{route('book.view',$book->id)}}">
+                                    <a href="{{route('product.view',$product->id)}}">
                                     <img
-                                        src="{{$book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp')}}"
-                                        alt="{{$book->book_title}}" class="book-image">
+                                        src="{{$product->product_image_url != null ? asset($product->product_image_url) : asset('img/bookPlaceholder.webp')}}"
+                                        alt="{{$product->product_name}}" class="book-image">
                                     </a>
-                                    @if($book->book_discount > 0)
-                                        <span class="book-badge">-{{$book->book_discount}}%</span>
+                                    @if($product->product_discount > 0)
+                                        <span class="book-badge">-{{$product->product_discount}}%</span>
                                     @endif
                                 </div>
                                 <div class="book-content">
-                                    <span class="book-category">{{$book->subcategory_name}}</span>
-                                    @if(strlen($book->book_title) > 54)
+                                    <span class="book-category">{{$product->subcategory_name}}</span>
+                                    @if(strlen($product->product_name) > 54)
                                         <h7 class="book-title">
-                                            <a href="{{route('book.view',$book->id)}}" class="text-decoration-none"
+                                            <a href="{{route('product.view',$product->id)}}" class="text-decoration-none"
                                                data-bs-toggle='tooltip' data-bs-placement='right'
-                                               title='{{$book->book_title}}'>{{$book->book_title}}</a>
+                                               title='{{$product->product_name}}'>{{$product->product_name}}</a>
                                         </h7>
                                     @else
                                         <h6 class="book-title">
-                                            <a href="{{route('book.view',$book->id)}}"
-                                               class="text-decoration-none">{{$book->book_title}}</a>
+                                            <a href="{{route('product.view',$product->id)}}"
+                                               class="text-decoration-none">{{$product->product_name}}</a>
                                         </h6>
                                     @endif
 
-                                    <p class="book-author">{{$book->author_name}}</p>
+                                    {{-- <p class="book-author">{{$book->author_name}}</p> --}}
                                     <div class="d-flex justify-content-between align-items-center mt-auto">
                                         <span
-                                            class="book-price">${{number_format($book->book_price - (($book->book_price * $book->book_discount) / 100))}}</span>
-                                        @if($book->book_discount > 0)
+                                            class="book-price">${{number_format($product->product_price - (($product->product_price * $product->product_discount) / 100))}}</span>
+                                        @if($product->product_discount > 0)
                                             <small
-                                                class="text-muted text-decoration-line-through">${{number_format($book->book_price)}}</small>
+                                                class="text-muted text-decoration-line-through">${{number_format($product->product_price)}}</small>
                                         @endif
                                     </div>
                                 </div>
@@ -398,10 +358,10 @@
                         </div>
                     @empty
 
-                    <form action="{{route('book.search2')}}" method="POST">
+                    <form action="{{route('product.search2')}}" method="POST">
                         @csrf
                         <div class="col-12 text-center py-5">
-                            <h4>No se encontraron libros</h4>
+                            <h4>No se encontraron productos</h4>
                             <p class="text-muted">Intenta ajustar tus filtros de búsqueda</p>
                             <button type="submit" class="btn btn-warning mt-3">Limpiar filtros</button>
                         </div>

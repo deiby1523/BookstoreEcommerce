@@ -92,5 +92,25 @@ class CategorySeeder extends Seeder
             'created_at' => '2023-11-04 02:42:44',
             'updated_at' => '2023-11-04 02:42:44'
         ]);
+        
+        Category::create([
+            'id' => 9,
+            'category_type' => 1,
+            'category_name' => 'Velas',
+            'category_description' => 'Descripcion sobre los productos de la categoria de velas, esto es un texto de ejemplo',
+            'category_image_url' => 'img/bookPlaceholder.webp',
+            'created_at' => '2023-11-04 02:43:44',
+            'updated_at' => '2023-11-04 02:43:44'
+        ]);
+
+        Category::create([
+            'id' => 10,
+            'category_type' => 1,
+            'category_name' => 'Figuras',
+            'category_description' => 'Descripcion sobre los productos de la categoria de productos, esto es un texto de ejemplo',
+            'category_image_url' => 'img/bookPlaceholder.webp',
+            'created_at' => '2023-11-04 02:44:44',
+            'updated_at' => '2023-11-04 02:44:44'
+        ]);
     }
 }
