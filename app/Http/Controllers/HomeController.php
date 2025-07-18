@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function show()
+    public function home()
     {
         $sql = 'SELECT
     books.id,
@@ -46,5 +46,11 @@ class HomeController extends Controller
         $productCategories = Category::where('category_type', 1)->get();
 
         return view('home', compact('latestBooks', 'bookCategories','productCategories', 'featuredBooks', 'banners', 'sections'));
+    }
+
+    public function aboutUs() {
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+        return view('about_us',compact('bookCategories','productCategories'));
     }
 }

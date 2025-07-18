@@ -29,12 +29,8 @@
             </div>
             <div class="col-md-2 col-sm-6 col-6 mb-4"><h6 class="text-sm">Organización</h6>
                 <ul class="flex-column ms-n3 nav">
-                    <li class="nav-item"><a class="nav-link" href=""
-                                            target="_blank">Sobre Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href=""
-                                            target="_blank">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href=""
-                                            target="_blank">Nuestra Misión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('about-us')}}">Sobre Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('about-us')}}">Nuestra Misión</a></li>
                 </ul>
             </div>
 

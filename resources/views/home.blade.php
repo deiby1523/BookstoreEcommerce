@@ -102,29 +102,32 @@
             </div>
             <div id="carousel-categories" class="carousel slide carousel-team">
                 <div class="carousel-inner">
-                    @for($i = 1; $i < count($bookCategories); $i++)
-                        <div class="carousel-item {{$i == 1 ? 'active' : ''}}">
+                    @php
+                        $nCategories = 1;
+                    @endphp
+                    @foreach($bookCategories as $bookCategory)
+                        <div class="carousel-item {{$nCategories == 1 ? 'active' : ''}}">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-5 ms-lg-auto">
                                         <div class="p-3">
                                             <img class="w-100 border-radius-xl h-100 fadeIn2 fadeInBottom"
-                                                 src="{{$bookCategories[$i-1]->category_image_url}}" alt=""
+                                                 src="{{$bookCategory->category_image_url}}" alt=""
                                                  loading="eager">
                                         </div>
                                     </div>
                                     <div class="col-md-5 me-lg-auto position-relative">
                                         <h4 class="opacity-7 text-uppercase font-weight-bolder text-xxl-start fadeIn4 fadeInBottom">
-                                            {{$i."°"}}</h4>
+                                            {{$nCategories."°"}}</h4>
                                         <h1 class="text-dark display-3 font-weight-bolder fadeIn2 fadeInBottom">
-                                            {{$bookCategories[$i-1]->category_name}}</h1>
+                                            {{$bookCategory->category_name}}</h1>
                                         <p class="my-4 lead fadeIn2 fadeInBottom">
-                                            {{$bookCategories[$i-1]->category_description}}
+                                            {{$bookCategory->category_description}}
                                         </p>
                                         <form action="{{ route('book.search2') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="category" id="category"
-                                                   value="{{$bookCategories[$i-1]->id}}">
+                                                   value="{{$bookCategory->id}}">
                                             <input type="hidden" name="subcategory" id="subcategory"
                                                    value="">
 
@@ -136,7 +139,10 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                        @php
+                            $nCategories++;
+                        @endphp
+                    @endforeach
                 </div>
 
                 <div class="position-relative mt-n6 carouselButtons">
@@ -175,10 +181,11 @@
         </section>
 
 
-        <div class="my-8">
+        <div class="my-5">
             <img class="img-custom position-absolute end-0 border-radius-top-start-lg"
                  src="{{asset('img/bg-16.jpg')}}"
-                 alt="lakeHouse" loading="lazy">
+                 alt="lakeHouse" loading="lazy"
+                 style="max-width: 734px;">
             <div class="container">
                 <div class="row mt-8">
                     <div class="col-lg-8 d-flex justify-content-center flex-column">
@@ -193,42 +200,99 @@
                                 donde la calidad, la diversidad y la inspiración se entrelazan.
                             </p>
                             <br>
-                            <a class="btn btn-warning" href="#">Conoce más</a>
+                            <a class="btn btn-warning" href="{{route('about-us')}}">Conoce más</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <section class="py-5">
-            <div class="container-fluid">
-                <div class="row flex mx-0" style="justify-content: center">
-                    <div class="col-lg-10">
-                        <div class="row" style="align-items: center;">
-                            <h1 class="my-4 ">Artículos religiosos</h1>
-                            <div class="col-lg-6">
-                                <img class="desktopBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100 mb-4"
-                                     src="{{asset('img/picture4.jpg')}}" alt="">
-                                <img class="phoneBanner min-w-fit border-radius-2xl shadow-lg ml-0 w-100 mb-4"
-                                     src="{{asset('img/picture5.jpg')}}" alt="">
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="p-custom">No solo ofrecemos libros, también disponemos de una amplia
-                                    gama
-                                    de
-                                    productos
-                                    para enriquecer tu vida espiritual. Desde biblias y crucifijos hasta velas y
-                                    hermosas
-                                    imágenes
-                                    religiosas, ofrecemos artículos que reflejan la diversidad y profundidad de las
-                                    creencias. </p>
-                            </div>
+        <section class="py-5 mt-8">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2 order-2">
+                        <h1 class="display-4 font-weight-bold mb-4 text-dark">Artículos Religiosos</h1>
+                        <p class="lead mb-4">Descubre nuestra colección de objetos sagrados para fortalecer tu fe</p>
+                        
+                        <p class="mb-5">En nuestra tienda, no solo ofrecemos libros espirituales, sino también una cuidadosamente seleccionada gama de artículos religiosos. Cada pieza en nuestro catálogo ha sido elegida por su significado espiritual y calidad artesanal.</p>
+                        
+                        <div class="d-flex flex-wrap gap-3">
+                            <form action="{{route('product.search2')}}" method="POST">
+                                @csrf
+                                <button class="btn btn-warning" type="submit">Ver productos</button>
+                                <a href="/contacto" class="btn btn-outline-secondary">
+                                    ¿Necesitas asesoría?
+                                </a>
+                            </form>
                         </div>
                     </div>
-
+                    
+                    <div class="col-lg-6 order-lg-1 order-1 mb-4 mb-lg-0">
+                        <div class="position-relative">
+                            <img src="{{asset('img/picture4.jpg')}}" 
+                                 class="img-fluid rounded-lg shadow-lg w-100 desktopImage" 
+                                 alt="Artículos religiosos" 
+                                 style="">
+                            
+                            <img src="{{asset('img/picture5.jpg')}}" 
+                                 class="img-fluid rounded-lg shadow-lg w-75 position-absolute phoneImage" 
+                                 alt="Detalle de artículos"
+                                 style="bottom: -20px; right: -20px; transform: rotate(3deg); z-index: 2; border: 5px solid white;border-radius: 10px">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+        
+        <style>
+            .btn-explore {
+                background: linear-gradient(45deg, #0c6cae, #ba3f44) !important;
+                box-shadow: 0 3px 3px 0 rgba(36, 83, 255, 0.15), 
+                            0 3px 1px -2px rgba(255, 120, 120, 0.2), 
+                            0 1px 5px 0 rgba(133, 141, 255, 0.15) !important;
+                transition: all 300ms ease-in-out !important;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            
+            .btn-explore:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 10px 20px 0 rgba(36, 83, 255, 0.25), 
+                            0 5px 5px -3px rgba(255, 120, 120, 0.3), 
+                            0 5px 15px 0 rgba(133, 141, 255, 0.25) !important;
+            }
+            
+            @media (max-width: 991.98px) {
+                .phoneImage {
+                    position: relative !important;
+                    width: 100% !important;
+                    bottom: 0 !important;
+                    right: 0 !important;
+                    margin-top: 20px;
+                    transform: rotate(0) !important;
+                }
+
+                .desktopImage {
+                    display: none !important;
+                }
+            }
+
+            @media (min-width: 991.98px) {
+                .phoneImage {
+                    display: none !important;
+                }
+            }
+
+            .desktopImage {
+                transform: rotate(0deg); z-index: 1; border-radius: 10px;
+                transition: all 300ms;
+            }
+
+            .desktopImage:hover {
+                transform: rotate(-3deg);
+            }
+        </style>
 
         <div class="container mb-4 text-center">
             <h1>Editoriales disponibles</h1>

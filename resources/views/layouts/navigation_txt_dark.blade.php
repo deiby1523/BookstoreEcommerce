@@ -238,7 +238,7 @@
                     </div>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link ps-2 d-flex cursor-pointer align-items-center">
+                    <a href="{{route('about-us')}}" class="nav-link ps-2 d-flex cursor-pointer align-items-center">
                         nosotros
                     </a>
                 </li>
