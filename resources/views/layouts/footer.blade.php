@@ -36,8 +36,7 @@
 
             <div class="col-md-2 col-sm-6 col-6 mb-4"><h6 class="text-sm">Ayuda y Soporte</h6>
                 <ul class="flex-column ms-n3 nav">
-                    <li class="nav-item"><a class="nav-link" href=""
-                                            target="_blank">Contáctanos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('contact-us')}}">Contáctanos</a></li>
                     <li class="nav-item"><a class="nav-link" href=""
                                             target="_blank">Sugerencias</a></li>
                     <li class="nav-item"><a class="nav-link" href=""

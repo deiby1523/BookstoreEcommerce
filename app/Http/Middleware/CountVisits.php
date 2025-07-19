@@ -28,7 +28,7 @@ class CountVisits
                 'ip_address' => $request->ip(),
             ]);
         }
-
+        
         return $next($request);
     }
 }

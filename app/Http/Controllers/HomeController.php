@@ -6,7 +6,11 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\FeaturedType;
 use App\Models\Section;
+use App\Models\ContactMessage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class HomeController extends Controller
 {
@@ -31,20 +35,13 @@ class HomeController extends Controller
     ORDER BY books.id DESC
     LIMIT 10';
         $latestBooks = DB::select($sql);
-
         $sql = 'SELECT * FROM banners WHERE active = 1';
-
         $banners = DB::select($sql);
-
         $featuredBooks = FeaturedType::all()->sortBy('updated_at');
-
         $sql = 'SELECT * FROM sections WHERE active = 1';
-
         $sections = DB::select($sql);
-
         $bookCategories = Category::where('category_type', 0)->get();
         $productCategories = Category::where('category_type', 1)->get();
-
         return view('home', compact('latestBooks', 'bookCategories','productCategories', 'featuredBooks', 'banners', 'sections'));
     }
 
@@ -52,5 +49,40 @@ class HomeController extends Controller
         $bookCategories = Category::where('category_type', 0)->get();
         $productCategories = Category::where('category_type', 1)->get();
         return view('about_us',compact('bookCategories','productCategories'));
+    }
+
+    public function contactUs() {
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+        return view('contact_us',compact('bookCategories','productCategories'));
+    }
+
+    public function contactUsSubmit(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|min:10',
+            'newsletter' => 'nullable|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Guardar en base de datos
+        ContactMessage::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'newsletter' => $request->has('newsletter'),
+        ]);
+
+        return redirect()->route('contact-us')
+            ->with('success', '¡Gracias por tu mensaje! Lo hemos recibido correctamente.');
     }
 }
