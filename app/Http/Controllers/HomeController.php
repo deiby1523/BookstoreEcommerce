@@ -69,8 +69,7 @@ class HomeController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+                ->with('danger','Ocurrió un error al enviar el formulario');
         }
 
         // Guardar en base de datos

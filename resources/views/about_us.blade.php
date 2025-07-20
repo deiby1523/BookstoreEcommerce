@@ -374,7 +374,7 @@
         <section class="py-5 text-center">
             <div class="container">
                 <h2 class="font-weight-bold mb-4">¿Listo para tu próxima aventura literaria?</h2>
-                <a href="#" target="_blank" class="btn btn-warning btn-lg btn-explore">
+                <a href="#" class="btn btn-warning btn-lg btn-explore">
                     <span class="ct-docs-btn-inner--icon">
                       <i class="fas fa-download mr-2"></i>
                     </span>
@@ -396,7 +396,7 @@
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 {{-- Important --}}
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('js/home.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/loading.js')}}" type="text/javascript"></script>
 
 </body>
 

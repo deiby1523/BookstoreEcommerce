@@ -49,6 +49,8 @@
 </head>
 
 <body class="loading">
+@include('layouts.alerts')
+
 
 <div class="container flex justify-content-center position-relative overflow-hidden w-10">
     <div id="spin" class='spinner'></div>
@@ -79,7 +81,7 @@
                         <form id="contactForm" method="POST" action="{{ route('contact-us.submit') }}">
                             @csrf
 
-                            @if(session('success'))
+                            {{-- @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -99,7 +101,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            @endif
+                            @endif --}}
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
@@ -196,7 +198,7 @@
 <script src="{{asset('js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 {{-- Important --}}
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
-<script src="{{asset('js/home.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/loading.js')}}" type="text/javascript"></script>
 
 <script>
     // Validación básica del formulario
