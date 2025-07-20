@@ -214,7 +214,7 @@
                                 {{-- <a href="https://maps.google.com" target="_blank" class="btn btn-warning">
                                     <i class="material-icons-round mr-2">directions</i> Cómo llegar
                                 </a> --}}
-                                <a class="btn btn-lg bg-gradient-warning mb-0 me-1 mt-2 mt-md-0" target="_blank" href="https://maps.app.goo.gl/xKVKA88yUdbpVJ2d6">¿Cómo llegar?</a>
+                                <a class="btn btn-lg bg-gradient-warning me-1 mt-4 mt-md-0 mb-4" target="_blank" href="https://maps.app.goo.gl/xKVKA88yUdbpVJ2d6">¿Cómo llegar?</a>
                             </div>
                         </div>
                         </div>
@@ -374,12 +374,20 @@
         <section class="py-5 text-center">
             <div class="container">
                 <h2 class="font-weight-bold mb-4">¿Listo para tu próxima aventura literaria?</h2>
-                <a href="#" class="btn btn-warning btn-lg btn-explore">
+                <form action="{{route('product.search2')}}" method="POST">
+                    @csrf
+                    {{-- <button class="btn btn-warning" type="submit">Ver productos</button>
+                    <a href="/contacto" class="btn btn-outline-secondary">
+                        ¿Necesitas asesoría?
+                    </a> --}}
+                
+                <button type="submit" class="btn btn-warning btn-lg btn-explore">
                     <span class="ct-docs-btn-inner--icon">
                       <i class="fas fa-download mr-2"></i>
                     </span>
                     <span class="ct-docs-navbar-nav-link-inner--text">Explora nuestro catalogo</span>
-                  </a>
+                  </button>
+                </form>
             </div>
         </section>
 
