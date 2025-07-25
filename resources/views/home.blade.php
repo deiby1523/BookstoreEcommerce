@@ -599,6 +599,22 @@
             </section>
         @endforeach
 
+        <!-- Aquí va el iframe sandboxed -->
+        <iframe 
+  srcdoc="
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <link href='/css/material-kit.css' rel='stylesheet'>
+      </head>
+      <body>
+        <h1>Holaaa</h1>
+      </body>
+    </html>
+  "
+  sandbox="allow-same-origin"
+></iframe>
+
 
     </div>
 

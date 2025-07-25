@@ -72,8 +72,10 @@ Route::middleware('UserAdmin')->group(function () {
     Route::get('/section', [SectionController::class,'index'])->name('section.index');
     Route::get('/section/create',[SectionController::class,'create'])->name('section.create');
     Route::post('/section/save', [SectionController::class,'save'])->name('section.save');
+    Route::post('/section/save/custom',[SectionController::class, 'saveCustom'])->name('section.saveCustom');
     Route::get('/section/edit/{section}', [SectionController::class,'edit'])->name('section.edit');
     Route::put('/section/update/{section}', [SectionController::class,'update'])->name('section.update');
+    Route::put('/section/update/custom/{section}', [SectionController::class,'updateCustom'])->name('section.updateCustom');
     Route::delete('/section/delete/{section}', [SectionController::class,'delete'])->name('section.delete');
     Route::get('/section/show/{section}',[SectionController::class,'show'])->name('section.show');
 

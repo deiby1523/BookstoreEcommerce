@@ -16,6 +16,50 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{asset('css/material-kit.css')}} rel="stylesheet"/>
+    <style>
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .editor-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .editor-column, .preview-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .CodeMirror {
+            height: 600px;
+            border-radius: 8px;
+            /*border: 1px solid #eee;*/
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 800px;
+            /*border: 1px solid #eee;*/
+            /*border-radius: 8px;*/
+            background: rgba(255, 255, 255, 0);
+        }
+
+        .editor-toolbar {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-editor {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +67,7 @@
 @include('layouts.header')
 
 @php
-$color = "";
+    $color = "";
 @endphp
 
 @if($section->section_color == 1)
@@ -69,172 +113,192 @@ $color = "";
                         </div>
                     </div>
                     <div class="card-body pb-2">
+                        @if($section->section_use_custom_code == 0)
 
-
-                        @if($section->section_style == 1)
-                            <!-- Style 1 -->
-                            <div class="row">
-                                <div class="container">
-                                    <div class="row mb-5">
-                                        <div class="col-lg-8 text-center mx-auto">
-                                            <p class="mb-1 text-{{$color}} text-uppercase font-weight-bold">{{$section->section_secondary_title}}</p>
-                                            <h3>{{$section->section_main_title}}</h3>
+                            @if($section->section_style == 1)
+                                <!-- Style 1 -->
+                                <div class="row">
+                                    <div class="container">
+                                        <div class="row mb-5">
+                                            <div class="col-lg-8 text-center mx-auto">
+                                                <p class="mb-1 text-{{$color}} text-uppercase font-weight-bold">{{$section->section_secondary_title}}</p>
+                                                <h3>{{$section->section_main_title}}</h3>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 position-relative">
-                                            <img
-                                                class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover"
-                                                src="{{asset($section->section_image_1_url)}}">
+                                        <div class="row">
+                                            <div class="col-md-6 position-relative">
+                                                <img
+                                                    class="image-left border-radius-lg img-fluid shadow position-relative top-0 end-0 ms-md-5 bg-cover"
+                                                    src="{{asset($section->section_image_1_url)}}">
 
-                                            <p style="max-width: 450px" class="blockquote border border-{{$color}} rounded w-100 p-3 text-sm text-{{$color}} float-md-end mx-auto mt-4 me-md-n2">
-                                                {{$section->section_text_2}}
-                                            </p>
-
-                                        </div>
-                                        <div class="col-md-5">
-                                            <img
-                                                class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover"
-                                                src="{{asset($section->section_image_2_url)}}">
-                                            <div class="px-4">
-                                                <p class="text-gradient text-{{$color}}">{{$section->section_secondary_sub_title}}</p>
-                                                <h3 class="mb-4">{{$section->section_sub_title}}</h3>
-                                                <p>{{$section->section_text_1}}
-                                                    <br><br>
-                                                    <a class="link-{{$color}}" href="{{$section->section_btn_link}}">More info.</a>
+                                                <p style="max-width: 450px"
+                                                   class="blockquote border border-{{$color}} rounded w-100 p-3 text-sm text-{{$color}} float-md-end mx-auto mt-4 me-md-n2">
+                                                    {{$section->section_text_2}}
                                                 </p>
+
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        @elseif($section->section_style == 2)
-                            <!-- Style 2 -->
-                            <div class="row mt-5" style="justify-content: center">
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="card card-plain">
-                                        <div class="card-header p-0 position-relative">
-                                            <a class="d-block blur-shadow-image">
-                                                <img src="{{asset($section->section_image_1_url)}}" alt="img-blur-shadow"
-                                                     class="img-fluid shadow border-radius-lg" loading="lazy">
-                                            </a>
-                                        </div>
-                                        <div class="card-body px-0">
-                                            <h5>
-                                                <a href="javascript:;" class="text-dark font-weight-bold">{{$section->section_main_title}}</a>
-                                            </h5>
-                                            <p>
-                                                {{$section->section_text_1}}
-                                            </p>
-                                            <a href="{{$section->section_btn_link}}" class="text-{{$color}} text-sm icon-move-right">Read More
-                                                <i class="fas fa-arrow-right text-xs ms-1"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        @elseif($section->section_style == 3)
-                            <!-- Style 3 -->
-                            <div class="mt-5 position-relative">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-10 mx-auto bg-gradient-dark border-radius-lg" style="box-shadow: #0000005e -9px 20px 29px 0px;">
-                                            <div class="row py-5">
-                                                <div class="col-xl-4 col-md-6 px-5 position-relative" style="align-content: center">
-                                                    <img
-                                                        class="img border-radius-md max-width-300 w-100 position-relative z-index-2"
-                                                        src="{{asset($section->section_image_1_url)}}"
-                                                        loading="lazy" alt="card image">
-                                                </div>
-                                                <div
-                                                    class="col-xl-4 col-md-5 z-index-2 position-relative px-md-3 px-5 my-md-auto mt-4">
-                                                    <i class="material-symbols-rounded text-white text-5xl">{{$section->section_main_title}}</i>
-                                                    <p class="text-lg text-white">
-                                                        {{$section->section_text_1}}
+                                            <div class="col-md-5">
+                                                <img
+                                                    class="image-right border-radius-lg img-fluid shadow ms-md-n4 mb-4 mt-md-8 position-relative bg-cover"
+                                                    src="{{asset($section->section_image_2_url)}}">
+                                                <div class="px-4">
+                                                    <p class="text-gradient text-{{$color}}">{{$section->section_secondary_sub_title}}</p>
+                                                    <h3 class="mb-4">{{$section->section_sub_title}}</h3>
+                                                    <p>{{$section->section_text_1}}
+                                                        <br><br>
+                                                        <a class="link-{{$color}}"
+                                                           href="{{$section->section_btn_link}}">More info.</a>
                                                     </p>
-
-                                                </div>
-                                                <div class="col-1"></div>
-                                                <div class="col-xl-2 col-12 px-xl-0 px-5 my-xl-auto">
-                                                    <h3 class="text-white mt-xl-0 mt-5">{{$section->section_sub_title}}</h3>
-                                                    <p class="text-sm text-white opacity-8">{{$section->section_text_2}}</p>
-                                                    <a href="{{$section->section_btn_link}}" class="text-white icon-move-right text-sm">See
-                                                        all products
-                                                        <i class="fas fa-arrow-right text-xs ms-1"></i>
-                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        @elseif($section->section_style == 4)
-                            <!-- Style 4 -->
-                            <div class="row mt-5">
-                                <div class="col-md-4 ms-auto my-auto">
-                                    <div class="cursor-pointer">
-                                        <div class="card card-background">
-                                            <div class="full-background"
-                                                 style="background-image: url('{{asset($section->section_image_1_url)}}')"></div>
-                                            <div class="card-body pt-7 text-center">
-                                                <p class="text-white text-uppercase">{{$section->section_secondary_title}}</p>
-                                                <h3 class="text-white up mb-0">{{$section->section_main_title}}</h3>
-                                                <p class="text-white opacity-8">{{$section->section_text_1}}</p>
-                                                <a href="{{$section->section_btn_link}}" class="btn btn-white btn-sm mt-3">Get Started
+                            @elseif($section->section_style == 2)
+                                <!-- Style 2 -->
+                                <div class="row mt-5" style="justify-content: center">
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="card card-plain">
+                                            <div class="card-header p-0 position-relative">
+                                                <a class="d-block blur-shadow-image">
+                                                    <img src="{{asset($section->section_image_1_url)}}"
+                                                         alt="img-blur-shadow"
+                                                         class="img-fluid shadow border-radius-lg" loading="lazy">
+                                                </a>
+                                            </div>
+                                            <div class="card-body px-0">
+                                                <h5>
+                                                    <a href="javascript:"
+                                                       class="text-dark font-weight-bold">{{$section->section_main_title}}</a>
+                                                </h5>
+                                                <p>
+                                                    {{$section->section_text_1}}
+                                                </p>
+                                                <a href="{{$section->section_btn_link}}"
+                                                   class="text-{{$color}} text-sm icon-move-right">Read More
+                                                    <i class="fas fa-arrow-right text-xs ms-1"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 me-auto my-auto ms-md-5">
-                                    <div class="p-3 info-horizontal d-flex">
-                                        <div>
-                                            <h5>{{$section->section_sub_title}}</h5>
-                                            <p>
-                                                {{$section->section_text_2}}
-                                            </p>
+
+                            @elseif($section->section_style == 3)
+                                <!-- Style 3 -->
+                                <div class="mt-5 position-relative">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-10 mx-auto bg-gradient-dark border-radius-lg"
+                                                 style="box-shadow: #0000005e -9px 20px 29px 0px;">
+                                                <div class="row py-5">
+                                                    <div class="col-xl-4 col-md-6 px-5 position-relative"
+                                                         style="align-content: center">
+                                                        <img
+                                                            class="img border-radius-md max-width-300 w-100 position-relative z-index-2"
+                                                            src="{{asset($section->section_image_1_url)}}"
+                                                            loading="lazy" alt="card image">
+                                                    </div>
+                                                    <div
+                                                        class="col-xl-4 col-md-5 z-index-2 position-relative px-md-3 px-5 my-md-auto mt-4">
+                                                        <i class="material-symbols-rounded text-white text-5xl">{{$section->section_main_title}}</i>
+                                                        <p class="text-lg text-white">
+                                                            {{$section->section_text_1}}
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="col-1"></div>
+                                                    <div class="col-xl-2 col-12 px-xl-0 px-5 my-xl-auto">
+                                                        <h3 class="text-white mt-xl-0 mt-5">{{$section->section_sub_title}}</h3>
+                                                        <p class="text-sm text-white opacity-8">{{$section->section_text_2}}</p>
+                                                        <a href="{{$section->section_btn_link}}"
+                                                           class="text-white icon-move-right text-sm">See
+                                                            all products
+                                                            <i class="fas fa-arrow-right text-xs ms-1"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        @elseif($section->section_style == 5)
-                            <div class="row mt-5">
-                                <div class="col-lg-12">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-6 justify-content-center d-flex flex-column">
-                                                <div class="card">
-                                                    <div class="d-block blur-shadow-image">
-                                                        <img
-                                                            src="{{asset($section->section_image_1_url)}}"
-                                                            alt="img-blur-shadow-blog-2"
-                                                            class="img-fluid border-radius-lg" loading="lazy">
-                                                    </div>
-                                                    <div class="colored-shadow"
-                                                         style="background-image: url({{asset($section->section_image_1_url)}});"></div>
+                            @elseif($section->section_style == 4)
+                                <!-- Style 4 -->
+                                <div class="row mt-5">
+                                    <div class="col-md-4 ms-auto my-auto">
+                                        <div class="cursor-pointer">
+                                            <div class="card card-background">
+                                                <div class="full-background"
+                                                     style="background-image: url('{{asset($section->section_image_1_url)}}')"></div>
+                                                <div class="card-body pt-7 text-center">
+                                                    <p class="text-white text-uppercase">{{$section->section_secondary_title}}</p>
+                                                    <h3 class="text-white up mb-0">{{$section->section_main_title}}</h3>
+                                                    <p class="text-white opacity-8">{{$section->section_text_1}}</p>
+                                                    <a href="{{$section->section_btn_link}}"
+                                                       class="btn btn-white btn-sm mt-3">Get Started
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
-                                                <h6 class="category text-{{$color}} mt-3">{{$section->section_secondary_title}}</h6>
-                                                <h3 class="card-title">
-                                                    <a href="javascript:;" class="text-dark">{{$section->section_main_title}}</a>
-                                                </h3>
-                                                <p class="card-description">
-                                                    {{$section->section_text_1}}
-                                                    <a href="{{$section->section_btn_link}}"
-                                                                                    class="text-{{$color}} icon-move-right text-sm">Read
-                                                        More
-                                                        <i class="fas fa-arrow-right text-xs ms-1"></i>
-                                                    </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 me-auto my-auto ms-md-5">
+                                        <div class="p-3 info-horizontal d-flex">
+                                            <div>
+                                                <h5>{{$section->section_sub_title}}</h5>
+                                                <p>
+                                                    {{$section->section_text_2}}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                            @elseif($section->section_style == 5)
+                                <div class="row mt-5">
+                                    <div class="col-lg-12">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-lg-6 justify-content-center d-flex flex-column">
+                                                    <div class="card">
+                                                        <div class="d-block blur-shadow-image">
+                                                            <img
+                                                                src="{{asset($section->section_image_1_url)}}"
+                                                                alt="img-blur-shadow-blog-2"
+                                                                class="img-fluid border-radius-lg" loading="lazy">
+                                                        </div>
+                                                        <div class="colored-shadow"
+                                                             style="background-image: url({{asset($section->section_image_1_url)}});"></div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
+                                                    <h6 class="category text-{{$color}} mt-3">{{$section->section_secondary_title}}</h6>
+                                                    <h3 class="card-title">
+                                                        <a href="javascript:"
+                                                           class="text-dark">{{$section->section_main_title}}</a>
+                                                    </h3>
+                                                    <p class="card-description">
+                                                        {{$section->section_text_1}}
+                                                        <a href="{{$section->section_btn_link}}"
+                                                           class="text-{{$color}} icon-move-right text-sm">Read
+                                                            More
+                                                            <i class="fas fa-arrow-right text-xs ms-1"></i>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @else
+                            <div class="editor-preview-container">
+                                <textarea id="section_custom_code" name="section_custom_code"
+                                          style="display: none;">{{$section->section_custom_code}}</textarea>
+                                <div class="preview-column">
+                                    <iframe id="htmlPreview" class="preview-frame"
+                                            sandbox="allow-scripts allow-same-origin"></iframe>
                                 </div>
                             </div>
                         @endif
@@ -264,5 +328,44 @@ $color = "";
 <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
 <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('js/material-kit.min.js')}}" type="text/javascript"></script>
+
+<script>
+    const code = document.getElementById('section_custom_code').value;
+
+        const htmlContent = code;
+        const iframe = document.getElementById('htmlPreview');
+        //const customCodeInput = document.getElementById('section_custom_code');
+
+        const fullHtml = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <base target="_blank">
+                <link href="{{asset('css/material-kit.css')}}" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <style>
+                    body {
+                        font-family: 'Roboto', sans-serif;
+                        padding: 20px;
+                        margin: 0;
+                    }
+                    .preview-container {
+                        max-width: 100%;
+                        overflow-x: auto;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="preview-container">
+                    ${htmlContent}
+                </div>
+            </body>
+            </html>
+        `;
+        //customCodeInput.setValue(fullHtml);
+        iframe.srcdoc = fullHtml;
+
+</script>
+
 </body>
 </html>

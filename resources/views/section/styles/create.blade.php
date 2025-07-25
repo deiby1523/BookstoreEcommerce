@@ -72,4 +72,9 @@
         color: white;
     }
 
+    .btn-custom-html:hover {
+        background-color: #dedede42 !important;
+        color: #7b809a !important;
+    }
+
 </style>

@@ -24,17 +24,19 @@ class SectionController extends Controller
 
     public function save(Request $request)
     {
-        $request->validate([
-            'section_name' => 'required | min:3 | max:100',
-            'section_main_title' => 'min:3 | max:50',
-            'section_secondary_title' => 'min:3 | max:50',
-            'section_sub_title' => 'min:3 | max:50',
-            'section_secondary_sub_title' => 'min:3 | max:50',
-            'section_text_1' => 'min:5 | max:1000',
-            'section_text_2' => 'min:5 | max:1000',
-            'section_color' => 'required | min:1 | max:6 | integer',
-            'section_style' => 'required | min:1 | max:5 | integer',
-        ]);
+
+            $request->validate([
+                'section_name' => 'required | min:3 | max:100',
+                'section_main_title' => 'min:3 | max:50',
+                'section_secondary_title' => 'min:3 | max:50',
+                'section_sub_title' => 'min:3 | max:50',
+                'section_secondary_sub_title' => 'min:3 | max:50',
+                'section_text_1' => 'min:5 | max:1000',
+                'section_text_2' => 'min:5 | max:1000',
+                'section_color' => 'required | min:1 | max:6 | integer',
+                'section_style' => 'required | min:1 | max:5 | integer',
+            ]);
+
 
         $id = 0;
         $model = Section::latest('id')->first();
@@ -75,6 +77,7 @@ class SectionController extends Controller
         if ($img1Exists && $img2Exists) {
             Section::create([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -93,6 +96,7 @@ class SectionController extends Controller
         } else if ($img1Exists && !$img2Exists) {
             Section::create([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -110,6 +114,7 @@ class SectionController extends Controller
         } else if (!$img1Exists && $img2Exists) {
             Section::create([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -127,6 +132,7 @@ class SectionController extends Controller
         } else if (!$img1Exists && !$img2Exists) {
             Section::create([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -141,6 +147,25 @@ class SectionController extends Controller
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
         }
+
+
+        return redirect()->route('section.index')->with('success', 'Sección añadida exitosamente');
+    }
+
+    public function saveCustom(Request $request) {
+        $request->validate([
+            'section_custom_name' => 'required | min:3 | max:100',
+            'section_custom_code' => 'required | max:60000',
+        ]);
+
+        Section::create([
+            'section_name' => $request->section_custom_name,
+            'active' => ($request->custom_active == 'on'),
+            'section_use_custom_code' => 1,
+            'section_custom_code' => $request->section_custom_code,
+            'created_at' => Carbon::now('UTC')->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+        ]);
 
         return redirect()->route('section.index')->with('success', 'Sección añadida exitosamente');
     }
@@ -204,6 +229,8 @@ class SectionController extends Controller
         if ($img1Exists && $img2Exists) {
             $section->update([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
+                'section_custom_code' => null,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -221,6 +248,8 @@ class SectionController extends Controller
         } else if ($img1Exists && !$img2Exists) {
             $section->update([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
+                'section_custom_code' => null,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -237,6 +266,8 @@ class SectionController extends Controller
         } else if (!$img1Exists && $img2Exists) {
             $section->update([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
+                'section_custom_code' => null,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -253,6 +284,8 @@ class SectionController extends Controller
         } else if (!$img1Exists && !$img2Exists) {
             $section->update([
                 'section_name' => $request->section_name,
+                'section_use_custom_code' => 0,
+                'section_custom_code' => null,
                 'section_main_title' => $request->section_main_title,
                 'section_secondary_title' => $request->section_secondary_title,
                 'section_sub_title' => $request->section_sub_title,
@@ -266,6 +299,48 @@ class SectionController extends Controller
                 'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
             ]);
         }
+
+        return redirect()->route('section.index')->with('success', 'Sección editada exitosamente');
+    }
+
+    public function updateCustom(Request $request, $id) {
+        $request->validate([
+            'section_custom_name' => 'required | min:3 | max:100',
+            'section_custom_code' => 'required | max:60000',
+        ]);
+
+        $section = Section::findOrFail($id);
+
+        if ($section->section_image_1_url != null) {
+            if (File::exists(public_path($section->section_image_1_url))) {
+                File::delete(public_path($section->section_image_1_url));
+            }
+        }
+
+        if ($section->section_image_2_url != null) {
+            if (File::exists(public_path($section->section_image_2_url))) {
+                File::delete(public_path($section->section_image_2_url));
+            }
+        }
+
+            $section->update([
+                'section_name' => $request->section_custom_name,
+                'section_use_custom_code' => 1,
+                'section_custom_code' => $request->section_custom_code,
+                'section_main_title' => null,
+                'section_secondary_title' => null,
+                'section_sub_title' => null,
+                'section_secondary_sub_title' => null,
+                'section_text_1' =>null,
+                'section_text_2' => null,
+                'section_color' => 1,
+                'section_btn_link' => null,
+                'section_style' => null,
+                'active' => ($request->custom_active == 'on'),
+                'section_image_1_url' => null,
+                'section_image_2_url' => null,
+                'updated_at' => Carbon::now('UTC')->format('Y-m-d H:i:s')
+            ]);
 
         return redirect()->route('section.index')->with('success', 'Sección editada exitosamente');
     }
