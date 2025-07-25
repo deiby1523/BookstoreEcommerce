@@ -36,9 +36,11 @@
                     <div class="col" style="text-align: end"><a href="{{ route('section.create') }}"
                             class="btn btn-sm btn-warning">Añadir sección</a></div>
                 </div>
-                @phpif (isset($sections)) {
+                @php
+                    if (isset($sections)) {
                         $nsections = count($sections);
-                } @endphp
+                    }
+                @endphp
                 @if ($nsections > 0)
                     <div class="card mt-5">
                         <div class="table-responsive">
