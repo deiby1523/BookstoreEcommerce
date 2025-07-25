@@ -6,6 +6,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeaturedController;
 use App\Http\Controllers\HomeController;
@@ -67,6 +68,11 @@ Route::middleware('UserAdmin')->group(function () {
     Route::put('/banner/update/{banner}',[BannerController::class,'update'])->name('banner.update');
     Route::delete('/banner/delete/{banner}', [BannerController::class, 'delete'])->name('banner.delete');
     Route::get('/banner/show/{banner}',[BannerController::class,'show'])->name('banner.show');
+
+    // Contact messages
+    Route::get('/message',[ContactMessageController::class, 'index'])->name('message.index');
+    Route::delete('/message/delete/{message}', [ContactMessageController::class, 'delete'])->name('message.delete');
+    Route::get('/message/show/{message}',[ContactMessageController::class,'show'])->name('message.show');
 
     // Sections
     Route::get('/section', [SectionController::class,'index'])->name('section.index');
@@ -151,6 +157,7 @@ Route::middleware('UserAdmin')->group(function () {
 // TODO: Arreglar esta mrd
 // V.2 Fix this shit
 // V.3 Not fixed yet, wtf is this shit...
+// V.4 Not yet
     Route::POST('/products/search', [BookController::class, 'searchNav'])->name('book.searchNav');
 
 //public books

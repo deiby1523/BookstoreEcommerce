@@ -48,28 +48,6 @@
                             <h2>{{$publisher->publisher_name}}</h2>
                             <div class="display-4 text-md">Creada el {{$publisher->created_at}} y ultima vez actualizada el {{$publisher->updated_at}}</div>
                         </div>
-{{--                        <div class="row">--}}
-{{--                            <div class="col-lg-12">--}}
-{{--                                @if(count($author->subcategories) > 0)--}}
-{{--                                    <br>--}}
-{{--                                    <h4> Subcategorias </h4>--}}
-{{--                                    <ul class="list-group">--}}
-{{--                                        @foreach($author->subcategories as $subcategory)--}}
-{{--                                            <li class="list-group-item d-flex justify-content-between align-items-center">--}}
-{{--                                                {{$subcategory->subcategory_name}}--}}
-{{--                                                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Esta subcategoria tiene 0 libros" class="badge bg-gradient-wwarning">0</span>--}}
-{{--                                            </li>--}}
-
-{{--                                        @endforeach--}}
-{{--                                    </ul>--}}
-{{--                                @else--}}
-{{--                                    <p class="display-4" style="font-size: x-large"> No existen--}}
-{{--                                        subcategorias para esta--}}
-{{--                                        categoria.</p>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
                         <br>
                         <div class="row">
                             <div class="col-md-12 text-start">
@@ -83,7 +61,6 @@
             </div>
         </div>
     </div>
-
 </main>
 <div class="container">
     <div class="row">

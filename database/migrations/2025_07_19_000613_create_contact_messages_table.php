@@ -15,6 +15,7 @@ return new class extends Migration
         $table->string('email');
         $table->string('subject');
         $table->text('message');
+        $table->boolean('read')->default(false);
         $table->boolean('newsletter')->default(false);
         $table->timestamps();
     });
