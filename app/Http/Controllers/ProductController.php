@@ -162,6 +162,24 @@ class ProductController extends Controller
 //        dump($request);
 //        dump($request['min_price'], $request['max_price']);
 
+$page = 1;
+
+if (isset($request->page)) {
+    if($request->page != null) {
+        $page = $request->page;
+    }
+}
+
+if (isset($request->pageC)) {
+    if($request->pageC != null && $request->pageC != '') {
+        $page = $request->pageC;
+    }
+}
+
+$perPage = 1;
+        $offset = ($page-1) * $perPage;
+
+
         // Obtener categorías y subcategorías seleccionadas
         $categorySelected = $filters['category'] ? Category::find($filters['category']) : null;
         $subcategorySelected = $filters['subcategory'] ? Subcategory::find($filters['subcategory']) : null;
@@ -217,7 +235,13 @@ class ProductController extends Controller
         }
 
         // Paginación en lugar de límite fijo
-        $products = $query->paginate(12); // 12 items por página
+        $numProducts = $query->count();
+        $numPages = ceil($numProducts / $perPage);
+
+        $query->offset($offset);
+        $query->limit($perPage);
+
+        $products = $query->get();
 
         // Obtener todas las categorías para los filtros
         $bookCategories = Category::where('category_type', 0)->with('subcategories')->get();
@@ -229,7 +253,12 @@ class ProductController extends Controller
             'categorySelected' => $categorySelected,
             'subcategorySelected' => $subcategorySelected,
             'products' => $products,
-            'filters' => $filters // Pasar los filtros aplicados a la vista
+            'filters' => $filters, // Pasar los filtros aplicados a la vista
+            'numProducts' => $numProducts,
+            'numPages' => $numPages,
+            'page' => $page,
+            'perPage' => $perPage,
+            'display' => 'Mostrando del '.($offset+1).' al '.($offset+$perPage),
         ]);
     }
 

@@ -41,7 +41,7 @@
         if (search === '') {
             search = ' ';
         }
-        console.log(search + ' ' + page);
+        // console.log(search + ' ' + page);
         $.ajax({
             url: `book/search/${search}`,
             type: 'GET',

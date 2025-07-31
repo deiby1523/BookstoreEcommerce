@@ -5654,7 +5654,7 @@ subcategory-item:focus{
   --bs-pagination-hover-border-color: #dee2e6;
   --bs-pagination-focus-color: #e96c1e;
   --bs-pagination-focus-bg: #f0f2f5;
-  --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.2rem #e96c1e3d;
   --bs-pagination-active-color: #fff;
   --bs-pagination-active-bg: #e91e63;
   --bs-pagination-active-border-color: #e91e63;

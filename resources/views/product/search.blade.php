@@ -181,6 +181,10 @@
             color: var(--gray-color);
             font-size: 0.875rem;
         }
+
+        .pag-link {
+            width: 80px !important;
+        }
     </style>
 </head>
 <body>
@@ -369,40 +373,173 @@
                     @endforelse
                 </div>
 
-                {{--                <!-- Paginación -->--}}
-                {{--                @if($books->hasPages())--}}
-                {{--                    <div class="d-flex justify-content-center mt-5">--}}
-                {{--                        <nav aria-label="Page navigation">--}}
-                {{--                            <ul class="pagination">--}}
-                {{--                                @if($books->onFirstPage())--}}
-                {{--                                    <li class="page-item disabled">--}}
-                {{--                                        <span class="page-link">Anterior</span>--}}
-                {{--                                    </li>--}}
-                {{--                                @else--}}
-                {{--                                    <li class="page-item">--}}
-                {{--                                        <a class="page-link" href="{{$books->previousPageUrl()}}">Anterior</a>--}}
-                {{--                                    </li>--}}
-                {{--                                @endif--}}
+                {{-- Pagination --}}
+                <nav aria-label="Pagination-books" class="mt-5">
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+                        {{-- Pagination Numbers --}}
+                        <ul class="pagination pagination-warning mb-0">
+                            <form action="{{ route('product.search2') }}" method="POST"
+                                class="d-flex flex-wrap justify-content-center">
+                                @csrf
+                                <!-- Hidden fields -->
+                                @if (isset($categorySelected))
+                                    <input type="hidden" name="category" value="{{ $categorySelected->id }}">
+                                @else
+                                    <input type="hidden" name="category">
+                                @endif
 
-                {{--                                @foreach($books->getUrlRange(1, $books->lastPage()) as $page => $url)--}}
-                {{--                                    <li class="page-item {{$books->currentPage() == $page ? 'active' : ''}}">--}}
-                {{--                                        <a class="page-link" href="{{$url}}">{{$page}}</a>--}}
-                {{--                                    </li>--}}
-                {{--                                @endforeach--}}
+                                @if (isset($subcategorySelected))
+                                    <input type="hidden" name="subcategory"
+                                        value="{{ $subcategorySelected->id }}">
+                                @else
+                                    <input type="hidden" name="subcategory">
+                                @endif
 
-                {{--                                @if($books->hasMorePages())--}}
-                {{--                                    <li class="page-item">--}}
-                {{--                                        <a class="page-link" href="{{$books->nextPageUrl()}}">Siguiente</a>--}}
-                {{--                                    </li>--}}
-                {{--                                @else--}}
-                {{--                                    <li class="page-item disabled">--}}
-                {{--                                        <span class="page-link">Siguiente</span>--}}
-                {{--                                    </li>--}}
-                {{--                                @endif--}}
-                {{--                            </ul>--}}
-                {{--                        </nav>--}}
-                {{--                    </div>--}}
-                {{--                @endif--}}
+                                <input type="hidden" name="min_price" value="{{ $filters['min_price'] ?? 0 }}">
+                                <input type="hidden" name="max_price"
+                                    value="{{ $filters['max_price'] ?? 300000 }}">
+                                {{-- <input type="hidden" name="format" value="{{ $filters['format'] ?? '' }}"> --}}
+                                <input type="hidden" name="sort" value="{{ $filters['sort'] ?? 'newest' }}">
+
+                                {{-- Previous Button --}}
+                                <li class="page-item">
+                                    <button class="page-link pag-link {{ $page == 1 ? 'disabled' : '' }}"
+                                        type="submit" name="page" value="{{ $page - 1 }}">
+                                        <i class="fa fa-angle-left"></i>
+                                        <span class="sr-only">Anterior</span>
+                                    </button>
+                                </li>
+
+                                {{-- Page Numbers --}}
+                                @if ($numPages <= 7)
+                                    @for ($i = 1; $i <= $numPages; $i++)
+                                        <li class="page-item {{ $page == $i ? 'active' : '' }}">
+                                            <button type="submit" class="page-link" name="page"
+                                                value="{{ $i }}">
+                                                {{ $i }}
+                                            </button>
+                                        </li>
+                                    @endfor
+                                @else
+                                    {{-- Always show first 2 pages --}}
+                                    @for ($i = 1; $i <= 2; $i++)
+                                        <li class="page-item {{ $page == $i ? 'active' : '' }}">
+                                            <button type="submit" class="page-link" name="page"
+                                                value="{{ $i }}">
+                                                {{ $i }}
+                                            </button>
+                                        </li>
+                                    @endfor
+
+                                    {{-- Show ellipsis if current page is far from start --}}
+                                    @if ($page > 4)
+                                        <li class="page-item disabled">
+                                            <span class="page-link">...</span>
+                                        </li>
+                                    @endif
+
+                                    {{-- Show current page and neighbors --}}
+                                    @if ($page > 2 && $page < $numPages - 1)
+                                        @for ($i = max(3, $page - 1); $i <= min($page + 1, $numPages - 2); $i++)
+                                            <li class="page-item {{ $page == $i ? 'active' : '' }}">
+                                                <button type="submit" class="page-link" name="page"
+                                                    value="{{ $i }}">
+                                                    {{ $i }}
+                                                </button>
+                                            </li>
+                                        @endfor
+                                    @endif
+
+                                    {{-- Show ellipsis if current page is far from end --}}
+                                    @if ($page < $numPages - 3)
+                                        <li class="page-item disabled">
+                                            <span class="page-link">...</span>
+                                        </li>
+                                    @endif
+
+                                    {{-- Always show last 2 pages --}}
+                                    @for ($i = $numPages - 1; $i <= $numPages; $i++)
+                                        <li class="page-item {{ $page == $i ? 'active' : '' }}">
+                                            <button type="submit" class="page-link" name="page"
+                                                value="{{ $i }}">
+                                                {{ $i }}
+                                            </button>
+                                        </li>
+                                    @endfor
+                                @endif
+
+                                {{-- Next Button --}}
+                                <li class="page-item">
+                                    <button class="page-link pag-link {{ $page == $numPages ? 'disabled' : '' }}"
+                                        type="submit" name="page" value="{{ $page + 1 }}">
+                                        <i class="fa fa-angle-right"></i>
+                                        <span class="sr-only">Siguiente</span>
+                                    </button>
+                                </li>
+                            </form>
+                        </ul>
+
+                        {{-- Page Search --}}
+                        {{-- <form action="{{ route('book.search2') }}" method="POST"
+                            class="d-flex align-items-center">
+                            @csrf
+                            <!-- Hidden fields (same as above) -->
+                            @if (isset($categorySelected))
+                                <input type="hidden" name="category" value="{{ $categorySelected->id }}">
+                            @else
+                                <input type="hidden" name="category">
+                            @endif
+
+                            @if (isset($subcategorySelected))
+                                <input type="hidden" name="subcategory" value="{{ $subcategorySelected->id }}">
+                            @else
+                                <input type="hidden" name="subcategory">
+                            @endif
+
+                            <input type="hidden" name="min_price" value="{{ $filters['min_price'] ?? 0 }}">
+                            <input type="hidden" name="max_price"
+                                value="{{ $filters['max_price'] ?? 300000 }}">
+                            <input type="hidden" name="format" value="{{ $filters['format'] ?? '' }}">
+                            <input type="hidden" name="sort" value="{{ $filters['sort'] ?? 'newest' }}">
+
+                            <div class="input-group input-group-outline" style="max-width: 250px;">
+                                <input type="number" min="1" max="{{ $numPages }}"
+                                    class="form-control" name="pageC">
+                                <label class="form-label" >Buscar Página</label>
+                            </div>
+                            <button class="btn btn-sm btn-warning" type="submit">
+                                <i class="fa fa-arrow-right"></i>Hola
+                            </button>
+
+                        </form> --}}
+                    </div>
+                </nav>
+
+                <style>
+                    /* Ajustes para mobile */
+                    @media (max-width: 768px) {
+                        .pagination {
+                            flex-wrap: wrap;
+                            justify-content: center;
+                        }
+
+                        .page-item {
+                            margin: 2px;
+                        }
+
+                        /* .input-group {
+                            margin-top: 10px;
+                            width: 100%;
+                        } */
+                    }
+                </style>
+
+                {{-- <p class="text-lg"><b>Libros: </b>{{ $numProducts }}</p>
+                <p class="text-lg"><b>Por pagina: </b>{{ $perPage }}</p>
+                <p class="text-lg"><b>total paginas: </b>{{ $numPages }}</p>
+                <p class="text-lg"><b>pagina actual: </b>{{ $page }}</p>
+                <p class="text-lg"><b></b>{{ $display }}</p> --}}
+           
             </div>
         </div>
     </div>

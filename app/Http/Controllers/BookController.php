@@ -241,6 +241,24 @@ class BookController extends Controller
 //            'sort' => 'nullable|in:relevance,price_asc,price_desc,rating,newest'
 //        ]);
 
+        $page = 1;
+
+        if (isset($request->page)) {
+            if($request->page != null) {
+                $page = $request->page;
+            }
+        }
+
+        if (isset($request->pageC)) {
+            if($request->pageC != null && $request->pageC != '') {
+                $page = $request->pageC;
+            }
+        }
+        
+
+        $perPage = 12;
+        $offset = ($page-1) * $perPage;
+
         // Obtener categorías y subcategorías seleccionadas
         $categorySelected = $filters['category'] ? Category::find($filters['category']) : null;
         $subcategorySelected = $filters['subcategory'] ? Subcategory::find($filters['subcategory']) : null;
@@ -251,7 +269,6 @@ class BookController extends Controller
             'books.book_isbn',
             'books.book_title',
             'books.book_price',
-            // 'books.book_price',
             'books.book_discount',
             'books.book_image_url',
             'books.book_format',
@@ -314,8 +331,13 @@ class BookController extends Controller
                 $query->orderBy('books.updated_at', 'desc');
         }
 
-        // Paginación en lugar de límite fijo
-        $books = $query->paginate(12); // 12 items por página
+        $numBooks = $query->count();
+        $numPages = ceil($numBooks / $perPage);
+
+        $query->offset($offset);
+        $query->limit($perPage);
+
+        $books = $query->get();
 
         // Obtener todas las categorías para los filtros
         $bookCategories = Category::where('category_type', 0)->with('subcategories')->get();
@@ -327,7 +349,12 @@ class BookController extends Controller
             'categorySelected' => $categorySelected,
             'subcategorySelected' => $subcategorySelected,
             'books' => $books,
-            'filters' => $filters // Pasar los filtros aplicados a la vista
+            'filters' => $filters, // Pasar los filtros aplicados a la vista
+            'numBooks' => $numBooks,
+            'numPages' => $numPages,
+            'page' => $page,
+            'perPage' => $perPage,
+            'display' => 'Mostrando del '.($offset+1).' al '.($offset+$perPage),
         ]);
     }
 
