@@ -31,6 +31,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'whatsapp_number' => env('WHATSAPP_NUMBER', '573003543513'), // Número por defecto
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
