@@ -18,10 +18,11 @@ class CountVisits
     {
 
         $existing = Visit::where('ip_address', request()->ip())
-            ->where('page', $request->path())
-            ->where('created_at', '>=', now()->subMinutes(1439))
-            ->exists();
-
+        ->where('created_at', '>=', now()->subMinutes(1439))
+        ->exists();
+        
+        // ->where('page', $request->path())
+        
         if (!$existing) {
             Visit::create([
                 'page' => $request->path(),
