@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="es">
-
-
+<html lang="es" xmlns:a="http://www.w3.org/1999/html">
 <head>
     <title>{{$book->book_title}}</title>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf_token" content="{{csrf_token()}}" />
+
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
