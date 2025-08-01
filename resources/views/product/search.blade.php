@@ -546,7 +546,7 @@
 </section>
 
 <!-- Botón para móvil -->
-<button class="btn btn-primary btn-rounded mobile-filters" id="mobileFilterBtn">
+<button class="btn btn-warning btn-rounded mobile-filters" id="mobileFilterBtn">
     <i class="material-icons-round me-2">filter_alt</i> Filtros
 </button>
 
