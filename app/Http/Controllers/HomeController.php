@@ -51,6 +51,18 @@ class HomeController extends Controller
         return view('about_us',compact('bookCategories','productCategories'));
     }
 
+    public function dataPolicy() {
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+        return view('data_policy',compact('bookCategories','productCategories'));
+    }
+
+    public function termsAndConditions() {
+        $bookCategories = Category::where('category_type', 0)->get();
+        $productCategories = Category::where('category_type', 1)->get();
+        return view('terms_and_conditions',compact('bookCategories','productCategories'));
+    }
+
     public function contactUs() {
         $bookCategories = Category::where('category_type', 0)->get();
         $productCategories = Category::where('category_type', 1)->get();

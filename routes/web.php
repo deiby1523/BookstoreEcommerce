@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about-us',[HomeController::class, 'aboutUs'])->name('about-us');
+Route::get('/data-policy',[HomeController::class,'dataPolicy'])->name('data-policy');
+Route::get('/terms-and-conditions',[HomeController::class,'termsAndConditions'])->name('terms-and-conditions');
 Route::get('/contact-us',[HomeController::class,'contactUs'])->name('contact-us');
 Route::post('/contact-us', [HomeController::class, 'contactUsSubmit'])->name('contact-us.submit');
 

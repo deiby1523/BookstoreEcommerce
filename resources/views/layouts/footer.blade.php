@@ -45,10 +45,10 @@
             </div>
             <div class="col-md-2 col-sm-6 col-6 mb-4"><h6 class="text-sm">legal</h6>
                 <ul class="flex-column ms-n3 nav">
-                    <li class="nav-item"><a class="nav-link" href=""
+                    <li class="nav-item"><a class="nav-link" href="{{route('terms-and-conditions')}}"
                                             target="_blank">Términos y Condiciones</a></li>
-                    <li class="nav-item"><a class="nav-link" href=""
-                                            target="_blank">Política de Privacidad</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('data-policy')}}"
+                                            target="_blank">Tratamiento de Datos</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 col-6 mb-4">
