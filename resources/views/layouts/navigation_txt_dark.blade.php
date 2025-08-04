@@ -297,6 +297,9 @@
                                 <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-1">
                                     Cuenta
                                 </h6>
+                                <a href="{{route('profile.favorite-books')}}" class="dropdown-item border-radius-md">
+                                    <span>Libros favoritos</span>
+                                </a>
                                 <a href="#" class="dropdown-item border-radius-md">
                                     <span>Editar perfil</span>
                                 </a>

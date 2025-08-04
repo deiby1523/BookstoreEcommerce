@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BookDashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactMessageController;
@@ -29,9 +30,15 @@ Route::post('/contact-us', [HomeController::class, 'contactUsSubmit'])->name('co
 
 
 Route::middleware('auth')->group(function () {
+    // Profile settings
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // favorite books
+    Route::post('/books/{book}/favorite', [FavoriteController::class, 'toggleFavorite'])->name('book.set-favorite');
+    Route::get('/books/{book}/check-favorite', [FavoriteController::class, 'checkFavorite']);
+    Route::get('/user/favorites', [FavoriteController::class, 'userFavorites'])->name('profile.favorite-books');
 });
 
 Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name("login.google");

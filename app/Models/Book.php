@@ -52,6 +52,12 @@ class Book extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
+    public function favoritedByUsers()
+{
+    return $this->belongsToMany(User::class, 'book_user_favorites')
+                ->withTimestamps();
+}
+
     protected static function boot(): void
     {
         parent::boot();

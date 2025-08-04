@@ -48,8 +48,9 @@ class User extends Authenticatable
         return $this->hasOne(Role::class,'id','role_id');
     }
 
-    public function ShoppingCart()
-    {
-        return $this->belongsTo(ShoppingCart::class, 'usuario_id');
-    }
+    public function favoriteBooks()
+{
+    return $this->belongsToMany(Book::class, 'book_user_favorites')
+                ->withTimestamps();
+}
 }
