@@ -191,10 +191,28 @@ class BookController extends Controller
 
     public function view($id): View
     {
-        $book = Book::findOrFail($id);
+        $book = Book::with(['author', 'publisher', 'subcategory'])->findOrFail($id);
+
         $bookCategories = Category::where('category_type', 0)->get();
         $productCategories = Category::where('category_type', 1)->get();
-        return view('book.view', compact('book', 'bookCategories','productCategories'));
+
+        $relatedBooks = Book::where('subcategory_id', $book->subcategory_id)
+            ->where('id', '!=', $book->id)
+            ->where('active', true)
+            ->with(['author', 'subcategory'])
+            ->inRandomOrder()
+            ->limit(12)
+            ->get();
+
+        $sameAuthorBooks = Book::where('author_id', $book->author_id)
+            ->where('id', '!=', $book->id)
+            ->where('active', true)
+            ->with(['author', 'subcategory'])
+            ->inRandomOrder()
+            ->limit(12)
+            ->get();
+
+        return view('book.view', compact('book', 'bookCategories', 'productCategories', 'relatedBooks', 'sameAuthorBooks'));
     }
 
     public function search(): View
@@ -221,16 +239,16 @@ class BookController extends Controller
         LIMIT 30';
         $books = DB::select($sql);
 
-        return view('book.search', compact('bookCategories','productCategories', 'books'));
+        return view('book.search', compact('bookCategories', 'productCategories', 'books'));
     }
 
     public function search2(Request $request): View
     {
         $filters = $request;
-//        dump($request);
+        //        dump($request);
 //        dump($request['min_price'], $request['max_price']);
 
-//         Validación de los parámetros de entrada
+        //         Validación de los parámetros de entrada
 //         $filters = $request->validate([
 //            'category' => 'nullable|integer|exists:categories,id',
 //            'subcategory' => 'nullable|integer|exists:subcategories,id',
@@ -244,20 +262,20 @@ class BookController extends Controller
         $page = 1;
 
         if (isset($request->page)) {
-            if($request->page != null) {
+            if ($request->page != null) {
                 $page = $request->page;
             }
         }
 
         if (isset($request->pageC)) {
-            if($request->pageC != null && $request->pageC != '') {
+            if ($request->pageC != null && $request->pageC != '') {
                 $page = $request->pageC;
             }
         }
-        
+
 
         $perPage = 12;
-        $offset = ($page-1) * $perPage;
+        $offset = ($page - 1) * $perPage;
 
         // Obtener categorías y subcategorías seleccionadas
         $categorySelected = $filters['category'] ? Category::find($filters['category']) : null;
@@ -282,7 +300,7 @@ class BookController extends Controller
             ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
             ->join('subcategories', 'books.subcategory_id', '=', 'subcategories.id')
             ->join('categories', 'subcategories.category_id', '=', 'categories.id');
-//            ->with(['reviews']); // Cargar relaciones si existen
+        //            ->with(['reviews']); // Cargar relaciones si existen
 
         // Aplicar filtros
         if ($filters['category']) {
@@ -303,9 +321,9 @@ class BookController extends Controller
         }
 
         // Filtro por formato
-       if ($filters['book_format']) {
-           $query->where('books.book_format', $filters['book_format']);
-       }
+        if ($filters['book_format']) {
+            $query->where('books.book_format', $filters['book_format']);
+        }
 
         // Filtro por rating (asumiendo que tienes relación con reviews)
 //        if ($validated['rating']) {
@@ -354,7 +372,7 @@ class BookController extends Controller
             'numPages' => $numPages,
             'page' => $page,
             'perPage' => $perPage,
-            'display' => 'Mostrando del '.($offset+1).' al '.($offset+$perPage),
+            'display' => 'Mostrando del ' . ($offset + 1) . ' al ' . ($offset + $perPage),
         ]);
     }
 
@@ -372,7 +390,7 @@ class BookController extends Controller
         $search = $request->search;
         $page = $request->page;
         $perPage = 20;
-        $offset = ($page-1) * $perPage;
+        $offset = ($page - 1) * $perPage;
 
         if ($search != " ") {
             $sql = "SELECT
@@ -426,7 +444,7 @@ class BookController extends Controller
        ORDER BY books.created_at DESC
         LIMIT $offset,$perPage";
             $books = DB::select($sql);
-            return response()->json($books, 200)->withHeaders(['numBooks' => $numBooks,'numPages' => $numPages,'page' => $page, 'perPage' => $perPage,'display'=>'Mostrando del '.($offset+1).' al '.($offset+$perPage)]);
+            return response()->json($books, 200)->withHeaders(['numBooks' => $numBooks, 'numPages' => $numPages, 'page' => $page, 'perPage' => $perPage, 'display' => 'Mostrando del ' . ($offset + 1) . ' al ' . ($offset + $perPage)]);
         } else {
             $sql = "SELECT
     books.id,

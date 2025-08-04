@@ -8,8 +8,7 @@
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="csrf_token" content="{{csrf_token()}}" />
-
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -19,6 +18,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- Material Kit CSS -->
     <link href={{ asset('css/material-kit.css') }} rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/book-card.css') }}">
+
 
     <style>
         .btn-favorite-active {
@@ -38,6 +39,45 @@
 
         .favorite-icon {
             fill: currentColor;
+        }
+
+        @media (min-width: 1000px) {
+            .rowBooks {
+                max-width: 360px !important;
+            }
+        }
+
+        /*no inspection ALL*/
+        .book-horizontal-slider {
+            display: grid;
+            grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr));
+            grid-auto-flow: column;
+            overflow-x: auto;
+            grid-gap: 2rem;
+            grid-auto-columns: minmax(24rem, 1fr);
+            width: -webkit-fill-available;
+            padding: 20px;
+        }
+
+        .book-horizontal-slider::-webkit-scrollbar {
+            height: 8px;
+            /* Horizontal scroll size */
+        }
+
+        .book-horizontal-slider::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        /* Change the background and add a shadow when hovering */
+        .book-horizontal-slider::-webkit-scrollbar-thumb:hover {
+            background: #b3b3b3;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Change the background when active */
+        .book-horizontal-slider::-webkit-scrollbar-thumb:active {
+            background-color: #999999;
         }
     </style>
 </head>
@@ -229,7 +269,115 @@
                 </div>
             </div>
         </div>
+
+        @if (count($relatedBooks) > 0)
+        <section class="py-5 mt-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <h2 class="mb-2">Libros relacionados</h2>
+                    <p class="mb-0" style="font-size: 20px">Te podrían interesar estos libros</p>
+                </div>
+                
+                <div id="relatedBooks" class="book-horizontal-slider">
+                    <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
+                        @forelse($relatedBooks as $relatedbook)
+                            <div class="book-card">
+                                <div class="book-image-container">
+                                    <img src="{{ $relatedbook->book_image_url != null ? asset($relatedbook->book_image_url) : asset('img/bookPlaceholder.webp') }}"
+                                        alt="{{ $relatedbook->book_title }}" class="book-image">
+                                    @if ($relatedbook->book_discount > 0)
+                                        <span class="book-badge">-{{ $relatedbook->book_discount }}%</span>
+                                    @endif
+                                </div>
+                                <div class="book-content">
+                                    <span class="book-category">{{ $relatedbook->subcategory->subcategory_name }}</span>
+                                    <h5 class="book-title">
+                                        <a href="{{ route('book.view', $relatedbook->id) }}"
+                                            class="text-decoration-none data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'">{{ $relatedbook->book_title }}</a>
+                                    </h5>
+                                    <p class="book-author">{{ $relatedbook->author->author_name }}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span
+                                            class="book-price">${{ number_format($relatedbook->book_price - ($relatedbook->book_price * $relatedbook->book_discount) / 100) }}</span>
+                                        @if ($relatedbook->book_discount > 0)
+                                            <small
+                                                class="text-muted text-decoration-line-through">${{ number_format($relatedbook->book_price) }}</small>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    {{-- <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                        este
+                                        momento.</p> --}}
+                                </div>
+                            </div>
+                        @endforelse
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endif
+
+        @if (count($sameAuthorBooks) > 0)
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <h2 class="mb-2">Del mismo autor</h2>
+                    <p class="mb-0" style="font-size: 20px">Libros de {{$book->author->author_name}}</p>
+                </div>
+                
+                <div id="relatedBooks" class="book-horizontal-slider">
+                    <div class="row flex-nowrap rowBooks" style="max-width: 210px; position: relative;">
+                        @forelse($sameAuthorBooks as $sameAuthorBook)
+                            <div class="book-card">
+                                <div class="book-image-container">
+                                    <img src="{{ $sameAuthorBook->book_image_url != null ? asset($sameAuthorBook->book_image_url) : asset('img/bookPlaceholder.webp') }}"
+                                        alt="{{ $sameAuthorBook->book_title }}" class="book-image">
+                                    @if ($sameAuthorBook->book_discount > 0)
+                                        <span class="book-badge">-{{ $sameAuthorBook->book_discount }}%</span>
+                                    @endif
+                                </div>
+                                <div class="book-content">
+                                    <span class="book-category">{{ $sameAuthorBook->subcategory->subcategory_name }}</span>
+                                    <h5 class="book-title">
+                                        <a href="{{ route('book.view', $sameAuthorBook->id) }}"
+                                            class="text-decoration-none data-bs-toggle='tooltip' data-bs-placement='top' title='${book.book_title}'">{{ $sameAuthorBook->book_title }}</a>
+                                    </h5>
+                                    <p class="book-author">{{ $sameAuthorBook->author->author_name }}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span
+                                            class="book-price">${{ number_format($sameAuthorBook->book_price - ($sameAuthorBook->book_price * $sameAuthorBook->book_discount) / 100) }}</span>
+                                        @if ($sameAuthorBook->book_discount > 0)
+                                            <small
+                                                class="text-muted text-decoration-line-through">${{ number_format($sameAuthorBook->book_price) }}</small>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    {{-- <p class="display-4" style="font-size: x-large"> No hay libros para mostrar en
+                                        este
+                                        momento.</p> --}}
+                                </div>
+                            </div>
+                        @endforelse
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endif
     </div>
+    @include('layouts.footer')
+
 
     <!-- Script para manejar favoritos -->
     {{-- <script>
@@ -260,9 +408,9 @@ document.getElementById('favoriteBtn').addEventListener('click', function() {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const favoriteBtn = document.getElementById('favoriteBtn');
-        
+
             if (!favoriteBtn) return;
-        
+
             // Estado inicial
             const initialState = favoriteBtn.getAttribute('data-initial-state') === 'true';
             if (initialState) {
@@ -271,61 +419,62 @@ document.getElementById('favoriteBtn').addEventListener('click', function() {
                 favoriteBtn.querySelector('.heart-outline').style.display = 'none';
                 favoriteBtn.querySelector('.heart-filled').style.display = 'block';
             }
-        
+
             // Manejar clic
             favoriteBtn.addEventListener('click', function() {
                 if (!{{ auth()->check() ? 'true' : 'false' }}) {
                     window.location.href = "{{ route('login') }}";
                     return;
                 }
-        
+
                 const bookId = this.getAttribute('data-book-id');
                 const isFavorite = this.classList.contains('btn-favorite-active');
                 const spinner = this.querySelector('.spinner-border');
                 const icon = this.querySelector('.favorite-icon');
                 const text = this.querySelector('.favorite-text');
                 const button = this; // Guardar referencia al botón
-        
+
                 // Mostrar spinner
                 spinner.style.display = 'inline-block';
                 this.disabled = true;
-        
+
                 // Ajax request
                 $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-                    },
-                    url: '{{ route("book.set-favorite", ["book" => $book->id]) }}',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'book': bookId
-                    }
-                })
-                .done(function(response) {  // Cambiado de 'status' a 'response'
-                    if (response.status === 'added') {
-                        button.classList.add('btn-favorite-active');
-                        text.textContent = 'En favoritos';
-                        icon.querySelector('.heart-outline').style.display = 'none';
-                        icon.querySelector('.heart-filled').style.display = 'block';
-                    } else {
-                        button.classList.remove('btn-favorite-active');
-                        text.textContent = 'Guardar en favoritos';
-                        icon.querySelector('.heart-outline').style.display = 'block';
-                        icon.querySelector('.heart-filled').style.display = 'none';
-                    }
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.error("Error al actualizar favorito:", textStatus, errorThrown);
-                    alert('Ocurrió un error al actualizar tus favoritos. Por favor intenta nuevamente.');
-                })
-                .always(function() {
-                    spinner.style.display = 'none';
-                    button.disabled = false;
-                });
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                        },
+                        url: '{{ route('book.set-favorite', ['book' => $book->id]) }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'book': bookId
+                        }
+                    })
+                    .done(function(response) { // Cambiado de 'status' a 'response'
+                        if (response.status === 'added') {
+                            button.classList.add('btn-favorite-active');
+                            text.textContent = 'En favoritos';
+                            icon.querySelector('.heart-outline').style.display = 'none';
+                            icon.querySelector('.heart-filled').style.display = 'block';
+                        } else {
+                            button.classList.remove('btn-favorite-active');
+                            text.textContent = 'Guardar en favoritos';
+                            icon.querySelector('.heart-outline').style.display = 'block';
+                            icon.querySelector('.heart-filled').style.display = 'none';
+                        }
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error al actualizar favorito:", textStatus, errorThrown);
+                        alert(
+                            'Ocurrió un error al actualizar tus favoritos. Por favor intenta nuevamente.');
+                    })
+                    .always(function() {
+                        spinner.style.display = 'none';
+                        button.disabled = false;
+                    });
             });
         });
-        </script>
+    </script>
 </body>
 
 </html>
