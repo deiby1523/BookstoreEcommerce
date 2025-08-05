@@ -38,6 +38,7 @@ class GoogleLoginController extends Controller
             $newUser->email = $user->email;
             $newUser->password = bcrypt(str_random()); // O puedes generar un password aleatorio
             $newUser->role_id = 2;
+            $newUser->google_account = 1;
             $newUser->save();
 
             // Autentica al usuario recién creado
