@@ -300,7 +300,7 @@
                                 <a href="{{route('profile.favorite-books')}}" class="dropdown-item border-radius-md">
                                     <span>Libros favoritos</span>
                                 </a>
-                                <a href="#" class="dropdown-item border-radius-md">
+                                <a href="{{ route('profile.edit')}}" class="dropdown-item border-radius-md">
                                     <span>Editar perfil</span>
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}">
