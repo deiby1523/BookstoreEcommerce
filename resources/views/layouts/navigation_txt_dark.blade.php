@@ -148,9 +148,19 @@
                                     {{$category->category_name}}
                                 </div>
                                 @forelse($category->subcategories as $subcategory)
-                                    <a href="#" class="dropdown-item border-radius-md">
-                                        {{$subcategory->subcategory_name}}
-                                    </a>
+                                <form action="{{route('book.search2')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="category" id="category"
+                                           value="{{$category->id}}">
+                                    <input type="hidden" name="subcategory" id="subcategory"
+                                           value="{{$subcategory->id}}">
+                                    <input type="hidden" name="min_price" id="min_price" value="0">
+                                    <input type="hidden" name="max_price" id="max_price" value="300000">
+                                    <button type="submit"
+                                            class="dropdown-item border-radius-md">
+                                        <span>{{$subcategory->subcategory_name}}</span>
+                                    </button>
+                                </form>
                                 @empty
                                     <p>No hay subcategorías para {{$category}}</p>
                                 @endforelse
@@ -224,9 +234,19 @@
                                     {{$category->category_name}}
                                 </div>
                                 @forelse($category->subcategories as $subcategory)
-                                    <a href="#" class="dropdown-item border-radius-md">
-                                        {{$subcategory->subcategory_name}}
-                                    </a>
+                                <form action="{{route('product.search2')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="category" id="category"
+                                        value="{{$category->id}}">
+                                    <input type="hidden" name="subcategory" id="subcategory"
+                                        value="{{$subcategory->id}}">
+                                    <input type="hidden" name="min_price" id="min_price" value="0">
+                                    <input type="hidden" name="max_price" id="max_price" value="300000">
+                                    <button type="submit"
+                                            class="dropdown-item border-radius-md">
+                                        <span>{{$subcategory->subcategory_name}}</span>
+                                    </button>
+                                </form>
                                 @empty
                                     <p>No hay subcategorías para {{$category}}</p>
                                 @endforelse

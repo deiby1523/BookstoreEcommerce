@@ -119,11 +119,8 @@
             <section class="py-2 position-relative">
                 <div class="row justify-content-center mt-2 mb-7">
                     <div class="col-lg-6">
-                        <h1 class="text-dark mt-4 mb-0 text-center">Categorías Populares</h1>
-                        <p class="text-center" style="font-size: 20px">Selección de las categorías mas populares de
-                            este
-                            mes, que pueden
-                            llamarle la atención.</p>
+                        <h1 class="text-dark mt-4 mb-0 text-center">Nuestras categorías</h1>
+                        <p class="text-center" style="font-size: 20px">Explora una cuidada selección de libros para todos los gustos. Encuentra fácilmente tu próxima lectura entre nuestras temáticas destacadas.</p>
                     </div>
                 </div>
                 <div id="carousel-categories" class="carousel slide carousel-team">
