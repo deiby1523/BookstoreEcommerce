@@ -119,7 +119,7 @@
                         <!-- Badge de descuento -->
                         @if ($book->book_discount > 0)
                             <div class="position-absolute top-0 end-0 text-white px-3 py-2 rounded shadow m-3 text-bold"
-                                style="background-color: rgba(255, 0, 0, 0.5);">
+                                style="background-color: rgba(255, 0, 0, 0.705);">
                                 -{{ $book->book_discount }}% OFF
                             </div>
                         @endif
