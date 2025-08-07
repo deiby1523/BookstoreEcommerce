@@ -248,7 +248,7 @@
                                 <form action="{{ route('product.search2') }}" method="POST">
                                     @csrf
                                     <button class="btn btn-warning" type="submit">Ver productos</button>
-                                    <a href="/contacto" class="btn btn-outline-secondary">
+                                    <a href="{{route('contact-us')}}" class="btn btn-outline-secondary">
                                         ¿Necesitas asesoría?
                                     </a>
                                 </form>

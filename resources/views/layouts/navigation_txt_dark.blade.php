@@ -64,7 +64,7 @@
 <nav
     class="navbar bg-white navbar-expand-lg position-absolute top-0 z-index-3  shadow-none w-100 mb-3 pt-3 navbar-dark">
     <div class="container" style="max-width: 100%">
-        <a class="navbar-brand text-dark text-8xl" style="margin-right: 0;" href="#">
+        <a class="navbar-brand text-dark text-8xl" style="margin-right: 0;" href="{{route('home')}}">
             <img src="{{asset('img/logos/Logo_Home.jpeg')}}" alt="Logo" style="max-width: 200px"
                  class="navbar-brand-img">
         </a>
@@ -302,6 +302,9 @@
                                     <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
                                         Administrar
                                     </h6>
+                                    <a href="{{ route('dashboard') }}" class="dropdown-item border-radius-md">
+                                        <span>Dashboard</span>
+                                    </a>
                                     <a href="{{ route('book.index') }}" class="dropdown-item border-radius-md">
                                         <span>Libros</span>
                                     </a>

@@ -39,8 +39,8 @@
                     <li class="nav-item"><a class="nav-link" href="{{route('contact-us')}}">Contáctanos</a></li>
                     <li class="nav-item"><a class="nav-link" href=""
                                             target="_blank">Sugerencias</a></li>
-                    <li class="nav-item"><a class="nav-link" href=""
-                                            target="_blank">Reportar Error</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href=""
+                                            target="_blank">Reportar Error</a></li> --}}
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 col-12 mb-4"><h6 class="text-sm">legal</h6>
