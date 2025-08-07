@@ -651,7 +651,7 @@
       </body>
     </html>
   "
-                            sandbox="allow-same-origin"></iframe>
+                            sandbox="allow-same-origin allow-scripts"></iframe>
                     @endif
                 </section>
             @endforeach

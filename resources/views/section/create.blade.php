@@ -346,7 +346,7 @@
                                         {{-- image input --}}
                                         <div class="input-group input-group-static mb-4 mt-4">
                                             <input id="fileinput1" name="section_image_1" type="file"
-                                                   accept=".jpg,.jpeg,.png"
+                                                   accept=".jpg,.jpeg,.png,.webp"
                                                    style="display:none;">
                                         </div>
 
@@ -400,7 +400,7 @@
                                         {{-- image input --}}
                                         <div class="input-group input-group-static mb-4 mt-4">
                                             <input id="fileinput2" name="section_image_2" type="file"
-                                                   accept=".jpg,.jpeg,.png"
+                                                   accept=".jpg,.jpeg,.png,.webp"
                                                    style="display:none;">
                                         </div>
 
