@@ -120,7 +120,9 @@
                 <div class="row justify-content-center mt-2 mb-7">
                     <div class="col-lg-6">
                         <h1 class="text-dark mt-4 mb-0 text-center">Nuestras categorías</h1>
-                        <p class="text-center" style="font-size: 20px">Explora una cuidada selección de libros para todos los gustos. Encuentra fácilmente tu próxima lectura entre nuestras temáticas destacadas.</p>
+                        <p class="text-center" style="font-size: 20px">Explora una cuidada selección de libros para
+                            todos los gustos. Encuentra fácilmente tu próxima lectura entre nuestras temáticas
+                            destacadas.</p>
                     </div>
                 </div>
                 <div id="carousel-categories" class="carousel slide carousel-team">
@@ -248,7 +250,7 @@
                                 <form action="{{ route('product.search2') }}" method="POST">
                                     @csrf
                                     <button class="btn btn-warning" type="submit">Ver productos</button>
-                                    <a href="{{route('contact-us')}}" class="btn btn-outline-secondary">
+                                    <a href="{{ route('contact-us') }}" class="btn btn-outline-secondary">
                                         ¿Necesitas asesoría?
                                     </a>
                                 </form>
@@ -356,8 +358,9 @@
                             @forelse($latestBooks as $book)
                                 <div class="book-card">
                                     <div class="book-image-container">
-                                        <img src="{{ $book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp') }}"
-                                            alt="{{ $book->book_title }}" class="book-image">
+                                        <a href="{{ route('book.view', $book->id) }}"><img
+                                                src="{{ $book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp') }}"
+                                                alt="{{ $book->book_title }}" class="book-image"></a>
                                         @if ($book->book_discount > 0)
                                             <span class="book-badge">-{{ $book->book_discount }}%</span>
                                         @endif
@@ -410,8 +413,10 @@
                                     @foreach ($featured->books as $book)
                                         <div class="book-card">
                                             <div class="book-image-container">
-                                                <img src="{{ $book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp') }}"
-                                                    alt="{{ $book->book_title }}" class="book-image">
+                                                <a href="{{ route('book.view', $book->id) }}">
+                                                    <img src="{{ $book->book_image_url != null ? asset($book->book_image_url) : asset('img/bookPlaceholder.webp') }}"
+                                                        alt="{{ $book->book_title }}" class="book-image">
+                                                </a>
                                                 @if ($book->book_discount > 0)
                                                     <span class="book-badge">-{{ $book->book_discount }}%</span>
                                                 @endif
@@ -651,7 +656,7 @@
       </body>
     </html>
   "
-                            sandbox="allow-same-origin allow-scripts"></iframe>
+                            sandbox="allow-same-origin allow-scripts allow-forms allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
                     @endif
                 </section>
             @endforeach
