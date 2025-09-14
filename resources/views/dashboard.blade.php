@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>Administrar Libros</title>
+    <title>Panel administrativo</title>
     <!-- Required meta tags --->
     <meta charset="UTF-8">
 
