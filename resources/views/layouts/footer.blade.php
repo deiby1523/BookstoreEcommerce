@@ -54,17 +54,17 @@
             <div class="col-md-2 col-sm-6 col-12 mb-4">
                 <ul class="flex-column ms-n3 nav px-3">
                     <li class="nav-item">
-                        Carrera 19B #8-41
+                        Calle 35#14-52
                     </li>
                     <li class="nav-item">
                         Bucaramanga, Santander
                     </li>
                     <li class="nav-item">
-                        deibyfabianpradaquintero@gmail.com
+                        Libreriavida.representaciones@gmail.com
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         cuentasdeiby@gmail.com
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <div class="col-12">
