@@ -49,9 +49,37 @@
             data: {'search': search, 'page': page},
         })
             .done(function (books, response, xhr) {
-                function convertToISBN(number) {
-                    return 'ISBN ' + number.substring(0, 3) + '-' + number.substring(3, 4) + '-' + number.substring(4, 8) + '-' + number.substring(8, 12) + '-' + number.substring(12, 13);
-                }
+                function convertToISBN(isbn) {
+    if (!isbn) {
+        return 'No disponible';
+    }
+
+    // Eliminar todo lo que no sea número o 'X'
+    const cleanIsbn = isbn.replace(/[^0-9Xx]/g, '');
+
+    if (cleanIsbn.length === 13) {
+        // ISBN-13 → 978-3-16-148410-0
+        return (
+            'ISBN ' +
+            cleanIsbn.replace(
+                /(\d{3})(\d{1})(\d{2})(\d{6})(\d{1})/,
+                '$1-$2-$3-$4-$5'
+            )
+        );
+    } else if (cleanIsbn.length === 10) {
+        // ISBN-10 → 3-16-148410-X
+        return (
+            'ISBN ' +
+            cleanIsbn.replace(
+                /(\d{1})(\d{2})(\d{6})([\dXx]{1})/,
+                '$1-$2-$3-$4'
+            )
+        );
+    } else {
+        // Longitud no válida, se devuelve como está
+        return 'ISBN ' + cleanIsbn;
+    }
+}
 
                 let paginationButtons = "";
                 let resultsList = "";

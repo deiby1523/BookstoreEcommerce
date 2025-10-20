@@ -55,6 +55,10 @@
                     <div>
                         <h3 class="mt-lg-0 mt-4">{{$book->book_title}}</h3>
                         <p class="text-xs text-uppercase font-weight-bold text-gradient text-warning mb-4">{{$book->subcategory->subcategory_name}}</p>
+                        
+                        <h6 class="mb-0 mt-2">ISBN</h6>
+                        <p class="text-lg">{{format_isbn($book->book_isbn)}}</p>
+                        
                         <h6 class="mb-0 mt-2 text-lg">Precio</h6>
                         <p class="text-lg">$ {{number_format($book->book_price)}}</p>
 
@@ -93,9 +97,10 @@
                         <h6 class="mb-0 mt-2">Numero de paginas</h6>
                         <p class="text-lg">{{$book->book_number_pages}}</p>
 
+                        @if ($book->book_publication_date != null)
                         <h6 class="mb-0 mt-2">Fecha de publicacion</h6>
                         <p class="text-lg">{{$book->book_publication_date}}</p>
-
+                        @endif
 
 
                         <div class="row mt-4">

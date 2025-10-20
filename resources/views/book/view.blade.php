@@ -146,6 +146,20 @@
 
                     <!-- Metadatos -->
                     <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+        <div class="d-flex align-items-center mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-upc me-2 text-muted" viewBox="0 0 16 16">
+                <path
+                    d="M2 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2zm0 1h12v10H2V3zm1 1h1v8H3V4zm2 0h1v8H5V4zm2 0h1v8H7V4zm2 0h2v8h-2V4zm3 0h1v8h-1V4z" />
+            </svg>
+            <div>
+                <small class="text-muted">ISBN</small>
+                <p class="mb-0">{{ format_isbn($book->book_isbn) ?? 'No disponible' }}</p>
+            </div>
+        </div>
+    </div>
+
                         <div class="col-md-6">
                             <div class="d-flex align-items-center mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -219,6 +233,22 @@
                                 </div>
                             </div>
                         </div>
+
+                        @if ($book->book_publication_date)
+        <div class="col-md-6">
+            <div class="d-flex align-items-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    fill="currentColor" class="bi bi-calendar3 me-2 text-muted" viewBox="0 0 16 16">
+                    <path
+                        d="M14 3h-1V1h-1v2H4V1H3v2H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM1 5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1H1V5zm0 2h14v7a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7z" />
+                </svg>
+                <div>
+                    <small class="text-muted">Fecha de publicación</small>
+                    <p class="mb-0">{{ \Carbon\Carbon::parse($book->book_publication_date)->format('d/m/Y') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
                     </div>
 
                     <!-- Descripción -->
