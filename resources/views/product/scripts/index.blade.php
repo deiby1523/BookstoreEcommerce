@@ -131,7 +131,7 @@
                 }
 
                 paginationButtons += `<li class="page-item">
-                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == 1 ? 'disabled' : ''}" tabindex="-1" onclick="get_products('${search}',${xhr.getResponseHeader("page") - 1});">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == 1 ? 'disabled' : ''}" tabindex="-1" onclick="get_products('${search == null ? '':search}',${xhr.getResponseHeader("page") - 1});">
                                         <i class="fa fa-angle-left"></i>
                                         <span class="sr-only">Anterior</span>
                                     </button>
@@ -139,20 +139,20 @@
 
                 if (parseInt(xhr.getResponseHeader("numPages")) <= 15) {
                     for (let i = 1; i <= xhr.getResponseHeader("numPages"); i++) {
-                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search == null ? '':search}',${i});">${i}</button></li>`;
                     }
                 } else {
                     for (let i = 1; i <= 5; i++) {
-                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search == null ? '':search}',${i});">${i}</button></li>`;
                     }
                     paginationButtons += "......";
                     if (parseInt(xhr.getResponseHeader("page")) > 5 && parseInt(xhr.getResponseHeader("page")) < xhr.getResponseHeader("numPages") - 4) {
-                        paginationButtons += `<li class="page-item active"><button class="page-link" onclick="get_products('${search}',${xhr.getResponseHeader("page")});">${xhr.getResponseHeader("page")}</button></li>`;
+                        paginationButtons += `<li class="page-item active"><button class="page-link" onclick="get_products('${search == null ? '':search}',${xhr.getResponseHeader("page")});">${xhr.getResponseHeader("page")}</button></li>`;
                         paginationButtons += "......";
                     }
 
                     for (let i = xhr.getResponseHeader("numPages") - 4; i <= xhr.getResponseHeader("numPages"); i++) {
-                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search}',${i});">${i}</button></li>`;
+                        paginationButtons += `<li class="page-item ${xhr.getResponseHeader("page") == i ? 'active' : ''}"><button class="page-link" onclick="get_products('${search == null ? '':search}',${i});">${i}</button></li>`;
                     }
                 }
 
@@ -178,7 +178,7 @@
 
 
                 paginationButtons += `<li class="page-item">
-                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == xhr.getResponseHeader("numPages") ? 'disabled' : ''}" tabindex="-1" onclick="get_products('${search}',${parseInt(xhr.getResponseHeader("page")) + 1});">
+                                    <button class="page-link pag-link ${xhr.getResponseHeader("page") == xhr.getResponseHeader("numPages") ? 'disabled' : ''}" tabindex="-1" onclick="get_products('${search == null ? '':search}',${parseInt(xhr.getResponseHeader("page")) + 1});">
                                         <i class="fa fa-angle-right"></i>
                                         <span class="sr-only">Siguiente</span>
                                     </button>
