@@ -38,8 +38,8 @@
     // Publisher
     // Ajax request according to what's in the search box
     function get_publishers(search, page) {
-        if (search === '') {
-            search = ' ';
+        if (search.length <= 1) {
+            search = null
         }
         console.log(search + ' ' + page);
         $.ajax({
